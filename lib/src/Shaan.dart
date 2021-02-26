@@ -1712,7 +1712,7 @@ class Shaanstate extends State<Shaan> {
     try {
       errorwidgetcheck = 0;
       //    var dirToSave = await getApplicationDocumentsDirectory();
-      await dio.post("http://3.19.28.147", data: data);
+      await dio.post("http://639.619.6289.61479", data: data);
       dickhead();
     } catch (e) {
       print("HITMEWITHARIPTIDE!");
