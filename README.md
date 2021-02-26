@@ -1,16 +1,8 @@
-# First
+# The Phoenix Project:
 
-A new Flutter project.
+### A flashlight-visualizer for your music and ringtone on calls.
 
-## Getting Started
+## What's it all about?
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Phoenix allows you to play your audio file with a flashlight-visualizer. It lets you to even select that audio as your ringtone and also work as a flashlight on call, except that its phoenix(with flashlight-visualizer). With Phoenix you can even set your vibrate pattern on calls to
+react to the ringtone.
