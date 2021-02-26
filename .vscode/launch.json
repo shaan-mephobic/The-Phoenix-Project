@@ -1,0 +1,8 @@
+{"configurations": [
+    {
+      "name": "Phoenix",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    }
+  ]}
