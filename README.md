@@ -2,9 +2,19 @@
 
 A Non-Commercial Music Player Made With Flutter.
 
+## Why Phoenix?
+* Beautiful Glassmorphic Design
+* Lyrics
+* A Flashlight-Visualizer
+* Share Now-Playing
+* Ad-Free
+* Wallpapers From Artwork
+And a bunch more. Why not check it yourself?
+
+
 <img alt="Header Image" src="./screenshots/top.png"></div>
 
-<img alt="Tracks" src="./screenshots/tracks.png" width="32%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="32%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="32%"> <img alt="Genres" src="./screenshots/genres.png" width="32%"> <img alt="Inside Genre" src="./screenshots/space.png" width="32%"> <img alt="Playlists" src="./screenshots/playlists.png" width="32%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="32%"> <img alt="Options" src="./screenshots/options.png" width="32%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="32%">
+<img alt="Tracks" src="./screenshots/tracks.png"> <img alt="NowPlaying" src="./screenshots/nowplaying.png"> <img alt="Lyrics" src="./screenshots/lyrics.png"> <img alt="Genres" src="./screenshots/genres.png"> <img alt="Inside Genre" src="./screenshots/space.png"> <img alt="Playlists" src="./screenshots/playlists.png"> <img alt="Visualizer" src="./screenshots/visualizer.png"> <img alt="Options" src="./screenshots/options.png"> <img alt="Wallpaper" src="./screenshots/wallpaper.png">
 
 ## LICENSE
 ```
