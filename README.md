@@ -15,7 +15,7 @@ And a bunch more. Why not check it yourself?
 
 <img alt="Header Image" src="./screenshots/top.png"></div>
 
-<img alt="Tracks" src="./screenshots/tracks.png" width="33%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="33%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="33%"> <img alt="Genres" src="./screenshots/genres.png" width="33%"> <img alt="Inside Genre" src="./screenshots/space.png" width="33%"> <img alt="Playlists" src="./screenshots/playlists.png" width="33%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="33%"> <img alt="Options" src="./screenshots/options.png" width="33%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="33%">
+<img alt="Tracks" src="./screenshots/tracks.png" width="32%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="32%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="32%"> <img alt="Genres" src="./screenshots/genres.png" width="32%"> <img alt="Inside Genre" src="./screenshots/space.png" width="32%"> <img alt="Playlists" src="./screenshots/playlists.png" width="32%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="32%"> <img alt="Options" src="./screenshots/options.png" width="32%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="32%">
 
 ## LICENSE
 ```
