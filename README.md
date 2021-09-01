@@ -11,10 +11,11 @@ A Non-Commercial Music Player Made With Flutter.
 * Wallpapers From Artwork
 And a bunch more. Why not check it yourself?
 
+<h3 align="center">Images</h3>
 
 <img alt="Header Image" src="./screenshots/top.png"></div>
 
-<img alt="Tracks" src="./screenshots/tracks.png"> <img alt="NowPlaying" src="./screenshots/nowplaying.png"> <img alt="Lyrics" src="./screenshots/lyrics.png"> <img alt="Genres" src="./screenshots/genres.png"> <img alt="Inside Genre" src="./screenshots/space.png"> <img alt="Playlists" src="./screenshots/playlists.png"> <img alt="Visualizer" src="./screenshots/visualizer.png"> <img alt="Options" src="./screenshots/options.png"> <img alt="Wallpaper" src="./screenshots/wallpaper.png">
+<img alt="Tracks" src="./screenshots/tracks.png" width="33%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="33%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="33%"> <img alt="Genres" src="./screenshots/genres.png" width="33%"> <img alt="Inside Genre" src="./screenshots/space.png" width="33%"> <img alt="Playlists" src="./screenshots/playlists.png" width="33%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="33%"> <img alt="Options" src="./screenshots/options.png" width="33%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="33%">
 
 ## LICENSE
 ```
