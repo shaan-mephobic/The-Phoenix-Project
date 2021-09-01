@@ -3,7 +3,7 @@
 A Non-Commercial Music Player Made With Flutter.
 
 ## Why Phoenix?
-* Beautiful Glassmorphic Design
+* Beautiful Glassmorphism Design
 * Lyrics
 * A Flashlight-Visualizer
 * Share Now-Playing
