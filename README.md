@@ -9,6 +9,7 @@ A Non-Commercial Music Player Made With Flutter.
 * Share Now-Playing
 * Ad-Free
 * Wallpapers From Artwork
+
 And a bunch more. Why not check it yourself?
 
 ## Preview

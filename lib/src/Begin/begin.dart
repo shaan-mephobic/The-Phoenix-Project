@@ -55,8 +55,6 @@ List specificAlbums = [];
 var musicBox;
 Color nowColor = Color(0xFF091e25);
 Color nowContrast = Color(0xFF8296a4);
-
-/// temporary inefficient method to change state for crossfade in select pages. I don't understand why the state doesn't change without this.
 bool crossfadeStateChange = false;
 bool phoenixVisualizerShown = true;
 Uint8List art2 = art;
@@ -116,7 +114,6 @@ class _BeginState extends State<Begin>
   @override
   void dispose() {
     animatedPlayPause.dispose();
-    // player.dispose();
     WidgetsBinding.instance.removeObserver(this);
     print("nothing to you");
     super.dispose();
