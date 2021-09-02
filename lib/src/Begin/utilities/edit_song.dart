@@ -2,8 +2,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../widgets/dialogues/on_hold.dart';
 
 editSong(songFile, title, album, artist, genre) async {
-  if (await Permission.storage.request().isGranted &&
-      await Permission.manageExternalStorage.request().isGranted) {
+  if (await Permission.storage.request().isGranted) {
     Map<String, String> tags = {
       "title": title,
       "artist": artist,

@@ -20,6 +20,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../begin.dart';
 import '../../utilities/constants.dart';
 import '../../utilities/edit_song.dart';
+import 'androidR_support.dart';
 
 var tagger;
 
@@ -393,387 +394,388 @@ Future<Widget> onHold(
 
                                                   /// Edit Song
                                                   else if (i == 4) {
-                                                    Navigator.pop(context);
-                                                    try {
-                                                      final tag =
-                                                          await tagger.readTags(
-                                                              path: listOfSong[
-                                                                      index]
-                                                                  .data);
+                                                    if (isAndroid11) {
+                                                      androidRSupport(context);
+                                                    } else {
+                                                      Navigator.pop(context);
+                                                      try {
+                                                        final tag = await tagger
+                                                            .readTags(
+                                                                path: listOfSong[
+                                                                        index]
+                                                                    .data);
 
-                                                      // print(
-                                                      //     tag);
-                                                      var titleOfSong =
-                                                          tag.title;
-                                                      var artistOfSong =
-                                                          tag.artist;
-                                                      var genreOfSong =
-                                                          tag.genre;
-                                                      var albumOfSong =
-                                                          tag.album;
+                                                        // print(
+                                                        //     tag);
+                                                        var titleOfSong =
+                                                            tag.title;
+                                                        var artistOfSong =
+                                                            tag.artist;
+                                                        var genreOfSong =
+                                                            tag.genre;
+                                                        var albumOfSong =
+                                                            tag.album;
 
-                                                      bool shouldEdit = false;
+                                                        bool shouldEdit = false;
 
-                                                      Expanded(
-                                                        child: await showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return StatefulBuilder(
-                                                              builder: (context,
-                                                                  StateSetter
-                                                                      setState) {
-                                                                return Center(
-                                                                  child:
-                                                                      SingleChildScrollView(
-                                                                    physics:
-                                                                        BouncingScrollPhysics(),
+                                                        Expanded(
+                                                          child:
+                                                              await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return StatefulBuilder(
+                                                                builder: (context,
+                                                                    StateSetter
+                                                                        setState) {
+                                                                  return Center(
                                                                     child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          flex:
-                                                                              0,
-                                                                          child:
-                                                                              Container(
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                              // color: Colors.black12,
-                                                                            ),
-                                                                            alignment:
-                                                                                Alignment.center,
-                                                                            // height: car
-                                                                            //     ? heightOfDevice / 2
-                                                                            //     : widthOfDevice * 1.3,
-                                                                            width: car
-                                                                                ? heightOfDevice / 2
-                                                                                : widthOfDevice / 1.2,
+                                                                        SingleChildScrollView(
+                                                                      physics:
+                                                                          BouncingScrollPhysics(),
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            flex:
+                                                                                0,
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                              // make sure we apply clip it properly
-                                                                              child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                                                                                child: Container(
-                                                                                  alignment: Alignment.center,
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(kRounded),
-                                                                                    border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                    color: Colors.white.withOpacity(0.05),
-                                                                                  ),
-                                                                                  child: Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 16 : heightOfDevice / 40)),
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: widthOfDevice / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = titleOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              titleOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "TITLE",
-                                                                                                hintText: "",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///ALBUM
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: widthOfDevice / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = albumOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              albumOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ALBUM",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///Artist
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: widthOfDevice / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = artistOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              artistOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ARTIST",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///Genre
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = genreOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              genreOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "GENRE",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-                                                                                      Material(
-                                                                                        borderRadius: BorderRadius.circular(kRounded),
-                                                                                        color: Colors.transparent,
-                                                                                        child: InkWell(
-                                                                                          borderRadius: BorderRadius.circular(kRounded),
-                                                                                          onTap: () async {
-                                                                                            if (shouldEdit) {
-                                                                                              Navigator.pop(context);
-                                                                                              await editSong(listOfSong[index].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
-                                                                                              refresh = true;
-                                                                                              await Future.delayed(Duration(seconds: 1));
-                                                                                              rootState.provideman();
-                                                                                            }
-                                                                                          },
+                                                                                Container(
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                // color: Colors.black12,
+                                                                              ),
+                                                                              alignment: Alignment.center,
+                                                                              // height: car
+                                                                              //     ? heightOfDevice / 2
+                                                                              //     : widthOfDevice * 1.3,
+                                                                              width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
+                                                                              child: ClipRRect(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                // make sure we apply clip it properly
+                                                                                child: BackdropFilter(
+                                                                                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                  child: Container(
+                                                                                    alignment: Alignment.center,
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.circular(kRounded),
+                                                                                      border: Border.all(color: Colors.white.withOpacity(0.04)),
+                                                                                      color: Colors.white.withOpacity(0.05),
+                                                                                    ),
+                                                                                    child: Column(
+                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                      children: [
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 16 : heightOfDevice / 40)),
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
                                                                                           child: Container(
-                                                                                            height: widthOfDevice / 12,
-                                                                                            width: widthOfDevice / 4,
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                                                                                             decoration: BoxDecoration(
-                                                                                              boxShadow: [
-                                                                                                BoxShadow(
-                                                                                                  color: Colors.black12,
-                                                                                                  blurRadius: 1.0,
-                                                                                                  spreadRadius: widthOfDevice / 220,
-                                                                                                ),
-                                                                                              ],
-                                                                                              color: Color(0xFF1DB954),
-                                                                                              borderRadius: BorderRadius.circular(kRounded),
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: widthOfDevice / 120,
+                                                                                              //   ),
+                                                                                              // ],
                                                                                             ),
-                                                                                            child: Center(
-                                                                                              child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontFamily: 'UrbanSB')),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = titleOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                titleOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "TITLE",
+                                                                                                  hintText: "",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  fillColor: Colors.transparent),
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 16 : heightOfDevice / 40)),
-                                                                                    ],
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///ALBUM
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: widthOfDevice / 120,
+                                                                                              //   ),
+                                                                                              // ],
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = albumOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                albumOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "ALBUM",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///Artist
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: widthOfDevice / 120,
+                                                                                              //   ),
+                                                                                              // ],
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = artistOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                artistOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "ARTIST",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///Genre
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = genreOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                genreOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "GENRE",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
+                                                                                        Material(
+                                                                                          borderRadius: BorderRadius.circular(kRounded),
+                                                                                          color: Colors.transparent,
+                                                                                          child: InkWell(
+                                                                                            borderRadius: BorderRadius.circular(kRounded),
+                                                                                            onTap: () async {
+                                                                                              if (shouldEdit) {
+                                                                                                Navigator.pop(context);
+                                                                                                await editSong(listOfSong[index].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
+                                                                                                refresh = true;
+                                                                                                await Future.delayed(Duration(seconds: 1));
+                                                                                                rootState.provideman();
+                                                                                              }
+                                                                                            },
+                                                                                            child: Container(
+                                                                                              height: widthOfDevice / 12,
+                                                                                              width: widthOfDevice / 4,
+                                                                                              decoration: BoxDecoration(
+                                                                                                boxShadow: [
+                                                                                                  BoxShadow(
+                                                                                                    color: Colors.black12,
+                                                                                                    blurRadius: 1.0,
+                                                                                                    spreadRadius: widthOfDevice / 220,
+                                                                                                  ),
+                                                                                                ],
+                                                                                                color: Color(0xFF1DB954),
+                                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                              ),
+                                                                                              child: Center(
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontFamily: 'UrbanSB')),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 16 : heightOfDevice / 40)),
+                                                                                      ],
+                                                                                    ),
                                                                                   ),
                                                                                 ),
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      ],
+                                                                        ],
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                        ),
-                                                      );
-                                                    } catch (e) {
-                                                      Flushbar(
-                                                        message:
-                                                            "The File Might be Unsupported/Corrupted.",
-                                                        icon: Icon(
-                                                          Icons.info_outline,
-                                                          size: 28.0,
-                                                          color:
-                                                              Color(0xFFCB0447),
-                                                        ),
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                          ),
+                                                        );
+                                                      } catch (e) {
+                                                        Flushbar(
+                                                          message:
+                                                              "The File Might be Unsupported/Corrupted.",
+                                                          icon: Icon(
+                                                            Icons.info_outline,
+                                                            size: 28.0,
+                                                            color: Color(
+                                                                0xFFCB0447),
+                                                          ),
 
-                                                        shouldIconPulse: true,
-                                                        borderColor: Colors
-                                                            .white
-                                                            .withOpacity(0.04),
-                                                        borderWidth: 1,
-                                                        backgroundColor: Colors
-                                                            .white
-                                                            .withOpacity(0.05),
-                                                        flushbarStyle:
-                                                            FlushbarStyle
-                                                                .FLOATING,
-                                                        isDismissible: true,
-                                                        barBlur: 20,
-                                                        dismissDirection:
-                                                            FlushbarDismissDirection
-                                                                .HORIZONTAL,
-                                                        duration: Duration(
-                                                            seconds: 5),
+                                                          shouldIconPulse: true,
+                                                          borderColor: Colors
+                                                              .white
+                                                              .withOpacity(
+                                                                  0.04),
+                                                          borderWidth: 1,
+                                                          backgroundColor:
+                                                              Colors.white
+                                                                  .withOpacity(
+                                                                      0.05),
+                                                          flushbarStyle:
+                                                              FlushbarStyle
+                                                                  .FLOATING,
+                                                          isDismissible: true,
+                                                          barBlur: 20,
+                                                          dismissDirection:
+                                                              FlushbarDismissDirection
+                                                                  .HORIZONTAL,
+                                                          duration: Duration(
+                                                              seconds: 5),
 
-                                                        margin: EdgeInsets.only(
-                                                            bottom: 20,
-                                                            left: 8,
-                                                            right: 8),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        // leftBarIndicatorColor:
-                                                        //     Color(0xFFCB0047),
-                                                      )..show(context);
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  bottom: 20,
+                                                                  left: 8,
+                                                                  right: 8),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          // leftBarIndicatorColor:
+                                                          //     Color(0xFFCB0047),
+                                                        )..show(context);
+                                                      }
                                                     }
                                                   } else if (i == 5) {
-                                                    if (await Permission.storage
-                                                            .request()
-                                                            .isGranted &&
-                                                        await Permission
-                                                            .manageExternalStorage
-                                                            .request()
-                                                            .isGranted) {
-                                                      await deleteAFile(
-                                                          listOfSong[index]
-                                                              .data);
-                                                      Navigator.pop(context);
-                                                      await Future.delayed(
-                                                          Duration(seconds: 2));
-                                                      // print(listOfSong[index]
-                                                      //     .data);
+                                                    if (isAndroid11) {
+                                                      androidRSupport(context);
+                                                    } else {
+                                                      if (await Permission
+                                                          .storage
+                                                          .request()
+                                                          .isGranted) {
+                                                        await deleteAFile(
+                                                            listOfSong[index]
+                                                                .data);
+                                                        Navigator.pop(context);
+                                                        await Future.delayed(
+                                                            Duration(
+                                                                seconds: 2));
 
-                                                      refresh = true;
-                                                      rootState.provideman();
-                                                      // setState(
-                                                      //     () {});
+                                                        refresh = true;
+                                                        rootState.provideman();
+                                                      }
                                                     }
                                                   }
                                                 },
@@ -854,7 +856,7 @@ Future<Widget> onHoldExtended(
     "Add To PlayList",
     "Share File",
     "Edit File",
-    "Save Wallpaper",
+    // "Save Wallpaper",
     "Set As Home Screen",
     "Delete"
   ];
@@ -1288,455 +1290,472 @@ Future<Widget> onHoldExtended(
 
                                                     /// Edit Song
                                                     else if (i == 4) {
-                                                      Navigator.pop(context);
-                                                      try {
-                                                        final tag = await tagger
-                                                            .readTags(
-                                                                path:
-                                                                    nowMediaItem
-                                                                        .id);
-                                                        bool shouldEdit = false;
-                                                        var titleOfSong =
-                                                            tag.title;
-                                                        var artistOfSong =
-                                                            tag.artist;
-                                                        var genreOfSong =
-                                                            tag.genre;
-                                                        var albumOfSong =
-                                                            tag.album;
-                                                        Expanded(
-                                                            child:
-                                                                await showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return StatefulBuilder(
-                                                              builder: (context,
-                                                                  StateSetter
-                                                                      setState) {
-                                                                return Center(
-                                                                  child:
-                                                                      SingleChildScrollView(
-                                                                    physics:
-                                                                        BouncingScrollPhysics(),
+                                                      if (isAndroid11) {
+                                                        androidRSupport(
+                                                            context);
+                                                      } else {
+                                                        Navigator.pop(context);
+                                                        try {
+                                                          final tag = await tagger
+                                                              .readTags(
+                                                                  path:
+                                                                      nowMediaItem
+                                                                          .id);
+                                                          bool shouldEdit =
+                                                              false;
+                                                          var titleOfSong =
+                                                              tag.title;
+                                                          var artistOfSong =
+                                                              tag.artist;
+                                                          var genreOfSong =
+                                                              tag.genre;
+                                                          var albumOfSong =
+                                                              tag.album;
+                                                          Expanded(
+                                                              child:
+                                                                  await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return StatefulBuilder(
+                                                                builder: (context,
+                                                                    StateSetter
+                                                                        setState) {
+                                                                  return Center(
                                                                     child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          flex:
-                                                                              0,
-                                                                          child:
-                                                                              Container(
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                              // color: Colors.black12,
-                                                                            ),
-                                                                            alignment:
-                                                                                Alignment.center,
-                                                                            // height: car
-                                                                            //     ? heightOfDevice / 2
-                                                                            //     : widthOfDevice * 1.3,
-                                                                            width: car
-                                                                                ? heightOfDevice / 2
-                                                                                : widthOfDevice / 1.2,
+                                                                        SingleChildScrollView(
+                                                                      physics:
+                                                                          BouncingScrollPhysics(),
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.center,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            flex:
+                                                                                0,
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                              // make sure we apply clip it properly
-                                                                              child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                                                                                child: Container(
-                                                                                  alignment: Alignment.center,
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(kRounded),
-                                                                                    border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                    color: Colors.white.withOpacity(0.05),
-                                                                                  ),
-                                                                                  child: Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 16 : heightOfDevice / 40)),
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: deviceWidth / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = titleOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              titleOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "TITLE",
-                                                                                                hintText: "",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///ALBUM
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = albumOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              albumOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ALBUM",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///Artist
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: deviceWidth / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = artistOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              artistOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ARTIST",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      ///Genre
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                            // boxShadow: [
-                                                                                            //   BoxShadow(
-                                                                                            //     offset: Offset(0, 3),
-                                                                                            //     color: Colors.black26,
-                                                                                            //     blurRadius: 19.0,
-                                                                                            //     spreadRadius: deviceWidth / 120,
-                                                                                            //   ),
-                                                                                            // ],
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = genreOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              genreOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "GENRE",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
-
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
-                                                                                      Material(
-                                                                                        borderRadius: BorderRadius.circular(kRounded),
-                                                                                        color: Colors.transparent,
-                                                                                        child: InkWell(
-                                                                                          borderRadius: BorderRadius.circular(kRounded),
-                                                                                          onTap: () async {
-                                                                                            if (shouldEdit) {
-                                                                                              Navigator.pop(context);
-                                                                                              await editSong(songList[indexOfList].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
-                                                                                              refresh = true;
-                                                                                              await Future.delayed(Duration(seconds: 1));
-                                                                                              rootState.provideman();
-                                                                                            }
-                                                                                          },
+                                                                                Container(
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                // color: Colors.black12,
+                                                                              ),
+                                                                              alignment: Alignment.center,
+                                                                              // height: car
+                                                                              //     ? heightOfDevice / 2
+                                                                              //     : widthOfDevice * 1.3,
+                                                                              width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
+                                                                              child: ClipRRect(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                // make sure we apply clip it properly
+                                                                                child: BackdropFilter(
+                                                                                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                  child: Container(
+                                                                                    alignment: Alignment.center,
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.circular(kRounded),
+                                                                                      border: Border.all(color: Colors.white.withOpacity(0.04)),
+                                                                                      color: Colors.white.withOpacity(0.05),
+                                                                                    ),
+                                                                                    child: Column(
+                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                      children: [
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 16 : heightOfDevice / 40)),
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
                                                                                           child: Container(
-                                                                                            height: deviceWidth / 12,
-                                                                                            width: deviceWidth / 4,
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                                                                                             decoration: BoxDecoration(
-                                                                                              boxShadow: [
-                                                                                                BoxShadow(
-                                                                                                  color: Colors.black12,
-                                                                                                  blurRadius: 1.0,
-                                                                                                  spreadRadius: deviceWidth / 220,
-                                                                                                ),
-                                                                                              ],
-                                                                                              color: Color(0xFF1DB954),
-                                                                                              borderRadius: BorderRadius.circular(kRounded),
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: deviceWidth / 120,
+                                                                                              //   ),
+                                                                                              // ],
                                                                                             ),
-                                                                                            child: Center(
-                                                                                              child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = titleOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                titleOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "TITLE",
+                                                                                                  hintText: "",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  fillColor: Colors.transparent),
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 16 : heightOfDevice / 40)),
-                                                                                    ],
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///ALBUM
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = albumOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                albumOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "ALBUM",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///Artist
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: deviceWidth / 120,
+                                                                                              //   ),
+                                                                                              // ],
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = artistOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                artistOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "ARTIST",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        ///Genre
+                                                                                        Material(
+                                                                                          color: Colors.transparent,
+                                                                                          child: Container(
+                                                                                            padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                            decoration: BoxDecoration(
+                                                                                              color: Colors.transparent,
+                                                                                              // boxShadow: [
+                                                                                              //   BoxShadow(
+                                                                                              //     offset: Offset(0, 3),
+                                                                                              //     color: Colors.black26,
+                                                                                              //     blurRadius: 19.0,
+                                                                                              //     spreadRadius: deviceWidth / 120,
+                                                                                              //   ),
+                                                                                              // ],
+                                                                                            ),
+                                                                                            child: TextField(
+                                                                                              cursorColor: Color(0xFF3cb9cd),
+                                                                                              autofocus: false,
+                                                                                              controller: TextEditingController()..text = genreOfSong,
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              onChanged: (text) {
+                                                                                                shouldEdit = true;
+                                                                                                genreOfSong = text;
+                                                                                              },
+                                                                                              decoration: InputDecoration(
+                                                                                                  border: OutlineInputBorder(
+                                                                                                    borderRadius: const BorderRadius.all(
+                                                                                                      Radius.circular(10.0),
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                                    borderRadius: BorderRadius.circular(10.0),
+                                                                                                    borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                                  ),
+                                                                                                  filled: true,
+                                                                                                  hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                                  labelText: "GENRE",
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  hintText: "",
+                                                                                                  fillColor: Colors.transparent),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
+
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 8 : heightOfDevice / 20)),
+                                                                                        Material(
+                                                                                          borderRadius: BorderRadius.circular(kRounded),
+                                                                                          color: Colors.transparent,
+                                                                                          child: InkWell(
+                                                                                            borderRadius: BorderRadius.circular(kRounded),
+                                                                                            onTap: () async {
+                                                                                              if (shouldEdit) {
+                                                                                                Navigator.pop(context);
+                                                                                                await editSong(songList[indexOfList].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
+                                                                                                refresh = true;
+                                                                                                await Future.delayed(Duration(seconds: 1));
+                                                                                                rootState.provideman();
+                                                                                              }
+                                                                                            },
+                                                                                            child: Container(
+                                                                                              height: deviceWidth / 12,
+                                                                                              width: deviceWidth / 4,
+                                                                                              decoration: BoxDecoration(
+                                                                                                boxShadow: [
+                                                                                                  BoxShadow(
+                                                                                                    color: Colors.black12,
+                                                                                                    blurRadius: 1.0,
+                                                                                                    spreadRadius: deviceWidth / 220,
+                                                                                                  ),
+                                                                                                ],
+                                                                                                color: Color(0xFF1DB954),
+                                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                              ),
+                                                                                              child: Center(
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                              ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                        Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 16 : heightOfDevice / 40)),
+                                                                                      ],
+                                                                                    ),
                                                                                   ),
                                                                                 ),
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      ],
+                                                                        ],
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                        ));
-                                                      } catch (e) {
-                                                        Flushbar(
-                                                          message:
-                                                              "The File Might be Unsupported/Corrupted.",
-                                                          icon: Icon(
-                                                            Icons.info_outline,
-                                                            size: 28.0,
-                                                            color: Color(
-                                                                0xFFCB0447),
-                                                          ),
-                                                          // showProgressIndicator:
-                                                          //     true,
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                          ));
+                                                        } catch (e) {
+                                                          Flushbar(
+                                                            message:
+                                                                "The File Might be Unsupported/Corrupted.",
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .info_outline,
+                                                              size: 28.0,
+                                                              color: Color(
+                                                                  0xFFCB0447),
+                                                            ),
+                                                            // showProgressIndicator:
+                                                            //     true,
 
-                                                          //     progressIndicatorBackgroundColor: Colors.transparent,
-                                                          shouldIconPulse: true,
-                                                          borderColor: Colors
-                                                              .white
-                                                              .withOpacity(
-                                                                  0.04),
-                                                          borderWidth: 1,
-                                                          backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
-                                                          flushbarStyle:
-                                                              FlushbarStyle
-                                                                  .FLOATING,
-                                                          isDismissible: true,
-                                                          barBlur: 20,
-                                                          dismissDirection:
-                                                              FlushbarDismissDirection
-                                                                  .HORIZONTAL,
-                                                          duration: Duration(
-                                                              seconds: 5),
+                                                            //     progressIndicatorBackgroundColor: Colors.transparent,
+                                                            shouldIconPulse:
+                                                                true,
+                                                            borderColor: Colors
+                                                                .white
+                                                                .withOpacity(
+                                                                    0.04),
+                                                            borderWidth: 1,
+                                                            backgroundColor:
+                                                                Colors.white
+                                                                    .withOpacity(
+                                                                        0.05),
+                                                            flushbarStyle:
+                                                                FlushbarStyle
+                                                                    .FLOATING,
+                                                            isDismissible: true,
+                                                            barBlur: 20,
+                                                            dismissDirection:
+                                                                FlushbarDismissDirection
+                                                                    .HORIZONTAL,
+                                                            duration: Duration(
+                                                                seconds: 5),
 
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  bottom: 20,
-                                                                  left: 8,
-                                                                  right: 8),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
-                                                        )..show(context);
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    bottom: 20,
+                                                                    left: 8,
+                                                                    right: 8),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15),
+                                                            // leftBarIndicatorColor:
+                                                            //     Color(0xFFCB0047),
+                                                          )..show(context);
+                                                        }
                                                       }
-                                                    } else if (i == 5) {
-                                                      // Save Wallpaper
-                                                      if (await Permission
-                                                              .storage
-                                                              .request()
-                                                              .isGranted &&
-                                                          await Permission
-                                                              .manageExternalStorage
-                                                              .request()
-                                                              .isGranted) {
-                                                        Navigator.pop(context);
+                                                    }
+                                                    //  else if (i == 5) {
+                                                    //   // Save Wallpaper
+                                                    //   if (await Permission
+                                                    //           .storage
+                                                    //           .request()
+                                                    //           .isGranted
+                                                    //       //     &&
+                                                    //       // await Permission
+                                                    //       //     .manageExternalStorage
+                                                    //       //     .request()
+                                                    //       //     .isGranted
+                                                    //       ) {
+                                                    //     Navigator.pop(context);
 
-                                                        Flushbar(
-                                                          messageText: Text(
-                                                              "Saved In Downloads Directory",
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      "FuturaR",
-                                                                  color: Colors
-                                                                      .white)),
-                                                          icon: Icon(
-                                                            MdiIcons.image,
-                                                            size: 28.0,
-                                                            color: kCorrect,
-                                                          ),
+                                                    //     Flushbar(
+                                                    //       messageText: Text(
+                                                    //           "Saved In Downloads Directory",
+                                                    //           style: TextStyle(
+                                                    //               fontFamily:
+                                                    //                   "FuturaR",
+                                                    //               color: Colors
+                                                    //                   .white)),
+                                                    //       icon: Icon(
+                                                    //         MdiIcons.image,
+                                                    //         size: 28.0,
+                                                    //         color: kCorrect,
+                                                    //       ),
 
-                                                          shouldIconPulse: true,
-                                                          dismissDirection:
-                                                              FlushbarDismissDirection
-                                                                  .HORIZONTAL,
-                                                          duration: Duration(
-                                                              seconds: 5),
-                                                          borderColor: Colors
-                                                              .white
-                                                              .withOpacity(
-                                                                  0.04),
-                                                          borderWidth: 1,
-                                                          backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
-                                                          flushbarStyle:
-                                                              FlushbarStyle
-                                                                  .FLOATING,
-                                                          isDismissible: true,
-                                                          barBlur: 20,
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  bottom: 20,
-                                                                  left: 8,
-                                                                  right: 8),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
-                                                        )..show(context);
-                                                        await Future.delayed(
-                                                            Duration(
-                                                                seconds: 1));
-                                                        await screenShotUI(
-                                                            true);
-                                                      }
-                                                    } else if (i == 6) {
+                                                    //       shouldIconPulse: true,
+                                                    //       dismissDirection:
+                                                    //           FlushbarDismissDirection
+                                                    //               .HORIZONTAL,
+                                                    //       duration: Duration(
+                                                    //           seconds: 5),
+                                                    //       borderColor: Colors
+                                                    //           .white
+                                                    //           .withOpacity(
+                                                    //               0.04),
+                                                    //       borderWidth: 1,
+                                                    //       backgroundColor:
+                                                    //           Colors.white
+                                                    //               .withOpacity(
+                                                    //                   0.05),
+                                                    //       flushbarStyle:
+                                                    //           FlushbarStyle
+                                                    //               .FLOATING,
+                                                    //       isDismissible: true,
+                                                    //       barBlur: 20,
+                                                    //       margin:
+                                                    //           EdgeInsets.only(
+                                                    //               bottom: 20,
+                                                    //               left: 8,
+                                                    //               right: 8),
+                                                    //       borderRadius:
+                                                    //           BorderRadius
+                                                    //               .circular(15),
+                                                    //       // leftBarIndicatorColor:
+                                                    //       //     Color(0xFFCB0047),
+                                                    //     )..show(context);
+                                                    //     await Future.delayed(
+                                                    //         Duration(
+                                                    //             seconds: 1));
+                                                    //     await screenShotUI(
+                                                    //         true);
+                                                    //   }
+                                                    // }
+                                                    else if (i == 5) {
                                                       // set as home screen
                                                       Navigator.pop(context);
                                                       await screenShotUI(false);
                                                       await setHomeScreenWallpaper();
-                                                    } else if (i == 7) {
-                                                      if (await Permission
-                                                              .storage
-                                                              .request()
-                                                              .isGranted &&
-                                                          await Permission
-                                                              .manageExternalStorage
-                                                              .request()
-                                                              .isGranted) {
-                                                        await deleteAFile(
-                                                            songList[
-                                                                    indexOfList]
-                                                                .data);
-                                                        Navigator.pop(context);
-                                                        await Future.delayed(
-                                                            Duration(
-                                                                seconds: 2));
+                                                    } else if (i == 6) {
+                                                      if (isAndroid11) {
+                                                        androidRSupport(
+                                                            context);
+                                                      } else {
+                                                        if (await Permission
+                                                                .storage
+                                                                .request()
+                                                                .isGranted
+                                                            //     &&
+                                                            // await Permission
+                                                            //     .manageExternalStorage
+                                                            //     .request()
+                                                            //     .isGranted
+                                                            ) {
+                                                          await deleteAFile(
+                                                              songList[
+                                                                      indexOfList]
+                                                                  .data);
+                                                          Navigator.pop(
+                                                              context);
+                                                          await Future.delayed(
+                                                              Duration(
+                                                                  seconds: 2));
 
-                                                        refresh = true;
-                                                        rootState.provideman();
+                                                          refresh = true;
+                                                          rootState
+                                                              .provideman();
+                                                        }
                                                       }
                                                     }
                                                   },

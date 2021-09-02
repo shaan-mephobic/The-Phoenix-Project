@@ -6,6 +6,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import '../begin.dart';
+import 'package:device_info/device_info.dart';
 
 cacheImages() async {
   ByteData bytes = await rootBundle.load('assets/res/background.jpg');
@@ -18,6 +19,8 @@ cacheImages() async {
 dataInit() async {
   await Hive.initFlutter();
   musicBox = await Hive.openBox('musicDataBox');
+  var info = await DeviceInfoPlugin().androidInfo;
+  isAndroid11 = info.version.sdkInt > 29 ? true : false;
 }
 
 fetchSongs() async {

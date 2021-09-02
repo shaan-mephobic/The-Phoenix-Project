@@ -84,6 +84,7 @@ bool orientedCar = false;
 bool bgPhoenixVisualizer = false;
 Uint8List defaultArt;
 Uint8List defaultNone;
+bool isAndroid11=false;
 bool ascend = false;
 bool isPlayerShown = false;
 
