@@ -15,6 +15,11 @@ And a bunch more. Why not check it yourself?
 ## Preview
 <img alt="Tracks" src="./screenshots/tracks.png" width="32%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="32%">  <img alt="Genres" src="./screenshots/genres.png" width="32%"> <img alt="Inside Genre" src="./screenshots/space.png" width="32%"> <img alt="Playlists" src="./screenshots/playlists.png" width="32%"> <img alt="Options" src="./screenshots/options.png" width="32%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="32%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="32%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="32%">
 
+## TODO
+* Android 11 support for editing and deleting files
+* Improve performance and stability
+* Add comments in code
+
 ## LICENSE
 ```
 Copyright © 2020, Shaan Faydh
