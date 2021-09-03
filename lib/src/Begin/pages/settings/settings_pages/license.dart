@@ -12,9 +12,11 @@ class LicensesPage extends StatefulWidget {
 }
 
 class _LicensesPageState extends State<LicensesPage> {
+  ScrollController _scrollBarController;
   @override
   void initState() {
     backArtStateChange = false;
+    _scrollBarController = ScrollController();
     super.initState();
   }
 
@@ -37,34 +39,42 @@ class _LicensesPageState extends State<LicensesPage> {
               backgroundColor: kMaterialBlack,
             ),
             backgroundColor: kMaterialBlack,
-            body: ListView.builder(
-              itemCount: snapshot.data.length - 1,
-              itemBuilder: (BuildContext context, int index) {
-                return Material(
-                  color: Colors.transparent,
-                  child: ListTile(
-                    title: Text(
-                      snapshot.data.keys.toList()[index],
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                    ),
-                    subtitle: Text(
-                      "${snapshot.data[snapshot.data.keys.toList()[index]].length} Licenses",
-                      style:
-                          TextStyle(color: Colors.white, fontFamily: "FuturaR"),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => InsideLicense(
-                                  snapshot.data.keys.toList()[index],
-                                  snapshot.data[
-                                      snapshot.data.keys.toList()[index]])));
-                    },
-                  ),
-                );
-              },
+            body: Theme(
+              data: themeOfApp,
+              child: Scrollbar(
+                controller:_scrollBarController,
+                child: ListView.builder(
+                  controller: _scrollBarController,
+
+                  itemCount: snapshot.data.length - 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Material(
+                      color: Colors.transparent,
+                      child: ListTile(
+                        title: Text(
+                          snapshot.data.keys.toList()[index],
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: "FuturaR"),
+                        ),
+                        subtitle: Text(
+                          "${snapshot.data[snapshot.data.keys.toList()[index]].length} Licenses",
+                          style: TextStyle(
+                              color: Colors.white, fontFamily: "FuturaR"),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InsideLicense(
+                                      snapshot.data.keys.toList()[index],
+                                      snapshot.data[snapshot.data.keys
+                                          .toList()[index]])));
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           );
         } else {
@@ -99,36 +109,41 @@ class InsideLicense extends StatelessWidget {
           style: TextStyle(fontFamily: "FuturaR"),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            for (int i = 0; i < licenseValue.length; i++)
-              Column(
-                children: [
-                  Text(
-                    licenseValue[i],
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: "InterR",
-                    ),
+      body: Theme(
+        data: themeOfApp,
+        child: Scrollbar(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                for (int i = 0; i < licenseValue.length; i++)
+                  Column(
+                    children: [
+                      Text(
+                        licenseValue[i],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "InterR",
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 32),
+                      ),
+                      Divider(
+                        color: Colors.white54,
+                        indent: 50,
+                        thickness: 0.2,
+                        endIndent: 50,
+                        height: 4,
+                      )
+                    ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 32),
-                  ),
-                  Divider(
-                    color: Colors.white54,
-                    indent: 50,
-                    thickness: 0.2,
-                    endIndent: 50,
-                    height: 4,
-                  )
-                ],
-              ),
-            Padding(
-              padding: EdgeInsets.only(top: 32),
-            )
-          ],
+                Padding(
+                  padding: EdgeInsets.only(top: 32),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

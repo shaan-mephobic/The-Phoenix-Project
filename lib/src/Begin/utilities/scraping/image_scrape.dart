@@ -87,7 +87,7 @@ class IsolatedArtistScrape {
       // File file =
       //     File("${applicationFileDirectory.path}/artists/${data[0]}.jpg");
       // await file.writeAsBytes(response.bodyBytes);
-      rootState.provideman();
+      // rootState.provideman();
     }
   }
 

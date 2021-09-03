@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/Begin/widgets/artist_collage.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/pages/artists/artists_inside.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/awakening.dart';
@@ -38,13 +39,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
         globalMansionConsumer = mansionConsumer;
         return ListView(
           addAutomaticKeepAlives: true,
-          physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+          physics: musicBox.get("fluidAnimation") ?? true
+              ? BouncingScrollPhysics()
+              : ClampingScrollPhysics(),
           children: [
             Container(height: deviceWidth / 14),
 
-// Recently Played
+            // Recently Played
 
             Container(
               // color: Colors.black12,
@@ -89,19 +90,16 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                             ),
                           ),
                         ),
-                   
-
                         Expanded(
                           child: ListView.builder(
                             addAutomaticKeepAlives: true,
-                            physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+                            physics: musicBox.get("fluidAnimation") ?? true
+                                ? BouncingScrollPhysics()
+                                : ClampingScrollPhysics(),
                             padding: EdgeInsets.only(bottom: 0, top: 0),
                             scrollDirection: Axis.horizontal,
                             shrinkWrap: true,
                             itemCount: recentPlayingLengthFoo(),
-                        
                             itemBuilder: (BuildContext context, int index) {
                               // print(index);
                               return Material(
@@ -216,7 +214,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
             //   ),
             // ),
 
-// MOSTLY LISTENED TO
+            // MOSTLY LISTENED TO
 
             Container(height: deviceWidth / 7),
             Container(
@@ -242,9 +240,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                   ),
                   SingleChildScrollView(
-                    physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -355,7 +353,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
             ),
 
-// NEVER LISTENED TO
+            // NEVER LISTENED TO
 
             Container(height: deviceWidth / 7),
             Container(
@@ -381,9 +379,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                   ),
                   SingleChildScrollView(
-                    physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -495,7 +493,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
             ),
 
-// Artists
+            // Artists
 
             Container(height: deviceWidth / 7),
             Container(
@@ -521,9 +519,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                   ),
                   SingleChildScrollView(
-                    physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -538,21 +536,14 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                             child: InkWell(
                               borderRadius: BorderRadius.circular(kRounded),
                               onTap: () async {
-                                // loop:
-                                // for (int i = 0; i < allArtists.length; i++) {
-                                //   if (mansionArtists[index] == allArtists[i]) {
-                                //     artistPassed = i;
-                                //     break loop;
-                                //   }
-                                // }
-
                                 inArtistsSongs = [];
                                 artistPassed =
                                     allArtists.indexOf(mansionArtists[index]);
                                 await artistsAllSongs(mansionArtists[index]);
-                                if (musicBox.get("mapOfArtists")[
-                                        mansionArtists[index]] !=
-                                    null) {
+                                if (musicBox.get("mapOfArtists") != null &&
+                                    musicBox.get("mapOfArtists")[
+                                            mansionArtists[index]] !=
+                                        null) {
                                   if (musicBox.get("colorsOfArtists") == null
                                       ? true
                                       : musicBox.get("colorsOfArtists")[
@@ -581,7 +572,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                             mansionArtists[index]][1]);
                                   }
                                 } else {
-                                  contrastAlbum = Color(0xFF3cb9cd);
+                                  contrastAlbum = Colors.white;
                                   dominantAlbum = kMaterialBlack;
                                 }
                                 Navigator.push(
@@ -612,7 +603,11 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                             //   image: MemoryImage(defaultNone),
                                             // ),
                                           ),
-                                          child: circularArtists(index),
+                                          child: artistCollage(
+                                              index,
+                                              mansionArtists,
+                                              deviceWidth / 1.5,
+                                              deviceWidth / 3),
                                         ),
                                       ),
                                       Container(height: deviceWidth / 40),
@@ -661,7 +656,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
             ),
 
-// Albums
+            // Albums
 
             Container(height: deviceWidth / 7),
             Container(
@@ -688,9 +683,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                   ),
                   SingleChildScrollView(
-                    physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
@@ -854,226 +849,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
     }
   }
 
-  circularArtists(dat) {
-    if (musicBox.get("mapOfArtists") == null
-        ? false
-        : musicBox.get("mapOfArtists")[mansionArtists[dat]] != null) {
-      return Center(
-        child: Container(
-          width: deviceWidth / 3,
-          height: deviceWidth / 3,
-          // clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(deviceWidth / 6),
-            image: DecorationImage(
-              image: FileImage(
-                File(
-                  "${applicationFileDirectory.path}/artists/${mansionArtists[dat]}.jpg",
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    } else {
-      if (artistsAlbums[mansionArtists[dat]].length == 0) {
-        return null;
-      } else if (artistsAlbums[mansionArtists[dat]].length == 1) {
-        return Center(
-          child: Container(
-            width: deviceWidth / 3,
-            height: deviceWidth / 3,
-            // clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(deviceWidth / 6),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: MemoryImage(
-                    albumsArts[artistsAlbums[mansionArtists[dat]][0]] ??
-                        defaultNone),
-              ),
-            ),
-          ),
-        );
-      } else if (artistsAlbums[mansionArtists[dat]].length == 2) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                width: deviceWidth / 3,
-                height: deviceWidth / 6,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(deviceWidth / 6),
-                      topRight: Radius.circular(deviceWidth / 6)),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: MemoryImage(
-                        albumsArts[artistsAlbums[mansionArtists[dat]][0]] ??
-                            defaultNone),
-                  ),
-                ),
-              ),
-              Container(
-                width: deviceWidth / 3,
-                height: deviceWidth / 6,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(deviceWidth / 6),
-                      bottomRight: Radius.circular(deviceWidth / 6)),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: MemoryImage(
-                        albumsArts[artistsAlbums[mansionArtists[dat]][1]] ??
-                            defaultNone),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      } else if (artistsAlbums[mansionArtists[dat]].length == 3) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][0]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][1]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                width: deviceWidth / 3,
-                height: deviceWidth / 6,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(deviceWidth / 6),
-                    bottomLeft: Radius.circular(deviceWidth / 6),
-                  ),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: MemoryImage(
-                        albumsArts[artistsAlbums[mansionArtists[dat]][2]] ??
-                            defaultNone),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      } else {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][0]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][1]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][2]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: deviceWidth / 6,
-                    height: deviceWidth / 6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(deviceWidth / 6),
-                      ),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[artistsAlbums[mansionArtists[dat]][3]] ??
-                                defaultNone),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      }
-    }
-  }
-
   @override
   bool get wantKeepAlive => true;
 }
@@ -1091,4 +866,3 @@ int recentPlayingLengthFoo() {
     }
   }
 }
-

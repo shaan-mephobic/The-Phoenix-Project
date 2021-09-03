@@ -1,5 +1,5 @@
 // @dart=2.10
-import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
+import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/privacy.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
@@ -22,10 +22,7 @@ void main() async {
   );
   runApp(
     MaterialApp(
-      theme: ThemeData(
-        splashFactory: CustomRipple.splashFactory,
-        accentColor: Colors.white,
-      ),
+      theme: themeOfApp,
       debugShowCheckedModeBanner: false,
       home: MultiProvider(
         providers: [
@@ -42,4 +39,3 @@ void main() async {
     ),
   );
 }
-

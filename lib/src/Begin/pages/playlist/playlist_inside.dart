@@ -25,10 +25,12 @@ class PlaylistInside extends StatefulWidget {
 }
 
 class _PlaylistInsideState extends State<PlaylistInside> {
+  ScrollController _scrollBarController;
   @override
   void initState() {
     playListName = musicBox.get('playlists').keys.toList()[playlistIndex];
     crossfadeStateChange = true;
+    _scrollBarController = ScrollController();
     super.initState();
   }
 
@@ -62,130 +64,130 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           ),
         ),
         body: Theme(
-          data: ThemeData(
-            canvasColor: Colors.white24,
-          ),
-
-
+          data: themeOfApp,
           child: Stack(
             children: [
               BackArt(),
               Container(
                 padding: EdgeInsets.only(top: deviceWidth / 5),
-                child: ReorderableListView.builder(
-                    padding: EdgeInsets.only(top: 0, bottom: 8),
-                  
-                    physics: musicBox.get("fluidAnimation")??true
-          ? BouncingScrollPhysics() 
-          : ClampingScrollPhysics(),
-                    header: ListHeader(
-                        deviceWidth, playlistSongsInside, "playlist"),
-                    itemCount: playlistSongsInside.length,
-            
-                    itemBuilder: (context, index) {
-                      final String kee =
-                          playlistSongsInside[index].id.toString();
-                      return Material(
-                        color: Colors.transparent,
-                        key: ValueKey(kee),
-                        child: ListTile(
-                          onTap: () async {
-                      
-                            if (playlistMediaItems[index].duration ==
-                                Duration(milliseconds: 0)) {
-                              corruptedFile(context);
-                            } else {
-                              insideplaylistSongsInside = playlistSongsInside;
-                              await playThis(index, "playlist");
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: Scrollbar(
+                    controller: _scrollBarController,
+                    child: ReorderableListView.builder(
+                        scrollController: _scrollBarController,
+                        padding: EdgeInsets.only(top: 0, bottom: 8),
+                        physics: musicBox.get("fluidAnimation") ?? true
+                            ? BouncingScrollPhysics()
+                            : ClampingScrollPhysics(),
+                        header: ListHeader(
+                            deviceWidth, playlistSongsInside, "playlist"),
+                        itemCount: playlistSongsInside.length,
+                        itemBuilder: (context, index) {
+                          final String kee =
+                              playlistSongsInside[index].id.toString();
+                          return Material(
+                            color: Colors.transparent,
+                            key: ValueKey(kee),
+                            child: ListTile(
+                              onTap: () async {
+                                if (playlistMediaItems[index].duration ==
+                                    Duration(milliseconds: 0)) {
+                                  corruptedFile(context);
+                                } else {
+                                  insideplaylistSongsInside =
+                                      playlistSongsInside;
+                                  await playThis(index, "playlist");
+                                }
+                              },
+                              dense: false,
+                              title: Text(
+                                playlistSongsInside[index].title,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontFamily: 'UrbanR',
+                                  shadows: [
+                                    Shadow(
+                                      offset: Offset(0, 1.0),
+                                      blurRadius: 2.0,
+                                      color: Colors.black45,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              tileColor: Colors.transparent,
+                              subtitle: Opacity(
+                                opacity: 0.5,
+                                child: Text(
+                                  playlistSongsInside[index].artist,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                    fontFamily: 'UrbanR',
+                                    color: Colors.white70,
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(0, 1.0),
+                                        blurRadius: 1.0,
+                                        color: Colors.black38,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              trailing: Material(
+                                color: Colors.transparent,
+                                child: ReorderableDragStartListener(
+                                  index: index,
+                                  child: const Icon(Icons.drag_handle),
+                                ),
+                              ),
+                              leading: Card(
+                                elevation: 3,
+                                color: Colors.transparent,
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minWidth: 48,
+                                    minHeight: 48,
+                                    maxWidth: 48,
+                                    maxHeight: 48,
+                                  ),
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: MemoryImage(albumsArts[
+                                                playlistSongsInside[index]
+                                                    .album] ??
+                                            defaultNone),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        onReorder: (oldIndex, newIndex) async {
+                          setState(() {
+                            if (newIndex > oldIndex) {
+                              newIndex = newIndex - 1;
                             }
-                          },
-
-                          dense: false,
-                        
-                          title: Text(
-                            playlistSongsInside[index].title,
-                            maxLines: 2,
-                            style: TextStyle(
-                             
-                              color: Colors.white70,
-                              fontFamily: 'UrbanR',
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0, 1.0),
-                                  blurRadius: 2.0,
-                                  color: Colors.black45,
-                                ),
-                              ],
-                            ),
-                          ),
-                          tileColor: Colors.transparent,
-                          subtitle: Opacity(
-                            opacity: 0.5,
-                            child: Text(
-                              playlistSongsInside[index].artist,
-                              maxLines: 1,
-                              style: TextStyle(
-                  
-                                fontFamily: 'UrbanR',
-                                color: Colors.white70,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(0, 1.0),
-                                    blurRadius: 1.0,
-                                    color: Colors.black38,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          trailing: Material(
-                            color: Colors.transparent,
-                            child: ReorderableDragStartListener(
-                              index: index,
-                              child: const Icon(Icons.drag_handle),
-                            ),
-                          ),
-                          leading: Card(
-                            elevation: 3,
-                            color: Colors.transparent,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                              
-                                minWidth: 48,
-                                minHeight: 48,
-                                maxWidth: 48,
-                                maxHeight: 48,
-                              ),
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: MemoryImage(albumsArts[
-                                            playlistSongsInside[index].album] ??
-                                        defaultNone),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    onReorder: (oldIndex, newIndex) async {
-                      setState(() {
-                        if (newIndex > oldIndex) {
-                          newIndex = newIndex - 1;
-                        }
-                        final element = playlistSongsInside.removeAt(oldIndex);
-                        playlistSongsInside.insert(newIndex, element);
-                      });
-                      updateQueuePlayList(playListName, playlistSongsInside);
-                      playlistMediaItems = [];
-                      playlistSongsInside = [];
-                      await fetchPlaylistSongs();
-                    }),
+                            final element =
+                                playlistSongsInside.removeAt(oldIndex);
+                            playlistSongsInside.insert(newIndex, element);
+                          });
+                          updateQueuePlayList(
+                              playListName, playlistSongsInside);
+                          playlistMediaItems = [];
+                          playlistSongsInside = [];
+                          await fetchPlaylistSongs();
+                        }),
+                  ),
+                ),
               ),
             ],
           ),

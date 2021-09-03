@@ -21,9 +21,12 @@ class GenresInside extends StatefulWidget {
 }
 
 class _GenresInsideState extends State<GenresInside> {
+  ScrollController _scrollBarController;
+
   @override
   void initState() {
     crossfadeStateChange = true;
+    _scrollBarController = ScrollController();
     super.initState();
   }
 
@@ -59,114 +62,127 @@ class _GenresInsideState extends State<GenresInside> {
               ),
             ),
           ),
-          body: Container(
-            child: Stack(
-              children: [
-                musicBox.get("dynamicArtDB") ?? true
-                    ? BackArt()
-                    : Container(color: kMaterialBlack),
-                Container(
-                  padding: EdgeInsets.only(top: deviceWidth / 4.3),
-                  child: ListView.builder(
-                    padding: EdgeInsets.only(top: 5, bottom: 8),
-                    physics: musicBox.get("fluidAnimation") ?? true
-                        ? BouncingScrollPhysics()
-                        : ClampingScrollPhysics(),
-                    itemCount: genreSongs.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return ListHeader(deviceWidth, genreSongs, "genre");
-                      }
-                      return Material(
-                        color: Colors.transparent,
-                        child: ListTile(
-                          onTap: () async {
-                            if (genreMediaItems[index - 1].duration ==
-                                Duration(milliseconds: 0)) {
-                              corruptedFile(context);
-                            } else {
-                              insidegenreSongs = [];
-                              insidegenreSongs = genreSongs;
-                              await playThis(index - 1, "genre");
+          body: Theme(
+            data: themeOfApp,
+            child: Container(
+              child: Stack(
+                children: [
+                  musicBox.get("dynamicArtDB") ?? true
+                      ? BackArt()
+                      : Container(color: kMaterialBlack),
+                  Container(
+                    padding: EdgeInsets.only(top: deviceWidth / 4.3),
+                    child: MediaQuery.removePadding(
+                      context: context,
+                      removeTop: true,
+                      child: Scrollbar(
+                        controller: _scrollBarController,
+                        child: ListView.builder(
+                          controller: _scrollBarController,
+                          padding: EdgeInsets.only(top: 5, bottom: 8),
+                          physics: musicBox.get("fluidAnimation") ?? true
+                              ? BouncingScrollPhysics()
+                              : ClampingScrollPhysics(),
+                          itemCount: genreSongs.length + 1,
+                          itemBuilder: (context, index) {
+                            if (index == 0) {
+                              return ListHeader(
+                                  deviceWidth, genreSongs, "genre");
                             }
-                          },
-                          onLongPress: () async {
-                            Expanded(
-                              child: await onHold(
-                                  context,
-                                  genreSongs,
-                                  index - 1,
-                                  orientedCar,
-                                  deviceHeight,
-                                  deviceWidth,
-                                  "genre"),
+                            return Material(
+                              color: Colors.transparent,
+                              child: ListTile(
+                                onTap: () async {
+                                  if (genreMediaItems[index - 1].duration ==
+                                      Duration(milliseconds: 0)) {
+                                    corruptedFile(context);
+                                  } else {
+                                    insidegenreSongs = [];
+                                    insidegenreSongs = genreSongs;
+                                    await playThis(index - 1, "genre");
+                                  }
+                                },
+                                onLongPress: () async {
+                                  Expanded(
+                                    child: await onHold(
+                                        context,
+                                        genreSongs,
+                                        index - 1,
+                                        orientedCar,
+                                        deviceHeight,
+                                        deviceWidth,
+                                        "genre"),
+                                  );
+                                },
+                                dense: false,
+                                title: Text(
+                                  genreSongs[index - 1].title,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontFamily: 'UrbanR',
+                                    shadows: [
+                                      Shadow(
+                                        offset: Offset(0, 1.0),
+                                        blurRadius: 2.0,
+                                        color: Colors.black45,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                tileColor: Colors.transparent,
+                                subtitle: Opacity(
+                                  opacity: 0.5,
+                                  child: Text(
+                                    genreSongs[index - 1].artist,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                      fontFamily: 'UrbanR',
+                                      color: Colors.white70,
+                                      shadows: [
+                                        Shadow(
+                                          offset: Offset(0, 1.0),
+                                          blurRadius: 1.0,
+                                          color: Colors.black38,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                leading: Card(
+                                  elevation: 3,
+                                  color: Colors.transparent,
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minWidth: 48,
+                                      minHeight: 48,
+                                      maxWidth: 48,
+                                      maxHeight: 48,
+                                    ),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(3),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: MemoryImage(albumsArts[
+                                                  genreSongs[index - 1]
+                                                      .album] ??
+                                              defaultNone),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             );
                           },
-                          dense: false,
-                          title: Text(
-                            genreSongs[index - 1].title,
-                            maxLines: 2,
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontFamily: 'UrbanR',
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0, 1.0),
-                                  blurRadius: 2.0,
-                                  color: Colors.black45,
-                                ),
-                              ],
-                            ),
-                          ),
-                          tileColor: Colors.transparent,
-                          subtitle: Opacity(
-                            opacity: 0.5,
-                            child: Text(
-                              genreSongs[index - 1].artist,
-                              maxLines: 1,
-                              style: TextStyle(
-                                fontFamily: 'UrbanR',
-                                color: Colors.white70,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(0, 1.0),
-                                    blurRadius: 1.0,
-                                    color: Colors.black38,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          leading: Card(
-                            elevation: 3,
-                            color: Colors.transparent,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minWidth: 48,
-                                minHeight: 48,
-                                maxWidth: 48,
-                                maxHeight: 48,
-                              ),
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: MemoryImage(albumsArts[
-                                            genreSongs[index - 1].album] ??
-                                        defaultNone),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

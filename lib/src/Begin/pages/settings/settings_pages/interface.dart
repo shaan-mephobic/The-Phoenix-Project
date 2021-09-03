@@ -60,9 +60,10 @@ class _InterfaceState extends State<Interface> {
           ),
         ),
         body: Theme(
-          data: ThemeData(
-              unselectedWidgetColor:
-                  darkModeOn ? Colors.grey[900] : Colors.grey),
+    
+        data: themeOfApp,
+
+                  
           child: Container(
             height: deviceHeight,
     

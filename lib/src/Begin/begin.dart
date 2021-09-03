@@ -84,7 +84,7 @@ bool orientedCar = false;
 bool bgPhoenixVisualizer = false;
 Uint8List defaultArt;
 Uint8List defaultNone;
-bool isAndroid11=false;
+bool isAndroid11 = false;
 bool ascend = false;
 bool isPlayerShown = false;
 
@@ -161,7 +161,9 @@ class _BeginState extends State<Begin>
     if (musicBox.get("isolation") == null
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
-      ///TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
+      /// TODO playlist deleting on adding bug
+      /// TODO outside directory must be checked when clicked inside
+      /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
       await isolatedArtistScrapeInit();
     }
   }

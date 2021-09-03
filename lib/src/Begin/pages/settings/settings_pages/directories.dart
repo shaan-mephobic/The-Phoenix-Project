@@ -2,7 +2,7 @@ import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../begin.dart';
-import 'file_exporer.dart';
+import '../../../utilities/page_backend/file_exporer.dart';
 
 class Directories extends StatefulWidget {
   @override
@@ -10,6 +10,7 @@ class Directories extends StatefulWidget {
 }
 
 class _DirectoriesState extends State<Directories> {
+  ScrollController _scrollBarController;
   // double deviceHeight;
   // double deviceWidth;
 
@@ -23,6 +24,7 @@ class _DirectoriesState extends State<Directories> {
 
   @override
   void initState() {
+    _scrollBarController = ScrollController();
     backArtStateChange = false;
     super.initState();
   }
@@ -129,69 +131,76 @@ class _DirectoriesState extends State<Directories> {
           ),
         ),
       ),
-      body: WillPopScope(
-        onWillPop: _onWillPop,
-        child: Theme(
-          data: ThemeData(
-              accentColor: Color(0xFF05464f),
-              unselectedWidgetColor:
-                  darkModeOn ? Colors.grey[900] : Colors.grey),
+      body: Theme(
+        data: themeOfApp,
+        child: WillPopScope(
+          onWillPop: _onWillPop,
           child: Container(
             color: darkModeOn ? kMaterialBlack : Colors.white,
             padding: EdgeInsets.only(top: kToolbarHeight + kToolbarHeight + 50),
             height: deviceHeight,
-            child: ListView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.only(top: 5, bottom: 8),
-              addAutomaticKeepAlives: true,
-              physics: ClampingScrollPhysics(),
-              itemCount: fileExplorer.length,
-              itemBuilder: (context, index) {
-                return Material(
-                  color: Colors.transparent,
-                  child: CheckboxListTile(
-                    activeColor: kCorrect,
-                    checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-
-                    title: Text(
-                      fileExplorer.keys
-                          .toList()[index]
-                          .toString()
-                          .replaceAll(currentTopDir, ""),
-                      style: TextStyle(
-                          color: darkModeOn ? Colors.white : Colors.black,
-                          fontFamily: "UrbanR"),
-                    ),
-                    secondary: Material(
+            child: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: Scrollbar(
+                controller: _scrollBarController,
+                child: ListView.builder(
+                  controller: _scrollBarController,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.only(top: 5, bottom: 8),
+                  addAutomaticKeepAlives: true,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: fileExplorer.length,
+                  itemBuilder: (context, index) {
+                    return Material(
                       color: Colors.transparent,
-                      child: IconButton(
-                          icon: Icon(Icons.arrow_forward_ios_rounded),
-                          color: darkModeOn ? Colors.white : Colors.grey[700],
-                          onPressed: () async {
-                            HapticFeedback.lightImpact();
-                            await iterationManager(
-                                fileExplorer.keys.toList()[index]);
+                      child: CheckboxListTile(
+                        activeColor: kCorrect,
+                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
 
-                            setState(() {});
-                          }),
-                    ),
-                    value: fileExplorer.values.toList()[index][0],
-                    onChanged: (newValue) {
-                      fileExplorer.values.toList()[index][0] = newValue;
-                      if (newValue) {
-                        selectedFolders.add(fileExplorer.keys.toList()[index]);
-                      } else {
-                        selectedFolders
-                            .remove(fileExplorer.keys.toList()[index]);
-                      }
-                      print(selectedFolders);
-                      setState(() {});
-                    },
-                    controlAffinity: ListTileControlAffinity
-                        .leading, //  <-- leading Checkbox
-                  ),
-                );
-              },
+                        title: Text(
+                          fileExplorer.keys
+                              .toList()[index]
+                              .toString()
+                              .replaceAll(currentTopDir, ""),
+                          style: TextStyle(
+                              color: darkModeOn ? Colors.white : Colors.black,
+                              fontFamily: "UrbanR"),
+                        ),
+                        secondary: Material(
+                          color: Colors.transparent,
+                          child: IconButton(
+                              icon: Icon(Icons.arrow_forward_ios_rounded),
+                              color:
+                                  darkModeOn ? Colors.white : Colors.grey[700],
+                              onPressed: () async {
+                                HapticFeedback.lightImpact();
+                                await iterationManager(
+                                    fileExplorer.keys.toList()[index]);
+
+                                setState(() {});
+                              }),
+                        ),
+                        value: fileExplorer.values.toList()[index][0],
+                        onChanged: (newValue) {
+                          fileExplorer.values.toList()[index][0] = newValue;
+                          if (newValue) {
+                            selectedFolders
+                                .add(fileExplorer.keys.toList()[index]);
+                          } else {
+                            selectedFolders
+                                .remove(fileExplorer.keys.toList()[index]);
+                          }
+                          print(selectedFolders);
+                          setState(() {});
+                        },
+                        controlAffinity: ListTileControlAffinity
+                            .leading, //  <-- leading Checkbox
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ),
         ),

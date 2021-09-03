@@ -5,7 +5,7 @@ import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 import '../../../begin.dart';
 import 'directories.dart';
-import 'file_exporer.dart';
+import '../../../utilities/page_backend/file_exporer.dart';
 
 // bool customScanVisibility = false;
 Map folderData = {};
@@ -59,9 +59,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
           ),
         ),
         body: Theme(
-          data: ThemeData(
-              unselectedWidgetColor:
-                  darkModeOn ? Colors.grey[900] : Colors.grey),
+        data: themeOfApp,
           child: Container(
             height: deviceHeight,
             child: Stack(

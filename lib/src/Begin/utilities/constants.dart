@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
 
 /// The default Black Color
 Color kMaterialBlack = Color(0xFF000000);
@@ -30,7 +31,7 @@ Offset kShadowOffset = Offset(0, 3);
 /// Aesthetic Quotes.
 Map quotes = {
   "I don't wanna believe. I wanna Know.": "Carl Sagan",
-  "The truth is like a black bouquet, Money's got us all enslaved The bullets and the bombs we make, oh, no.":
+  "The truth is like a black bouquet, Money's got us all enslaved, the bullets and the bombs we make, oh, no.":
       "Stephen Swartz",
   "I don't care for your drugs, I don't care for your fame. Do you care for the truth if you're not entertained?":
       "Stephen Swartz",
@@ -45,3 +46,19 @@ Map quotes = {
 Map<String, String> changelogs = {
   "HERTZ - 2.0.0": "• Initial 2.0.0 release.\n• Rebuilt entire app."
 };
+
+/// Theme data of entire app
+ThemeData themeOfApp = ThemeData(
+  splashFactory: CustomRipple.splashFactory,
+  accentColor: Colors.white,
+  unselectedWidgetColor: Colors.grey[900],
+  scrollbarTheme: ScrollbarThemeData(
+    interactive: true,
+    isAlwaysShown: false,
+    radius: Radius.circular(50),
+    // minThumbLength: 50,
+    thickness: MaterialStateProperty.all(4),
+    crossAxisMargin: 2,
+    thumbColor: MaterialStateProperty.all(Colors.white),
+  ),
+);
