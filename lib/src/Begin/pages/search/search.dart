@@ -107,7 +107,6 @@ class _SearchinState extends State<Searchin> {
                                   color: Colors.black.withOpacity(0.1),
                                   blurRadius: 15.0,
                                   offset: kShadowOffset,
-                                  // spreadRadius: 5,
                                 ),
                               ],
                               borderRadius: BorderRadius.circular(kRounded),
@@ -127,6 +126,7 @@ class _SearchinState extends State<Searchin> {
                                     color: Colors.white.withOpacity(0.05),
                                   ),
                                   child: TextField(
+                                    textAlignVertical: TextAlignVertical.center,
                                     cursorColor: Color(0xFF3cb9cd),
                                     focusNode: focusNode,
                                     autofocus: false,
@@ -135,6 +135,7 @@ class _SearchinState extends State<Searchin> {
                                       theSearch(thetext);
                                     },
                                     decoration: InputDecoration(
+                                      isCollapsed: true,
                                       suffixIcon: Icon(Icons.music_note_rounded,
                                           color: Colors.white),
                                       prefixIcon: Hero(

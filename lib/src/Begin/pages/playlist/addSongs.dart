@@ -69,7 +69,6 @@ class _AddSongsState extends State<AddSongs> {
                     size: 28.0,
                     color: Color(0xFFCB0447),
                   ),
-
                   shouldIconPulse: true,
                   dismissDirection: FlushbarDismissDirection.HORIZONTAL,
                   duration: Duration(seconds: 5),
@@ -81,8 +80,6 @@ class _AddSongsState extends State<AddSongs> {
                   barBlur: 20,
                   margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                   borderRadius: BorderRadius.circular(15),
-                  // leftBarIndicatorColor:
-                  //     Color(0xFFCB0047),
                 )..show(context);
               } else {
                 newPlaylist(playListName, playListSongsId);
@@ -93,38 +90,15 @@ class _AddSongsState extends State<AddSongs> {
           body: Theme(
             data: themeOfApp,
             child: Stack(children: [
-              // Container(
-              //   decoration: musicBox.get("dynamicArtDB") ?? true
-              //       ? BoxDecoration(
-              //           image: DecorationImage(
-              //             image: MemoryImage(first ? art : art2),
-              //             fit: BoxFit.cover,
-              //           ),
-              //         )
-              //       : BoxDecoration(color: kMaterialBlack),
-              //   child: ClipRRect(
-              //     child: BackdropFilter(
-              //       filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-              //       child: Container(
-              //         alignment: Alignment.center,
-              //         color: Colors.black.withOpacity(0.2),
-              // child:
-              // musicBox.get("dynamicArtDB") ?? true
-              // ?
               BackArt(),
-              // : Container(color: kMaterialBlack),
-
               Column(
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: 50),
                   ),
                   Container(
-                    // height: deviceHeight / 7,
                     padding: EdgeInsets.only(left: 10, right: 10),
-
                     height: 120,
-
                     width: double.infinity,
                     color: Colors.transparent,
                     child: Center(
@@ -136,7 +110,6 @@ class _AddSongsState extends State<AddSongs> {
                               color: Colors.black.withOpacity(0.1),
                               blurRadius: 15.0,
                               offset: kShadowOffset,
-                              // spreadRadius: 5,
                             ),
                           ],
                           borderRadius: BorderRadius.circular(kRounded),
@@ -155,39 +128,30 @@ class _AddSongsState extends State<AddSongs> {
                                 color: Colors.white.withOpacity(0.05),
                               ),
                               child: TextField(
+                                textAlignVertical: TextAlignVertical.center,
                                 cursorColor: Color(0xFF3cb9cd),
                                 autofocus: false,
                                 style: TextStyle(color: Colors.white),
                                 onChanged: (thetext) {
                                   playListName = thetext;
-                                  // print(thetext);
                                 },
                                 decoration: InputDecoration(
-                                  // border: OutlineInputBorder(
-                                  // borderRadius: BorderRadius.all(
-                                  // Radius.circular(25.0),
-                                  // ),
-                                  // ),
+                                  isCollapsed: true,
                                   enabledBorder: OutlineInputBorder(
-                                    // borderRadius: BorderRadius.circular(25.0),
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    // borderRadius: BorderRadius.circular(25.0),
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
                                   ),
-                                  // filled: true,
                                   hintStyle: TextStyle(
                                     color: Colors.grey[350],
-                                    // inherit: false,
                                   ),
                                   hintText: playListName,
                                   prefixIcon: Icon(
                                       MdiIcons.playlistMusicOutline,
                                       color: Colors.white),
-                                  // fillColor: Colors.black87,
                                   suffixIcon: Visibility(
                                     visible: modify,
                                     child: IconButton(
@@ -208,10 +172,6 @@ class _AddSongsState extends State<AddSongs> {
                       ),
                     ),
                   ),
-                  // Container(
-                  // padding: EdgeInsets.only(top: deviceWidth / 10),
-                  // width: deviceWidth,
-                  // height: deviceHeight - deviceWidth / 4.3,
                   Expanded(
                     child: MediaQuery.removePadding(
                       context: context,
@@ -223,7 +183,6 @@ class _AddSongsState extends State<AddSongs> {
                           shrinkWrap: true,
                           padding: EdgeInsets.only(top: 0, bottom: 8),
                           addAutomaticKeepAlives: true,
-                          // itemExtent: deviceWidth / 6,
                           physics: musicBox.get("fluidAnimation") ?? true
                               ? BouncingScrollPhysics()
                               : ClampingScrollPhysics(),
@@ -260,7 +219,6 @@ class _AddSongsState extends State<AddSongs> {
                                   songList[index].title,
                                   maxLines: 2,
                                   style: TextStyle(
-                                    // fontSize: deviceWidth / 28,
                                     color: Colors.white70,
                                     fontFamily: 'UrbanR',
                                     shadows: [
@@ -277,7 +235,6 @@ class _AddSongsState extends State<AddSongs> {
                                   songList[index].artist,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    // fontSize: deviceWidth / 34,
                                     fontFamily: 'UrbanR',
                                     color: Colors.white38,
                                     shadows: [
@@ -317,63 +274,6 @@ class _AddSongsState extends State<AddSongs> {
                                     setState(() {});
                                   },
                                 ),
-                                // leading: Card(
-                                //   elevation: deviceWidth / 160,
-                                //   color: Colors.transparent,
-                                //   child:
-                                //   // Stack(
-                                //   //   children: [
-                                //   //     Container(
-                                //   //       // alignment: Alignment.center,
-                                //   //       height: deviceWidth / 10.4,
-                                //   //       width: deviceWidth / 10.4,
-                                //   //       decoration: BoxDecoration(
-                                //   //         color: nowColor,
-                                //   //         borderRadius: BorderRadius.circular(3),
-                                //   //       ),
-                                //   //       child: Center(
-                                //   //         child: Icon(
-                                //   //           Icons.music_note_outlined,
-                                //   //           color: nowContrast,
-                                //   //         ),
-                                //   //       ),
-                                //   //     ),
-                                //       Container(
-                                //         // height: deviceWidth / 10,
-                                //         // width: deviceWidth / 10,
-                                //         // child: QueryArtworkWidget(
-                                //         //     deviceInfo: deviceInfo,
-                                //         //     artwork: songList[index].artwork,
-                                //         //     id: songList[index].id,
-                                //         //     type: ArtworkType.AUDIO,
-                                //         //     keepOldArtwork: true,
-                                //         //     nullArtworkWidget: Container(
-                                //         //       height: deviceWidth / 10,
-                                //         //       width: deviceWidth / 10,
-                                //         //       decoration: BoxDecoration(
-                                //         //         borderRadius:
-                                //         //             BorderRadius.circular(3),
-                                //         //         image: DecorationImage(
-                                //         //           fit: BoxFit.contain,
-                                //         //           image: MemoryImage(defaultNone),
-                                //         //         ),
-                                //         //       ),
-                                //         //     ),
-                                //         //     artworkBorder: BorderRadius.circular(3),
-                                //         //     artworkFit: BoxFit.cover),
-                                //         decoration: BoxDecoration(
-                                //           borderRadius: BorderRadius.circular(3),
-                                //           image: DecorationImage(
-                                //             fit: BoxFit.cover,
-                                //             image: MemoryImage(
-                                //                 albumsArts[songList[index].album] ??
-                                //                     defaultNone),
-                                //           ),
-                                //         ),
-                                //       ),
-                                //   //   ],
-                                //   // ),
-                                // ),
                                 leading: Card(
                                   elevation: 3,
                                   color: Colors.transparent,
