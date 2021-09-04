@@ -157,7 +157,6 @@ void readyPlay() {
 }
 
 Future<void> updateThings() async {
-
   if (isFlashin) {
     if (!activeSession) {
       kotlinVisualizer();

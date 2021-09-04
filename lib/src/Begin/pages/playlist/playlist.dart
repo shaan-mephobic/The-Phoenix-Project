@@ -8,9 +8,6 @@ import 'package:provider/provider.dart';
 import '../../begin.dart';
 import 'addSongs.dart';
 
-int playlistIndex;
-bool modify = false;
-String prePlayListName;
 List modifyPlayList = [];
 
 class Playlist extends StatefulWidget {
@@ -28,7 +25,8 @@ class _PlaylistState extends State<Playlist> {
 
   @override
   Widget build(BuildContext context) {
-    if (musicBox.get('playlists') == null) {
+    if (musicBox.get('playlists') == null ||
+        musicBox.get("playlists").isEmpty) {
       return Container(
         child: Material(
           color: Colors.transparent,
@@ -40,10 +38,8 @@ class _PlaylistState extends State<Playlist> {
                     color: Colors.black.withOpacity(0.1),
                     blurRadius: 13.0,
                     offset: kShadowOffset,
-                    // spreadRadius: 5,
                   ),
                 ],
-                // color: Colors.black12,
                 borderRadius: BorderRadius.circular(kRounded),
               ),
               width: deviceWidth / 1.7,
@@ -51,21 +47,21 @@ class _PlaylistState extends State<Playlist> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(kRounded),
                 onTap: () {
-                  // input playlist name
-                  playlistSongsSelected(false);
+                  playlistSongsSelected(fresh: true);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
                             ChangeNotifierProvider<Leprovider>(
                                 create: (_) => Leprovider(),
-                                builder: (context, child) => AddSongs()),
+                                builder: (context, child) => AddSongs(
+                                      modify: false,
+                                      playlistName: "Enter Playlist Name",
+                                    )),
                       ));
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(kRounded),
-
-                  // make sure we apply clip it properly
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                     child: Container(
@@ -76,7 +72,6 @@ class _PlaylistState extends State<Playlist> {
                             Border.all(color: Colors.white.withOpacity(0.04)),
                         color: Colors.white.withOpacity(0.05),
                       ),
-                      // color: Colors.black.withOpacity(0.2),
                       child: Center(
                         child: Text(
                           'Create Playlist',
@@ -107,15 +102,17 @@ class _PlaylistState extends State<Playlist> {
           backgroundColor: Color(0xFF1DB954),
           elevation: 8.0,
           onPressed: () {
-            playlistSongsSelected(false);
             playListSongsId = [];
-            playListName = "Enter Playlist Name";
+            playlistSongsSelected(fresh: true);
             Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ChangeNotifierProvider<Leprovider>(
                       create: (_) => Leprovider(),
-                      builder: (context, child) => AddSongs()),
+                      builder: (context, child) => AddSongs(
+                            modify: false,
+                            playlistName: "Enter Playlist Name",
+                          )),
                 ));
           },
         ),
@@ -125,9 +122,7 @@ class _PlaylistState extends State<Playlist> {
             controller: _scrollBarController,
             padding: EdgeInsets.only(top: 5, bottom: 8),
             addAutomaticKeepAlives: true,
-            // itemExtent: deviceWidth / 2,
             itemExtent: orientedCar ? deviceWidth / 1.4 : deviceWidth / 2,
-
             physics: musicBox.get("fluidAnimation") ?? true
                 ? BouncingScrollPhysics()
                 : ClampingScrollPhysics(),
@@ -141,7 +136,6 @@ class _PlaylistState extends State<Playlist> {
                     Padding(
                       padding: EdgeInsets.only(top: deviceWidth / 25),
                     ),
-
                     Container(
                       width:
                           orientedCar ? deviceHeight / 1.4 : deviceWidth / 1.05,
@@ -173,11 +167,11 @@ class _PlaylistState extends State<Playlist> {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(kRounded),
                                 onTap: () async {
-                                  modify = false;
-                                  playlistIndex = index;
-                                  playlistMediaItems = [];
-                                  playlistSongsInside = [];
-                                  await fetchPlaylistSongs();
+                                  String playListName = musicBox
+                                      .get('playlists')
+                                      .keys
+                                      .toList()[index];
+                                  await fetchPlaylistSongs(playListName);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -185,19 +179,21 @@ class _PlaylistState extends State<Playlist> {
                                             ChangeNotifierProvider<Leprovider>(
                                                 create: (_) => Leprovider(),
                                                 builder: (context, child) =>
-                                                    PlaylistInside()),
+                                                    PlaylistInside(
+                                                      playlistName:
+                                                          playListName,
+                                                    )),
                                       ));
                                 },
                                 onLongPress: () {
-                                  modify = true;
-                                  playListName = musicBox
+                                  String playListName = musicBox
                                       .get('playlists')
                                       .keys
                                       .toList()[index];
                                   modifyPlayList =
                                       musicBox.get('playlists')[playListName];
-                                  prePlayListName = playListName;
-                                  playlistSongsSelected(true);
+                                  playlistSongsSelected(
+                                      fresh: false, playlistName: playListName);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -205,7 +201,11 @@ class _PlaylistState extends State<Playlist> {
                                             ChangeNotifierProvider<Leprovider>(
                                                 create: (_) => Leprovider(),
                                                 builder: (context, child) =>
-                                                    AddSongs()),
+                                                    AddSongs(
+                                                      modify: true,
+                                                      playlistName:
+                                                          playListName,
+                                                    )),
                                       ));
                                 },
                                 child: Center(

@@ -29,7 +29,7 @@ dependencies:
   another_flushbar: ^1.10.24
   flare_flutter: ^3.0.2
   flare_loading: ^3.0.0
-  palette_generator: ^0.3.0
+  palette_generator: ^0.3.1
   sleek_circular_slider: ^2.0.1
   sliding_up_panel: ^2.0.0+1
 
@@ -43,7 +43,7 @@ dependencies:
 
   # FLUTTER Related
   device_info: ^2.0.2
-  path_provider: ^2.0.2
+  path_provider: ^2.0.3
   permission_handler: ^8.1.4+2
   provider: ^6.0.0
   share_plus: ^2.1.4
@@ -65,7 +65,7 @@ dependencies:
   # WEB Related
   html: ^0.15.0
   html_unescape: ^2.0.0
-  url_launcher: ^6.0.9
+  url_launcher: ^6.0.10
 
 
   # MISCELLANEOUS

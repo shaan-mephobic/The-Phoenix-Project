@@ -3,8 +3,6 @@ import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
-import 'package:phoenix/src/Begin/pages/playlist/addSongs.dart';
-import 'package:phoenix/src/Begin/pages/playlist/playlist.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/corrupted_file_dialog.dart';
@@ -20,6 +18,8 @@ List<SongModel> insideplaylistSongsInside = [];
 List<MediaItem> playlistMediaItems = [];
 
 class PlaylistInside extends StatefulWidget {
+  final String playlistName;
+  PlaylistInside({@required this.playlistName});
   @override
   _PlaylistInsideState createState() => _PlaylistInsideState();
 }
@@ -28,7 +28,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
   ScrollController _scrollBarController;
   @override
   void initState() {
-    playListName = musicBox.get('playlists').keys.toList()[playlistIndex];
+    // playListName = musicBox.get('playlists').keys.toList()[playlistIndex];
     crossfadeStateChange = true;
     _scrollBarController = ScrollController();
     super.initState();
@@ -36,7 +36,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
 
   @override
   void dispose() {
-    playListName = "Enter Playlist Name";
+    // playListName = "Enter Playlist Name";
     crossfadeStateChange = false;
     super.dispose();
   }
@@ -54,7 +54,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           backgroundColor: Colors.transparent,
           title: Container(
             child: Text(
-              musicBox.get('playlists').keys.toList()[playlistIndex],
+              widget.playlistName,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: deviceWidth / 18,
@@ -181,10 +181,10 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                             playlistSongsInside.insert(newIndex, element);
                           });
                           updateQueuePlayList(
-                              playListName, playlistSongsInside);
+                              widget.playlistName, playlistSongsInside);
                           playlistMediaItems = [];
                           playlistSongsInside = [];
-                          await fetchPlaylistSongs();
+                          await fetchPlaylistSongs(widget.playlistName);
                         }),
                   ),
                 ),

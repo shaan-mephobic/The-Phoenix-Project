@@ -103,13 +103,13 @@ class _BeginState extends State<Begin>
 
   @override
   void initState() {
-    super.initState();
     audioServiceInit();
     _tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     tag = Audiotagger();
     lazyLoad();
     visualizerNotificationInit();
     WidgetsBinding.instance.addObserver(this);
+    super.initState();
   }
 
   @override
@@ -161,7 +161,6 @@ class _BeginState extends State<Begin>
     if (musicBox.get("isolation") == null
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
-      /// TODO playlist deleting on adding bug
       /// TODO outside directory must be checked when clicked inside
       /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
       await isolatedArtistScrapeInit();

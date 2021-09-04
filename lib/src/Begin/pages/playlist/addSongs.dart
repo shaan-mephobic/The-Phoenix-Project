@@ -14,14 +14,18 @@ import '../../begin.dart';
 
 List<bool> playListCheck = [];
 List playListSongsId = [];
-String playListName = "Enter Playlist Name";
 
 class AddSongs extends StatefulWidget {
+  final bool modify;
+  final String playlistName;
+  AddSongs({@required this.modify, @required this.playlistName});
   @override
   _AddSongsState createState() => _AddSongsState();
 }
 
 class _AddSongsState extends State<AddSongs> {
+  bool isNameChanged = false;
+  String nameOfPlaylist;
   ScrollController _scrollBarController;
 
   @override
@@ -50,7 +54,7 @@ class _AddSongsState extends State<AddSongs> {
           floatingActionButton: FloatingActionButton.extended(
             splashColor: Colors.transparent,
             icon: Icon(Icons.check_rounded, color: Colors.black),
-            label: Text(modify ? "MODIFY" : "CREATE",
+            label: Text(widget.modify ? "MODIFY" : "CREATE",
                 style: TextStyle(
                     inherit: false,
                     color: Colors.black,
@@ -59,7 +63,9 @@ class _AddSongsState extends State<AddSongs> {
             backgroundColor: Color(0xFF1DB954),
             elevation: 8.0,
             onPressed: () {
-              if (playListName == "Enter Playlist Name") {
+              if (!((widget.playlistName == "Enter Playlist Name" &&
+                      nameOfPlaylist != null) ||
+                  (widget.playlistName != "Enter Playlist Name"))) {
                 Flushbar(
                   messageText: Text("Enter a Playlist Name! ¯\\_(ツ)_/¯",
                       style: TextStyle(
@@ -82,7 +88,20 @@ class _AddSongsState extends State<AddSongs> {
                   borderRadius: BorderRadius.circular(15),
                 )..show(context);
               } else {
-                newPlaylist(playListName, playListSongsId);
+                if (musicBox.get("playlists") != null &&
+                    musicBox.get("playlists").keys.toList().contains(
+                        widget.playlistName)) {
+                  fetchPlaylistSongs(
+                      widget.playlistName);
+                }     
+                if (isNameChanged) {
+                  removePlaylists(widget.playlistName);
+                }
+                newPlaylist(
+                    nameOfPlaylist == null
+                        ? widget.playlistName
+                        : nameOfPlaylist,
+                    playListSongsId);
                 Navigator.pop(context);
               }
             },
@@ -133,7 +152,8 @@ class _AddSongsState extends State<AddSongs> {
                                 autofocus: false,
                                 style: TextStyle(color: Colors.white),
                                 onChanged: (thetext) {
-                                  playListName = thetext;
+                                  nameOfPlaylist = thetext;
+                                  if (widget.modify) isNameChanged = true;
                                 },
                                 decoration: InputDecoration(
                                   isCollapsed: true,
@@ -148,18 +168,17 @@ class _AddSongsState extends State<AddSongs> {
                                   hintStyle: TextStyle(
                                     color: Colors.grey[350],
                                   ),
-                                  hintText: playListName,
+                                  hintText: widget.playlistName,
                                   prefixIcon: Icon(
                                       MdiIcons.playlistMusicOutline,
                                       color: Colors.white),
                                   suffixIcon: Visibility(
-                                    visible: modify,
+                                    visible: widget.modify,
                                     child: IconButton(
                                       icon: Icon(Ionicons.trash_outline,
                                           color: Color(0xFFCB0047)),
                                       onPressed: () {
-                                        removePlaylists(
-                                            playListName, prePlayListName);
+                                        removePlaylists(widget.playlistName);
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -193,7 +212,7 @@ class _AddSongsState extends State<AddSongs> {
                               child: ListTile(
                                 onTap: () {
                                   if (playListCheck[index]) {
-                                    if (!modify) {
+                                    if (!widget.modify) {
                                       playListCheck[index] = false;
                                       playListSongsId
                                           .remove(songList[index].data);
@@ -203,7 +222,7 @@ class _AddSongsState extends State<AddSongs> {
                                           .remove(songList[index].data);
                                     }
                                   } else {
-                                    if (!modify) {
+                                    if (!widget.modify) {
                                       playListCheck[index] = true;
                                       playListSongsId.add(songList[index].data);
                                     } else {
@@ -251,7 +270,7 @@ class _AddSongsState extends State<AddSongs> {
                                   value: playListCheck[index],
                                   onChanged: (_) {
                                     if (playListCheck[index]) {
-                                      if (!modify) {
+                                      if (!widget.modify) {
                                         playListCheck[index] = false;
                                         playListSongsId
                                             .remove(songList[index].data);
@@ -261,7 +280,7 @@ class _AddSongsState extends State<AddSongs> {
                                             .remove(songList[index].data);
                                       }
                                     } else {
-                                      if (!modify) {
+                                      if (!widget.modify) {
                                         playListCheck[index] = true;
                                         playListSongsId
                                             .add(songList[index].data);

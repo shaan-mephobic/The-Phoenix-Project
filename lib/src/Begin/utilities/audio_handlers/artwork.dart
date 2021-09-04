@@ -8,7 +8,6 @@ Map advanceAudioData = {};
 
 playerontap() async {
   if (!widgetvisible) widgetvisible = true;
-
   artwork = await OnAudioQuery().queryArtwork(
           nowMediaItem.extras["id"], ArtworkType.AUDIO,
           format: ArtworkFormat.JPEG, size: 200) ??
