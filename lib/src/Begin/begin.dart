@@ -161,7 +161,6 @@ class _BeginState extends State<Begin>
     if (musicBox.get("isolation") == null
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
-      /// TODO outside directory must be checked when clicked inside
       /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
       await isolatedArtistScrapeInit();
     }
