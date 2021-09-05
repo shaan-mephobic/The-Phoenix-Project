@@ -8,12 +8,12 @@ import 'package:flutter/services.dart';
 import '../../begin.dart';
 import 'now_playing.dart';
 
-class CollapsedPlaying extends StatefulWidget {
+class Moderna extends StatefulWidget {
   @override
-  _CollapsedPlayingState createState() => _CollapsedPlayingState();
+  _ModernaState createState() => _ModernaState();
 }
 
-class _CollapsedPlayingState extends State<CollapsedPlaying> {
+class _ModernaState extends State<Moderna> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,8 +36,8 @@ class _CollapsedPlayingState extends State<CollapsedPlaying> {
               ),
               child: Center(
                 child: Container(
-                  height: deviceWidth / 4,
-                  width: deviceWidth,
+                  height: 60,
+                  width: orientedCar ? deviceHeight : deviceWidth,
                   decoration: BoxDecoration(
                     borderRadius: radiusFullscreen,
                   ),
@@ -55,8 +55,8 @@ class _CollapsedPlayingState extends State<CollapsedPlaying> {
               ),
               child: Center(
                 child: Container(
-                  height: deviceWidth / 4,
-                  width: deviceWidth,
+                  height: 60,
+                  width: orientedCar ? deviceHeight : deviceWidth,
                   decoration: BoxDecoration(
                     borderRadius: radiusFullscreen,
                   ),
@@ -170,8 +170,8 @@ class _ClassixState extends State<Classix> {
                       elevation: 3,
                       color: Colors.transparent,
                       child: Container(
-                        height: 50,
-                        width: 50,
+                        height: musicBox.get("squareArt") ?? true ? 48 : 44,
+                        width: musicBox.get("squareArt") ?? true ? 48 : 64,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(3),
@@ -186,8 +186,8 @@ class _ClassixState extends State<Classix> {
                       elevation: 3,
                       color: Colors.transparent,
                       child: Container(
-                        height: 50,
-                        width: 50,
+                        height: musicBox.get("squareArt") ?? true ? 48 : 44,
+                        width: musicBox.get("squareArt") ?? true ? 48 : 64,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(3),

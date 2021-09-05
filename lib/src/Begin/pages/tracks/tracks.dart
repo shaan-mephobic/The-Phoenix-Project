@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audiotagger/audiotagger.dart';
+import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/Begin/widgets/list_header.dart';
@@ -120,17 +121,9 @@ class _AllofemState extends State<Allofem>
                 elevation: 3,
                 color: Colors.transparent,
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    // Looks good
-                    // minWidth: 44,
-                    // minHeight: 44,
-                    // maxWidth: 64,
-                    // maxHeight: 64,
-                    minWidth: 48,
-                    minHeight: 48,
-                    maxWidth: 48,
-                    maxHeight: 48,
-                  ),
+                  constraints: musicBox.get("squareArt") ?? true
+                      ? kSqrConstraint
+                      : kRectConstraint,
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(

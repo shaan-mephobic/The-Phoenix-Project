@@ -271,12 +271,11 @@ class _SearchinState extends State<Searchin> {
                                           elevation: 3,
                                           color: Colors.transparent,
                                           child: ConstrainedBox(
-                                            constraints: BoxConstraints(
-                                              minWidth: 48,
-                                              minHeight: 48,
-                                              maxWidth: 48,
-                                              maxHeight: 48,
-                                            ),
+                                            constraints:
+                                                musicBox.get("squareArt") ??
+                                                        true
+                                                    ? kSqrConstraint
+                                                    : kRectConstraint,
                                             child: Container(
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(

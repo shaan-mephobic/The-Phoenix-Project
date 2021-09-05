@@ -11,14 +11,11 @@ class Interface extends StatefulWidget {
 }
 
 class _InterfaceState extends State<Interface> {
-
   @override
   void initState() {
     rootCrossfadeState = true;
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -60,18 +57,12 @@ class _InterfaceState extends State<Interface> {
           ),
         ),
         body: Theme(
-    
-        data: themeOfApp,
-
-                  
+          data: themeOfApp,
           child: Container(
             height: deviceHeight,
-    
             child: Stack(
               children: [
-              
                 BackArt(),
-               
                 ListView(
                   children: [
                     Material(
@@ -80,14 +71,14 @@ class _InterfaceState extends State<Interface> {
                         activeColor: kCorrect,
                         checkColor: darkModeOn ? kMaterialBlack : Colors.white,
                         subtitle: Text(
-                          "A fluid animation on scrolling",
+                          "A fluid bouncing animation on scrolling",
                           style: TextStyle(
                             fontFamily: 'UrbanR',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
                         title: Text(
-                          "FLUID",
+                          "Fluid",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
@@ -96,12 +87,9 @@ class _InterfaceState extends State<Interface> {
                         onChanged: (newValue) {
                           setState(() {
                             musicBox.put("fluidAnimation", newValue);
-
-                            // checkedValue = newValue;
                           });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -117,21 +105,45 @@ class _InterfaceState extends State<Interface> {
                           ),
                         ),
                         title: Text(
-                          "DYNAMIC BACKGROUND",
+                          "Dynamic Background",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
                         ),
                         value: musicBox.get("dynamicArtDB") ?? true,
                         onChanged: (newValue) {
-                          musicBox.put("dynamicArtDB", newValue);
-
                           setState(() {
-                            // checkedValue = newValue;
+                            musicBox.put("dynamicArtDB", newValue);
                           });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: CheckboxListTile(
+                        activeColor: kCorrect,
+                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
+                        subtitle: Text(
+                          "Square shaped artwork in lists",
+                          style: TextStyle(
+                            fontFamily: 'UrbanR',
+                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                          ),
+                        ),
+                        title: Text(
+                          "Square Art",
+                          style: TextStyle(
+                              color: darkModeOn ? Colors.white : Colors.black,
+                              fontFamily: "UrbanR"),
+                        ),
+                        value: musicBox.get("squareArt") ?? true,
+                        onChanged: (newValue) {
+                          setState(() {
+                            musicBox.put("squareArt", newValue);
+                          });
+                        },
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -147,7 +159,7 @@ class _InterfaceState extends State<Interface> {
                           ),
                         ),
                         title: Text(
-                          "LEFT-HAND STEERING",
+                          "Left Steering",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
@@ -156,28 +168,25 @@ class _InterfaceState extends State<Interface> {
                         onChanged: (newValue) {
                           setState(() {
                             musicBox.put("androidAutoLefty", newValue);
-                            // checkedValue = newValue;
                           });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
-             
                     Material(
                       color: Colors.transparent,
                       child: CheckboxListTile(
                         activeColor: kCorrect,
                         checkColor: darkModeOn ? kMaterialBlack : Colors.white,
                         subtitle: Text(
-                          "Show additional song data in now-playing.",
+                          "Show additional song data in now playing.",
                           style: TextStyle(
                             fontFamily: 'UrbanR',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
                         title: Text(
-                          "AUDIOPHILE DATA",
+                          "Audiophile Data",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
@@ -186,12 +195,9 @@ class _InterfaceState extends State<Interface> {
                         onChanged: (newValue) {
                           setState(() {
                             musicBox.put("audiophileData", newValue);
-
-                            // checkedValue = newValue;
                           });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -207,7 +213,7 @@ class _InterfaceState extends State<Interface> {
                           ),
                         ),
                         title: Text(
-                          "CLASSIC MINI-PLAYER",
+                          "Classix Mini-Player",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
@@ -218,11 +224,9 @@ class _InterfaceState extends State<Interface> {
                             musicBox.put("classix", newValue);
                           });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
-                 
                   ],
                   physics: musicBox.get("fluidAnimation") ?? true
                       ? BouncingScrollPhysics()

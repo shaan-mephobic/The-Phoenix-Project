@@ -89,11 +89,13 @@ class _AddSongsState extends State<AddSongs> {
                 )..show(context);
               } else {
                 if (musicBox.get("playlists") != null &&
-                    musicBox.get("playlists").keys.toList().contains(
-                        widget.playlistName)) {
-                  fetchPlaylistSongs(
-                      widget.playlistName);
-                }     
+                    musicBox
+                        .get("playlists")
+                        .keys
+                        .toList()
+                        .contains(widget.playlistName)) {
+                  fetchPlaylistSongs(widget.playlistName);
+                }
                 if (isNameChanged) {
                   removePlaylists(widget.playlistName);
                 }
@@ -297,16 +299,10 @@ class _AddSongsState extends State<AddSongs> {
                                   elevation: 3,
                                   color: Colors.transparent,
                                   child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      // minWidth: 44,
-                                      // minHeight: 44,
-                                      // maxWidth: 64,
-                                      // maxHeight: 64,
-                                      minWidth: 48,
-                                      minHeight: 48,
-                                      maxWidth: 48,
-                                      maxHeight: 48,
-                                    ),
+                                    constraints:
+                                        musicBox.get("squareArt") ?? true
+                                            ? kSqrConstraint
+                                            : kRectConstraint,
                                     child: Container(
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(

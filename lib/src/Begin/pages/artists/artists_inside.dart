@@ -237,21 +237,13 @@ class ArtistsInside extends StatelessWidget {
                               ),
                             ),
                           ),
-
                           leading: Card(
                             elevation: 3,
                             color: Colors.transparent,
                             child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                // minWidth: 44,
-                                // minHeight: 44,
-                                // maxWidth: 64,
-                                // maxHeight: 64,
-                                minWidth: 48,
-                                minHeight: 48,
-                                maxWidth: 48,
-                                maxHeight: 48,
-                              ),
+                              constraints: musicBox.get("squareArt") ?? true
+                                  ? kSqrConstraint
+                                  : kRectConstraint,
                               child: Container(
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -267,118 +259,6 @@ class ArtistsInside extends StatelessWidget {
                             ),
                           ),
                         ),
-
-                        // child: Container(
-                        //   width: orientedCar ? deviceHeight : deviceWidth,
-                        //   height:
-                        //       orientedCar ? deviceWidth / 6 : deviceHeight / 12.5,
-                        //   child: InkWell(
-                        //     onTap: () async {
-                        //       insideInArtistsSongs = [];
-                        //       insideInArtistsSongs = inArtistsSongs;
-                        //       await playThis(index, "artist");
-                        //     },
-                        //     onLongPress: () async {
-                        //       Expanded(
-                        //         child: await onHold(
-                        //             context,
-                        //             inArtistsSongs,
-                        //             index,
-                        //             orientedCar,
-                        //             deviceHeight,
-                        //             deviceWidth,
-                        //             "artist"),
-                        //       );
-                        //     },
-                        //     child: Row(
-                        //       children: [
-                        //         Padding(padding: EdgeInsets.only(left: 12)),
-                        //         Center(
-                        //           child: PhysicalModel(
-                        //             borderRadius: BorderRadius.circular(3),
-                        //             elevation: 3,
-                        //             color: Colors.transparent,
-                        //             child: Container(
-                        //               width: orientedCar
-                        //                   ? deviceWidth / 10
-                        //                   : deviceHeight / 20,
-                        //               height: orientedCar
-                        //                   ? deviceWidth / 10
-                        //                   : deviceHeight / 20,
-                        //               decoration: BoxDecoration(
-                        //                 // color: Colors.white,
-                        //                 borderRadius: BorderRadius.circular(3),
-                        //                 image: DecorationImage(
-                        //                   fit: BoxFit.cover,
-                        //                   image: MemoryImage(albumsArts[
-                        //                           inArtistsSongs[index].album] ??
-                        //                       defaultNone),
-                        //                 ),
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         ),
-                        //         Padding(padding: EdgeInsets.only(left: 20)),
-                        //         Container(
-                        //           width: orientedCar
-                        //               ? deviceHeight / 1.5
-                        //               : deviceWidth / 1.5,
-                        //           child: Column(
-                        //             mainAxisAlignment: MainAxisAlignment.center,
-                        //             crossAxisAlignment: CrossAxisAlignment.start,
-                        //             children: [
-                        //               Text(
-                        //                 inArtistsSongs[index].title,
-                        //                 maxLines: 2,
-                        //                 style: TextStyle(
-                        //                   color:
-                        //                       musicBox.get("dynamicArtDB") ?? true
-                        //                           ? contrastAlbum
-                        //                           : Colors.white,
-                        //                   fontFamily: 'UrbanR',
-                        //                   fontSize: orientedCar
-                        //                       ? deviceWidth / 28
-                        //                       : deviceHeight / 60,
-                        //                   shadows: [
-                        //                     Shadow(
-                        //                       offset: Offset(0, 1.0),
-                        //                       blurRadius: 2.0,
-                        //                       color: Colors.black45,
-                        //                     ),
-                        //                   ],
-                        //                 ),
-                        //               ),
-                        //               Opacity(
-                        //                 opacity: 0.7,
-                        //                 child: Text(
-                        //                   inArtistsSongs[index].artist,
-                        //                   maxLines: 1,
-                        //                   style: TextStyle(
-                        //                     fontFamily: 'UrbanR',
-                        //                     fontSize: orientedCar
-                        //                         ? deviceWidth / 41
-                        //                         : deviceHeight / 73,
-                        //                     color: musicBox.get("dynamicArtDB") ??
-                        //                             true
-                        //                         ? contrastAlbum
-                        //                         : Colors.white,
-                        //                     shadows: [
-                        //                       Shadow(
-                        //                         offset: Offset(0, 1.0),
-                        //                         blurRadius: 1.0,
-                        //                         color: Colors.black38,
-                        //                       ),
-                        //                     ],
-                        //                   ),
-                        //                 ),
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
                       );
                     },
                     childCount: numberOfSongsOfArtist + 1,
@@ -388,14 +268,6 @@ class ArtistsInside extends StatelessWidget {
               ],
             ),
           ),
-          //   ],
-          // ),
-          // ),
-          // ],
-
-          //   ),
-          // ),
-          // ),
         ),
       ),
     );

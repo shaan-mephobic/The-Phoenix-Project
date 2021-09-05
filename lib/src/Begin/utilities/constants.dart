@@ -5,7 +5,7 @@ import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
 /// The default Black Color
 Color kMaterialBlack = Color(0xFF000000);
 
-/// You're Always right Color (SPOTIFY)
+/// Green/Correct Color
 Color kCorrect = Color(0xFF1DB954);
 
 /// Roundedness of widgets
@@ -56,9 +56,22 @@ ThemeData themeOfApp = ThemeData(
     interactive: true,
     isAlwaysShown: false,
     radius: Radius.circular(50),
-    // minThumbLength: 50,
     thickness: MaterialStateProperty.all(4),
     crossAxisMargin: 2,
     thumbColor: MaterialStateProperty.all(Colors.white),
   ),
+);
+
+///BoxContraints for artwork shape in listtile
+BoxConstraints kSqrConstraint = BoxConstraints(
+  minWidth: 48,
+  minHeight: 48,
+  maxWidth: 48,
+  maxHeight: 48,
+);
+BoxConstraints kRectConstraint = BoxConstraints(
+  minWidth: 44,
+  minHeight: 44,
+  maxWidth: 64,
+  maxHeight: 64,
 );

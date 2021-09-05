@@ -7,7 +7,6 @@ import '../../../begin.dart';
 import 'directories.dart';
 import '../../../utilities/page_backend/file_exporer.dart';
 
-// bool customScanVisibility = false;
 Map folderData = {};
 
 class Miscellaneous extends StatefulWidget {
@@ -59,14 +58,13 @@ class _MiscellaneousState extends State<Miscellaneous> {
           ),
         ),
         body: Theme(
-        data: themeOfApp,
+          data: themeOfApp,
           child: Container(
             height: deviceHeight,
             child: Stack(
               children: [
                 BackArt(),
                 ListView(
-                  // children: [
                   children: [
                     Material(
                       color: Colors.transparent,
@@ -81,19 +79,19 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           ),
                         ),
                         title: Text(
-                          "30 SECONDS",
+                          "30 Seconds Rule",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
                         ),
                         value: musicBox.get("clutterFree") ?? false,
                         onChanged: (newValue) {
-                          musicBox.put("clutterFree", newValue);
                           refresh = true;
-                          setState(() {});
+                          setState(() {
+                            musicBox.put("clutterFree", newValue);
+                          });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -109,19 +107,19 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           ),
                         ),
                         title: Text(
-                          "UNKNOWN ARTISTS",
+                          "Unknown Artist",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
                         ),
                         value: musicBox.get("stopUnknown") ?? false,
                         onChanged: (newValue) {
-                          musicBox.put("stopUnknown", newValue);
                           refresh = true;
-                          setState(() {});
+                          setState(() {
+                            musicBox.put("stopUnknown", newValue);
+                          });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -137,7 +135,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           ),
                         ),
                         title: Text(
-                          "CUSTOM SCAN",
+                          "Custom Scan",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
@@ -152,8 +150,6 @@ class _MiscellaneousState extends State<Miscellaneous> {
                                     ? Colors.white
                                     : Colors.grey[700],
                                 onPressed: () async {
-                                  // refresh = true;
-
                                   selectedFolders =
                                       musicBox.get("customLocations") ?? [];
                                   await iterationManager(topLevelDir);
@@ -167,15 +163,14 @@ class _MiscellaneousState extends State<Miscellaneous> {
                                 }),
                           ),
                         ),
-
                         value: musicBox.get("customScan") ?? false,
                         onChanged: (newValue) {
-                          musicBox.put("customScan", newValue);
                           refresh = true;
-                          setState(() {});
+                          setState(() {
+                            musicBox.put("customScan", newValue);
+                          });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                     Material(
@@ -184,25 +179,25 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         activeColor: kCorrect,
                         checkColor: darkModeOn ? kMaterialBlack : Colors.white,
                         subtitle: Text(
-                          "Art of song is set as wallpaper of phone",
+                          "Artwork is set as lockscreen wallpaper",
                           style: TextStyle(
                             fontFamily: 'UrbanR',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
                         title: Text(
-                          "WALLPX (BETA)",
+                          "WallPx (BETA)",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
                               fontFamily: "UrbanR"),
                         ),
                         value: musicBox.get("wallpx") ?? false,
                         onChanged: (newValue) {
-                          musicBox.put("wallpx", newValue);
-                          setState(() {});
+                          setState(() {
+                            musicBox.put("wallpx", newValue);
+                          });
                         },
-                        controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                        controlAffinity: ListTileControlAffinity.leading,
                       ),
                     ),
                   ],

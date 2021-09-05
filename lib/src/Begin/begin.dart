@@ -233,7 +233,6 @@ class _BeginState extends State<Begin>
           parallaxEnabled: true,
           isDraggable: true,
           backdropColor: Colors.black,
-          // minHeight: orientedCar ? deviceWidth / 7.3 : deviceHeight / 15,
           minHeight: 60,
           controller: pc,
           borderRadius: musicBox.get("classix") ?? true
@@ -255,7 +254,7 @@ class _BeginState extends State<Begin>
           },
           // collapsed: CollapsedPlaying(),
           collapsed:
-              musicBox.get("classix") ?? true ? Classix() : CollapsedPlaying(),
+              musicBox.get("classix") ?? true ? Classix() : Moderna(),
           maxHeight: deviceHeight,
           backdropTapClosesPanel: true,
           renderPanelSheet: true,

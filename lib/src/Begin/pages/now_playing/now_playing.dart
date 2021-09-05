@@ -38,7 +38,6 @@ class NowPlaying extends StatefulWidget {
 }
 
 class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
-  // bool darkModeOn = false;
 
   ScrollController stupidController = ScrollController();
   swapControllerTimeOut() async {
@@ -54,12 +53,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
         ? false
         : musicBox.get('isolation'))) {
       stupidController.addListener(() {
-        // print(stupidController.offset);
         if (stupidController.offset == stupidController.initialScrollOffset) {
           if (!swapController) {
             swapController = true;
             globalBigNow.rawNotify();
-            // animatingPanel();
             swapControllerTimeOut();
           }
         } else {
@@ -72,8 +69,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
     } else {
       swapController = true;
     }
-
-    // streams_of_music();
 
     animatedPlayPause = AnimationController(
         vsync: this, duration: Duration(milliseconds: crossfadeDuration));
@@ -90,8 +85,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
       deviceHeight = MediaQuery.of(context).size.height;
       deviceWidth = MediaQuery.of(context).size.width;
     }
-    // deviceHeight = MediaQuery.of(context).size.height;
-    // deviceWidth = MediaQuery.of(context).size.width;
     // Portrait Screen
     return !orientedCar
         ? Consumer<MrMan>(builder: (context, bignow, child) {
@@ -122,8 +115,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            // padding
-
                             Padding(
                               padding: EdgeInsets.only(top: deviceHeight / 18),
                             ),
@@ -364,7 +355,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     return IconButton(
                                       icon: Icon(
                                         Ionicons.repeat_outline,
-                                        // Icons.repeat_rounded,
                                         color: musicBox.get("dynamicArtDB") ??
                                                 true
                                             ? loopSelected
@@ -394,7 +384,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     EdgeInsets.only(top: deviceHeight / 38)),
                             Consumer<Leprovider>(
                               builder: (context, haunt, _) {
-                                // globalHaunt = haunt;
                                 return Center(
                                   child: Container(
                                     width: deviceWidth / 1.1,
@@ -599,12 +588,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 }
                                               },
                                               onLongPress: () async {
-                                                // var brightness = MediaQuery.of(context)
-                                                //     .platformBrightness;
-                                                // bool darkModeOn =
-                                                //     brightness == Brightness.dark;
                                                 bool darkModeOn = true;
-
                                                 await showDialog(
                                                   context: context,
                                                   builder:
@@ -790,10 +774,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   aspectRatio: 4 / 5,
                                   child: AnimatedContainer(
                                     duration: Duration(milliseconds: 700),
-                                    // width:
-                                    //     orientedCar ? deviceHeight / 1.45 : deviceWidth / 1.1,
-                                    // height:
-                                    //     orientedCar ? deviceHeight / 1.6 : deviceWidth * 1,
                                     decoration: BoxDecoration(
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
@@ -809,10 +789,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   true
                                               ? Colors.black54
                                               : Colors.white12,
-                                          // blurRadius: 10.0,
-                                          // offset: Offset(2, 2),
-
-                                          // spreadRadius: 6,
                                         ),
                                       ],
                                     ),
