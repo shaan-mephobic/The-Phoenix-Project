@@ -15,8 +15,11 @@ class Playlist extends StatefulWidget {
   _PlaylistState createState() => _PlaylistState();
 }
 
-class _PlaylistState extends State<Playlist> {
+class _PlaylistState extends State<Playlist>
+    with AutomaticKeepAliveClientMixin {
+      
   ScrollController _scrollBarController;
+
   @override
   void initState() {
     _scrollBarController = ScrollController();
@@ -25,6 +28,7 @@ class _PlaylistState extends State<Playlist> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (musicBox.get('playlists') == null ||
         musicBox.get("playlists").isEmpty) {
       return Container(
@@ -241,4 +245,7 @@ class _PlaylistState extends State<Playlist> {
       );
     }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

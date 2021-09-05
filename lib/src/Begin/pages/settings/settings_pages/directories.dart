@@ -11,8 +11,6 @@ class Directories extends StatefulWidget {
 
 class _DirectoriesState extends State<Directories> {
   ScrollController _scrollBarController;
-  // double deviceHeight;
-  // double deviceWidth;
 
   @override
   void dispose() {
@@ -40,8 +38,6 @@ class _DirectoriesState extends State<Directories> {
       deviceHeight = MediaQuery.of(context).size.height;
       deviceWidth = MediaQuery.of(context).size.width;
     }
-    // var brightness = MediaQuery.of(context).platformBrightness;
-    // bool darkModeOn = brightness == Brightness.dark;
     bool darkModeOn = true;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -157,7 +153,6 @@ class _DirectoriesState extends State<Directories> {
                       child: CheckboxListTile(
                         activeColor: kCorrect,
                         checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-
                         title: Text(
                           fileExplorer.keys
                               .toList()[index]
@@ -177,25 +172,23 @@ class _DirectoriesState extends State<Directories> {
                                 HapticFeedback.lightImpact();
                                 await iterationManager(
                                     fileExplorer.keys.toList()[index]);
-
                                 setState(() {});
                               }),
                         ),
-                        value: fileExplorer.values.toList()[index][0],
+                        value: isTicked(fileExplorer.keys.toList()[index]),
                         onChanged: (newValue) {
                           fileExplorer.values.toList()[index][0] = newValue;
                           if (newValue) {
                             selectedFolders
                                 .add(fileExplorer.keys.toList()[index]);
                           } else {
-                            selectedFolders
-                                .remove(fileExplorer.keys.toList()[index]);
+                            unTick(fileExplorer.keys.toList()[index]);
                           }
                           print(selectedFolders);
                           setState(() {});
                         },
                         controlAffinity: ListTileControlAffinity
-                            .leading, //  <-- leading Checkbox
+                            .leading,
                       ),
                     );
                   },

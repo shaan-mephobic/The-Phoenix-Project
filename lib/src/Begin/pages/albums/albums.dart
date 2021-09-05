@@ -25,7 +25,6 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
   Widget build(BuildContext context) {
     super.build(context);
     bool darkModeOn = true;
-
     if (ascend) {
       return Scrollbar(
         controller: _scrollBarController,

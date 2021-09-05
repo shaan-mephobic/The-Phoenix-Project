@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import '../../begin.dart';
-
 
 List selectedFolders = [];
 Map fileExplorer = {};
@@ -15,16 +13,13 @@ iterationManager(where) async {
   await getAllDir(where);
   for (int i = 0; i < tempData.length; i++) {
     if (tempData[i] != "/storage/emulated/0/Android") {
-      //0 = tick,  1 = 1exp....
       fileExplorer[tempData[i]] = [
         selectedFolders.contains(tempData[i]),
         false
       ];
     }
   }
- 
 }
-
 
 String previousDir(String dir) {
   String result = "";
@@ -52,4 +47,25 @@ getAllDir(where) async {
 
 saveLocations() async {
   musicBox.put('customLocations', selectedFolders);
+}
+
+bool isTicked(String path) {
+  for (int i = 0; i < selectedFolders.length; i++) {
+    if (selectedFolders[i].contains(path)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+unTick(String path) {
+  List<String> toRemove = [];
+  for (int i = 0; i < selectedFolders.length; i++) {
+    if (selectedFolders[i].contains(path)) {
+      toRemove.add(selectedFolders[i]);
+    }
+  }
+  toRemove.forEach((element) {
+    selectedFolders.remove(element);
+  });
 }

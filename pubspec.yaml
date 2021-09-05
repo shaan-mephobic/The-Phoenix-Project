@@ -37,7 +37,7 @@ dependencies:
   # AUDIO Related
   audio_service: ^0.17.1
   audiotagger: ^2.2.1
-  just_audio: ^0.9.9
+  just_audio: ^0.9.10
   on_audio_query: 2.2.0
 
 
