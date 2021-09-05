@@ -13,7 +13,6 @@ double kRounded = 12;
 
 /// Phoenix Color
 Color kPhoenixColor = Color(0xFF028ac4);
-// 02c9d3
 
 /// Crossfade Duration.
 int crossfadeDuration = 300;
@@ -58,7 +57,7 @@ ThemeData themeOfApp = ThemeData(
     radius: Radius.circular(50),
     thickness: MaterialStateProperty.all(4),
     crossAxisMargin: 2,
-    thumbColor: MaterialStateProperty.all(Colors.white),
+    thumbColor: MaterialStateProperty.all(Colors.white30),
   ),
 );
 

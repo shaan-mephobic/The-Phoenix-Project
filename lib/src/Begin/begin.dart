@@ -162,6 +162,7 @@ class _BeginState extends State<Begin>
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
       /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
+      /// TODO remove unneccessary fonts
       await isolatedArtistScrapeInit();
     }
   }
@@ -252,9 +253,7 @@ class _BeginState extends State<Begin>
               rootState.provideman();
             }
           },
-          // collapsed: CollapsedPlaying(),
-          collapsed:
-              musicBox.get("classix") ?? true ? Classix() : Moderna(),
+          collapsed: musicBox.get("classix") ?? true ? Classix() : Moderna(),
           maxHeight: deviceHeight,
           backdropTapClosesPanel: true,
           renderPanelSheet: true,
