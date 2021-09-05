@@ -162,7 +162,6 @@ class _BeginState extends State<Begin>
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
       /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
-      /// TODO remove unneccessary fonts
       await isolatedArtistScrapeInit();
     }
   }
