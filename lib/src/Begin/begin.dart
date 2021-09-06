@@ -258,7 +258,6 @@ class _BeginState extends State<Begin>
           renderPanelSheet: true,
           color: Colors.transparent,
           panel: NowPlaying(),
-
           body: Container(
             color: Colors.black,
             child: Stack(
@@ -393,7 +392,11 @@ class _BeginState extends State<Begin>
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                splashColor: Color(0xFF05464f),
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    orientedCar
+                                        ? deviceWidth / 16 / 2
+                                        : deviceHeight / 36 / 2)),
+                                // splashColor: Color(0xFF05464f),
                                 child: Icon(
                                   Phoenixtest.svging,
                                   color: musicBox.get("dynamicArtDB") ?? true
@@ -839,6 +842,10 @@ class _BeginState extends State<Begin>
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(orientedCar
+                                          ? deviceWidth / 16 / 2
+                                          : deviceHeight / 36 / 2)),
                                   child: Icon(
                                     musicBox.get("timeBasedDark") == null
                                         ? MIcon.riMoonLine
@@ -882,6 +889,10 @@ class _BeginState extends State<Begin>
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(orientedCar
+                                          ? deviceWidth / 16 / 2
+                                          : deviceHeight / 36 / 2)),
                                   child: Icon(
                                     MIcon.riSearchLine,
                                     color: musicBox.get("dynamicArtDB") ?? true
@@ -931,6 +942,10 @@ class _BeginState extends State<Begin>
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(orientedCar
+                                          ? deviceWidth / 16 / 2
+                                          : deviceHeight / 36 / 2)),
                                   child: Icon(
                                     Ionicons.settings_outline,
                                     color: musicBox.get("dynamicArtDB") ?? true
