@@ -4,6 +4,9 @@ import 'package:flutter/rendering.dart';
 
 /// Credits to zhcode-fun https://github.com/zhcode-fun/flutter-marquee-text
 
+AnimationController marqueeController;
+bool isMarqueeDead = false;
+
 class MarqueeText extends StatelessWidget {
   final String text;
   final TextStyle style;
@@ -33,7 +36,6 @@ class MarqueeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /// Remove color will cause parent widget's onTap to not work
       color: Colors.transparent,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => ClipPath(
@@ -78,20 +80,14 @@ class _MarqueeContainer extends StatefulWidget {
 
 class _MarqueeContainerState extends State<_MarqueeContainer>
     with SingleTickerProviderStateMixin {
+  bool isListening = false;
   Animation<double> _animation;
-  AnimationController _animationController;
   bool _showMarquee = false;
 
   @override
   void initState() {
+    marqueeController = AnimationController(vsync: this);
     super.initState();
-    _animationController = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   @override
@@ -110,28 +106,28 @@ class _MarqueeContainerState extends State<_MarqueeContainer>
     var textWidth = renderParagraph.textSize.width;
     var constraintsWidth = renderParagraph.constraints.maxWidth;
     _showMarquee = textWidth > constraintsWidth || widget.alwaysScroll;
-    if (_animationController.isAnimating && !_showMarquee) {
-      _animationController.stop();
-      _animationController.reset();
+    if (marqueeController.isAnimating && !_showMarquee) {
+      marqueeController.stop();
+      marqueeController.reset();
     }
     var tweenList = [constraintsWidth, -textWidth];
-    if (_showMarquee) {
+    if (_showMarquee && !isMarqueeDead) {
       if (widget.speed <= 0) {
         throw 'marquee_text speed value must be greater than 0';
       }
       var duration = ((textWidth / (widget.speed * 1.72)) * 1000).floor();
       _showMarquee = true;
-      _animationController.duration = Duration(milliseconds: duration);
+      marqueeController.duration = Duration(milliseconds: duration);
       _animation = Tween(
         begin: tweenList[widget.marqueeDirection.index],
         end: tweenList[1 - widget.marqueeDirection.index],
-      ).animate(_animationController)
+      ).animate(marqueeController)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
-            _animationController.repeat();
+            marqueeController.repeat();
           }
         });
-      _animationController.forward();
+      marqueeController.forward();
     }
 
     final textWidget = Container(

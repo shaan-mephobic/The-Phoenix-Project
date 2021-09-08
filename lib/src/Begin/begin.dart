@@ -6,6 +6,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
+import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/quick_tips.dart';
 import 'utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/Begin/pages/now_playing/mini_playing.dart';
@@ -115,8 +116,8 @@ class _BeginState extends State<Begin>
   @override
   void dispose() {
     animatedPlayPause.dispose();
+    marqueeController.dispose();
     WidgetsBinding.instance.removeObserver(this);
-    print("nothing to you");
     super.dispose();
   }
 
@@ -127,8 +128,16 @@ class _BeginState extends State<Begin>
         if (onSettings) {
           yeahRotate();
         }
+        if (isMarqueeDead) {
+          marqueeController.repeat();
+          isMarqueeDead = false;
+        }
         break;
       case AppLifecycleState.paused:
+        if (marqueeController.isAnimating) {
+          marqueeController.reset();
+          isMarqueeDead = true;
+        }
         breakRotate = true;
         break;
       case AppLifecycleState.detached:
@@ -162,7 +171,6 @@ class _BeginState extends State<Begin>
         ? true
         : !musicBox.get("isolation") && await hasNetwork()) {
       /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
-      /// TODO Marquee shouldn't run if app is out of lifecycle
       await isolatedArtistScrapeInit();
     }
   }
