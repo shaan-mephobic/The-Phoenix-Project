@@ -49,7 +49,6 @@ Map<String, String> changelogs = {
 /// Theme data of entire app
 ThemeData themeOfApp = ThemeData(
   splashFactory: CustomRipple.splashFactory,
-  accentColor: Colors.white,
   unselectedWidgetColor: Colors.grey[900],
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
@@ -59,6 +58,7 @@ ThemeData themeOfApp = ThemeData(
     crossAxisMargin: 2,
     thumbColor: MaterialStateProperty.all(Colors.white30),
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
 );
 
 ///BoxContraints for artwork shape in listtile

@@ -20,7 +20,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../begin.dart';
 import '../../utilities/constants.dart';
 import '../../utilities/edit_song.dart';
-import 'androidR_support.dart';
+import 'r_support.dart';
 
 var tagger;
 

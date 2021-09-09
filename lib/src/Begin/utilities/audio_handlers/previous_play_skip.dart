@@ -142,7 +142,6 @@ Future<void> goToAudioService(int indexOfSong, List<SongModel> allSong,
       listOfMediaItems.sublist(0, indexOfSong);
   nowMediaItem = nowQueue[0];
   if (!AudioService.running) {
-    print("DONUTS");
     await audioServiceInit();
   }
   if (nowQueue[0].duration == Duration(milliseconds: 0)) {
