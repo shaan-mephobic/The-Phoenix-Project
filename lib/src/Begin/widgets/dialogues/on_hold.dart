@@ -176,7 +176,7 @@ Future<Widget> onHold(
                                                             "Create A Playlist First.",
                                                             style: TextStyle(
                                                                 fontFamily:
-                                                                    "FuturaR",
+                                                                    "Futura",
                                                                 color: Colors
                                                                     .white)),
                                                         icon: Icon(
@@ -292,7 +292,7 @@ Future<Widget> onHold(
                                                                                                         Navigator.pop(context);
                                                                                                         if (check[check.keys.toList()[o]].contains(listOfSong[index].data)) {
                                                                                                           Flushbar(
-                                                                                                            messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+                                                                                                            messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
                                                                                                             icon: Icon(
                                                                                                               Icons.error_outline_rounded,
                                                                                                               size: 28.0,
@@ -316,7 +316,7 @@ Future<Widget> onHold(
                                                                                                           check[check.keys.toList()[o]].add(listOfSong[index].data);
                                                                                                           musicBox.put("playlists", check);
                                                                                                           Flushbar(
-                                                                                                            messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+                                                                                                            messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
                                                                                                             icon: Icon(
                                                                                                               Icons.add,
                                                                                                               size: 28.0,
@@ -346,7 +346,7 @@ Future<Widget> onHold(
                                                                                                             maxLines: 2,
                                                                                                             style: TextStyle(
                                                                                                               color: musicBox.get("dynamicArtDB") ?? true ? Colors.white70 : Colors.white70,
-                                                                                                              fontFamily: 'UrbanR',
+                                                                                                              fontFamily: 'Urban',
                                                                                                               fontSize: car ? widthOfDevice / 26 : heightOfDevice / 56,
                                                                                                               shadows: [
                                                                                                                 Shadow(
@@ -488,7 +488,7 @@ Future<Widget> onHold(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = titleOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 titleOfSong = text;
@@ -511,7 +511,7 @@ Future<Widget> onHold(
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "TITLE",
                                                                                                   hintText: "",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
                                                                                           ),
@@ -538,7 +538,7 @@ Future<Widget> onHold(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = albumOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 albumOfSong = text;
@@ -560,7 +560,7 @@ Future<Widget> onHold(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "ALBUM",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -588,7 +588,7 @@ Future<Widget> onHold(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = artistOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 artistOfSong = text;
@@ -610,7 +610,7 @@ Future<Widget> onHold(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "ARTIST",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -630,7 +630,7 @@ Future<Widget> onHold(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = genreOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 genreOfSong = text;
@@ -652,7 +652,7 @@ Future<Widget> onHold(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "GENRE",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -690,7 +690,7 @@ Future<Widget> onHold(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontFamily: 'UrbanSB')),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -792,7 +792,7 @@ Future<Widget> onHold(
                                                                 true
                                                             ? Colors.white70
                                                             : Colors.white70,
-                                                        fontFamily: 'UrbanR',
+                                                        fontFamily: 'Urban',
                                                         fontSize: car
                                                             ? widthOfDevice / 26
                                                             : heightOfDevice /
@@ -955,7 +955,7 @@ Future<Widget> onHoldExtended(
                                                               "Removed From Liked Songs",
                                                               style: TextStyle(
                                                                   fontFamily:
-                                                                      "FuturaR",
+                                                                      "Futura",
                                                                   color: Colors
                                                                       .white)),
                                                           icon: Icon(
@@ -1006,7 +1006,7 @@ Future<Widget> onHoldExtended(
                                                               "Added To Liked Songs",
                                                               style: TextStyle(
                                                                   fontFamily:
-                                                                      "FuturaR",
+                                                                      "Futura",
                                                                   color: Colors
                                                                       .white)),
                                                           icon: Icon(
@@ -1061,7 +1061,7 @@ Future<Widget> onHoldExtended(
                                                               "Create A Playlist First.",
                                                               style: TextStyle(
                                                                   fontFamily:
-                                                                      "FuturaR",
+                                                                      "Futura",
                                                                   color: Colors
                                                                       .white)),
                                                           icon: Icon(
@@ -1176,7 +1176,7 @@ Future<Widget> onHoldExtended(
                                                                                                           Navigator.pop(context);
                                                                                                           if (check[check.keys.toList()[o]].contains(nowMediaItem.id)) {
                                                                                                             Flushbar(
-                                                                                                              messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+                                                                                                              messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
                                                                                                               icon: Icon(
                                                                                                                 Icons.error_outline_rounded,
                                                                                                                 size: 28.0,
@@ -1200,7 +1200,7 @@ Future<Widget> onHoldExtended(
                                                                                                             check[check.keys.toList()[o]].add(nowMediaItem.id);
                                                                                                             musicBox.put("playlists", check);
                                                                                                             Flushbar(
-                                                                                                              messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+                                                                                                              messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
                                                                                                               icon: Icon(
                                                                                                                 Icons.add,
                                                                                                                 size: 28.0,
@@ -1234,7 +1234,7 @@ Future<Widget> onHoldExtended(
                                                                                                                     : darkModeOn
                                                                                                                         ? Colors.white70
                                                                                                                         : Colors.black87,
-                                                                                                                fontFamily: 'UrbanR',
+                                                                                                                fontFamily: 'Urban',
                                                                                                                 fontSize: car ? widthOfDevice / 26 : heightOfDevice / 56,
                                                                                                                 shadows: [
                                                                                                                   Shadow(
@@ -1381,7 +1381,7 @@ Future<Widget> onHoldExtended(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = titleOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 titleOfSong = text;
@@ -1404,7 +1404,7 @@ Future<Widget> onHoldExtended(
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "TITLE",
                                                                                                   hintText: "",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
                                                                                           ),
@@ -1423,7 +1423,7 @@ Future<Widget> onHoldExtended(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = albumOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 albumOfSong = text;
@@ -1445,7 +1445,7 @@ Future<Widget> onHoldExtended(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "ALBUM",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -1473,7 +1473,7 @@ Future<Widget> onHoldExtended(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = artistOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 artistOfSong = text;
@@ -1495,7 +1495,7 @@ Future<Widget> onHoldExtended(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "ARTIST",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -1523,7 +1523,7 @@ Future<Widget> onHoldExtended(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
                                                                                               controller: TextEditingController()..text = genreOfSong,
-                                                                                              style: TextStyle(color: Colors.white, fontFamily: "FuturaR"),
+                                                                                              style: TextStyle(color: Colors.white, fontFamily: "Futura"),
                                                                                               onChanged: (text) {
                                                                                                 shouldEdit = true;
                                                                                                 genreOfSong = text;
@@ -1545,7 +1545,7 @@ Future<Widget> onHoldExtended(
                                                                                                   filled: true,
                                                                                                   hintStyle: TextStyle(color: Colors.grey[350]),
                                                                                                   labelText: "GENRE",
-                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "FuturaR"),
+                                                                                                  labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
                                                                                                   hintText: "",
                                                                                                   fillColor: Colors.transparent),
                                                                                             ),
@@ -1583,7 +1583,7 @@ Future<Widget> onHoldExtended(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -1675,7 +1675,7 @@ Future<Widget> onHoldExtended(
                                                     //           "Saved In Downloads Directory",
                                                     //           style: TextStyle(
                                                     //               fontFamily:
-                                                    //                   "FuturaR",
+                                                    //                   "Futura",
                                                     //               color: Colors
                                                     //                   .white)),
                                                     //       icon: Icon(
@@ -1782,7 +1782,7 @@ Future<Widget> onHoldExtended(
                                                                       .white70
                                                                   : Colors
                                                                       .black87,
-                                                          fontFamily: 'UrbanR',
+                                                          fontFamily: 'Urban',
                                                           fontSize: car
                                                               ? widthOfDevice /
                                                                   26

@@ -22,25 +22,26 @@ class Genres extends StatefulWidget {
 class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
   ScrollController _scrollBarController;
   @override
-  void initState(){
-_scrollBarController=ScrollController();
+  void initState() {
+    _scrollBarController = ScrollController();
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     if (ascend) {
       return Scrollbar(
-        controller:_scrollBarController,
+        controller: _scrollBarController,
         child: ListView.builder(
-          controller: _scrollBarController,
+            controller: _scrollBarController,
             padding: EdgeInsets.only(top: 5, bottom: 8),
             addAutomaticKeepAlives: true,
             itemExtent: orientedCar ? deviceWidth / 1.4 : deviceWidth / 2,
-            physics: musicBox.get("fluidAnimation")??true
-            ? BouncingScrollPhysics() 
-            : ClampingScrollPhysics(),
+            physics: musicBox.get("fluidAnimation") ?? true
+                ? BouncingScrollPhysics()
+                : ClampingScrollPhysics(),
             itemCount: musicBox.get('customScan') ?? false
                 ? insideAllGenreData.length
                 : allgenres.length,
@@ -53,7 +54,6 @@ _scrollBarController=ScrollController();
                     Padding(
                       padding: EdgeInsets.only(top: deviceWidth / 25),
                     ),
-                   
                     Container(
                       width:
                           orientedCar ? deviceHeight / 1.4 : deviceWidth / 1.05,
@@ -66,26 +66,19 @@ _scrollBarController=ScrollController();
                             color: Colors.black.withOpacity(0.1),
                             blurRadius: 13.0,
                             offset: kShadowOffset,
-                            
                           ),
                         ],
-                  
                       ),
-                     
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(kRounded),
-                      
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                           child: Material(
-                           
-      
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(kRounded),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(kRounded),
-                               
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
                                 color: Colors.white.withOpacity(0.05),
@@ -96,8 +89,8 @@ _scrollBarController=ScrollController();
                                   genreSelected = index;
                                   genreMediaItems = [];
                                   if (musicBox.get('customScan') ?? false) {
-                                    genreSongs =
-                                        insideAllGenreData.values.toList()[index];
+                                    genreSongs = insideAllGenreData.values
+                                        .toList()[index];
                                   } else {
                                     genreSongs = await OnAudioQuery()
                                         .queryAudiosFrom(AudiosFromType.GENRE,
@@ -106,7 +99,6 @@ _scrollBarController=ScrollController();
                                   putinGenreInMediaItem();
                                   Navigator.push(
                                     context,
-                               
                                     MaterialPageRoute(
                                       builder: (context) =>
                                           ChangeNotifierProvider<Leprovider>(
@@ -131,7 +123,8 @@ _scrollBarController=ScrollController();
                                           inherit: false,
                                           color: Colors.white,
                                           fontSize: deviceWidth / 20,
-                                          fontFamily: "UrbanSB"),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "Urban"),
                                     ),
                                   ),
                                 ),
@@ -144,8 +137,6 @@ _scrollBarController=ScrollController();
                   ],
                 ),
               );
-      
-          
             }),
       );
     }
@@ -155,7 +146,6 @@ _scrollBarController=ScrollController();
           : Awakening();
     }
   }
-
 
   @override
   bool get wantKeepAlive => true;

@@ -26,17 +26,14 @@ class ListHeader extends StatelessWidget {
             color: Colors.black.withOpacity(0.08),
             blurRadius: 6.0,
             offset: Offset(0, 3),
-           
           ),
         ],
       ),
       child: ClipRRect(
-        
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
           child: Container(
             decoration: BoxDecoration(
-              
               border: Border.all(color: Colors.white.withOpacity(0.04)),
               color: Colors.white.withOpacity(0.05),
             ),
@@ -49,9 +46,7 @@ class ListHeader extends StatelessWidget {
                   child: Text(
                     "${listOfSong.length} Tracks",
                     style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontFamily: "UrbanR"),
+                        fontSize: 15, color: Colors.white, fontFamily: "Urban"),
                   ),
                 ),
                 Row(
@@ -83,7 +78,7 @@ class ListHeader extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 15,
                               color: Colors.white,
-                              fontFamily: "UrbanR"),
+                              fontFamily: "Urban"),
                         ),
                       ),
                     ),

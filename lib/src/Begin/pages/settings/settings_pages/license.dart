@@ -35,17 +35,17 @@ class _LicensesPageState extends State<LicensesPage> {
           // if (snapshot.data != null) {
           return Scaffold(
             appBar: AppBar(
-              title: Text("Licenses", style: TextStyle(fontFamily: "FuturaR")),
+              centerTitle: true,
+              title: Text("Licenses", style: TextStyle(fontFamily: "Futura")),
               backgroundColor: kMaterialBlack,
             ),
             backgroundColor: kMaterialBlack,
             body: Theme(
               data: themeOfApp,
               child: Scrollbar(
-                controller:_scrollBarController,
+                controller: _scrollBarController,
                 child: ListView.builder(
                   controller: _scrollBarController,
-
                   itemCount: snapshot.data.length - 1,
                   itemBuilder: (BuildContext context, int index) {
                     return Material(
@@ -54,12 +54,12 @@ class _LicensesPageState extends State<LicensesPage> {
                         title: Text(
                           snapshot.data.keys.toList()[index],
                           style: TextStyle(
-                              color: Colors.white, fontFamily: "FuturaR"),
+                              color: Colors.white, fontFamily: "Futura"),
                         ),
                         subtitle: Text(
                           "${snapshot.data[snapshot.data.keys.toList()[index]].length} Licenses",
                           style: TextStyle(
-                              color: Colors.white, fontFamily: "FuturaR"),
+                              color: Colors.white, fontFamily: "Futura"),
                         ),
                         onTap: () {
                           Navigator.push(
@@ -103,10 +103,11 @@ class InsideLicense extends StatelessWidget {
     return Scaffold(
       backgroundColor: kMaterialBlack,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: kMaterialBlack,
         title: Text(
           licenseKey,
-          style: TextStyle(fontFamily: "FuturaR"),
+          style: TextStyle(fontFamily: "Futura"),
         ),
       ),
       body: Theme(
@@ -123,7 +124,7 @@ class InsideLicense extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontFamily: "InterR",
+                          fontFamily: "Futura",
                         ),
                       ),
                       Padding(

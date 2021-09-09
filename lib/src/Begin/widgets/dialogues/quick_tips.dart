@@ -6,7 +6,7 @@ quickTip(BuildContext context) {
   Flushbar(
     messageText: Text(
         "Quick-Tip: Hold the music artwork image to find additional features.",
-        style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+        style: TextStyle(fontFamily: "Futura", color: Colors.white)),
     icon: Icon(Icons.info_outline_rounded, size: 28.0, color: kCorrect),
     shouldIconPulse: true,
     dismissDirection: FlushbarDismissDirection.HORIZONTAL,

@@ -102,7 +102,7 @@ class _ModernaState extends State<Moderna> {
                             speed: 20,
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: "UrbanR",
+                              fontFamily: "Urban",
                               fontSize: 19,
                               shadows: [
                                 Shadow(
@@ -119,8 +119,9 @@ class _ModernaState extends State<Moderna> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
-                              fontFamily: "UrbanL",
+                              fontFamily: "Urban",
                               fontSize: 13,
+                              fontWeight: FontWeight.w300,
                               shadows: [
                                 Shadow(
                                   offset: Offset(0.5, 0.5),
@@ -233,7 +234,7 @@ class _ClassixState extends State<Classix> {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? nowContrast
                                   : Colors.white,
-                              fontFamily: "UrbanR",
+                              fontFamily: "Urban",
                               fontSize: 19,
                               shadows: [
                                 Shadow(
@@ -252,8 +253,9 @@ class _ClassixState extends State<Classix> {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? nowContrast
                                   : Colors.white70,
-                              fontFamily: "UrbanL",
+                              fontFamily: "Urban",
                               fontSize: 13,
+                              fontWeight: FontWeight.w300,
                               shadows: [
                                 Shadow(
                                   offset: Offset(0.5, 0.5),

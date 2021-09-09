@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 androidRSupport(BuildContext context) async {
   Flushbar(
     messageText: Text("Feature not available for android 11 yet.\nComing soon!",
-        style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+        style: TextStyle(fontFamily: "Futura", color: Colors.white)),
     icon: Icon(
       Icons.error_outline,
       size: 28.0,

@@ -110,41 +110,31 @@ flutter:
       fonts:
         - asset: assets/fonts/NightMachine-Regular.otf
 
-    - family: RalewaySB
+    - family: Urban
       fonts:
-        - asset: assets/fonts/Raleway-SemiBold.ttf
+        - asset: assets/fonts/Urbanist-Regular.otf    
+        - asset: assets/fonts/Urbanist-Light.otf
+          weight: 300
+        - asset: assets/fonts/Urbanist-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Urbanist-Bold.otf
+          weight: 700
 
-    - family: RalewayR
+    - family: Raleway
       fonts:
-        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Regular.otf
+        - asset: assets/fonts/Raleway-Thin.otf
+          weight: 100
+        - asset: assets/fonts/Raleway-SemiBold.otf
+          weight: 600
 
-    - family: RalewayT
+    - family: Inter
       fonts:
-        - asset: assets/fonts/Raleway-Thin.ttf
+        - asset: assets/fonts/Inter-Regular.otf
 
-    - family: FuturaR
+    - family: Futura
       fonts:
         - asset: assets/fonts/FuturaLT.ttf
-
-    - family: InterR
-      fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-
-    - family: UrbanR
-      fonts:
-        - asset: assets/fonts/Urbanist-Regular.ttf
-
-    - family: UrbanL
-      fonts:
-        - asset: assets/fonts/Urbanist-Light.otf
-
-    - family: UrbanB
-      fonts:
-        - asset: assets/fonts/Urbanist-Bold.otf
-
-    - family: UrbanSB
-      fonts:
-        - asset: assets/fonts/Urbanist-SemiBold.otf
 
     - family:  Phoenixtest
       fonts:

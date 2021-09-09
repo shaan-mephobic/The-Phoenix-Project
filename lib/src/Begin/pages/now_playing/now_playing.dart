@@ -38,7 +38,6 @@ class NowPlaying extends StatefulWidget {
 }
 
 class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
-
   ScrollController stupidController = ScrollController();
   swapControllerTimeOut() async {
     await Future.delayed(Duration(milliseconds: 500));
@@ -180,7 +179,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   true
                                               ? nowContrast
                                               : Colors.white,
-                                          fontFamily: "UrbanSB",
+                                          fontFamily: "Urban",
+                                          fontWeight: FontWeight.w600,
                                           fontSize: deviceHeight / 35,
                                           height: 1.3,
                                           shadows: [
@@ -213,7 +213,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           musicBox.get("dynamicArtDB") ?? true
                                               ? nowContrast
                                               : Colors.white,
-                                      fontFamily: "UrbanR",
+                                      fontFamily: "Urban",
                                       height: 1,
                                       fontSize: deviceHeight / 60,
                                       shadows: [
@@ -243,7 +243,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           musicBox.get("dynamicArtDB") ?? true
                                               ? nowContrast
                                               : Colors.white,
-                                      fontFamily: "UrbanR",
+                                      fontFamily: "Urban",
                                       fontSize: deviceHeight / 60,
                                       shadows: [
                                         Shadow(
@@ -476,7 +476,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                   "PHOENIX VISUALIZER",
                                                                                   style: TextStyle(
                                                                                     color: darkModeOn ? Colors.white : Colors.black,
-                                                                                    fontFamily: "UrbanB",
+                                                                                    fontFamily: "Urban",
+                                                                                    fontWeight: FontWeight.w700,
                                                                                     fontSize: deviceWidth / 14,
                                                                                   ),
                                                                                 ),
@@ -485,13 +486,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                     appearance: CircularSliderAppearance(
                                                                                       infoProperties: InfoProperties(
                                                                                         bottomLabelStyle: TextStyle(
-                                                                                          fontFamily: 'InterR',
+                                                                                          fontFamily: 'Urban',
                                                                                           color: darkModeOn ? Colors.white : Colors.black,
                                                                                           fontSize: deviceHeight / 60,
                                                                                           // fontWeight: FontWeight.w600
                                                                                         ),
                                                                                         bottomLabelText: 'SENSITIVITY',
-                                                                                        mainLabelStyle: TextStyle(fontFamily: 'InterR', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
+                                                                                        mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
                                                                                         // modifier: (double value) {
 
                                                                                         //   return value;
@@ -550,7 +551,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                         borderRadius: BorderRadius.circular(kRounded),
                                                                                       ),
                                                                                       child: Center(
-                                                                                        child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                        child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -641,7 +642,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                       "PHOENIX VISUALIZER",
                                                                                       style: TextStyle(
                                                                                         color: darkModeOn ? Colors.white : Colors.black,
-                                                                                        fontFamily: "UrbanB",
+                                                                                        fontFamily: "Urban",
+                                                                                        fontWeight: FontWeight.w700,
                                                                                         fontSize: deviceWidth / 14,
                                                                                       ),
                                                                                     ),
@@ -651,13 +653,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                           // animationEnabled: sensitivityanimation,
                                                                                           infoProperties: InfoProperties(
                                                                                             bottomLabelStyle: TextStyle(
-                                                                                              fontFamily: 'InterR',
+                                                                                              fontFamily: 'Urban',
                                                                                               color: darkModeOn ? Colors.white : Colors.black,
                                                                                               fontSize: deviceHeight / 60,
                                                                                               // fontWeight: FontWeight.w600
                                                                                             ),
                                                                                             bottomLabelText: 'SENSITIVITY',
-                                                                                            mainLabelStyle: TextStyle(fontFamily: 'InterR', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
+                                                                                            mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
                                                                                             // modifier: (double value) {
 
                                                                                             //   return value;
@@ -695,7 +697,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                             borderRadius: BorderRadius.circular(kRounded),
                                                                                           ),
                                                                                           child: Center(
-                                                                                            child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                            child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
                                                                                           ),
                                                                                         ),
                                                                                       ),
@@ -736,7 +738,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
                                       style: TextStyle(
                                           fontSize: deviceWidth / 37,
-                                          fontFamily: "FuturaR",
+                                          fontFamily: "Futura",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -812,7 +814,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     inherit: false,
                                                     wordSpacing: 2,
                                                     fontSize: deviceWidth / 18,
-                                                    fontFamily: "RalewaySB",
+                                                    fontFamily: "Raleway",
+                                                    fontWeight: FontWeight.w600,
                                                     color: musicBox.get(
                                                                 "dynamicArtDB") ??
                                                             true
@@ -841,7 +844,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     inherit: false,
                                                     wordSpacing: 2,
                                                     fontSize: deviceWidth / 18,
-                                                    fontFamily: "RalewaySB",
+                                                    fontFamily: "Raleway",
+                                                    fontWeight: FontWeight.w600,
                                                     color: musicBox.get(
                                                                 "dynamicArtDB") ??
                                                             true
@@ -942,7 +946,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                         true
                                                     ? nowContrast
                                                     : Colors.white,
-                                                fontFamily: "UrbanSB",
+                                                fontFamily: "Urban",
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: deviceHeight / 35,
                                                 height: 1.3,
                                                 shadows: [
@@ -975,7 +980,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                         true
                                                     ? nowContrast
                                                     : Colors.white,
-                                            fontFamily: "UrbanR",
+                                            fontFamily: "Urban",
                                             height: 1,
                                             fontSize: deviceHeight / 60,
                                             shadows: [
@@ -1006,7 +1011,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                         true
                                                     ? nowContrast
                                                     : Colors.white,
-                                            fontFamily: "UrbanR",
+                                            fontFamily: "Urban",
                                             fontSize: deviceHeight / 60,
                                             shadows: [
                                               Shadow(
@@ -1237,7 +1242,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                         "PHOENIX VISUALIZER",
                                                                                         style: TextStyle(
                                                                                           color: darkModeOn ? Colors.white : Colors.black,
-                                                                                          fontFamily: "UrbanB",
+                                                                                          fontFamily: "Urban",
+                                                                                          fontWeight: FontWeight.w700,
                                                                                           fontSize: deviceWidth / 14,
                                                                                         ),
                                                                                       ),
@@ -1246,12 +1252,12 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                           appearance: CircularSliderAppearance(
                                                                                             infoProperties: InfoProperties(
                                                                                               bottomLabelStyle: TextStyle(
-                                                                                                fontFamily: 'InterR',
+                                                                                                fontFamily: 'Urban',
                                                                                                 color: darkModeOn ? Colors.white : Colors.black,
                                                                                                 fontSize: deviceHeight / 60,
                                                                                               ),
                                                                                               bottomLabelText: 'SENSITIVITY',
-                                                                                              mainLabelStyle: TextStyle(fontFamily: 'InterR', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
+                                                                                              mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
                                                                                             ),
                                                                                             size: deviceHeight / 6,
                                                                                             customColors: CustomSliderColors(
@@ -1299,7 +1305,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                                             ),
                                                                                             child: Center(
-                                                                                              child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                              child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
                                                                                             ),
                                                                                           ),
                                                                                         ),
@@ -1378,7 +1384,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                         "PHOENIX VISUALIZER",
                                                                                         style: TextStyle(
                                                                                           color: darkModeOn ? Colors.white : Colors.black,
-                                                                                          fontFamily: "UrbanB",
+                                                                                          fontFamily: "Urban",
+                                                                                          fontWeight: FontWeight.w700,
                                                                                           fontSize: deviceWidth / 14,
                                                                                         ),
                                                                                       ),
@@ -1387,13 +1394,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                           appearance: CircularSliderAppearance(
                                                                                             infoProperties: InfoProperties(
                                                                                               bottomLabelStyle: TextStyle(
-                                                                                                fontFamily: 'InterR',
+                                                                                                fontFamily: 'Urban',
                                                                                                 color: darkModeOn ? Colors.white : Colors.black,
                                                                                                 fontSize: deviceHeight / 60,
                                                                                                 // fontWeight: FontWeight.w600
                                                                                               ),
                                                                                               bottomLabelText: 'SENSITIVITY',
-                                                                                              mainLabelStyle: TextStyle(fontFamily: 'InterR', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
+                                                                                              mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
                                                                                               // modifier: (double value) {
 
                                                                                               //   return value;
@@ -1430,7 +1437,15 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                                             ),
                                                                                             child: Center(
-                                                                                              child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'UrbanSB')),
+                                                                                              child: Text("DONE",
+                                                                                                  textAlign: TextAlign.center,
+                                                                                                  style: TextStyle(
+                                                                                                    inherit: false,
+                                                                                                    color: Colors.black,
+                                                                                                    fontSize: deviceWidth / 25,
+                                                                                                    fontFamily: 'Urban',
+                                                                                                    fontWeight: FontWeight.w600,
+                                                                                                  )),
                                                                                             ),
                                                                                           ),
                                                                                         ),
@@ -1472,7 +1487,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
                                             style: TextStyle(
                                                 fontSize: deviceWidth / 37,
-                                                fontFamily: "FuturaR",
+                                                fontFamily: "Futura",
                                                 shadows: [
                                                   Shadow(
                                                     offset: Offset(0.5, 0.5),
@@ -1564,7 +1579,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               inherit: false,
                                               wordSpacing: 2,
                                               fontSize: deviceWidth / 18,
-                                              fontFamily: "RalewaySB",
+                                              fontFamily: "Raleway",
+                                              fontWeight: FontWeight.w600,
                                               color: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
@@ -1589,7 +1605,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               inherit: false,
                                               wordSpacing: 2,
                                               fontSize: deviceWidth / 18,
-                                              fontFamily: "RalewaySB",
+                                              fontFamily: "Raleway",
+                                              fontWeight: FontWeight.w600,
                                               color: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true

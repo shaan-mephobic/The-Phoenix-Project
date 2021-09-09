@@ -238,7 +238,7 @@ class _SearchinState extends State<Searchin> {
                                           maxLines: 2,
                                           style: TextStyle(
                                             color: Colors.white70,
-                                            fontFamily: 'UrbanR',
+                                            fontFamily: 'Urban',
                                             shadows: [
                                               Shadow(
                                                 offset: Offset(0, 1.0),
@@ -255,7 +255,7 @@ class _SearchinState extends State<Searchin> {
                                             dumps[index].artist,
                                             maxLines: 1,
                                             style: TextStyle(
-                                              fontFamily: 'UrbanR',
+                                              fontFamily: 'Urban',
                                               color: Colors.white70,
                                               shadows: [
                                                 Shadow(

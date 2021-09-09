@@ -59,7 +59,8 @@ class _AddSongsState extends State<AddSongs> {
                     inherit: false,
                     color: Colors.black,
                     fontSize: deviceWidth / 25,
-                    fontFamily: 'UrbanSB')),
+                    fontFamily: 'Urban',
+                    fontWeight: FontWeight.w600)),
             backgroundColor: Color(0xFF1DB954),
             elevation: 8.0,
             onPressed: () {
@@ -68,8 +69,8 @@ class _AddSongsState extends State<AddSongs> {
                   (widget.playlistName != "Enter Playlist Name"))) {
                 Flushbar(
                   messageText: Text("Enter a Playlist Name! ¯\\_(ツ)_/¯",
-                      style: TextStyle(
-                          fontFamily: "FuturaR", color: Colors.white)),
+                      style:
+                          TextStyle(fontFamily: "Futura", color: Colors.white)),
                   icon: Icon(
                     Icons.error_outline,
                     size: 28.0,
@@ -241,7 +242,7 @@ class _AddSongsState extends State<AddSongs> {
                                   maxLines: 2,
                                   style: TextStyle(
                                     color: Colors.white70,
-                                    fontFamily: 'UrbanR',
+                                    fontFamily: 'Urban',
                                     shadows: [
                                       Shadow(
                                         offset: Offset(0, 1.0),
@@ -256,7 +257,7 @@ class _AddSongsState extends State<AddSongs> {
                                   songList[index].artist,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontFamily: 'UrbanR',
+                                    fontFamily: 'Urban',
                                     color: Colors.white38,
                                     shadows: [
                                       Shadow(

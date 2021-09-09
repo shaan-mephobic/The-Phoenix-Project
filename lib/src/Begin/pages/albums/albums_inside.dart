@@ -23,188 +23,175 @@ class AlbumsInside extends StatelessWidget {
           color: musicBox.get("dynamicArtDB") ?? true
               ? dominantAlbum
               : kMaterialBlack,
-          
-            child: CustomScrollView(
-              physics: musicBox.get("fluidAnimation")??true
-            ? BouncingScrollPhysics() 
-            : ClampingScrollPhysics(),
-              slivers: <Widget>[
-                
-                SliverAppBar(
-            
-                  iconTheme: IconThemeData(
-                    color: musicBox.get("dynamicArtDB") ?? true
-                        ? contrastAlbum
-                        : Colors.white,
-                  ),
-                  expandedHeight: 380,
-              
-                  backgroundColor: musicBox.get("dynamicArtDB") ?? true
-                      ? dominantAlbum
-                      : kMaterialBlack,
-              
-                  flexibleSpace: FlexibleSpaceBar(
-                    collapseMode: CollapseMode.parallax,
-                    titlePadding: EdgeInsets.all(0),
-                    background: Column(
-                      children: [
-                        Padding(padding: EdgeInsets.only(top: 80)),
-                        Container(
-                   
-                          height: 220,
-                          decoration: BoxDecoration(
+          child: CustomScrollView(
+            physics: musicBox.get("fluidAnimation") ?? true
+                ? BouncingScrollPhysics()
+                : ClampingScrollPhysics(),
+            slivers: <Widget>[
+              SliverAppBar(
+                iconTheme: IconThemeData(
+                  color: musicBox.get("dynamicArtDB") ?? true
+                      ? contrastAlbum
+                      : Colors.white,
+                ),
+                expandedHeight: 380,
+                backgroundColor: musicBox.get("dynamicArtDB") ?? true
+                    ? dominantAlbum
+                    : kMaterialBlack,
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.parallax,
+                  titlePadding: EdgeInsets.all(0),
+                  background: Column(
+                    children: [
+                      Padding(padding: EdgeInsets.only(top: 80)),
+                      Container(
+                        height: 220,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(kRounded),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 6.0,
+                                offset: Offset(0, 2)),
+                          ],
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: 1 / 1,
+                          child: ClipRRect(
                             borderRadius: BorderRadius.circular(kRounded),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black54,
-                                  blurRadius: 6.0,
-                                 
-                                  offset: Offset(0, 2)),
-                            ],
-                          ),
-      
-                          child: AspectRatio(
-                            aspectRatio: 1 / 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(kRounded),
-                              child: Image.memory(
-                                  albumsArts[allAlbums[passedIndexAlbum].album] ??
-                                      defaultNone),
-                            ),
+                            child: Image.memory(
+                                albumsArts[allAlbums[passedIndexAlbum].album] ??
+                                    defaultNone),
                           ),
                         ),
-                        Padding(padding: EdgeInsets.only(top: 20)),
-                        Text(
-                          inAlbumSongs[0].album,
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 20)),
+                      Text(
+                        inAlbumSongs[0].album,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontFamily: "Urban",
+                          fontWeight: FontWeight.w600,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(0, 2),
+                              blurRadius: 2.2,
+                              color: Colors.black26,
+                            ),
+                          ],
+                          fontSize: deviceHeight / 39,
+                          color: musicBox.get("dynamicArtDB") ?? true
+                              ? contrastAlbum
+                              : Colors.white,
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 2)),
+                      Opacity(
+                        opacity: 0.5,
+                        child: Text(
+                          inAlbumSongs[0].artist,
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
-                            fontFamily: "UrbanSB",
+                            fontFamily: "Urban",
                             shadows: [
                               Shadow(
-                                offset: Offset(0, 2),
+                                offset: Offset(0, 1.8),
                                 blurRadius: 2.2,
                                 color: Colors.black26,
                               ),
                             ],
-                            fontSize: deviceHeight / 39,
+                            fontSize: deviceHeight / 57,
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? contrastAlbum
                                 : Colors.white,
                           ),
                         ),
-                        Padding(padding: EdgeInsets.only(top: 2)),
-                        Opacity(
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    if (index == 0) {
+                      return ListHeader(deviceWidth, inAlbumSongs, "album");
+                    }
+                    return Material(
+                      color: Colors.transparent,
+                      child: ListTile(
+                        onTap: () async {
+                          // insideInAlbumSongs = [];
+                          if (albumMediaItems[index - 1].duration ==
+                              Duration(milliseconds: 0)) {
+                            corruptedFile(context);
+                          } else {
+                            insideInAlbumSongs = inAlbumSongs;
+                            await playThis(index - 1, "album");
+                          }
+                        },
+                        onLongPress: () async {
+                          Expanded(
+                            child: await onHold(
+                                context,
+                                inAlbumSongs,
+                                index - 1,
+                                orientedCar,
+                                deviceHeight,
+                                deviceWidth,
+                                "album"),
+                          );
+                        },
+                        dense: false,
+                        title: Text(
+                          inAlbumSongs[index - 1].title,
+                          maxLines: 2,
+                          style: TextStyle(
+                            color: musicBox.get("dynamicArtDB") ?? true
+                                ? contrastAlbum
+                                : Colors.white,
+                            fontFamily: 'Urban',
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0, 1.0),
+                                blurRadius: 2.0,
+                                color: Colors.black45,
+                              ),
+                            ],
+                          ),
+                        ),
+                        tileColor: Colors.transparent,
+                        subtitle: Opacity(
                           opacity: 0.5,
                           child: Text(
-                            inAlbumSongs[0].artist,
-                            textAlign: TextAlign.center,
+                            inAlbumSongs[index - 1].artist,
                             maxLines: 1,
                             style: TextStyle(
-                              fontFamily: "UrbanR",
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0, 1.8),
-                                  blurRadius: 2.2,
-                                  color: Colors.black26,
-                                ),
-                              ],
-                              fontSize: deviceHeight / 57,
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,
+                              fontFamily: 'Urban',
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(0, 1.0),
+                                  blurRadius: 1.0,
+                                  color: Colors.black38,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
+                  childCount: inAlbumSongs.length + 1,
+                  addAutomaticKeepAlives: true,
                 ),
-      
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                      if (index == 0) {
-                        return ListHeader(deviceWidth, inAlbumSongs, "album");
-                      }
-                      return Material(
-                          color: Colors.transparent,
-                          child: ListTile(
-                            onTap: () async {
-                              // insideInAlbumSongs = [];
-                              if (albumMediaItems[index - 1].duration ==
-                                  Duration(milliseconds: 0)) {
-                                corruptedFile(context);
-                              } else {
-                                insideInAlbumSongs = inAlbumSongs;
-                                await playThis(index - 1, "album");
-                              }
-                            },
-                            onLongPress: () async {
-                              Expanded(
-                                child: await onHold(
-                                    context,
-                                    inAlbumSongs,
-                                    index - 1,
-                                    orientedCar,
-                                    deviceHeight,
-                                    deviceWidth,
-                                    "album"),
-                              );
-                            },
-                            dense: false,
-                            
-                            title: Text(
-                              inAlbumSongs[index - 1].title,
-                              maxLines: 2,
-                              style: TextStyle(
-                                color: musicBox.get("dynamicArtDB") ?? true
-                                    ? contrastAlbum
-                                    : Colors.white,
-                                fontFamily: 'UrbanR',
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(0, 1.0),
-                                    blurRadius: 2.0,
-                                    color: Colors.black45,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            tileColor: Colors.transparent,
-                            subtitle: Opacity(
-                              opacity: 0.5,
-                              child: Text(
-                                inAlbumSongs[index - 1].artist,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  color: musicBox.get("dynamicArtDB") ?? true
-                                      ? contrastAlbum
-                                      : Colors.white,
-                           
-                                  fontFamily: 'UrbanR',
-      
-                                  shadows: [
-                                    Shadow(
-                                      offset: Offset(0, 1.0),
-                                      blurRadius: 1.0,
-                                      color: Colors.black38,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        
-                          );
-                    },
-                    childCount: inAlbumSongs.length + 1,
-                    addAutomaticKeepAlives: true,
-                  ),
-                ),
-              ],
-            ),
-          
+              ),
+            ],
+          ),
         ),
       ),
     );

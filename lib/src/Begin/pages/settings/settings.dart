@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.black,
         body: Theme(
-        data: themeOfApp,
+          data: themeOfApp,
           child: Container(
             child: Stack(
               children: [
@@ -116,7 +116,8 @@ class _SettingsState extends State<Settings> {
                                                       Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
-                                                            maintainState: false,
+                                                            maintainState:
+                                                                false,
                                                             builder: (context) =>
                                                                 ChangeNotifierProvider<
                                                                     Leprovider>(
@@ -199,7 +200,7 @@ class _SettingsState extends State<Settings> {
                                                           settingsList[i],
                                                           style: TextStyle(
                                                               fontFamily:
-                                                                  "UrbanR",
+                                                                  "Urban",
                                                               fontSize: orientedCar
                                                                   ? deviceWidth /
                                                                       22
@@ -245,7 +246,7 @@ class _SettingsState extends State<Settings> {
                             "SETTINGS",
                             style: TextStyle(
                                 letterSpacing: 1,
-                                fontFamily: "FuturaR",
+                                fontFamily: "Futura",
                                 fontSize: deviceWidth / 10,
                                 color:
                                     darkModeOn ? kMaterialBlack : Colors.white),

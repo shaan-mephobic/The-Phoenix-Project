@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 corruptedFile(BuildContext context) async {
   Flushbar(
     messageText: Text("Can't play a corrupted file!",
-        style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+        style: TextStyle(fontFamily: "Futura", color: Colors.white)),
     icon: Icon(
       Icons.error_outline,
       size: 28.0,
       color: Color(0xFFCB0447),
     ),
-
     shouldIconPulse: true,
     dismissDirection: FlushbarDismissDirection.HORIZONTAL,
     duration: Duration(seconds: 3),
@@ -22,6 +21,5 @@ corruptedFile(BuildContext context) async {
     barBlur: 20,
     margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
     borderRadius: BorderRadius.circular(15),
-
   )..show(context);
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../begin.dart';
 
-List<Tab> tabsData(double width,double height) {
-double letterspace = width / 250;
-double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
+List<Tab> tabsData(double width, double height) {
+  double letterspace = width / 250;
+  double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
 
   return [
     Tab(
@@ -12,7 +12,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           fontSize: tabBarFontSize,
           letterSpacing: letterspace,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),
@@ -22,7 +23,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           letterSpacing: letterspace,
           fontSize: tabBarFontSize,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),
@@ -32,7 +34,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           letterSpacing: letterspace,
           fontSize: tabBarFontSize,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),
@@ -42,7 +45,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           letterSpacing: letterspace,
           fontSize: tabBarFontSize,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),
@@ -52,7 +56,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           letterSpacing: letterspace,
           fontSize: tabBarFontSize,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),
@@ -62,7 +67,8 @@ double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
         style: TextStyle(
           letterSpacing: letterspace,
           fontSize: tabBarFontSize,
-          fontFamily: 'RalewaySB',
+          fontFamily: "Raleway",
+          fontWeight: FontWeight.w600,
         ),
       ),
     ),

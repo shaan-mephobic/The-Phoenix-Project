@@ -17,7 +17,6 @@ class Playlist extends StatefulWidget {
 
 class _PlaylistState extends State<Playlist>
     with AutomaticKeepAliveClientMixin {
-      
   ScrollController _scrollBarController;
 
   @override
@@ -83,7 +82,8 @@ class _PlaylistState extends State<Playlist>
                           maxLines: 2,
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "UrbanSB",
+                            fontFamily: "Urban",
+                            fontWeight: FontWeight.w600,
                             fontSize: deviceWidth / 20,
                           ),
                         ),
@@ -225,7 +225,8 @@ class _PlaylistState extends State<Playlist>
                                           inherit: false,
                                           color: Colors.white,
                                           fontSize: deviceWidth / 20,
-                                          fontFamily: "UrbanSB"),
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: "Urban"),
                                     ),
                                   ),
                                 ),

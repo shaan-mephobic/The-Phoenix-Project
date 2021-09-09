@@ -53,7 +53,8 @@ class _MiscellaneousState extends State<Miscellaneous> {
             style: TextStyle(
               color: Colors.white,
               fontSize: deviceWidth / 18,
-              fontFamily: "UrbanSB",
+              fontWeight: FontWeight.w600,
+              fontFamily: "Urban",
             ),
           ),
         ),
@@ -74,7 +75,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         subtitle: Text(
                           "Don't show music below 30 seconds",
                           style: TextStyle(
-                            fontFamily: 'UrbanR',
+                            fontFamily: 'Urban',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
@@ -82,7 +83,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           "30 Seconds Rule",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "UrbanR"),
+                              fontFamily: "Urban"),
                         ),
                         value: musicBox.get("clutterFree") ?? false,
                         onChanged: (newValue) {
@@ -102,7 +103,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         subtitle: Text(
                           "Don't show '<Unknown>' as an Artist",
                           style: TextStyle(
-                            fontFamily: 'UrbanR',
+                            fontFamily: 'Urban',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
@@ -110,7 +111,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           "Unknown Artist",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "UrbanR"),
+                              fontFamily: "Urban"),
                         ),
                         value: musicBox.get("stopUnknown") ?? false,
                         onChanged: (newValue) {
@@ -130,7 +131,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         subtitle: Text(
                           "Choose custom directories to scan for music",
                           style: TextStyle(
-                            fontFamily: 'UrbanR',
+                            fontFamily: 'Urban',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
@@ -138,7 +139,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           "Custom Scan",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "UrbanR"),
+                              fontFamily: "Urban"),
                         ),
                         secondary: Visibility(
                           visible: musicBox.get("customScan") ?? false,
@@ -181,7 +182,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                         subtitle: Text(
                           "Artwork is set as lockscreen wallpaper",
                           style: TextStyle(
-                            fontFamily: 'UrbanR',
+                            fontFamily: 'Urban',
                             color: darkModeOn ? Colors.white38 : Colors.black38,
                           ),
                         ),
@@ -189,7 +190,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                           "WallPx (BETA)",
                           style: TextStyle(
                               color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "UrbanR"),
+                              fontFamily: "Urban"),
                         ),
                         value: musicBox.get("wallpx") ?? false,
                         onChanged: (newValue) {

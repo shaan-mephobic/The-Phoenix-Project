@@ -88,7 +88,7 @@ class _AllofemState extends State<Allofem>
                 maxLines: 2,
                 style: TextStyle(
                   color: Colors.white70,
-                  fontFamily: 'UrbanR',
+                  fontFamily: 'Urban',
                   shadows: [
                     Shadow(
                       offset: Offset(0, 1.0),
@@ -105,7 +105,7 @@ class _AllofemState extends State<Allofem>
                   songList[index - 1].artist,
                   maxLines: 1,
                   style: TextStyle(
-                    fontFamily: 'UrbanR',
+                    fontFamily: 'Urban',
                     color: Colors.white70,
                     shadows: [
                       Shadow(

@@ -14,7 +14,6 @@ class _SeekBarState extends State<SeekBar> {
   int seekValue = 0;
   var globalTiming;
 
-
   @override
   void initState() {
     super.initState();
@@ -78,7 +77,7 @@ class _SeekBarState extends State<SeekBar> {
                                 ""),
                     style: TextStyle(
                         fontSize: deviceWidth / 35,
-                        fontFamily: "FuturaR",
+                        fontFamily: "Futura",
                         shadows: [
                           Shadow(
                             offset: Offset(0.5, 0.5),
@@ -110,7 +109,6 @@ class _SeekBarState extends State<SeekBar> {
                             : Colors.white,
                         min: 00.0,
                         max: nowMediaItem.duration.inMilliseconds / 1000,
-        
                         value: timing.time,
                         onChanged: (var valo) async {
                           usingSeek = true;
@@ -119,7 +117,7 @@ class _SeekBarState extends State<SeekBar> {
                         },
                         onChangeEnd: (var valuo) {
                           int seeker = double.parse('$valuo').toInt();
-                   
+
                           AudioService.seekTo(Duration(seconds: seeker));
                           usingSeek = false;
                         }),
@@ -153,7 +151,7 @@ class _SeekBarState extends State<SeekBar> {
                             ),
                     style: TextStyle(
                         fontSize: deviceWidth / 35,
-                        fontFamily: "FuturaR",
+                        fontFamily: "Futura",
                         shadows: [
                           Shadow(
                             offset: Offset(0.5, 0.5),

@@ -78,7 +78,8 @@ class _PrivacyState extends State<Privacy> {
                                             "Phoenix does use the internet for lyrics and images, but collects no data. You could turn off the feature if you wish, below.",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontFamily: "RalewaySB",
+                                          fontFamily: "Raleway",
+                                          fontWeight: FontWeight.w600,
                                           fontSize: orientedCar
                                               ? deviceHeight / 26
                                               : deviceHeight / 26,
@@ -140,7 +141,8 @@ class _PrivacyState extends State<Privacy> {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontFamily: "RalewaySB",
+                                                  fontFamily: "Raleway",
+                                                  fontWeight: FontWeight.w600,
                                                   fontSize: deviceWidth / 19,
                                                 ),
                                               ),
@@ -179,7 +181,8 @@ class _PrivacyState extends State<Privacy> {
                                 Text("#PRIVACYMATTERS",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontFamily: "UrbanSB",
+                                      fontFamily: "Urban",
+                                      fontWeight: FontWeight.w600,
                                       fontSize: orientedCar
                                           ? deviceWidth / 25
                                           : deviceWidth / 22,
@@ -206,7 +209,7 @@ class _PrivacyState extends State<Privacy> {
                                 "PRIVACY",
                                 style: TextStyle(
                                     letterSpacing: 1,
-                                    fontFamily: "FuturaR",
+                                    fontFamily: "Futura",
                                     fontSize: deviceWidth / 10,
                                     color: kMaterialBlack),
                               ),

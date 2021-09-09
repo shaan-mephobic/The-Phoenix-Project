@@ -66,7 +66,8 @@ screenShotUI(save) async {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           inherit: false,
-                          fontFamily: "RalewayT",
+                          fontFamily: "Raleway",
+                          fontWeight: FontWeight.w100,
                           color: Colors.white,
                           fontSize: deviceWidth / 12),
                     )),
@@ -129,7 +130,8 @@ class WallpaperArt extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                   inherit: false,
-                  fontFamily: "RalewayT",
+                  fontFamily: "Raleway",
+                  fontWeight: FontWeight.w100,
                   color: Colors.white,
                   fontSize: deviceWidth / 10),
             )),
@@ -139,5 +141,3 @@ class WallpaperArt extends StatelessWidget {
     );
   }
 }
-
-

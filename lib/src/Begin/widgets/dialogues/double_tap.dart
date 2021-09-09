@@ -11,13 +11,12 @@ onDoubleTap(BuildContext context) async {
     rmLikedSong(nowMediaItem.id);
     Flushbar(
       messageText: Text("Removed From Liked Songs",
-          style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+          style: TextStyle(fontFamily: "Futura", color: Colors.white)),
       icon: Icon(
         Icons.block_rounded,
         size: 28.0,
         color: Color(0xFFCB0447),
       ),
-
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
       duration: Duration(seconds: 3),
@@ -29,20 +28,18 @@ onDoubleTap(BuildContext context) async {
       barBlur: 20,
       margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    
     )..show(context);
   } else {
     addToLikedSong(nowMediaItem.id);
- 
+
     Flushbar(
       messageText: Text("Added To Liked Songs",
-          style: TextStyle(fontFamily: "FuturaR", color: Colors.white)),
+          style: TextStyle(fontFamily: "Futura", color: Colors.white)),
       icon: Icon(
         MdiIcons.heart,
         size: 28.0,
         color: Color(0xFFCB0447),
       ),
-
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
       duration: Duration(seconds: 3),
@@ -54,7 +51,6 @@ onDoubleTap(BuildContext context) async {
       barBlur: 20,
       margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    
     )..show(context);
   }
 }
