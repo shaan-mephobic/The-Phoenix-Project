@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 List neverDone = [];
+bool isIsolated = false;
 
 isolatedArtistScrapeInit() async {
   if (!await Directory("${applicationFileDirectory.path}/artists").exists()) {
@@ -37,7 +38,7 @@ isolatedArtistScrapeInit() async {
   if (neverDone.length > 0) {
     print("isolate##");
     try {
-      IsolatedArtistScrape().start();
+      if (!isIsolated) IsolatedArtistScrape().start();
     } catch (e) {
       print("weird! IsolatedArtistScape Crashed");
       print(e);
@@ -50,32 +51,29 @@ class IsolatedArtistScrape {
   Isolate _isolate;
 
   void stop() {
+    isIsolated = false;
     if (_isolate != null) {
       receivePort.close();
-      print("way down we go");
       _isolate.kill(priority: Isolate.immediate);
       _isolate = null;
     }
   }
 
   Future<void> start() async {
+    isIsolated = true;
     Map map = {
       "artists": neverDone,
       'port': receivePort.sendPort,
       'directory': applicationFileDirectory.path,
       'kMaterialBlack': kMaterialBlack
     };
-
     _isolate = await Isolate.spawn(_entryPoint, map);
     receivePort.listen(_handleMessage, onDone: () {
       print("done!");
     });
-    // receivePort.sendPort.send(initialDuration);
   }
 
   void _handleMessage(dynamic data) async {
-    // print(data);
-
     Map mapOfArtists = musicBox.get("mapOfArtists") ?? {};
     mapOfArtists[data[0]] = data[1];
     musicBox.put("mapOfArtists", mapOfArtists);

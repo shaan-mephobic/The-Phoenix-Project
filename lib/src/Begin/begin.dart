@@ -4,26 +4,21 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:audiotagger/audiotagger.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/quick_tips.dart';
-import 'utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/Begin/pages/now_playing/mini_playing.dart';
 import 'package:phoenix/src/Begin/pages/playlist/playlist.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings.dart';
 import 'pages/tracks/tracks.dart';
-import 'utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres.dart';
 import 'package:phoenix/src/Begin/pages/artists/artists.dart';
-import 'utilities/page_backend/genres_back.dart';
 import 'package:phoenix/src/Begin/pages/search/search.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/pages/mansion/mansion.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/widgets/custom/physics.dart';
-import 'package:phoenix/src/Begin/utilities/has_network.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/Begin/utilities/tab_bar.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
@@ -31,7 +26,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/visualizer_notification.dart';
-import 'package:phoenix/src/Begin/utilities/scraping/image_scrape.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -39,7 +33,6 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'widgets/custom/phoenix_icon.dart';
 import 'utilities/native/go_native.dart';
-import 'utilities/page_backend/albums_back.dart';
 import 'pages/albums/albums.dart';
 import 'pages/now_playing/now_playing.dart';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
@@ -107,7 +100,7 @@ class _BeginState extends State<Begin>
     audioServiceInit();
     _tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     tag = Audiotagger();
-    lazyLoad();
+    fetchAll();
     visualizerNotificationInit();
     WidgetsBinding.instance.addObserver(this);
     super.initState();
@@ -152,52 +145,6 @@ class _BeginState extends State<Begin>
     return false;
   }
 
-  lazyLoad() async {
-    if (ascend) {
-      await fetchSongs();
-    }
-    await gettinAlbums();
-    await songListToMediaItem();
-    await gettinArtists();
-    await gettinMansion();
-    await gettinAlbumsArts();
-    await gettinArtistsAlbums();
-    await gettinGenres();
-    await smartArtistsArts();
-    ascend = true;
-    print("ASCENDED");
-    rootState.provideman();
-    if (musicBox.get("isolation") == null
-        ? true
-        : !musicBox.get("isolation") && await hasNetwork()) {
-      /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
-      await isolatedArtistScrapeInit();
-    }
-  }
-
-  songListToMediaItem() async {
-    applicationFileDirectory = await getApplicationDocumentsDirectory();
-    songListMediaItems = [];
-    for (int i = 0; i < songList.length; i++) {
-      MediaItem item = MediaItem(
-          id: songList[i].data,
-          album: songList[i].album,
-          artist: songList[i].artist,
-          duration: Duration(milliseconds: getDuration(songList[i])),
-          artUri: Uri.file(allAlbumsName.contains(songList[i].album)
-              ? musicBox.get("AlbumsWithoutArt") == null
-                  ? "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
-                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                      : "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
-          title: songList[i].title,
-          extras: {"id": songList[i].id});
-
-      songListMediaItems.add(item);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (musicBox.get("timeBasedDark") == null
@@ -213,15 +160,12 @@ class _BeginState extends State<Begin>
     if (refresh) {
       print("Refreshing...");
       refresh = false;
-      lazyLoad();
+      fetchAll();
     }
     orientedCar = false;
-
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-
     bool darkModeOn = true;
-
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
       orientedCar = true;
       deviceHeight = MediaQuery.of(context).size.width;

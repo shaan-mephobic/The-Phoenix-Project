@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/Begin/widgets/list_header.dart';
@@ -53,94 +54,101 @@ class _AllofemState extends State<Allofem>
     }
     return Scrollbar(
       controller: _scrollBarController,
-      child: ListView.builder(
-        controller: _scrollBarController,
-        padding: EdgeInsets.only(top: 3, bottom: 8),
-        addAutomaticKeepAlives: true,
-        physics: musicBox.get("fluidAnimation") ?? true
-            ? BouncingScrollPhysics()
-            : ClampingScrollPhysics(),
-        itemCount: songList.length + 1,
-        itemBuilder: (context, index) {
-          if (index == 0) {
-            return ListHeader(deviceWidth, songList, "all");
-          }
-          return Material(
-            color: Colors.transparent,
-            child: ListTile(
-              onTap: () async {
-                if (songListMediaItems[index - 1].duration ==
-                    Duration(milliseconds: 0)) {
-                  corruptedFile(context);
-                } else {
-                  await playThis(index - 1, "all");
-                }
-                // }
-              },
-              onLongPress: () async {
-                Expanded(
-                    child: await onHold(context, songList, index - 1,
-                        orientedCar, deviceHeight, deviceWidth, "all"));
-              },
-              dense: false,
-              title: Text(
-                songList[index - 1].title,
-                maxLines: 2,
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontFamily: 'Urban',
-                  shadows: [
-                    Shadow(
-                      offset: Offset(0, 1.0),
-                      blurRadius: 2.0,
-                      color: Colors.black45,
-                    ),
-                  ],
-                ),
-              ),
-              tileColor: Colors.transparent,
-              subtitle: Opacity(
-                opacity: 0.5,
-                child: Text(
-                  songList[index - 1].artist,
-                  maxLines: 1,
+      child: RefreshIndicator(
+        backgroundColor: nowColor,
+        color: nowContrast,
+        onRefresh: () async {
+          await fetchAll();
+        },
+        child: ListView.builder(
+          controller: _scrollBarController,
+          padding: EdgeInsets.only(top: 3, bottom: 8),
+          addAutomaticKeepAlives: true,
+          physics: musicBox.get("fluidAnimation") ?? true
+              ? BouncingScrollPhysics()
+              : ClampingScrollPhysics(),
+          itemCount: songList.length + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return ListHeader(deviceWidth, songList, "all");
+            }
+            return Material(
+              color: Colors.transparent,
+              child: ListTile(
+                onTap: () async {
+                  if (songListMediaItems[index - 1].duration ==
+                      Duration(milliseconds: 0)) {
+                    corruptedFile(context);
+                  } else {
+                    await playThis(index - 1, "all");
+                  }
+                  // }
+                },
+                onLongPress: () async {
+                  Expanded(
+                      child: await onHold(context, songList, index - 1,
+                          orientedCar, deviceHeight, deviceWidth, "all"));
+                },
+                dense: false,
+                title: Text(
+                  songList[index - 1].title,
+                  maxLines: 2,
                   style: TextStyle(
-                    fontFamily: 'Urban',
                     color: Colors.white70,
+                    fontFamily: 'Urban',
                     shadows: [
                       Shadow(
                         offset: Offset(0, 1.0),
-                        blurRadius: 1.0,
-                        color: Colors.black38,
+                        blurRadius: 2.0,
+                        color: Colors.black45,
                       ),
                     ],
                   ),
                 ),
-              ),
-              leading: Card(
-                elevation: 3,
-                color: Colors.transparent,
-                child: ConstrainedBox(
-                  constraints: musicBox.get("squareArt") ?? true
-                      ? kSqrConstraint
-                      : kRectConstraint,
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: MemoryImage(
-                            albumsArts[songList[index - 1].album] ??
-                                defaultNone),
+                tileColor: Colors.transparent,
+                subtitle: Opacity(
+                  opacity: 0.5,
+                  child: Text(
+                    songList[index - 1].artist,
+                    maxLines: 1,
+                    style: TextStyle(
+                      fontFamily: 'Urban',
+                      color: Colors.white70,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(0, 1.0),
+                          blurRadius: 1.0,
+                          color: Colors.black38,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                leading: Card(
+                  elevation: 3,
+                  color: Colors.transparent,
+                  child: ConstrainedBox(
+                    constraints: musicBox.get("squareArt") ?? true
+                        ? kSqrConstraint
+                        : kRectConstraint,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: MemoryImage(
+                              albumsArts[songList[index - 1].album] ??
+                                  defaultNone),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
