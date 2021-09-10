@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import '../../widgets/artwork_background.dart';
 
 Map advanceAudioData = {};
@@ -17,7 +18,7 @@ playerontap() async {
   } catch (e) {
     advanceAudioData = {};
   }
-
+  marqueeController.reset();
   if (initialart && art == art2) {
     first = true;
     art = artwork;

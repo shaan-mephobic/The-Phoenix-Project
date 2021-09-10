@@ -185,18 +185,13 @@ Future<void> shuffleMode() async {
 void holdUpLyrics() async {
   String artistsLyric = nowMediaItem.artist.toString();
   String songNameLyric = nowMediaItem.title.toString();
-
   songNameLyric = roundedRecursive(songNameLyric);
   songNameLyric = squareRecursive(songNameLyric);
   if (artistsLyric == "<UNKNOWN>") {
     artistsLyric = " ";
   }
-
   await lyricsFetch(artistsLyric, songNameLyric, nowMediaItem.id);
-
   globalBigNow.rawNotify();
-
-  // }
 }
 
 void saveLyrics(songPath, lyric) async {
