@@ -91,6 +91,7 @@ class Begin extends StatefulWidget {
 
 class _BeginState extends State<Begin>
     with TickerProviderStateMixin, WidgetsBindingObserver {
+      
   bool exitapp = false;
   bool isonexit = false;
   bool stackedPhoenix = false;

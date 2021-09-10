@@ -4,7 +4,6 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import '../../begin.dart';
-import '../mansion_updater.dart';
 import '../../pages/mansion/mansion.dart';
 
 List mansionArtists = [];
@@ -14,7 +13,7 @@ List<MediaItem> recentPlayedMediaItems = [];
 List<SongModel> everPlayedLimited = [];
 List<MediaItem> everPlayedLimitedMediaItems = [];
 List<SongModel> alwaysPlayed = [];
-List<MediaItem> alwaysPlayedMediaItems = []; 
+List<MediaItem> alwaysPlayedMediaItems = [];
 int recentPlayedLength = 0;
 
 gettinMansion() async {
@@ -27,7 +26,7 @@ gettinMansion() async {
     alwaysPlayed = [];
     recentPlayedMediaItems = [];
     everPlayedLimitedMediaItems = [];
-    alwaysPlayedMediaItems = []; 
+    alwaysPlayedMediaItems = [];
     sortAlgo(leMansion);
   }
 }
@@ -52,14 +51,12 @@ sortAlgo(Map raw) {
   for (int i = 0; i < sortedMap.length; i++) {
     sortedMap[keys[i]] = raw[keys[i]];
   }
-  // print(sortedMap);
 
 // Top Played algo
 
   for (int i = 0; i < raw.length; i++) {
     simplify2[keys[i]] = raw.values.toList()[i][0];
   }
-
   List sortedKeys2 = simplify2.keys.toList(growable: false)
     ..sort((k1, k2) => simplify2[k1].compareTo(simplify2[k2]));
   LinkedHashMap sortedMap2 = LinkedHashMap.fromIterable(sortedKeys2,
@@ -67,7 +64,6 @@ sortAlgo(Map raw) {
   for (int i = 0; i < sortedMap2.length; i++) {
     sortedMap2[keys[i]] = raw[keys[i]];
   }
-
   favArtists(sortedMap2);
   favAlbums(sortedMap2);
   topPlayed(sortedMap2);
@@ -108,7 +104,6 @@ favAlbums(Map raw) {
       }
     }
   }
-
 }
 
 recentlyPlayed(Map raw) async {
@@ -123,28 +118,24 @@ recentlyPlayed(Map raw) async {
             album: songList[o].album,
             artist: songList[o].artist,
             duration: Duration(milliseconds: getDuration(songList[o])),
-            artUri: Uri.file(
-           
-                allAlbumsName.contains(songList[o].album)
-                    ? musicBox.get("AlbumsWithoutArt") == null
-                        ? "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                        : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
-                            ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                            : "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            artUri: Uri.file(allAlbumsName.contains(songList[o].album)
+                ? musicBox.get("AlbumsWithoutArt") == null
+                    ? "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                    : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
+                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                        : "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
             title: songList[o].title,
             extras: {"id": songList[o].id});
         recentPlayedMediaItems.add(item);
       }
     }
   }
-
   recentPlayedLength = recentPlayed.length;
 }
 
 neverPlayed(Map raw) async {
   List everPlayed = [];
-
   for (int i = 0; i < songList.length; i++) {
     everPlayed.add(songList[i]);
   }
@@ -165,21 +156,18 @@ neverPlayed(Map raw) async {
           album: everPlayedLimited[i].album,
           artist: everPlayedLimited[i].artist,
           duration: Duration(milliseconds: getDuration(everPlayedLimited[i])),
-          artUri: Uri.file(
-            
-              allAlbumsName.contains(everPlayedLimited[i].album)
-                  ? musicBox.get("AlbumsWithoutArt") == null
-                      ? "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                      : musicBox.get("AlbumsWithoutArt").contains(everPlayedLimited[i].album)
-                          ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                          : "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+          artUri: Uri.file(allAlbumsName.contains(everPlayedLimited[i].album)
+              ? musicBox.get("AlbumsWithoutArt") == null
+                  ? "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                  : musicBox.get("AlbumsWithoutArt").contains(everPlayedLimited[i].album)
+                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                      : "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
           title: everPlayedLimited[i].title,
           extras: {"id": everPlayedLimited[i].id});
       everPlayedLimitedMediaItems.add(item);
     }
   }
-
 }
 
 topPlayed(Map raw) async {
@@ -194,22 +182,19 @@ topPlayed(Map raw) async {
             album: songList[q].album,
             artist: songList[q].artist,
             duration: Duration(milliseconds: getDuration(songList[q])),
-            artUri: Uri.file(
-            
-                allAlbumsName.contains(songList[q].album)
-                    ? musicBox.get("AlbumsWithoutArt") == null
-                        ? "${applicationFileDirectory.path}/artworks/${songList[q].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                        : musicBox.get("AlbumsWithoutArt").contains(songList[q].album)
-                            ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                            : "${applicationFileDirectory.path}/artworks/${songList[q].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            artUri: Uri.file(allAlbumsName.contains(songList[q].album)
+                ? musicBox.get("AlbumsWithoutArt") == null
+                    ? "${applicationFileDirectory.path}/artworks/${songList[q].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                    : musicBox.get("AlbumsWithoutArt").contains(songList[q].album)
+                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                        : "${applicationFileDirectory.path}/artworks/${songList[q].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
             title: songList[q].title,
             extras: {"id": songList[q].id});
         alwaysPlayedMediaItems.add(item);
       }
     }
   }
-
 }
 
 updateRecentlyPlayed(song) async {
@@ -220,15 +205,13 @@ updateRecentlyPlayed(song) async {
         album: song.album,
         artist: song.artist,
         duration: Duration(milliseconds: getDuration(song)),
-        artUri: Uri.file(
-        
-            allAlbumsName.contains(song.album)
-                ? musicBox.get("AlbumsWithoutArt") == null
-                    ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : musicBox.get("AlbumsWithoutArt").contains(song.album)
-                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+        artUri: Uri.file(allAlbumsName.contains(song.album)
+            ? musicBox.get("AlbumsWithoutArt") == null
+                ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                : musicBox.get("AlbumsWithoutArt").contains(song.album)
+                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                    : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+            : "${applicationFileDirectory.path}/artworks/null.jpeg"),
         title: song.title,
         extras: {"id": song.id});
     recentPlayedMediaItems.add(item);
@@ -240,15 +223,13 @@ updateRecentlyPlayed(song) async {
           album: song.album,
           artist: song.artist,
           duration: Duration(milliseconds: getDuration(song)),
-          artUri: Uri.file(
-           
-              allAlbumsName.contains(song.album)
-                  ? musicBox.get("AlbumsWithoutArt") == null
-                      ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                      : musicBox.get("AlbumsWithoutArt").contains(song.album)
-                          ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                          : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+          artUri: Uri.file(allAlbumsName.contains(song.album)
+              ? musicBox.get("AlbumsWithoutArt") == null
+                  ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                  : musicBox.get("AlbumsWithoutArt").contains(song.album)
+                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                      : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
           title: song.title,
           extras: {"id": song.id});
       recentPlayedMediaItems.add(item);
@@ -268,6 +249,19 @@ updateMansion() async {
   if (globalMansionConsumer != null) {
     recentPlayedLength = recentPlayed.length > 6 ? 6 : recentPlayed.length;
     globalMansionConsumer.rawNotify();
- 
   }
+}
+
+updateData(data) async {
+  Map dBase = musicBox.get('crossfire') ?? {};
+  int recent = dBase.length + 1;
+  if (dBase[data] == null) {
+    // [numberOfTimes, artist, album, historyIndex]
+    dBase[data] = [1, nowMediaItem.artist, nowMediaItem.album, recent];
+  } else {
+    int times = dBase[data][0];
+    times += 1;
+    dBase[data] = [times, nowMediaItem.artist, nowMediaItem.album, recent];
+  }
+  musicBox.put('crossfire', dBase);
 }
