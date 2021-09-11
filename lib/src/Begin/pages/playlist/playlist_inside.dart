@@ -44,7 +44,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
     return Consumer<Leprovider>(builder: (context, taste, _) {
       globaltaste = taste;
       return Scaffold(
-        backgroundColor: kMaterialBlack,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           centerTitle: true,

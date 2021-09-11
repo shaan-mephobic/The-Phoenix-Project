@@ -40,7 +40,6 @@ class _MiscellaneousState extends State<Miscellaneous> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: kMaterialBlack,
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             iconTheme: IconThemeData(

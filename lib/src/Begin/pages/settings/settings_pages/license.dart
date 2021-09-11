@@ -39,7 +39,6 @@ class _LicensesPageState extends State<LicensesPage> {
               title: Text("Licenses", style: TextStyle(fontFamily: "Futura")),
               backgroundColor: kMaterialBlack,
             ),
-            backgroundColor: kMaterialBlack,
             body: Theme(
               data: themeOfApp,
               child: Scrollbar(
@@ -101,7 +100,6 @@ class InsideLicense extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kMaterialBlack,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: kMaterialBlack,

@@ -36,7 +36,6 @@ class _InterfaceState extends State<Interface> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: kMaterialBlack,
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             iconTheme: IconThemeData(

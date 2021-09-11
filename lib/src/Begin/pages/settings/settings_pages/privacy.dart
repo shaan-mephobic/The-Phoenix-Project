@@ -38,7 +38,6 @@ class _PrivacyState extends State<Privacy> {
         globaltaste = taste;
         return Scaffold(
           extendBodyBehindAppBar: true,
-          backgroundColor: Colors.black,
           body: Theme(
             data: themeOfApp,
             child: Stack(

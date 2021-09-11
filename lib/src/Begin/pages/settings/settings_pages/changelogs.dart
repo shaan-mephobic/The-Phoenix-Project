@@ -26,7 +26,6 @@ class _ChangelogsState extends State<Changelogs> {
         globaltaste = taste;
         return Scaffold(
           extendBodyBehindAppBar: true,
-          backgroundColor: kMaterialBlack,
           appBar: AppBar(
             elevation: 0,
             centerTitle: true,

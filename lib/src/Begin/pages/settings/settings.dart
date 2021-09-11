@@ -64,7 +64,6 @@ class _SettingsState extends State<Settings> {
         globaltaste = taste;
         return Scaffold(
           extendBodyBehindAppBar: true,
-          backgroundColor: Colors.black,
           body: Theme(
             data: themeOfApp,
             child: Stack(

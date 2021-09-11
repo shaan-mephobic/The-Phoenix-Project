@@ -41,7 +41,6 @@ class _PhoenixState extends State<Phoenix> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: kMaterialBlack,
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             shadowColor: Colors.transparent,

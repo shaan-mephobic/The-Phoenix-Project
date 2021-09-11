@@ -47,7 +47,6 @@ class _AddSongsState extends State<AddSongs> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: Colors.black,
           resizeToAvoidBottomInset: false,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,

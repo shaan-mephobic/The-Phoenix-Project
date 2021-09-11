@@ -79,7 +79,6 @@ class _SearchinState extends State<Searchin> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: kMaterialBlack,
           resizeToAvoidBottomInset: false,
           body: Theme(
             data: themeOfApp,

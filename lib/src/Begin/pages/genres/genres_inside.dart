@@ -42,7 +42,6 @@ class _GenresInsideState extends State<GenresInside> {
       builder: (context, taste, _) {
         globaltaste = taste;
         return Scaffold(
-          backgroundColor: Colors.black,
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             shadowColor: Colors.transparent,
