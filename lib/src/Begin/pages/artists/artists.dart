@@ -98,7 +98,6 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                       ),
                     );
                   },
-                  child: Container(
                     child: Column(
                       children: [
                         Padding(padding: EdgeInsets.only(top: 5)),
@@ -106,7 +105,7 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(kRounded),
                           elevation: deviceWidth / 140,
-                          child: Container(
+                          child: SizedBox(
                               width: orientedCar
                                   ? deviceHeight / 4 - 17
                                   : deviceWidth / 3 - 17,
@@ -192,7 +191,6 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                         ),
                       ],
                     ),
-                  ),
                 ),
               );
             },

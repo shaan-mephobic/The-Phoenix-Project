@@ -66,78 +66,75 @@ class _ModernaState extends State<Moderna> {
             crossFadeState:
                 first ? CrossFadeState.showFirst : CrossFadeState.showSecond,
           ),
-          Container(
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: radiusFullscreen,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(
-                        sigmaX: orientedCar ? 8 : 5,
-                        sigmaY: orientedCar ? 8 : 5),
-                    child: Container(
-                      alignment: Alignment.center,
-                      color: Colors.black.withOpacity(0.2),
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: radiusFullscreen,
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                      sigmaX: orientedCar ? 8 : 5, sigmaY: orientedCar ? 8 : 5),
+                  child: Container(
+                    alignment: Alignment.center,
+                    color: Colors.black.withOpacity(0.2),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onHorizontalDragEnd: (DragEndDetails details) async {
+                  gestureDetectorFoo(details);
+                },
+                onTap: () async {
+                  HapticFeedback.lightImpact();
+                  pauseResume();
+                },
+                child: Center(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        left: deviceWidth / 18, right: deviceWidth / 18),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        MarqueeText(
+                          text: nowMediaItem.title,
+                          speed: 20,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Urban",
+                            fontSize: 19,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 2.0,
+                                color: Colors.black38,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          nowMediaItem.artist,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Urban",
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 1.0,
+                                color: Colors.black26,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onHorizontalDragEnd: (DragEndDetails details) async {
-                    gestureDetectorFoo(details);
-                  },
-                  onTap: () async {
-                    HapticFeedback.lightImpact();
-                    pauseResume();
-                  },
-                  child: Center(
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          left: deviceWidth / 18, right: deviceWidth / 18),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          MarqueeText(
-                            text: nowMediaItem.title,
-                            speed: 20,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Urban",
-                              fontSize: 19,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 2.0,
-                                  color: Colors.black38,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            nowMediaItem.artist,
-                            maxLines: 1,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Urban",
-                              fontSize: 13,
-                              fontWeight: FontWeight.w300,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 1.0,
-                                  color: Colors.black26,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
@@ -163,120 +160,114 @@ class _ClassixState extends State<Classix> {
           Row(
             children: [
               Padding(padding: EdgeInsets.only(left: deviceWidth / 20)),
-              Container(
+              Center(
+                child: AnimatedCrossFade(
+                  duration: Duration(milliseconds: crossfadeDuration),
+                  firstChild: Card(
+                    elevation: 3,
+                    color: Colors.transparent,
+                    child: Container(
+                      height: musicBox.get("squareArt") ?? true ? 48 : 44,
+                      width: musicBox.get("squareArt") ?? true ? 48 : 64,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(3),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: MemoryImage(art),
+                        ),
+                      ),
+                    ),
+                  ),
+                  secondChild: Card(
+                    elevation: 3,
+                    color: Colors.transparent,
+                    child: Container(
+                      height: musicBox.get("squareArt") ?? true ? 48 : 44,
+                      width: musicBox.get("squareArt") ?? true ? 48 : 64,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(3),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: MemoryImage(art2),
+                        ),
+                      ),
+                    ),
+                  ),
+                  crossFadeState: first
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                ),
+              ),
+            ],
+          ),
+          Stack(
+            children: [
+              GestureDetector(
+                onHorizontalDragEnd: (DragEndDetails details) async {
+                  gestureDetectorFoo(details);
+                },
+                onTap: () async {
+                  HapticFeedback.lightImpact();
+                  pauseResume();
+                },
                 child: Center(
-                  child: AnimatedCrossFade(
-                    duration: Duration(milliseconds: crossfadeDuration),
-                    firstChild: Card(
-                      elevation: 3,
-                      color: Colors.transparent,
-                      child: Container(
-                        height: musicBox.get("squareArt") ?? true ? 48 : 44,
-                        width: musicBox.get("squareArt") ?? true ? 48 : 64,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: MemoryImage(art),
+                  child: Container(
+                    width: orientedCar ? deviceHeight / 1.6 : deviceWidth / 1.6,
+                    padding: EdgeInsets.only(left: 25, right: 25),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        MarqueeText(
+                          text: nowMediaItem.title,
+                          speed: 20,
+                          style: TextStyle(
+                            color: musicBox.get("dynamicArtDB") ?? true
+                                ? nowContrast
+                                : Colors.white,
+                            fontFamily: "Urban",
+                            fontSize: 19,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 2.0,
+                                color: Colors.black38,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    ),
-                    secondChild: Card(
-                      elevation: 3,
-                      color: Colors.transparent,
-                      child: Container(
-                        height: musicBox.get("squareArt") ?? true ? 48 : 44,
-                        width: musicBox.get("squareArt") ?? true ? 48 : 64,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: MemoryImage(art2),
+                        Text(
+                          nowMediaItem.artist,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: musicBox.get("dynamicArtDB") ?? true
+                                ? nowContrast
+                                : Colors.white70,
+                            fontFamily: "Urban",
+                            fontSize: 13,
+                            fontWeight: FontWeight.w300,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0.5, 0.5),
+                                blurRadius: 1.0,
+                                color: Colors.black26,
+                              ),
+                            ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    crossFadeState: first
-                        ? CrossFadeState.showFirst
-                        : CrossFadeState.showSecond,
                   ),
                 ),
               ),
             ],
           ),
-          Container(
-            child: Stack(
-              children: [
-                GestureDetector(
-                  onHorizontalDragEnd: (DragEndDetails details) async {
-                    gestureDetectorFoo(details);
-                  },
-                  onTap: () async {
-                    HapticFeedback.lightImpact();
-                    pauseResume();
-                  },
-                  child: Center(
-                    child: Container(
-                      width:
-                          orientedCar ? deviceHeight / 1.6 : deviceWidth / 1.6,
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          MarqueeText(
-                            text: nowMediaItem.title,
-                            speed: 20,
-                            style: TextStyle(
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? nowContrast
-                                  : Colors.white,
-                              fontFamily: "Urban",
-                              fontSize: 19,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 2.0,
-                                  color: Colors.black38,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            nowMediaItem.artist,
-                            maxLines: 1,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? nowContrast
-                                  : Colors.white70,
-                              fontFamily: "Urban",
-                              fontSize: 13,
-                              fontWeight: FontWeight.w300,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0.5, 0.5),
-                                  blurRadius: 1.0,
-                                  color: Colors.black26,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
-    // });
   }
 }
 

@@ -8,7 +8,6 @@ class Awakening extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool orientedCar = false;
-    // var pixelRatio = MediaQuery.of(context).devicePixelRatio;
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
@@ -35,14 +34,12 @@ class Awakening extends StatelessWidget {
                 ),
               ],
               borderRadius: BorderRadius.circular(kRounded),
-              // color: Colors.black12,
             ),
             alignment: Alignment.center,
             height: orientedCar ? deviceHeight / 2 : deviceWidth / 1.2,
             width: orientedCar ? deviceHeight / 2 : deviceWidth / 1.2,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(kRounded),
-              // make sure we apply clip it properly
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                 child: Container(

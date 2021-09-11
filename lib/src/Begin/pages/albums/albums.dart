@@ -87,7 +87,6 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                       MaterialPageRoute(builder: (context) => AlbumsInside()),
                     );
                   },
-                  child: Container(
                     child: Column(
                       children: [
                         Padding(padding: EdgeInsets.only(top: 5)),
@@ -123,7 +122,7 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                                   ? deviceHeight / 100
                                   : deviceWidth / 70),
                         ),
-                        Container(
+                        SizedBox(
                           width: orientedCar
                               ? deviceHeight / 4 - 17
                               : deviceWidth / 3 - 17,
@@ -158,8 +157,6 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                         ),
                       ],
                     ),
-                  ),
-                  // ),
                 ),
               );
             },

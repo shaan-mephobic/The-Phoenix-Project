@@ -79,7 +79,7 @@ class _DirectoriesState extends State<Directories> {
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: Material(
             color: Colors.transparent,
-            child: Container(
+            child: SizedBox(
               height: 50,
               width: orientedCar ? deviceHeight : deviceWidth,
               child: InkWell(

@@ -10,7 +10,6 @@ Widget artistCollage(
       ? false
       : musicBox.get("mapOfArtists")[listOfArtists[index]] != null) {
     return Container(
- 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(cornerRadius),
         image: DecorationImage(
@@ -29,7 +28,6 @@ Widget artistCollage(
       return Container(
         width: size,
         height: size,
-  
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(cornerRadius),
           image: DecorationImage(

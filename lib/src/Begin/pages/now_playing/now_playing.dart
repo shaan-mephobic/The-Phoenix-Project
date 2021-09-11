@@ -117,58 +117,55 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             Padding(
                               padding: EdgeInsets.only(top: deviceHeight / 18),
                             ),
-                            Container(
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTapDown: (_) {
-                                        if (!swapController) {
-                                          HapticFeedback.lightImpact();
-                                          swapController = true;
-                                          globalBigNow.rawNotify();
-                                          swapControllerTimeOut();
-                                        }
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.only(
-                                            left: deviceWidth / 20),
-                                        child: Icon(
-                                          Ionicons.chevron_down_outline,
-                                          size: deviceWidth / 20,
-                                          color: nowContrast,
-                                        ),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTapDown: (_) {
+                                      if (!swapController) {
+                                        HapticFeedback.lightImpact();
+                                        swapController = true;
+                                        globalBigNow.rawNotify();
+                                        swapControllerTimeOut();
+                                      }
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: deviceWidth / 20),
+                                      child: Icon(
+                                        Ionicons.chevron_down_outline,
+                                        size: deviceWidth / 20,
+                                        color: nowContrast,
                                       ),
                                     ),
-                                  ]),
-                            ),
-
+                                  ),
+                                ]),
                             Padding(
                               padding: EdgeInsets.only(top: deviceHeight / 18),
                             ),
                             Container(
-                                alignment: Alignment.center,
-                                height: deviceHeight / 2.32,
-                                width: deviceWidth,
-                                child: GestureDetector(
-                                    child: NowArt(orientedCar),
-                                    onDoubleTap: () {
-                                      onDoubleTap(context);
-                                    },
-                                    onLongPress: () async {
-                                      await onHoldExtended(context, orientedCar,
-                                          deviceHeight, deviceWidth);
-                                    })),
-
-                            // padding
-                            Container(
-                              height: deviceHeight / 40,
+                              alignment: Alignment.center,
+                              height: deviceHeight / 2.32,
+                              width: deviceWidth,
+                              child: GestureDetector(
+                                child: NowArt(orientedCar),
+                                onDoubleTap: () {
+                                  onDoubleTap(context);
+                                },
+                                onLongPress: () async {
+                                  await onHoldExtended(context, orientedCar,
+                                      deviceHeight, deviceWidth);
+                                },
+                              ),
                             ),
+                            Padding(
+                                padding:
+                                    EdgeInsets.only(top: deviceHeight / 40)),
                             Column(
                               children: [
                                 Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth / 1.3,
                                     child: Center(
                                       child: MarqueeText(
@@ -194,15 +191,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                     ),
                                   ),
-
-                                  // ),
                                 ),
                               ],
                             ),
                             Opacity(
                               opacity: 0.7,
                               child: Center(
-                                child: Container(
+                                child: SizedBox(
                                   width: deviceWidth / 1.4,
                                   child: Text(
                                     nowMediaItem.album,
@@ -228,12 +223,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            // Padding(
-                            //     padding: EdgeInsets.only(top: deviceHeight / 180)),
                             Opacity(
                               opacity: 0.7,
                               child: Center(
-                                child: Container(
+                                child: SizedBox(
                                   width: deviceWidth / 1.4,
                                   child: Text(
                                     nowMediaItem.artist,
@@ -257,39 +250,26 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-
-                            // padding
                             Padding(
                               padding: EdgeInsets.only(top: deviceHeight / 90),
                             ),
-
                             Center(
-                                child: Container(
+                                child: SizedBox(
                                     width: deviceWidth / 1.1,
                                     child: SeekBar())),
-
-                            // padding
                             Padding(
                               padding: EdgeInsets.only(top: deviceHeight / 100),
                             ),
-                            // Center(
-                            // child:
-                            Container(
+                            SizedBox(
                               width: deviceWidth / 1.2,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  // Padding(
-                                  //     padding: EdgeInsets.only(
-                                  //         left: deviceWidth / 18)
-                                  //         ),
                                   Consumer<Leprovider>(
                                       builder: (context, shuf, _) {
                                     return IconButton(
-                                      icon: Icon(
-                                          // MdiIcons.shuffle,
-                                          Ionicons.shuffle_outline,
+                                      icon: Icon(Ionicons.shuffle_outline,
                                           color: musicBox.get("dynamicArtDB") ??
                                                   true
                                               ? shuffleSelected
@@ -311,7 +291,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   }),
                                   IconButton(
                                       icon: Icon(
-                                        // Icons.skip_previous_rounded,
                                         MdiIcons.skipPrevious,
                                         color:
                                             musicBox.get("dynamicArtDB") ?? true
@@ -338,7 +317,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       }),
                                   IconButton(
                                     icon: Icon(
-                                      // Icons.skip_next_rounded,
                                       MdiIcons.skipNext,
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
@@ -378,14 +356,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 ],
                               ),
                             ),
-                            // ),
                             Padding(
                                 padding:
                                     EdgeInsets.only(top: deviceHeight / 38)),
                             Consumer<Leprovider>(
                               builder: (context, haunt, _) {
                                 return Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     width: deviceWidth / 1.1,
                                     child: Row(
                                       mainAxisAlignment:
@@ -396,7 +373,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             color: Colors.transparent,
                                             child: InkWell(
                                               splashColor: Colors.transparent,
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: deviceWidth / 8,
                                                 width: deviceWidth / 8,
                                                 child: Icon(
@@ -489,14 +466,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                           fontFamily: 'Urban',
                                                                                           color: darkModeOn ? Colors.white : Colors.black,
                                                                                           fontSize: deviceHeight / 60,
-                                                                                          // fontWeight: FontWeight.w600
                                                                                         ),
                                                                                         bottomLabelText: 'SENSITIVITY',
                                                                                         mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
-                                                                                        // modifier: (double value) {
-
-                                                                                        //   return value;
-                                                                                        // },
                                                                                       ),
                                                                                       size: deviceHeight / 6,
                                                                                       customColors: CustomSliderColors(
@@ -520,11 +492,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                     borderRadius: BorderRadius.circular(kRounded),
                                                                                     onTap: () async {
                                                                                       phoenixVisualizerShown = false;
-
                                                                                       if (bgPhoenixVisualizer) {
                                                                                         bgPhoenixVisualizer = false;
                                                                                         await stopkotlinVisualizer();
-                                                                                        // await Future.delayed(Duration(seconds: 1));
                                                                                         isFlashin = false;
                                                                                       } else if (!isPlaying) {
                                                                                         isFlashin = true;
@@ -532,7 +502,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                         kotlinVisualizer();
                                                                                         isFlashin = true;
                                                                                       }
-
                                                                                       haunt.provideman();
                                                                                       Navigator.pop(context);
                                                                                     },
@@ -540,13 +509,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                       height: deviceWidth / 12,
                                                                                       width: deviceWidth / 4,
                                                                                       decoration: BoxDecoration(
-                                                                                        // boxShadow: [
-                                                                                        //   BoxShadow(
-                                                                                        //     color: Colors.black12,
-                                                                                        //     blurRadius: 1.0,
-                                                                                        //     spreadRadius: deviceWidth / 220,
-                                                                                        //   ),
-                                                                                        // ],
                                                                                         color: Color(0xFF1DB954),
                                                                                         borderRadius: BorderRadius.circular(kRounded),
                                                                                       ),
@@ -609,104 +571,118 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                   flex: 0,
                                                                   child:
                                                                       Container(
-                                                                          height: orientedCar
-                                                                              ? deviceHeight /
-                                                                                  1.4
-                                                                              : deviceWidth *
-                                                                                  1.3,
-                                                                          width: orientedCar
-                                                                              ? deviceHeight /
-                                                                                  1.5
-                                                                              : deviceWidth /
-                                                                                  1.2,
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                          ),
+                                                                    height: orientedCar
+                                                                        ? deviceHeight /
+                                                                            1.4
+                                                                        : deviceWidth *
+                                                                            1.3,
+                                                                    width: orientedCar
+                                                                        ? deviceHeight /
+                                                                            1.5
+                                                                        : deviceWidth /
+                                                                            1.2,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              kRounded),
+                                                                    ),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              kRounded),
+                                                                      // make sure we apply clip it properly
+                                                                      child:
+                                                                          BackdropFilter(
+                                                                        filter: ImageFilter.blur(
+                                                                            sigmaX:
+                                                                                20,
+                                                                            sigmaY:
+                                                                                20),
+                                                                        child:
+                                                                            Container(
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(kRounded),
+                                                                              border: Border.all(color: Colors.white.withOpacity(0.04)),
+                                                                              color: Colors.white.withOpacity(0.05)),
+                                                                          alignment:
+                                                                              Alignment.center,
                                                                           child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                            // make sure we apply clip it properly
-                                                                            child:
-                                                                                BackdropFilter(
-                                                                              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                                                                              child: Container(
-                                                                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: Colors.white.withOpacity(0.05)),
-                                                                                alignment: Alignment.center,
-                                                                                child: Column(
-                                                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      "PHOENIX VISUALIZER",
-                                                                                      style: TextStyle(
-                                                                                        color: darkModeOn ? Colors.white : Colors.black,
-                                                                                        fontFamily: "Urban",
-                                                                                        fontWeight: FontWeight.w700,
-                                                                                        fontSize: deviceWidth / 14,
-                                                                                      ),
-                                                                                    ),
-                                                                                    Center(
-                                                                                      child: SleekCircularSlider(
-                                                                                        appearance: CircularSliderAppearance(
-                                                                                          // animationEnabled: sensitivityanimation,
-                                                                                          infoProperties: InfoProperties(
-                                                                                            bottomLabelStyle: TextStyle(
-                                                                                              fontFamily: 'Urban',
-                                                                                              color: darkModeOn ? Colors.white : Colors.black,
-                                                                                              fontSize: deviceHeight / 60,
-                                                                                              // fontWeight: FontWeight.w600
-                                                                                            ),
-                                                                                            bottomLabelText: 'SENSITIVITY',
-                                                                                            mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
-                                                                                            // modifier: (double value) {
-
-                                                                                            //   return value;
-                                                                                            // },
-                                                                                          ),
-                                                                                          size: deviceHeight / 6,
-                                                                                          customColors: CustomSliderColors(
-                                                                                            progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
-                                                                                          ),
-
-                                                                                          customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
-                                                                                        ),
-                                                                                        min: 0,
-                                                                                        max: 100,
-                                                                                        initialValue: defaultSensitivity,
-                                                                                        onChange: (double value) async {
-                                                                                          goSensitivity(35 + (value * 0.3));
-                                                                                          defaultSensitivity = value;
-                                                                                        },
-                                                                                      ),
-                                                                                    ),
-                                                                                    Material(
-                                                                                      borderRadius: BorderRadius.circular(kRounded),
-                                                                                      color: Colors.transparent,
-                                                                                      child: InkWell(
-                                                                                        borderRadius: BorderRadius.circular(kRounded),
-                                                                                        onTap: () {
-                                                                                          Navigator.pop(context);
-                                                                                        },
-                                                                                        child: Container(
-                                                                                          height: deviceWidth / 12,
-                                                                                          width: deviceWidth / 4,
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Color(0xFF1DB954),
-                                                                                            borderRadius: BorderRadius.circular(kRounded),
-                                                                                          ),
-                                                                                          child: Center(
-                                                                                            child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
+                                                                              Column(
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceAround,
+                                                                            children: [
+                                                                              Text(
+                                                                                "PHOENIX VISUALIZER",
+                                                                                style: TextStyle(
+                                                                                  color: darkModeOn ? Colors.white : Colors.black,
+                                                                                  fontFamily: "Urban",
+                                                                                  fontWeight: FontWeight.w700,
+                                                                                  fontSize: deviceWidth / 14,
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          )),
+                                                                              Center(
+                                                                                child: SleekCircularSlider(
+                                                                                  appearance: CircularSliderAppearance(
+                                                                                    // animationEnabled: sensitivityanimation,
+                                                                                    infoProperties: InfoProperties(
+                                                                                      bottomLabelStyle: TextStyle(
+                                                                                        fontFamily: 'Urban',
+                                                                                        color: darkModeOn ? Colors.white : Colors.black,
+                                                                                        fontSize: deviceHeight / 60,
+                                                                                        // fontWeight: FontWeight.w600
+                                                                                      ),
+                                                                                      bottomLabelText: 'SENSITIVITY',
+                                                                                      mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
+                                                                                      // modifier: (double value) {
+
+                                                                                      //   return value;
+                                                                                      // },
+                                                                                    ),
+                                                                                    size: deviceHeight / 6,
+                                                                                    customColors: CustomSliderColors(
+                                                                                      progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
+                                                                                    ),
+
+                                                                                    customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
+                                                                                  ),
+                                                                                  min: 0,
+                                                                                  max: 100,
+                                                                                  initialValue: defaultSensitivity,
+                                                                                  onChange: (double value) async {
+                                                                                    goSensitivity(35 + (value * 0.3));
+                                                                                    defaultSensitivity = value;
+                                                                                  },
+                                                                                ),
+                                                                              ),
+                                                                              Material(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                color: Colors.transparent,
+                                                                                child: InkWell(
+                                                                                  borderRadius: BorderRadius.circular(kRounded),
+                                                                                  onTap: () {
+                                                                                    Navigator.pop(context);
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    height: deviceWidth / 12,
+                                                                                    width: deviceWidth / 4,
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Color(0xFF1DB954),
+                                                                                      borderRadius: BorderRadius.circular(kRounded),
+                                                                                    ),
+                                                                                    child: Center(
+                                                                                      child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ],
                                                             ),
@@ -726,7 +702,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 );
                               },
                             ),
-
                             Visibility(
                               visible: musicBox.get("audiophileData") ?? true,
                               child: Center(
@@ -756,21 +731,19 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             Padding(
                                 padding:
                                     EdgeInsets.only(top: deviceHeight / 38)),
-
                             Visibility(
                               visible: !(musicBox.get("isolation") == null
                                   ? false
                                   : musicBox.get('isolation')),
-                              child: Container(
-                                height: deviceHeight / 28,
-                              ),
+                              child: Padding(
+                                  padding:
+                                      EdgeInsets.only(top: deviceHeight / 28)),
                             ),
-
                             Visibility(
                               visible: !(musicBox.get("isolation") == null
                                   ? false
                                   : musicBox.get('isolation')),
-                              child: Container(
+                              child: SizedBox(
                                 width: deviceWidth / 1.1,
                                 child: AspectRatio(
                                   aspectRatio: 4 / 5,
@@ -804,10 +777,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   left: deviceWidth / 20,
                                                   right: deviceWidth / 20,
                                                   bottom: deviceWidth / 12),
-                                              // height: deviceWidth * 1.2,
-                                              // Container(
-                                              // padding: EdgeInsets.only(left: 12, right: 12),
-
                                               child: Text(lyricsDat ?? "",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
@@ -834,35 +803,28 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   left: deviceWidth / 20,
                                                   right: deviceWidth / 20,
                                                   bottom: deviceWidth / 12),
-                                              // height: deviceWidth * 1.2,
-                                              // Container(
-                                              // padding: EdgeInsets.only(left: 12, right: 12),
-
-                                              child: Text(lyricsDat ?? "",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                    inherit: false,
-                                                    wordSpacing: 2,
-                                                    fontSize: deviceWidth / 18,
-                                                    fontFamily: "Raleway",
-                                                    fontWeight: FontWeight.w600,
-                                                    color: musicBox.get(
-                                                                "dynamicArtDB") ??
-                                                            true
-                                                        ? nowColor
-                                                        : kMaterialBlack,
-                                                  )),
+                                              child: Text(
+                                                lyricsDat ?? "",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  inherit: false,
+                                                  wordSpacing: 2,
+                                                  fontSize: deviceWidth / 18,
+                                                  fontFamily: "Raleway",
+                                                  fontWeight: FontWeight.w600,
+                                                  color: musicBox.get(
+                                                              "dynamicArtDB") ??
+                                                          true
+                                                      ? nowColor
+                                                      : kMaterialBlack,
+                                                ),
+                                              ),
                                             ),
-                                            // ),
-                                            // Container(height: deviceWidth / 7)
-                                            // ],
-                                            // ),
                                           ),
                                   ),
                                 ),
                               ),
                             ),
-
                             Padding(
                                 padding:
                                     EdgeInsets.only(top: deviceHeight / 30)),
@@ -908,10 +870,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               visible: musicBox.get("androidAutoLefty") == null
                                   ? false
                                   : !musicBox.get("androidAutoLefty"),
-                              child: Container(
+                              child: SizedBox(
                                 width: deviceHeight / 2,
                                 child: GestureDetector(
-                                  child: Container(
+                                  child: Padding(
                                     padding: EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
@@ -925,7 +887,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: deviceHeight / 2,
                               height: deviceWidth,
                               child: Column(
@@ -934,7 +896,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   Column(
                                     children: [
                                       Center(
-                                        child: Container(
+                                        child: SizedBox(
                                           width: deviceWidth / 1.3,
                                           child: Center(
                                             child: MarqueeText(
@@ -964,11 +926,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                     ],
                                   ),
-
                                   Opacity(
                                     opacity: 0.7,
                                     child: Center(
-                                      child: Container(
+                                      child: SizedBox(
                                         width: deviceWidth / 1.4,
                                         child: Text(
                                           nowMediaItem.album,
@@ -995,12 +956,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                     ),
                                   ),
-                                  // Padding(
-                                  //     padding: EdgeInsets.only(top: deviceHeight / 180)),
                                   Opacity(
                                     opacity: 0.7,
                                     child: Center(
-                                      child: Container(
+                                      child: SizedBox(
                                         width: deviceWidth / 1.4,
                                         child: Text(
                                           nowMediaItem.artist,
@@ -1025,24 +984,19 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                     ),
                                   ),
-
-                                  // padding
                                   Padding(
                                     padding:
                                         EdgeInsets.only(top: deviceHeight / 90),
                                   ),
-
                                   Center(
-                                      child: Container(
+                                      child: SizedBox(
                                           width: deviceHeight / 2 / 1.1,
                                           child: SeekBar())),
-
-                                  // padding
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: deviceHeight / 100),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: deviceHeight / 2,
                                     child: Row(
                                       mainAxisAlignment:
@@ -1077,7 +1031,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                         }),
                                         IconButton(
                                             icon: Icon(
-                                              // Icons.skip_previous_rounded,
                                               MdiIcons.skipPrevious,
                                               color: musicBox.get(
                                                           "dynamicArtDB") ??
@@ -1106,7 +1059,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             }),
                                         IconButton(
                                           icon: Icon(
-                                            // Icons.skip_next_rounded,
                                             MdiIcons.skipNext,
                                             color:
                                                 musicBox.get("dynamicArtDB") ??
@@ -1124,7 +1076,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           return IconButton(
                                             icon: Icon(
                                               Ionicons.repeat_outline,
-                                              // Icons.repeat_rounded,
                                               color: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
@@ -1156,7 +1107,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   Consumer<Leprovider>(
                                     builder: (context, haunt, _) {
                                       return Center(
-                                        child: Container(
+                                        child: SizedBox(
                                           width: deviceWidth / 1.1,
                                           child: Row(
                                             mainAxisAlignment:
@@ -1168,7 +1119,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   child: InkWell(
                                                     splashColor:
                                                         Colors.transparent,
-                                                    child: Container(
+                                                    child: SizedBox(
                                                       height: deviceWidth / 8,
                                                       width: deviceWidth / 8,
                                                       child: Icon(
@@ -1397,14 +1348,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                                 fontFamily: 'Urban',
                                                                                                 color: darkModeOn ? Colors.white : Colors.black,
                                                                                                 fontSize: deviceHeight / 60,
-                                                                                                // fontWeight: FontWeight.w600
                                                                                               ),
                                                                                               bottomLabelText: 'SENSITIVITY',
                                                                                               mainLabelStyle: TextStyle(fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
-                                                                                              // modifier: (double value) {
-
-                                                                                              //   return value;
-                                                                                              // },
                                                                                             ),
                                                                                             size: deviceHeight / 6,
                                                                                             customColors: CustomSliderColors(
@@ -1474,7 +1420,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       );
                                     },
                                   ),
-
                                   Visibility(
                                     visible:
                                         musicBox.get("audiophileData") ?? true,
@@ -1510,10 +1455,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               visible: musicBox.get("androidAutoLefty") ?? true
                                   ? true
                                   : false,
-                              child: Container(
+                              child: SizedBox(
                                 width: deviceHeight / 2,
                                 child: GestureDetector(
-                                  child: Container(
+                                  child: Padding(
                                     padding: EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
@@ -1535,15 +1480,14 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                           visible: !(musicBox.get("isolation") == null
                               ? false
                               : musicBox.get('isolation')),
-                          child: Container(
-                            height: deviceHeight / 28,
-                          ),
+                          child: Padding(
+                              padding: EdgeInsets.only(top: deviceHeight / 28)),
                         ),
                         Visibility(
                           visible: !(musicBox.get("isolation") == null
                               ? false
                               : musicBox.get('isolation')),
-                          child: Container(
+                          child: SizedBox(
                             height: deviceWidth,
                             width: deviceHeight / 2,
                             child: AnimatedContainer(
@@ -1618,7 +1562,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        // ),
                         Visibility(
                           visible: !(musicBox.get("isolation") == null
                               ? false

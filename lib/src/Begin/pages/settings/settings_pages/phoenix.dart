@@ -37,18 +37,18 @@ class _PhoenixState extends State<Phoenix> {
       deviceHeight = MediaQuery.of(context).size.height;
       deviceWidth = MediaQuery.of(context).size.width;
     }
-    return Consumer<Leprovider>(builder: (context, taste, _) {
-      globaltaste = taste;
-      return Scaffold(
-        backgroundColor: kMaterialBlack,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          shadowColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
-        ),
-        body: Theme(
-          data: themeOfApp,
-          child: Container(
+    return Consumer<Leprovider>(
+      builder: (context, taste, _) {
+        globaltaste = taste;
+        return Scaffold(
+          backgroundColor: kMaterialBlack,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            shadowColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
+          ),
+          body: Theme(
+            data: themeOfApp,
             child: Stack(
               children: [
                 BackArt(),
@@ -56,7 +56,7 @@ class _PhoenixState extends State<Phoenix> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width:
                             orientedCar ? deviceWidth / 1.8 : deviceWidth / 1.8,
                         height: orientedCar
@@ -87,28 +87,17 @@ class _PhoenixState extends State<Phoenix> {
                                 ),
                               ),
                             ),
-                            Container(
-                              // padding: EdgeInsets.only(top: 10),
-                              child:
-                                  //  AnimatedTextKit(
-                                  //   animatedTexts: [
-                                  Text(
-                                "PHOENIX",
-                                // cursor: " ",
-                                // speed: Duration(milliseconds: 70),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    inherit: false,
-                                    fontSize: orientedCar
-                                        ? deviceWidth / 18
-                                        : deviceWidth / 13,
-                                    fontFamily: "NightMachine"),
-                                textAlign: TextAlign.start,
-                              ),
-                              // ],
-                              // isRepeatingAnimation: false,
+                            Text(
+                              "PHOENIX",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  inherit: false,
+                                  fontSize: orientedCar
+                                      ? deviceWidth / 18
+                                      : deviceWidth / 13,
+                                  fontFamily: "NightMachine"),
+                              textAlign: TextAlign.start,
                             ),
-                            // ),
                             Padding(padding: EdgeInsets.only(top: 2)),
                             Text(
                               "HERTZ",
@@ -142,7 +131,6 @@ class _PhoenixState extends State<Phoenix> {
                               color: Colors.black.withOpacity(0.1),
                               blurRadius: 13.0,
                               offset: kShadowOffset,
-                              // spreadRadius: 7,
                             ),
                           ],
                           borderRadius: BorderRadius.circular(kRounded),
@@ -162,7 +150,7 @@ class _PhoenixState extends State<Phoenix> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  Padding(
                                     padding:
                                         EdgeInsets.only(right: 16, left: 16),
                                     child: Text(
@@ -386,7 +374,7 @@ class _PhoenixState extends State<Phoenix> {
                                 ? deviceWidth / 10
                                 : deviceWidth / 8),
                       ),
-                      Container(
+                      Padding(
                         padding: EdgeInsets.only(
                           right:
                               orientedCar ? deviceWidth / 6 : deviceWidth / 6,
@@ -463,8 +451,8 @@ class _PhoenixState extends State<Phoenix> {
               ],
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

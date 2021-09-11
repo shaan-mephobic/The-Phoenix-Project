@@ -52,16 +52,13 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           centerTitle: true,
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
-          title: Container(
-            child: Text(
-              widget.playlistName,
-              style: TextStyle(
+          title: Text(
+            widget.playlistName,
+            style: TextStyle(
                 color: Colors.white,
                 fontSize: deviceWidth / 18,
                 fontFamily: "Urban",
-                fontWeight: FontWeight.w600
-              ),
-            ),
+                fontWeight: FontWeight.w600),
           ),
         ),
         body: Theme(
@@ -69,7 +66,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           child: Stack(
             children: [
               BackArt(),
-              Container(
+              Padding(
                 padding: EdgeInsets.only(top: deviceWidth / 5),
                 child: MediaQuery.removePadding(
                   context: context,

@@ -36,32 +36,31 @@ class _MiscellaneousState extends State<Miscellaneous> {
       deviceWidth = MediaQuery.of(context).size.width;
     }
 
-    return Consumer<Leprovider>(builder: (context, taste, _) {
-      globaltaste = taste;
-      return Scaffold(
-        backgroundColor: kMaterialBlack,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: darkModeOn ? Colors.white : kMaterialBlack,
-          ),
-          shadowColor: Colors.transparent,
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            "Miscellaneous",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: deviceWidth / 18,
-              fontWeight: FontWeight.w600,
-              fontFamily: "Urban",
+    return Consumer<Leprovider>(
+      builder: (context, taste, _) {
+        globaltaste = taste;
+        return Scaffold(
+          backgroundColor: kMaterialBlack,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: darkModeOn ? Colors.white : kMaterialBlack,
+            ),
+            shadowColor: Colors.transparent,
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            title: Text(
+              "Miscellaneous",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: deviceWidth / 18,
+                fontWeight: FontWeight.w600,
+                fontFamily: "Urban",
+              ),
             ),
           ),
-        ),
-        body: Theme(
-          data: themeOfApp,
-          child: Container(
-            height: deviceHeight,
+          body: Theme(
+            data: themeOfApp,
             child: Stack(
               children: [
                 BackArt(),
@@ -206,8 +205,8 @@ class _MiscellaneousState extends State<Miscellaneous> {
               ],
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

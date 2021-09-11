@@ -43,50 +43,48 @@ class _ChangelogsState extends State<Changelogs> {
           ),
           body: Theme(
             data: themeOfApp,
-            child: Container(
-              child: Stack(
-                children: [
-                  BackArt(),
-                  Container(
-                    padding: EdgeInsets.only(top: kToolbarHeight + 20),
-                    child: SingleChildScrollView(
-                      padding: EdgeInsets.only(top: 50),
-                      child: Column(
-                        children: [
-                          for (int i = 0; i < changelogs.length; i++)
-                            Column(
-                              children: [
-                                ListTile(
-                                  title: Text(changelogs.keys.toList()[i],
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: "Urban")),
+            child: Stack(
+              children: [
+                BackArt(),
+                Padding(
+                  padding: EdgeInsets.only(top: kToolbarHeight + 20),
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.only(top: 50),
+                    child: Column(
+                      children: [
+                        for (int i = 0; i < changelogs.length; i++)
+                          Column(
+                            children: [
+                              ListTile(
+                                title: Text(changelogs.keys.toList()[i],
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "Urban")),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 20)),
+                              Text(
+                                changelogs.values.toList()[i],
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Urban",
+                                  fontSize: 17,
                                 ),
-                                Padding(padding: EdgeInsets.only(top: 20)),
-                                Text(
-                                  changelogs.values.toList()[i],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Urban",
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          Divider(
-                            color: Colors.white54,
-                            indent: 50,
-                            thickness: 0.2,
-                            endIndent: 50,
-                            height: 110,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        Divider(
+                          color: Colors.white54,
+                          indent: 50,
+                          thickness: 0.2,
+                          endIndent: 50,
+                          height: 110,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

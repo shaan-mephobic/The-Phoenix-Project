@@ -59,14 +59,14 @@ class _SettingsState extends State<Settings> {
     }
     onSettings = true;
     bool darkModeOn = true;
-    return Consumer<Leprovider>(builder: (context, taste, _) {
-      globaltaste = taste;
-      return Scaffold(
-        extendBodyBehindAppBar: true,
-        backgroundColor: Colors.black,
-        body: Theme(
-          data: themeOfApp,
-          child: Container(
+    return Consumer<Leprovider>(
+      builder: (context, taste, _) {
+        globaltaste = taste;
+        return Scaffold(
+          extendBodyBehindAppBar: true,
+          backgroundColor: Colors.black,
+          body: Theme(
+            data: themeOfApp,
             child: Stack(
               children: [
                 BackArt(),
@@ -74,17 +74,19 @@ class _SettingsState extends State<Settings> {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           height: orientedCar ? deviceWidth : deviceHeight,
                           width: orientedCar ? deviceHeight : deviceWidth,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
-                                  height: orientedCar
-                                      ? deviceWidth / 4.2
-                                      : deviceHeight / 5.5),
-                              Container(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: orientedCar
+                                        ? deviceWidth / 4.2
+                                        : deviceHeight / 5.5),
+                              ),
+                              SizedBox(
                                 height: orientedCar
                                     ? deviceWidth - deviceWidth / 4.2
                                     : deviceHeight - deviceHeight / 5.5,
@@ -187,14 +189,13 @@ class _SettingsState extends State<Settings> {
                                                     }
                                                   },
                                                   child: Center(
-                                                    child: Container(
+                                                    child: SizedBox(
                                                       width: orientedCar
                                                           ? deviceHeight
                                                           : deviceWidth,
                                                       height: orientedCar
                                                           ? deviceWidth / 5.1
                                                           : deviceHeight / 12,
-                                                      // color: Colors.black,
                                                       child: Center(
                                                         child: Text(
                                                           settingsList[i],
@@ -234,7 +235,6 @@ class _SettingsState extends State<Settings> {
                               ? deviceWidth / 4.2
                               : deviceHeight / 5.5,
                           backgroundColor:
-                              // darkModeOn ? Color(0xFF121212) :
                               darkModeOn ? Colors.white : kMaterialBlack,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
@@ -302,10 +302,11 @@ class _SettingsState extends State<Settings> {
               ],
             ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      );
-    });
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+        );
+      },
+    );
   }
 }
 

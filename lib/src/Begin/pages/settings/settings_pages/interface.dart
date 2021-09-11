@@ -31,36 +31,35 @@ class _InterfaceState extends State<Interface> {
     }
 
     bool darkModeOn = true;
-    return Consumer<Leprovider>(builder: (context, taste, _) {
-      globaltaste = taste;
-      return Scaffold(
-        backgroundColor: kMaterialBlack,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          iconTheme: IconThemeData(
-            color: darkModeOn ? Colors.white : kMaterialBlack,
-          ),
-          shadowColor: Colors.transparent,
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          title: Hero(
-            tag: "crossfire-",
-            child: Text(
-              "Interface",
-              style: TextStyle(
-                color: darkModeOn ? Colors.white : Colors.black,
-                inherit: false,
-                fontSize: deviceWidth / 18,
-                fontWeight: FontWeight.w600,
-                fontFamily: "Urban",
+    return Consumer<Leprovider>(
+      builder: (context, taste, _) {
+        globaltaste = taste;
+        return Scaffold(
+          backgroundColor: kMaterialBlack,
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            iconTheme: IconThemeData(
+              color: darkModeOn ? Colors.white : kMaterialBlack,
+            ),
+            shadowColor: Colors.transparent,
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            title: Hero(
+              tag: "crossfire-",
+              child: Text(
+                "Interface",
+                style: TextStyle(
+                  color: darkModeOn ? Colors.white : Colors.black,
+                  inherit: false,
+                  fontSize: deviceWidth / 18,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "Urban",
+                ),
               ),
             ),
           ),
-        ),
-        body: Theme(
-          data: themeOfApp,
-          child: Container(
-            height: deviceHeight,
+          body: Theme(
+            data: themeOfApp,
             child: Stack(
               children: [
                 BackArt(),
@@ -237,8 +236,8 @@ class _InterfaceState extends State<Interface> {
               ],
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }

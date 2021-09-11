@@ -50,6 +50,8 @@ Map<String, String> changelogs = {
 ThemeData themeOfApp = ThemeData(
   splashFactory: CustomRipple.splashFactory,
   unselectedWidgetColor: Colors.grey[900],
+  scaffoldBackgroundColor: kMaterialBlack,
+  // materialTapTargetSize: ,
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     isAlwaysShown: false,

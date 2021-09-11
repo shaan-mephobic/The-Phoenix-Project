@@ -91,7 +91,6 @@ class Begin extends StatefulWidget {
 
 class _BeginState extends State<Begin>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-      
   bool exitapp = false;
   bool isonexit = false;
   bool stackedPhoenix = false;
@@ -157,7 +156,6 @@ class _BeginState extends State<Begin>
         musicBox.put("timeBasedDark", false);
       }
     }
-
     if (refresh) {
       print("Refreshing...");
       refresh = false;
@@ -212,137 +210,644 @@ class _BeginState extends State<Begin>
           renderPanelSheet: true,
           color: Colors.transparent,
           panel: NowPlaying(),
-          body: Container(
-            color: Colors.black,
-            child: Stack(
-              children: [
-                BackArt(),
-                SafeArea(
-                  top: true,
-                  child: Column(
-                    children: [
-                      Container(
-                        width: orientedCar ? deviceHeight : deviceWidth,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+          body: Stack(
+            children: [
+              BackArt(),
+              SafeArea(
+                top: true,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: orientedCar ? deviceHeight : deviceWidth,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding:
+                                  EdgeInsets.only(top: deviceHeight / 100)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                  child: Stack(
+                                children: [
+                                  Visibility(
+                                    visible: stackedPhoenix,
+                                    child: Text(
+                                      "  PHOENIX",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: orientedCar
+                                              ? deviceWidth / 16
+                                              : deviceHeight / 32,
+                                          fontFamily: "NightMachine"),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: !stackedPhoenix,
+                                    child: AnimatedTextKit(
+                                      animatedTexts: [
+                                        TypewriterAnimatedText(
+                                          "  PHOENIX",
+                                          cursor: " ",
+                                          speed: Duration(milliseconds: 70),
+                                          textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: orientedCar
+                                                  ? deviceWidth / 16
+                                                  : deviceHeight / 32,
+                                              fontFamily: "NightMachine"),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ],
+                                      isRepeatingAnimation: false,
+                                      onFinished: () {
+                                        stackedPhoenix = true;
+                                        rootState.provideman();
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(
+                                  top: orientedCar
+                                      ? deviceWidth > 400
+                                          ? 5
+                                          : 0
+                                      : deviceHeight > 900
+                                          ? 5
+                                          : 0)),
+                          TabBar(
+                            unselectedLabelColor:
+                                musicBox.get("dynamicArtDB") ?? true
+                                    ? Colors.white24
+                                    : darkModeOn
+                                        ? Colors.white24
+                                        : Colors.black12,
+                            labelColor: musicBox.get("dynamicArtDB") ?? true
+                                ? Colors.white
+                                : darkModeOn
+                                    ? Colors.white
+                                    : Colors.black,
+                            indicatorWeight: 0.000001,
+                            isScrollable: true,
+                            enableFeedback: false,
+                            physics: ScrollPhysics(),
+                            controller: _tabController,
+                            tabs: tabsData(deviceWidth, deviceHeight),
+                            indicatorColor: Colors.transparent,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(bottom: isPlayerShown ? 60 : 0),
+                        child: TabBarView(
+                          physics: CustomPageViewScrollPhysics(),
+                          controller: _tabController,
                           children: [
-                            Padding(
-                                padding:
-                                    EdgeInsets.only(top: deviceHeight / 100)),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                    child: Stack(
-                                  children: [
-                                    Visibility(
-                                      visible: stackedPhoenix,
-                                      child: Text(
-                                        "  PHOENIX",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: orientedCar
-                                                ? deviceWidth / 16
-                                                : deviceHeight / 32,
-                                            fontFamily: "NightMachine"),
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
-                                    Visibility(
-                                      visible: !stackedPhoenix,
-                                      child: AnimatedTextKit(
-                                        animatedTexts: [
-                                          TypewriterAnimatedText(
-                                            "  PHOENIX",
-                                            cursor: " ",
-                                            speed: Duration(milliseconds: 70),
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: orientedCar
-                                                    ? deviceWidth / 16
-                                                    : deviceHeight / 32,
-                                                fontFamily: "NightMachine"),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                        ],
-                                        isRepeatingAnimation: false,
-                                        onFinished: () {
-                                          stackedPhoenix = true;
-                                          rootState.provideman();
-                                        },
-                                      ),
-                                      // );
-                                    ),
-                                  ],
-                                )),
-                              ],
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    top: orientedCar
-                                        ? deviceWidth > 400
-                                            ? 5
-                                            : 0
-                                        : deviceHeight > 900
-                                            ? 5
-                                            : 0)),
-                            TabBar(
-                              unselectedLabelColor:
-                                  musicBox.get("dynamicArtDB") ?? true
-                                      ? Colors.white24
-                                      : darkModeOn
-                                          ? Colors.white24
-                                          : Colors.black12,
-                              labelColor: musicBox.get("dynamicArtDB") ?? true
-                                  ? Colors.white
-                                  : darkModeOn
-                                      ? Colors.white
-                                      : Colors.black,
-                              indicatorWeight: 0.000001,
-                              isScrollable: true,
-                              enableFeedback: false,
-                              physics: ScrollPhysics(),
-                              controller: _tabController,
-                              tabs: tabsData(deviceWidth, deviceHeight),
-                              indicatorColor: Colors.transparent,
-                            ),
+                            Mansion(),
+                            Allofem(),
+                            Albums(),
+                            Artists(),
+                            Genres(),
+                            Playlist()
                           ],
                         ),
                       ),
-                      Expanded(
-                        child: Container(
-                          padding:
-                              EdgeInsets.only(bottom: isPlayerShown ? 60 : 0),
-                          child: TabBarView(
-                            physics: CustomPageViewScrollPhysics(),
-                            controller: _tabController,
-                            children: [
-                              Mansion(),
-                              Allofem(),
-                              Albums(),
-                              Artists(),
-                              Genres(),
-                              Playlist()
-                            ],
+                    ),
+                  ],
+                ),
+              ),
+              SafeArea(
+                right: true,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: deviceHeight / 100,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                orientedCar
+                                    ? deviceWidth / 16 / 2
+                                    : deviceHeight / 36 / 2)),
+                            child: Icon(
+                              Phoenixtest.svging,
+                              color: musicBox.get("dynamicArtDB") ?? true
+                                  ? bgPhoenixVisualizer
+                                      ? Colors.white
+                                      : Colors.white.withOpacity(0.4)
+                                  : darkModeOn
+                                      ? bgPhoenixVisualizer
+                                          ? Colors.white
+                                          : Colors.white38
+                                      : bgPhoenixVisualizer
+                                          ? Colors.black
+                                          : Colors.black38,
+                              size: orientedCar
+                                  ? deviceWidth / 16
+                                  : deviceHeight / 36,
+                            ),
+                            onTap: () async {
+                              if (bgPhoenixVisualizer) {
+                                stopkotlinVisualizer();
+                                rootState.provideman();
+                                bgPhoenixVisualizer = false;
+                                isFlashin = false;
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return StatefulBuilder(
+                                      builder: (context, StateSetter setState) {
+                                        return Center(
+                                          child: SingleChildScrollView(
+                                            physics: BouncingScrollPhysics(),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  flex: 0,
+                                                  child: Container(
+                                                    height: orientedCar
+                                                        ? deviceHeight / 1.4
+                                                        : deviceWidth * 1.3,
+                                                    width: orientedCar
+                                                        ? deviceHeight / 1.5
+                                                        : deviceWidth / 1.2,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              kRounded),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              kRounded),
+                                                      child: BackdropFilter(
+                                                        filter:
+                                                            ImageFilter.blur(
+                                                                sigmaX: 20,
+                                                                sigmaY: 20),
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          kRounded),
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .white
+                                                                      .withOpacity(
+                                                                          0.04)),
+                                                              color: Colors
+                                                                  .white
+                                                                  .withOpacity(
+                                                                      0.05)),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceAround,
+                                                            children: [
+                                                              Text(
+                                                                "PHOENIX VISUALIZER",
+                                                                style:
+                                                                    TextStyle(
+                                                                  inherit:
+                                                                      false,
+                                                                  color: darkModeOn
+                                                                      ? Colors
+                                                                          .white
+                                                                      : Colors
+                                                                          .black,
+                                                                  fontFamily:
+                                                                      "Urban",
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize:
+                                                                      deviceWidth /
+                                                                          14,
+                                                                ),
+                                                              ),
+                                                              Center(
+                                                                child:
+                                                                    SleekCircularSlider(
+                                                                  appearance:
+                                                                      CircularSliderAppearance(
+                                                                    infoProperties:
+                                                                        InfoProperties(
+                                                                      bottomLabelStyle:
+                                                                          TextStyle(
+                                                                        inherit:
+                                                                            false,
+                                                                        fontFamily:
+                                                                            'Urban',
+                                                                        color: darkModeOn
+                                                                            ? Colors.white
+                                                                            : Colors.black,
+                                                                        fontSize:
+                                                                            deviceHeight /
+                                                                                60,
+                                                                      ),
+                                                                      bottomLabelText:
+                                                                          'SENSITIVITY',
+                                                                      mainLabelStyle: TextStyle(
+                                                                          inherit:
+                                                                              false,
+                                                                          fontFamily:
+                                                                              'Urban',
+                                                                          color: darkModeOn
+                                                                              ? Colors
+                                                                                  .white
+                                                                              : Colors
+                                                                                  .black,
+                                                                          fontSize: deviceHeight /
+                                                                              40,
+                                                                          fontWeight:
+                                                                              FontWeight.w400),
+                                                                    ),
+                                                                    size:
+                                                                        deviceHeight /
+                                                                            6,
+                                                                    customColors:
+                                                                        CustomSliderColors(
+                                                                      progressBarColor: darkModeOn
+                                                                          ? Color(
+                                                                              0xFFCF6679)
+                                                                          : Color(
+                                                                              0xFFB00020),
+                                                                    ),
+                                                                    customWidths:
+                                                                        CustomSliderWidths(
+                                                                            progressBarWidth:
+                                                                                deviceWidth / 65),
+                                                                  ),
+                                                                  min: 0,
+                                                                  max: 100,
+                                                                  initialValue:
+                                                                      defaultSensitivity,
+                                                                  onChange: (double
+                                                                      value) async {
+                                                                    goSensitivity(35 +
+                                                                        (value *
+                                                                            0.3));
+                                                                    defaultSensitivity =
+                                                                        value;
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              Material(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            kRounded),
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child: InkWell(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              kRounded),
+                                                                  onTap: () {
+                                                                    bgPhoenixVisualizer =
+                                                                        true;
+                                                                    if (!isFlashin) {
+                                                                      isFlashin =
+                                                                          true;
+                                                                      kotlinVisualizer();
+                                                                    }
+
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        deviceWidth /
+                                                                            12,
+                                                                    width:
+                                                                        deviceWidth /
+                                                                            4,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: Color(
+                                                                          0xFF1DB954),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              kRounded),
+                                                                    ),
+                                                                    child:
+                                                                        Center(
+                                                                      child: Text(
+                                                                          "START",
+                                                                          textAlign: TextAlign
+                                                                              .center,
+                                                                          style:
+                                                                              TextStyle(
+                                                                            inherit:
+                                                                                false,
+                                                                            color:
+                                                                                Colors.black,
+                                                                            fontSize:
+                                                                                deviceWidth / 25,
+                                                                            fontFamily:
+                                                                                'Urban',
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          )),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                padding: EdgeInsets.only(
+                                                                    left:
+                                                                        deviceWidth /
+                                                                            10,
+                                                                    right:
+                                                                        deviceWidth /
+                                                                            10),
+                                                                child: Text(
+                                                                  "NOTE: This will run in the background until stopped, causing battery drain",
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  maxLines: 2,
+                                                                  style: TextStyle(
+                                                                      inherit:
+                                                                          false,
+                                                                      color: darkModeOn
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                      fontSize:
+                                                                          deviceWidth /
+                                                                              30,
+                                                                      fontFamily:
+                                                                          'Urban'),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                                rootState.provideman();
+                              }
+                            },
+                            onLongPress: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return StatefulBuilder(
+                                    builder: (context, StateSetter setState) {
+                                      return Center(
+                                        child: SingleChildScrollView(
+                                          physics: BouncingScrollPhysics(),
+                                          child: Column(
+                                            children: [
+                                              Expanded(
+                                                flex: 0,
+                                                child: Container(
+                                                  height: orientedCar
+                                                      ? deviceHeight / 1.4
+                                                      : deviceWidth * 1.3,
+                                                  width: orientedCar
+                                                      ? deviceHeight / 1.5
+                                                      : deviceWidth / 1.2,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            kRounded),
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            kRounded),
+                                                    child: BackdropFilter(
+                                                      filter: ImageFilter.blur(
+                                                          sigmaX: 20,
+                                                          sigmaY: 20),
+                                                      child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        kRounded),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .white
+                                                                    .withOpacity(
+                                                                        0.04)),
+                                                            color: Colors.white
+                                                                .withOpacity(
+                                                                    0.05)),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            Text(
+                                                              "PHOENIX VISUALIZER",
+                                                              style: TextStyle(
+                                                                inherit: false,
+                                                                color: darkModeOn
+                                                                    ? Colors
+                                                                        .white
+                                                                    : Colors
+                                                                        .black,
+                                                                fontFamily:
+                                                                    "Urban",
+                                                                fontSize:
+                                                                    deviceWidth /
+                                                                        14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                              ),
+                                                            ),
+                                                            Center(
+                                                              child:
+                                                                  SleekCircularSlider(
+                                                                appearance:
+                                                                    CircularSliderAppearance(
+                                                                  // animationEnabled: sensitivityanimation,
+                                                                  infoProperties:
+                                                                      InfoProperties(
+                                                                    bottomLabelStyle:
+                                                                        TextStyle(
+                                                                      inherit:
+                                                                          false,
+
+                                                                      fontFamily:
+                                                                          'Urban',
+                                                                      color: darkModeOn
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                      fontSize:
+                                                                          deviceHeight /
+                                                                              60,
+                                                                      // fontWeight: FontWeight.w600
+                                                                    ),
+                                                                    bottomLabelText:
+                                                                        'SENSITIVITY',
+                                                                    mainLabelStyle:
+                                                                        TextStyle(
+                                                                      inherit:
+                                                                          false,
+                                                                      fontFamily:
+                                                                          'Urban',
+                                                                      color: darkModeOn
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                      fontSize:
+                                                                          deviceHeight /
+                                                                              40,
+                                                                    ),
+                                                                  ),
+                                                                  size:
+                                                                      deviceHeight /
+                                                                          6,
+                                                                  customColors:
+                                                                      CustomSliderColors(
+                                                                    progressBarColor: darkModeOn
+                                                                        ? Color(
+                                                                            0xFFCF6679)
+                                                                        : Color(
+                                                                            0xFFB00020),
+                                                                  ),
+
+                                                                  customWidths: CustomSliderWidths(
+                                                                      progressBarWidth:
+                                                                          deviceWidth /
+                                                                              65),
+                                                                ),
+                                                                min: 0,
+                                                                max: 100,
+                                                                initialValue:
+                                                                    defaultSensitivity,
+                                                                onChange: (double
+                                                                    value) async {
+                                                                  goSensitivity(35 +
+                                                                      (value *
+                                                                          0.3));
+                                                                  defaultSensitivity =
+                                                                      value;
+                                                                },
+                                                              ),
+                                                            ),
+                                                            Material(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          kRounded),
+                                                              color: Colors
+                                                                  .transparent,
+                                                              child: InkWell(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            kRounded),
+                                                                onTap: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  height:
+                                                                      deviceWidth /
+                                                                          12,
+                                                                  width:
+                                                                      deviceWidth /
+                                                                          4,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: Color(
+                                                                        0xFF1DB954),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            kRounded),
+                                                                  ),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                        "DONE",
+                                                                        textAlign:
+                                                                            TextAlign
+                                                                                .center,
+                                                                        style: TextStyle(
+                                                                            inherit:
+                                                                                false,
+                                                                            color: Colors
+                                                                                .black,
+                                                                            fontSize: deviceWidth /
+                                                                                25,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontFamily: 'Urban')),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                SafeArea(
-                  right: true,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: deviceHeight / 100,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
+                        Visibility(
+                          visible: DateTime.now().hour >= 19 ||
+                                  DateTime.now().hour <= 6
+                              ? true
+                              : false,
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: orientedCar
+                                    ? deviceHeight / 32
+                                    : deviceWidth / 16),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
@@ -350,617 +855,148 @@ class _BeginState extends State<Begin>
                                     orientedCar
                                         ? deviceWidth / 16 / 2
                                         : deviceHeight / 36 / 2)),
-                                // splashColor: Color(0xFF05464f),
                                 child: Icon(
-                                  Phoenixtest.svging,
-                                  color: musicBox.get("dynamicArtDB") ?? true
-                                      ? bgPhoenixVisualizer
-                                          ? Colors.white
-                                          : Colors.white.withOpacity(0.4)
-                                      : darkModeOn
-                                          ? bgPhoenixVisualizer
-                                              ? Colors.white
-                                              : Colors.white38
-                                          : bgPhoenixVisualizer
-                                              ? Colors.black
-                                              : Colors.black38,
+                                  musicBox.get("timeBasedDark") == null
+                                      ? MIcon.riMoonLine
+                                      : musicBox.get("timeBasedDark")
+                                          ? MIcon.riMoonFill
+                                          : MIcon.riMoonLine,
+                                  color: Colors.white,
                                   size: orientedCar
                                       ? deviceWidth / 16
                                       : deviceHeight / 36,
                                 ),
                                 onTap: () async {
-                                  if (bgPhoenixVisualizer) {
-                                    stopkotlinVisualizer();
-                                    rootState.provideman();
-                                    bgPhoenixVisualizer = false;
-                                    isFlashin = false;
+                                  if (!(musicBox.get("timeBasedDark") == null
+                                      ? false
+                                      : musicBox.get("timeBasedDark"))) {
+                                    await musicBox.put("timeBasedDark", true);
+                                    await musicBox.put("dynamicArtDB", false);
+
+                                    musicBox.put("timeBasedDark", true);
                                   } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return StatefulBuilder(
-                                          builder:
-                                              (context, StateSetter setState) {
-                                            return Center(
-                                              child: SingleChildScrollView(
-                                                physics:
-                                                    BouncingScrollPhysics(),
-                                                child: Column(
-                                                  children: [
-                                                    Expanded(
-                                                        flex: 0,
-                                                        child: Container(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: Container(
-                                                            height: orientedCar
-                                                                ? deviceHeight /
-                                                                    1.4
-                                                                : deviceWidth *
-                                                                    1.3,
-                                                            width: orientedCar
-                                                                ? deviceHeight /
-                                                                    1.5
-                                                                : deviceWidth /
-                                                                    1.2,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          kRounded),
-                                                            ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          kRounded),
-                                                              // make sure we apply clip it properly
-                                                              child:
-                                                                  BackdropFilter(
-                                                                filter: ImageFilter
-                                                                    .blur(
-                                                                        sigmaX:
-                                                                            20,
-                                                                        sigmaY:
-                                                                            20),
-                                                                child:
-                                                                    Container(
-                                                                  decoration: BoxDecoration(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              kRounded),
-                                                                      border: Border.all(
-                                                                          color: Colors.white.withOpacity(
-                                                                              0.04)),
-                                                                      color: Colors
-                                                                          .white
-                                                                          .withOpacity(
-                                                                              0.05)),
-                                                                  alignment:
-                                                                      Alignment
-                                                                          .center,
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceAround,
-                                                                    children: [
-                                                                      Text(
-                                                                        "PHOENIX VISUALIZER",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          inherit:
-                                                                              false,
-                                                                          color: darkModeOn
-                                                                              ? Colors.white
-                                                                              : Colors.black,
-                                                                          fontFamily:
-                                                                              "Urban",
-                                                                          fontWeight:
-                                                                              FontWeight.w700,
-                                                                          fontSize:
-                                                                              deviceWidth / 14,
-                                                                        ),
-                                                                      ),
-                                                                      Center(
-                                                                        child:
-                                                                            SleekCircularSlider(
-                                                                          appearance:
-                                                                              CircularSliderAppearance(
-                                                                            infoProperties:
-                                                                                InfoProperties(
-                                                                              bottomLabelStyle: TextStyle(
-                                                                                inherit: false,
-                                                                                fontFamily: 'Urban',
-                                                                                color: darkModeOn ? Colors.white : Colors.black,
-                                                                                fontSize: deviceHeight / 60,
-                                                                              ),
-                                                                              bottomLabelText: 'SENSITIVITY',
-                                                                              mainLabelStyle: TextStyle(inherit: false, fontFamily: 'Urban', color: darkModeOn ? Colors.white : Colors.black, fontSize: deviceHeight / 40, fontWeight: FontWeight.w400),
-                                                                            ),
-                                                                            size:
-                                                                                deviceHeight / 6,
-                                                                            customColors:
-                                                                                CustomSliderColors(
-                                                                              progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
-                                                                            ),
-                                                                            customWidths:
-                                                                                CustomSliderWidths(progressBarWidth: deviceWidth / 65),
-                                                                          ),
-                                                                          min:
-                                                                              0,
-                                                                          max:
-                                                                              100,
-                                                                          initialValue:
-                                                                              defaultSensitivity,
-                                                                          onChange:
-                                                                              (double value) async {
-                                                                            goSensitivity(35 +
-                                                                                (value * 0.3));
-                                                                            defaultSensitivity =
-                                                                                value;
-                                                                          },
-                                                                        ),
-                                                                      ),
-                                                                      Material(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(kRounded),
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                        child:
-                                                                            InkWell(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(kRounded),
-                                                                          onTap:
-                                                                              () {
-                                                                            bgPhoenixVisualizer =
-                                                                                true;
-                                                                            if (!isFlashin) {
-                                                                              isFlashin = true;
-                                                                              kotlinVisualizer();
-                                                                            }
+                                    await musicBox.put("timeBasedDark", false);
+                                    await musicBox.put("dynamicArtDB", true);
 
-                                                                            Navigator.pop(context);
-                                                                          },
-                                                                          child:
-                                                                              Container(
-                                                                            height:
-                                                                                deviceWidth / 12,
-                                                                            width:
-                                                                                deviceWidth / 4,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: Color(0xFF1DB954),
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                            ),
-                                                                            child:
-                                                                                Center(
-                                                                              child: Text("START",
-                                                                                  textAlign: TextAlign.center,
-                                                                                  style: TextStyle(
-                                                                                    inherit: false,
-                                                                                    color: Colors.black,
-                                                                                    fontSize: deviceWidth / 25,
-                                                                                    fontFamily: 'Urban',
-                                                                                    fontWeight: FontWeight.w600,
-                                                                                  )),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                        padding: EdgeInsets.only(
-                                                                            left: deviceWidth /
-                                                                                10,
-                                                                            right:
-                                                                                deviceWidth / 10),
-                                                                        child:
-                                                                            Text(
-                                                                          "NOTE: This will run in the background until stopped, causing battery drain",
-                                                                          textAlign:
-                                                                              TextAlign.center,
-                                                                          maxLines:
-                                                                              2,
-                                                                          style: TextStyle(
-                                                                              inherit: false,
-                                                                              color: darkModeOn ? Colors.white : Colors.black,
-                                                                              fontSize: deviceWidth / 30,
-                                                                              fontFamily: 'Urban'),
-                                                                        ),
-                                                                      )
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ))
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    );
-                                    rootState.provideman();
+                                    musicBox.put("timeBasedDark", false);
                                   }
+
+                                  rootState.provideman();
                                 },
-                                onLongPress: () async {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return StatefulBuilder(
-                                        builder:
-                                            (context, StateSetter setState) {
-                                          return Center(
-                                            child: SingleChildScrollView(
-                                              physics: BouncingScrollPhysics(),
-                                              child: Column(
-                                                children: [
-                                                  Expanded(
-                                                    flex: 0,
-                                                    child: Container(
-                                                      height: orientedCar
-                                                          ? deviceHeight / 1.4
-                                                          : deviceWidth * 1.3,
-                                                      width: orientedCar
-                                                          ? deviceHeight / 1.5
-                                                          : deviceWidth / 1.2,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    kRounded),
-                                                      ),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    kRounded),
-                                                        child: BackdropFilter(
-                                                          filter:
-                                                              ImageFilter.blur(
-                                                                  sigmaX: 20,
-                                                                  sigmaY: 20),
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            kRounded),
-                                                                border: Border.all(
-                                                                    color: Colors
-                                                                        .white
-                                                                        .withOpacity(
-                                                                            0.04)),
-                                                                color: Colors
-                                                                    .white
-                                                                    .withOpacity(
-                                                                        0.05)),
-                                                            alignment: Alignment
-                                                                .center,
-                                                            child: Column(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceAround,
-                                                              children: [
-                                                                Text(
-                                                                  "PHOENIX VISUALIZER",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    inherit:
-                                                                        false,
-                                                                    color: darkModeOn
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black,
-                                                                    fontFamily:
-                                                                        "Urban",
-                                                                    fontSize:
-                                                                        deviceWidth /
-                                                                            14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                                Center(
-                                                                  child:
-                                                                      SleekCircularSlider(
-                                                                    appearance:
-                                                                        CircularSliderAppearance(
-                                                                      // animationEnabled: sensitivityanimation,
-                                                                      infoProperties:
-                                                                          InfoProperties(
-                                                                        bottomLabelStyle:
-                                                                            TextStyle(
-                                                                          inherit:
-                                                                              false,
-
-                                                                          fontFamily:
-                                                                              'Urban',
-                                                                          color: darkModeOn
-                                                                              ? Colors.white
-                                                                              : Colors.black,
-                                                                          fontSize:
-                                                                              deviceHeight / 60,
-                                                                          // fontWeight: FontWeight.w600
-                                                                        ),
-                                                                        bottomLabelText:
-                                                                            'SENSITIVITY',
-                                                                        mainLabelStyle:
-                                                                            TextStyle(
-                                                                          inherit:
-                                                                              false,
-                                                                          fontFamily:
-                                                                              'Urban',
-                                                                          color: darkModeOn
-                                                                              ? Colors.white
-                                                                              : Colors.black,
-                                                                          fontSize:
-                                                                              deviceHeight / 40,
-                                                                        ),
-                                                                      ),
-                                                                      size:
-                                                                          deviceHeight /
-                                                                              6,
-                                                                      customColors:
-                                                                          CustomSliderColors(
-                                                                        progressBarColor: darkModeOn
-                                                                            ? Color(0xFFCF6679)
-                                                                            : Color(0xFFB00020),
-                                                                      ),
-
-                                                                      customWidths:
-                                                                          CustomSliderWidths(
-                                                                              progressBarWidth: deviceWidth / 65),
-                                                                    ),
-                                                                    min: 0,
-                                                                    max: 100,
-                                                                    initialValue:
-                                                                        defaultSensitivity,
-                                                                    onChange:
-                                                                        (double
-                                                                            value) async {
-                                                                      goSensitivity(35 +
-                                                                          (value *
-                                                                              0.3));
-                                                                      defaultSensitivity =
-                                                                          value;
-                                                                    },
-                                                                  ),
-                                                                ),
-                                                                Material(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              kRounded),
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  child:
-                                                                      InkWell(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            kRounded),
-                                                                    onTap: () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          deviceWidth /
-                                                                              12,
-                                                                      width:
-                                                                          deviceWidth /
-                                                                              4,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: Color(
-                                                                            0xFF1DB954),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(kRounded),
-                                                                      ),
-                                                                      child:
-                                                                          Center(
-                                                                        child: Text(
-                                                                            "DONE",
-                                                                            textAlign: TextAlign
-                                                                                .center,
-                                                                            style: TextStyle(
-                                                                                inherit: false,
-                                                                                color: Colors.black,
-                                                                                fontSize: deviceWidth / 25,
-                                                                                fontWeight: FontWeight.w600,
-                                                                                fontFamily: 'Urban')),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            // ),
-                                          );
-                                        },
-                                      );
-                                    },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              left: orientedCar
+                                  ? deviceHeight / 32
+                                  : deviceWidth / 16),
+                          child: Hero(
+                            tag: "aslongasiwakeup",
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    orientedCar
+                                        ? deviceWidth / 16 / 2
+                                        : deviceHeight / 36 / 2)),
+                                child: Icon(
+                                  MIcon.riSearchLine,
+                                  color: musicBox.get("dynamicArtDB") ?? true
+                                      ? Colors.white
+                                      : darkModeOn
+                                          ? Colors.white
+                                          : Colors.black,
+                                  size: orientedCar
+                                      ? deviceWidth / 17
+                                      : deviceHeight / 36,
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MultiProvider(
+                                        providers: [
+                                          ChangeNotifierProvider<
+                                              Astronautintheocean>(
+                                            create: (_) =>
+                                                Astronautintheocean(),
+                                          ),
+                                          ChangeNotifierProvider<Leprovider>(
+                                            create: (_) => Leprovider(),
+                                          ),
+                                        ],
+                                        builder: (context, child) => Searchin(),
+                                      ),
+                                    ),
                                   );
                                 },
                               ),
                             ),
                           ),
-                          Visibility(
-                            visible: DateTime.now().hour >= 19 ||
-                                    DateTime.now().hour <= 6
-                                ? true
-                                : false,
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                  left: orientedCar
-                                      ? deviceHeight / 32
-                                      : deviceWidth / 16),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(orientedCar
-                                          ? deviceWidth / 16 / 2
-                                          : deviceHeight / 36 / 2)),
-                                  child: Icon(
-                                    musicBox.get("timeBasedDark") == null
-                                        ? MIcon.riMoonLine
-                                        : musicBox.get("timeBasedDark")
-                                            ? MIcon.riMoonFill
-                                            : MIcon.riMoonLine,
-                                    color: Colors.white,
-                                    size: orientedCar
-                                        ? deviceWidth / 16
-                                        : deviceHeight / 36,
-                                  ),
-                                  onTap: () async {
-                                    if (!(musicBox.get("timeBasedDark") == null
-                                        ? false
-                                        : musicBox.get("timeBasedDark"))) {
-                                      await musicBox.put("timeBasedDark", true);
-                                      await musicBox.put("dynamicArtDB", false);
-
-                                      musicBox.put("timeBasedDark", true);
-                                    } else {
-                                      await musicBox.put(
-                                          "timeBasedDark", false);
-                                      await musicBox.put("dynamicArtDB", true);
-
-                                      musicBox.put("timeBasedDark", false);
-                                    }
-
-                                    rootState.provideman();
-                                  },
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                              left: orientedCar
+                                  ? deviceHeight / 32
+                                  : deviceWidth / 16,
+                              right: orientedCar
+                                  ? deviceHeight / 80
+                                  : deviceWidth / 40),
+                          child: Hero(
+                            tag: "fortress",
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    orientedCar
+                                        ? deviceWidth / 16 / 2
+                                        : deviceHeight / 36 / 2)),
+                                child: Icon(
+                                  Ionicons.settings_outline,
+                                  color: musicBox.get("dynamicArtDB") ?? true
+                                      ? Colors.white
+                                      : darkModeOn
+                                          ? Colors.white
+                                          : Colors.black,
+                                  size: orientedCar
+                                      ? deviceWidth / 17
+                                      : deviceHeight / 36,
                                 ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: orientedCar
-                                    ? deviceHeight / 32
-                                    : deviceWidth / 16),
-                            child: Hero(
-                              tag: "aslongasiwakeup",
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(orientedCar
-                                          ? deviceWidth / 16 / 2
-                                          : deviceHeight / 36 / 2)),
-                                  child: Icon(
-                                    MIcon.riSearchLine,
-                                    color: musicBox.get("dynamicArtDB") ?? true
-                                        ? Colors.white
-                                        : darkModeOn
-                                            ? Colors.white
-                                            : Colors.black,
-                                    size: orientedCar
-                                        ? deviceWidth / 17
-                                        : deviceHeight / 36,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => MultiProvider(
-                                          providers: [
-                                            ChangeNotifierProvider<
-                                                Astronautintheocean>(
-                                              create: (_) =>
-                                                  Astronautintheocean(),
-                                            ),
-                                            ChangeNotifierProvider<Leprovider>(
-                                              create: (_) => Leprovider(),
-                                            ),
-                                          ],
-                                          builder: (context, child) =>
-                                              Searchin(),
-                                        ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      maintainState: true,
+                                      builder: (context) => MultiProvider(
+                                        providers: [
+                                          ChangeNotifierProvider<Leprovider>(
+                                            create: (_) => Leprovider(),
+                                          ),
+                                          ChangeNotifierProvider<MrMan>(
+                                            create: (_) => MrMan(),
+                                          ),
+                                        ],
+                                        builder: (context, child) => Settings(),
                                       ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: orientedCar
-                                    ? deviceHeight / 32
-                                    : deviceWidth / 16,
-                                right: orientedCar
-                                    ? deviceHeight / 80
-                                    : deviceWidth / 40),
-                            child: Hero(
-                              tag: "fortress",
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(orientedCar
-                                          ? deviceWidth / 16 / 2
-                                          : deviceHeight / 36 / 2)),
-                                  child: Icon(
-                                    Ionicons.settings_outline,
-                                    color: musicBox.get("dynamicArtDB") ?? true
-                                        ? Colors.white
-                                        : darkModeOn
-                                            ? Colors.white
-                                            : Colors.black,
-                                    size: orientedCar
-                                        ? deviceWidth / 17
-                                        : deviceHeight / 36,
-                                  ),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        maintainState: true,
-                                        builder: (context) => MultiProvider(
-                                          providers: [
-                                            ChangeNotifierProvider<Leprovider>(
-                                              create: (_) => Leprovider(),
-                                            ),
-                                            ChangeNotifierProvider<MrMan>(
-                                              create: (_) => MrMan(),
-                                            ),
-                                          ],
-                                          builder: (context, child) =>
-                                              Settings(),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
+      // ),
     );
   }
 

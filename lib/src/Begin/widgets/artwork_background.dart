@@ -8,16 +8,11 @@ var globaltaste;
 class BackArt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     bool darkModeOn = true;
     if (musicBox.get("dynamicArtDB") ?? true) {
-
-      return Container(
-        child: AnimatedCrossFade(
-
+      return AnimatedCrossFade(
           duration: Duration(milliseconds: crossfadeDuration),
           firstChild: Container(
-          
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: MemoryImage(art),
@@ -25,7 +20,6 @@ class BackArt extends StatelessWidget {
               ),
             ),
             child: ClipRRect(
-            
               child: BackdropFilter(
                 filter: ImageFilter.blur(
                     sigmaX: artworkBlurConst, sigmaY: artworkBlurConst),
@@ -33,17 +27,16 @@ class BackArt extends StatelessWidget {
                   alignment: Alignment.center,
                   color: Colors.black.withOpacity(0.2),
                   child: Center(
-                      child: Container(
-                    height: orientedCar ? deviceWidth : deviceHeight,
-                    width: orientedCar ? deviceHeight : deviceWidth,
-       
-                  )),
+                    child: SizedBox(
+                      height: orientedCar ? deviceWidth : deviceHeight,
+                      width: orientedCar ? deviceHeight : deviceWidth,
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
           secondChild: Container(
-            
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: MemoryImage(art2),
@@ -58,10 +51,9 @@ class BackArt extends StatelessWidget {
                   alignment: Alignment.center,
                   color: Colors.black.withOpacity(0.2),
                   child: Center(
-                    child: Container(
+                    child: SizedBox(
                       height: orientedCar ? deviceWidth : deviceHeight,
                       width: orientedCar ? deviceHeight : deviceWidth,
-                
                     ),
                   ),
                 ),
@@ -70,13 +62,9 @@ class BackArt extends StatelessWidget {
           ),
           crossFadeState:
               first ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-        ),
       );
-    
-
     } else {
       return Container(color: darkModeOn ? kMaterialBlack : Colors.white);
     }
   }
 }
-

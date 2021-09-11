@@ -244,20 +244,15 @@ Future<Widget> onHold(
                                                                             decoration:
                                                                                 BoxDecoration(
                                                                               borderRadius: BorderRadius.circular(kRounded),
-                                                                              // color: Colors.black12,
                                                                             ),
                                                                             alignment:
                                                                                 Alignment.center,
-                                                                            // height: car
-                                                                            //     ? heightOfDevice / 2
-                                                                            //     : widthOfDevice * 1.3,
                                                                             width: car
                                                                                 ? heightOfDevice / 2
                                                                                 : widthOfDevice / 1.2,
                                                                             child:
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(kRounded),
-                                                                              // make sure we apply clip it properly
                                                                               child: BackdropFilter(
                                                                                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                                                                 child: Container(
@@ -281,8 +276,7 @@ Future<Widget> onHold(
                                                                                             Material(
                                                                                               color: Colors.transparent,
                                                                                               child: Center(
-                                                                                                child: Container(
-                                                                                                  // color: Colors.black38,
+                                                                                                child: SizedBox(
                                                                                                   width: car ? heightOfDevice : widthOfDevice,
                                                                                                   height: car ? widthOfDevice / 6 : heightOfDevice / 12.5,
                                                                                                   child: Material(
@@ -309,8 +303,6 @@ Future<Widget> onHold(
                                                                                                             barBlur: 20,
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
-                                                                                                            // leftBarIndicatorColor:
-                                                                                                            //     Color(0xFFCB0047),
                                                                                                           )..show(context);
                                                                                                         } else {
                                                                                                           check[check.keys.toList()[o]].add(listOfSong[index].data);
@@ -333,13 +325,11 @@ Future<Widget> onHold(
                                                                                                             barBlur: 20,
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
-                                                                                                            // leftBarIndicatorColor:
-                                                                                                            //     Color(0xFFCB0047),
                                                                                                           )..show(context);
                                                                                                         }
                                                                                                       },
                                                                                                       child: Center(
-                                                                                                        child: Container(
+                                                                                                        child: Padding(
                                                                                                           padding: EdgeInsets.only(left: 12),
                                                                                                           child: Text(
                                                                                                             check.keys.toList()[o],
@@ -404,9 +394,6 @@ Future<Widget> onHold(
                                                                 path: listOfSong[
                                                                         index]
                                                                     .data);
-
-                                                        // print(
-                                                        //     tag);
                                                         var titleOfSong =
                                                             tag.title;
                                                         var artistOfSong =
@@ -446,16 +433,11 @@ Future<Widget> onHold(
                                                                                 Container(
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // color: Colors.black12,
                                                                               ),
                                                                               alignment: Alignment.center,
-                                                                              // height: car
-                                                                              //     ? heightOfDevice / 2
-                                                                              //     : widthOfDevice * 1.3,
                                                                               width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // make sure we apply clip it properly
                                                                                 child: BackdropFilter(
                                                                                   filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                                                                   child: Container(
@@ -471,19 +453,8 @@ Future<Widget> onHold(
                                                                                         Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 16 : heightOfDevice / 40)),
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: widthOfDevice / 120,
-                                                                                              //   ),
-                                                                                              // ],
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -525,14 +496,6 @@ Future<Widget> onHold(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
                                                                                             decoration: BoxDecoration(
                                                                                               color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: widthOfDevice / 120,
-                                                                                              //   ),
-                                                                                              // ],
                                                                                             ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
@@ -571,19 +534,8 @@ Future<Widget> onHold(
                                                                                         ///Artist
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: widthOfDevice / 120,
-                                                                                              //   ),
-                                                                                              // ],
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -621,11 +573,8 @@ Future<Widget> onHold(
                                                                                         ///Genre
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -659,7 +608,6 @@ Future<Widget> onHold(
                                                                                           ),
                                                                                         ),
                                                                                         Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
-
                                                                                         Padding(padding: EdgeInsets.only(top: car ? widthOfDevice / 8 : heightOfDevice / 20)),
                                                                                         Material(
                                                                                           borderRadius: BorderRadius.circular(kRounded),
@@ -722,7 +670,6 @@ Future<Widget> onHold(
                                                             color: Color(
                                                                 0xFFCB0447),
                                                           ),
-
                                                           shouldIconPulse: true,
                                                           borderColor: Colors
                                                               .white
@@ -743,7 +690,6 @@ Future<Widget> onHold(
                                                                   .HORIZONTAL,
                                                           duration: Duration(
                                                               seconds: 5),
-
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -752,8 +698,6 @@ Future<Widget> onHold(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
                                                         )..show(context);
                                                       }
                                                     }
@@ -780,7 +724,7 @@ Future<Widget> onHold(
                                                   }
                                                 },
                                                 child: Center(
-                                                  child: Container(
+                                                  child: Padding(
                                                     padding: EdgeInsets.only(
                                                         left: 12),
                                                     child: Text(
@@ -879,16 +823,11 @@ Future<Widget> onHoldExtended(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
-                          // color: Colors.black12,
                         ),
                         alignment: Alignment.center,
-                        // height: car
-                        //     ? heightOfDevice / 2
-                        //     : widthOfDevice * 1.3,
                         width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
-                          // make sure we apply clip it properly
                           child: BackdropFilter(
                             filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                             child: Container(
@@ -918,8 +857,7 @@ Future<Widget> onHoldExtended(
                                         Material(
                                           color: Colors.transparent,
                                           child: Center(
-                                            child: Container(
-                                              // color: Colors.black38,
+                                            child: SizedBox(
                                               width: car
                                                   ? heightOfDevice
                                                   : widthOfDevice,
@@ -964,7 +902,6 @@ Future<Widget> onHoldExtended(
                                                             color: Color(
                                                                 0xFFCB0447),
                                                           ),
-
                                                           shouldIconPulse: true,
                                                           dismissDirection:
                                                               FlushbarDismissDirection
@@ -993,8 +930,6 @@ Future<Widget> onHoldExtended(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
                                                         )..show(context);
                                                       } else {
                                                         addToLikedSong(
@@ -1015,7 +950,6 @@ Future<Widget> onHoldExtended(
                                                             color: Color(
                                                                 0xFFCB0447),
                                                           ),
-
                                                           shouldIconPulse: true,
                                                           dismissDirection:
                                                               FlushbarDismissDirection
@@ -1044,8 +978,6 @@ Future<Widget> onHoldExtended(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
                                                         )..show(context);
                                                       }
                                                     } else if (i == 2) {
@@ -1099,8 +1031,6 @@ Future<Widget> onHoldExtended(
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(15),
-                                                          // leftBarIndicatorColor:
-                                                          //     Color(0xFFCB0047),
                                                         )..show(context);
                                                       } else {
                                                         Navigator.pop(context);
@@ -1132,16 +1062,11 @@ Future<Widget> onHoldExtended(
                                                                                 Container(
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // color: Colors.black12,
                                                                               ),
                                                                               alignment: Alignment.center,
-                                                                              // height: car
-                                                                              //     ? heightOfDevice / 2
-                                                                              //     : widthOfDevice * 1.3,
                                                                               width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // make sure we apply clip it properly
                                                                                 child: BackdropFilter(
                                                                                   filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                                                                   child: Container(
@@ -1165,8 +1090,7 @@ Future<Widget> onHoldExtended(
                                                                                               Material(
                                                                                                 color: Colors.transparent,
                                                                                                 child: Center(
-                                                                                                  child: Container(
-                                                                                                    // color: Colors.black38,
+                                                                                                  child: SizedBox(
                                                                                                     width: car ? heightOfDevice : widthOfDevice,
                                                                                                     height: car ? widthOfDevice / 6 : heightOfDevice / 12.5,
                                                                                                     child: Material(
@@ -1193,8 +1117,6 @@ Future<Widget> onHoldExtended(
                                                                                                               barBlur: 20,
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
-                                                                                                              // leftBarIndicatorColor:
-                                                                                                              //     Color(0xFFCB0047),
                                                                                                             )..show(context);
                                                                                                           } else {
                                                                                                             check[check.keys.toList()[o]].add(nowMediaItem.id);
@@ -1217,13 +1139,11 @@ Future<Widget> onHoldExtended(
                                                                                                               barBlur: 20,
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
-                                                                                                              // leftBarIndicatorColor:
-                                                                                                              //     Color(0xFFCB0047),
                                                                                                             )..show(context);
                                                                                                           }
                                                                                                         },
                                                                                                         child: Center(
-                                                                                                          child: Container(
+                                                                                                          child: Padding(
                                                                                                             padding: EdgeInsets.only(left: 12),
                                                                                                             child: Text(
                                                                                                               check.keys.toList()[o],
@@ -1339,16 +1259,11 @@ Future<Widget> onHoldExtended(
                                                                                 Container(
                                                                               decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // color: Colors.black12,
                                                                               ),
                                                                               alignment: Alignment.center,
-                                                                              // height: car
-                                                                              //     ? heightOfDevice / 2
-                                                                              //     : widthOfDevice * 1.3,
                                                                               width: car ? heightOfDevice / 2 : widthOfDevice / 1.2,
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
-                                                                                // make sure we apply clip it properly
                                                                                 child: BackdropFilter(
                                                                                   filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                                                                                   child: Container(
@@ -1364,19 +1279,8 @@ Future<Widget> onHoldExtended(
                                                                                         Padding(padding: EdgeInsets.only(top: orientedCar ? widthOfDevice / 16 : heightOfDevice / 40)),
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: deviceWidth / 120,
-                                                                                              //   ),
-                                                                                              // ],
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -1414,11 +1318,8 @@ Future<Widget> onHoldExtended(
                                                                                         ///ALBUM
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -1456,19 +1357,8 @@ Future<Widget> onHoldExtended(
                                                                                         ///Artist
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: deviceWidth / 120,
-                                                                                              //   ),
-                                                                                              // ],
-                                                                                            ),
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -1506,19 +1396,9 @@ Future<Widget> onHoldExtended(
                                                                                         ///Genre
                                                                                         Material(
                                                                                           color: Colors.transparent,
-                                                                                          child: Container(
+                                                                                          child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                            decoration: BoxDecoration(
-                                                                                              color: Colors.transparent,
-                                                                                              // boxShadow: [
-                                                                                              //   BoxShadow(
-                                                                                              //     offset: Offset(0, 3),
-                                                                                              //     color: Colors.black26,
-                                                                                              //     blurRadius: 19.0,
-                                                                                              //     spreadRadius: deviceWidth / 120,
-                                                                                              //   ),
-                                                                                              // ],
-                                                                                            ),
+                                                                                           
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -1615,10 +1495,7 @@ Future<Widget> onHoldExtended(
                                                               color: Color(
                                                                   0xFFCB0447),
                                                             ),
-                                                            // showProgressIndicator:
-                                                            //     true,
-
-                                                            //     progressIndicatorBackgroundColor: Colors.transparent,
+                                                        
                                                             shouldIconPulse:
                                                                 true,
                                                             borderColor: Colors
@@ -1650,8 +1527,7 @@ Future<Widget> onHoldExtended(
                                                                 BorderRadius
                                                                     .circular(
                                                                         15),
-                                                            // leftBarIndicatorColor:
-                                                            //     Color(0xFFCB0047),
+                                                           
                                                           )..show(context);
                                                         }
                                                       }
@@ -1760,7 +1636,7 @@ Future<Widget> onHoldExtended(
                                                     }
                                                   },
                                                   child: Center(
-                                                    child: Container(
+                                                    child: Padding(
                                                       padding: EdgeInsets.only(
                                                           left: 12),
                                                       child: Text(
