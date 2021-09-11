@@ -64,143 +64,156 @@ class _MiscellaneousState extends State<Miscellaneous> {
             child: Stack(
               children: [
                 BackArt(),
-                ListView(
-                  children: [
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Don't show music below 30 seconds",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                Container(
+                  padding: EdgeInsets.only(
+                      top: kToolbarHeight + MediaQuery.of(context).padding.top),
+                  child: ListView(
+                    padding: EdgeInsets.all(0),
+                    children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Don't show music below 30 seconds",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
+                          title: Text(
+                            "30 Seconds Rule",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("clutterFree") ?? false,
+                          onChanged: (newValue) {
+                            refresh = true;
+                            setState(() {
+                              musicBox.put("clutterFree", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "30 Seconds Rule",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("clutterFree") ?? false,
-                        onChanged: (newValue) {
-                          refresh = true;
-                          setState(() {
-                            musicBox.put("clutterFree", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Don't show '<Unknown>' as an Artist",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Don't show '<Unknown>' as an Artist",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
+                          title: Text(
+                            "Unknown Artist",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("stopUnknown") ?? false,
+                          onChanged: (newValue) {
+                            refresh = true;
+                            setState(() {
+                              musicBox.put("stopUnknown", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "Unknown Artist",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("stopUnknown") ?? false,
-                        onChanged: (newValue) {
-                          refresh = true;
-                          setState(() {
-                            musicBox.put("stopUnknown", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Choose custom directories to scan for music",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Choose custom directories to scan for music",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          "Custom Scan",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        secondary: Visibility(
-                          visible: musicBox.get("customScan") ?? false,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: IconButton(
-                                icon: Icon(Icons.edit_rounded),
-                                color: darkModeOn
-                                    ? Colors.white
-                                    : Colors.grey[700],
-                                onPressed: () async {
-                                  selectedFolders =
-                                      musicBox.get("customLocations") ?? [];
-                                  await iterationManager(topLevelDir);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Directories(),
-                                    ),
-                                  );
-                                  setState(() {});
-                                }),
+                          title: Text(
+                            "Custom Scan",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
                           ),
+                          secondary: Visibility(
+                            visible: musicBox.get("customScan") ?? false,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: IconButton(
+                                  icon: Icon(Icons.edit_rounded),
+                                  color: darkModeOn
+                                      ? Colors.white
+                                      : Colors.grey[700],
+                                  onPressed: () async {
+                                    selectedFolders =
+                                        musicBox.get("customLocations") ?? [];
+                                    await iterationManager(topLevelDir);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Directories(),
+                                      ),
+                                    );
+                                    setState(() {});
+                                  }),
+                            ),
+                          ),
+                          value: musicBox.get("customScan") ?? false,
+                          onChanged: (newValue) {
+                            refresh = true;
+                            setState(() {
+                              musicBox.put("customScan", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        value: musicBox.get("customScan") ?? false,
-                        onChanged: (newValue) {
-                          refresh = true;
-                          setState(() {
-                            musicBox.put("customScan", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Artwork is set as lockscreen wallpaper",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Artwork is set as lockscreen wallpaper",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
+                          title: Text(
+                            "WallPx (BETA)",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("wallpx") ?? false,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("wallpx", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "WallPx (BETA)",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("wallpx") ?? false,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("wallpx", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

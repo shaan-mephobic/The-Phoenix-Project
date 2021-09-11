@@ -113,14 +113,14 @@ class _SearchinState extends State<Searchin> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(kRounded),
                             child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                              filter: glassBlur,
                               child: Container(
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(kRounded),
                                   border: Border.all(
                                       color: Colors.white.withOpacity(0.04)),
-                                  color: Colors.white.withOpacity(0.05),
+                                  color: glassOverlayColor,
                                 ),
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.center,

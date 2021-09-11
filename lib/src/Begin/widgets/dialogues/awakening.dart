@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import '../../begin.dart';
 
 class Awakening extends StatelessWidget {
   @override
@@ -41,12 +41,12 @@ class Awakening extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(kRounded),
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                filter: glassBlur,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(kRounded),
                     border: Border.all(color: Colors.white.withOpacity(0.04)),
-                    color: Colors.white.withOpacity(0.05),
+                    color: glassOverlayColor,
                   ),
                   alignment: Alignment.center,
                   child: Column(

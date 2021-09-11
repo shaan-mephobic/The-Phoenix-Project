@@ -55,8 +55,10 @@ class _AllofemState extends State<Allofem>
     return Scrollbar(
       controller: _scrollBarController,
       child: RefreshIndicator(
-        backgroundColor: nowColor,
-        color: nowContrast,
+        backgroundColor:
+            musicBox.get("dynamicArtDB") ?? true ? nowColor : Colors.white,
+        color:
+            musicBox.get("dynamicArtDB") ?? true ? nowContrast : kMaterialBlack,
         onRefresh: () async {
           await fetchAll();
         },

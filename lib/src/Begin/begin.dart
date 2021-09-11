@@ -81,6 +81,8 @@ Uint8List defaultNone;
 bool isAndroid11 = false;
 bool ascend = false;
 bool isPlayerShown = false;
+ImageFilter glassBlur;
+Color glassOverlayColor;
 
 class Begin extends StatefulWidget {
   final TabController tabController;
@@ -397,10 +399,7 @@ class _BeginState extends State<Begin>
                                                           BorderRadius.circular(
                                                               kRounded),
                                                       child: BackdropFilter(
-                                                        filter:
-                                                            ImageFilter.blur(
-                                                                sigmaX: 20,
-                                                                sigmaY: 20),
+                                                        filter: glassBlur,
                                                         child: Container(
                                                           decoration: BoxDecoration(
                                                               borderRadius:
@@ -412,10 +411,8 @@ class _BeginState extends State<Begin>
                                                                       .white
                                                                       .withOpacity(
                                                                           0.04)),
-                                                              color: Colors
-                                                                  .white
-                                                                  .withOpacity(
-                                                                      0.05)),
+                                                              color:
+                                                                  glassOverlayColor),
                                                           alignment:
                                                               Alignment.center,
                                                           child: Column(
@@ -651,9 +648,7 @@ class _BeginState extends State<Begin>
                                                         BorderRadius.circular(
                                                             kRounded),
                                                     child: BackdropFilter(
-                                                      filter: ImageFilter.blur(
-                                                          sigmaX: 20,
-                                                          sigmaY: 20),
+                                                      filter: glassBlur,
                                                       child: Container(
                                                         decoration: BoxDecoration(
                                                             borderRadius:
@@ -665,9 +660,8 @@ class _BeginState extends State<Begin>
                                                                     .white
                                                                     .withOpacity(
                                                                         0.04)),
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                    0.05)),
+                                                            color:
+                                                                glassOverlayColor),
                                                         alignment:
                                                             Alignment.center,
                                                         child: Column(
@@ -880,7 +874,6 @@ class _BeginState extends State<Begin>
 
                                     musicBox.put("timeBasedDark", false);
                                   }
-
                                   rootState.provideman();
                                 },
                               ),
@@ -965,6 +958,10 @@ class _BeginState extends State<Begin>
                                       : deviceHeight / 36,
                                 ),
                                 onTap: () {
+                                  if (marqueeController.isAnimating) {
+                                    marqueeController.reset();
+                                    isMarqueeDead = true;
+                                  }
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -981,6 +978,12 @@ class _BeginState extends State<Begin>
                                         builder: (context, child) => Settings(),
                                       ),
                                     ),
+                                  ).then(
+                                    (value) {
+                                      if (isMarqueeDead) {
+                                        isMarqueeDead = false;
+                                      }
+                                    },
                                   );
                                 },
                               ),

@@ -36,8 +36,11 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
       return Consumer<MrMan>(builder: (context, mansionConsumer, child) {
         globalMansionConsumer = mansionConsumer;
         return RefreshIndicator(
-          backgroundColor: nowColor,
-          color: nowContrast,
+          backgroundColor:
+              musicBox.get("dynamicArtDB") ?? true ? nowColor : Colors.white,
+          color: musicBox.get("dynamicArtDB") ?? true
+              ? nowContrast
+              : kMaterialBlack,
           onRefresh: () async {
             await fetchAll();
           },
@@ -62,13 +65,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                 ),
                 child: ClipRRect(
                   child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                    filter: glassBlur,
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border:
                             Border.all(color: Colors.white.withOpacity(0.04)),
-                        color: Colors.white.withOpacity(0.05),
+                        color: glassOverlayColor,
                       ),
                       child: Column(
                         children: [

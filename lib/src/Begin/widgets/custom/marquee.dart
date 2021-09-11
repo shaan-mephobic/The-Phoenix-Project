@@ -130,13 +130,13 @@ class _MarqueeContainerState extends State<_MarqueeContainer>
       marqueeController.forward();
     }
 
-    final textWidget =Text(
+    final textWidget =Container(child:Text(
       widget.text,
       style: widget.textStyle,
       overflow: TextOverflow.visible,
       softWrap: false,
       textDirection: widget.textDirection,
-    );
+    ));
     return _showMarquee
         ? AnimatedBuilder(
             builder: (context, myWidget) => Container(

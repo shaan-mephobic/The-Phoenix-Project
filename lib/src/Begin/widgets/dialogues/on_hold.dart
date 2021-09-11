@@ -62,14 +62,14 @@ Future<Widget> onHold(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(kRounded),
                         child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                          filter: glassBlur,
                           child: Container(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(kRounded),
                               border: Border.all(
                                   color: Colors.white.withOpacity(0.04)),
-                              color: Colors.white.withOpacity(0.05),
+                              color: glassOverlayColor,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -196,14 +196,18 @@ Future<Widget> onHold(
                                                             .white
                                                             .withOpacity(0.04),
                                                         borderWidth: 1,
-                                                        backgroundColor: Colors
-                                                            .white
-                                                            .withOpacity(0.05),
+                                                        backgroundColor:
+                                                            glassOverlayColor,
                                                         flushbarStyle:
                                                             FlushbarStyle
                                                                 .FLOATING,
                                                         isDismissible: true,
-                                                        barBlur: 20,
+                                                        barBlur: musicBox.get(
+                                                                    "glassBlur") ==
+                                                                null
+                                                            ? 18
+                                                            : musicBox.get(
+                                                                "glassBlur"),
                                                         margin: EdgeInsets.only(
                                                             bottom: 20,
                                                             left: 8,
@@ -254,13 +258,13 @@ Future<Widget> onHold(
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                               child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                filter: glassBlur,
                                                                                 child: Container(
                                                                                   alignment: Alignment.center,
                                                                                   decoration: BoxDecoration(
                                                                                     borderRadius: BorderRadius.circular(kRounded),
                                                                                     border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                    color: Colors.white.withOpacity(0.05),
+                                                                                    color: glassOverlayColor,
                                                                                   ),
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -297,10 +301,11 @@ Future<Widget> onHold(
                                                                                                             duration: Duration(seconds: 5),
                                                                                                             borderColor: Colors.white.withOpacity(0.04),
                                                                                                             borderWidth: 1,
-                                                                                                            backgroundColor: Colors.white.withOpacity(0.05),
+                                                                                                            backgroundColor: glassOverlayColor,
                                                                                                             flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                             isDismissible: true,
-                                                                                                            barBlur: 20,
+                                                                                                               barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
                                                                                                           )..show(context);
@@ -319,10 +324,11 @@ Future<Widget> onHold(
                                                                                                             duration: Duration(seconds: 5),
                                                                                                             borderColor: Colors.white.withOpacity(0.04),
                                                                                                             borderWidth: 1,
-                                                                                                            backgroundColor: Colors.white.withOpacity(0.05),
+                                                                                                            backgroundColor: glassOverlayColor,
                                                                                                             flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                             isDismissible: true,
-                                                                                                            barBlur: 20,
+    barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+                                                                                                            
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
                                                                                                           )..show(context);
@@ -439,13 +445,13 @@ Future<Widget> onHold(
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                 child: BackdropFilter(
-                                                                                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                  filter: glassBlur,
                                                                                   child: Container(
                                                                                     alignment: Alignment.center,
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: Colors.white.withOpacity(0.05),
+                                                                                      color: glassOverlayColor,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -677,14 +683,13 @@ Future<Widget> onHold(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
+                                                              glassOverlayColor,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                          barBlur: 20,
+                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                           dismissDirection:
                                                               FlushbarDismissDirection
                                                                   .HORIZONTAL,
@@ -829,14 +834,14 @@ Future<Widget> onHoldExtended(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            filter: glassBlur,
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: Colors.white.withOpacity(0.05),
+                                color: glassOverlayColor,
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -914,14 +919,13 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
+                                                              glassOverlayColor,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                          barBlur: 20,
+                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -962,14 +966,13 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
+                                                              glassOverlayColor,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                          barBlur: 20,
+                                                              barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -1015,14 +1018,13 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              Colors.white
-                                                                  .withOpacity(
-                                                                      0.05),
+                                                              glassOverlayColor,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                          barBlur: 20,
+                                                             barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -1068,13 +1070,13 @@ Future<Widget> onHoldExtended(
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                 child: BackdropFilter(
-                                                                                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                  filter: glassBlur,
                                                                                   child: Container(
                                                                                     alignment: Alignment.center,
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: Colors.white.withOpacity(0.05),
+                                                                                      color: glassOverlayColor,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1111,10 +1113,11 @@ Future<Widget> onHoldExtended(
                                                                                                               duration: Duration(seconds: 5),
                                                                                                               borderColor: Colors.white.withOpacity(0.04),
                                                                                                               borderWidth: 1,
-                                                                                                              backgroundColor: Colors.white.withOpacity(0.05),
+                                                                                                              backgroundColor: glassOverlayColor,
                                                                                                               flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                               isDismissible: true,
-                                                                                                              barBlur: 20,
+                                                                                                                  barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
                                                                                                             )..show(context);
@@ -1133,10 +1136,11 @@ Future<Widget> onHoldExtended(
                                                                                                               duration: Duration(seconds: 5),
                                                                                                               borderColor: Colors.white.withOpacity(0.04),
                                                                                                               borderWidth: 1,
-                                                                                                              backgroundColor: Colors.white.withOpacity(0.05),
+                                                                                                              backgroundColor: glassOverlayColor,
                                                                                                               flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                               isDismissible: true,
-                                                                                                              barBlur: 20,
+                                                                                                                 barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
                                                                                                             )..show(context);
@@ -1265,13 +1269,13 @@ Future<Widget> onHoldExtended(
                                                                               child: ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                 child: BackdropFilter(
-                                                                                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                  filter: glassBlur,
                                                                                   child: Container(
                                                                                     alignment: Alignment.center,
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: Colors.white.withOpacity(0.05),
+                                                                                      color: glassOverlayColor,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1398,7 +1402,6 @@ Future<Widget> onHoldExtended(
                                                                                           color: Colors.transparent,
                                                                                           child: Padding(
                                                                                             padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                           
                                                                                             child: TextField(
                                                                                               cursorColor: Color(0xFF3cb9cd),
                                                                                               autofocus: false,
@@ -1495,7 +1498,6 @@ Future<Widget> onHoldExtended(
                                                               color: Color(
                                                                   0xFFCB0447),
                                                             ),
-                                                        
                                                             shouldIconPulse:
                                                                 true,
                                                             borderColor: Colors
@@ -1504,20 +1506,18 @@ Future<Widget> onHoldExtended(
                                                                     0.04),
                                                             borderWidth: 1,
                                                             backgroundColor:
-                                                                Colors.white
-                                                                    .withOpacity(
-                                                                        0.05),
+                                                                glassOverlayColor,
                                                             flushbarStyle:
                                                                 FlushbarStyle
                                                                     .FLOATING,
                                                             isDismissible: true,
-                                                            barBlur: 20,
+    barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+                                                           
                                                             dismissDirection:
                                                                 FlushbarDismissDirection
                                                                     .HORIZONTAL,
                                                             duration: Duration(
                                                                 seconds: 5),
-
                                                             margin:
                                                                 EdgeInsets.only(
                                                                     bottom: 20,
@@ -1527,7 +1527,6 @@ Future<Widget> onHoldExtended(
                                                                 BorderRadius
                                                                     .circular(
                                                                         15),
-                                                           
                                                           )..show(context);
                                                         }
                                                       }

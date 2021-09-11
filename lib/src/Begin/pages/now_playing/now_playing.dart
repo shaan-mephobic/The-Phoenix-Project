@@ -434,15 +434,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                             BorderRadius.circular(kRounded),
                                                                         child:
                                                                             BackdropFilter(
-                                                                          filter: ImageFilter.blur(
-                                                                              sigmaX: 20,
-                                                                              sigmaY: 20),
+                                                                          filter: glassBlur,
                                                                           child:
                                                                               Container(
                                                                             decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                 border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                color: Colors.white.withOpacity(0.05)),
+                                                                                color: glassOverlayColor),
                                                                             alignment:
                                                                                 Alignment.center,
                                                                             child:
@@ -595,17 +593,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                       // make sure we apply clip it properly
                                                                       child:
                                                                           BackdropFilter(
-                                                                        filter: ImageFilter.blur(
-                                                                            sigmaX:
-                                                                                20,
-                                                                            sigmaY:
-                                                                                20),
+                                                                        filter: glassBlur,
                                                                         child:
                                                                             Container(
                                                                           decoration: BoxDecoration(
                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                               border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                              color: Colors.white.withOpacity(0.05)),
+                                                                              color: glassOverlayColor),
                                                                           alignment:
                                                                               Alignment.center,
                                                                           child:
@@ -1182,9 +1176,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                 ClipRRect(
                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                               child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                filter: glassBlur,
                                                                                 child: Container(
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: Colors.white.withOpacity(0.05)),
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOverlayColor),
                                                                                   alignment: Alignment.center,
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1324,9 +1318,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                               // make sure we apply clip it properly
                                                                               child: BackdropFilter(
-                                                                                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                                                                                filter: glassBlur,
                                                                                 child: Container(
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: Colors.white.withOpacity(0.05)),
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOverlayColor),
                                                                                   alignment: Alignment.center,
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,

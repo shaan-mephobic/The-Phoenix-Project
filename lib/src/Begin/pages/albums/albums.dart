@@ -30,8 +30,11 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
       return Scrollbar(
         controller: _scrollBarController,
         child: RefreshIndicator(
-          backgroundColor: nowColor,
-          color: nowContrast,
+          backgroundColor:
+              musicBox.get("dynamicArtDB") ?? true ? nowColor : Colors.white,
+          color: musicBox.get("dynamicArtDB") ?? true
+              ? nowContrast
+              : kMaterialBlack,
           onRefresh: () async {
             await fetchAll();
           },
@@ -87,76 +90,76 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                       MaterialPageRoute(builder: (context) => AlbumsInside()),
                     );
                   },
-                    child: Column(
-                      children: [
-                        Padding(padding: EdgeInsets.only(top: 5)),
-                        Hero(
-                          tag: "sterio-$index",
-                          child: PhysicalModel(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(kRounded),
-                            elevation: deviceWidth / 140,
-                            child: Container(
-                              width: orientedCar
-                                  ? deviceHeight / 4 - 17
-                                  : deviceWidth / 3 - 17,
-                              height: orientedCar
-                                  ? deviceHeight / 4 - 17
-                                  : deviceWidth / 3 - 17,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(kRounded),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: MemoryImage(
-                                    albumsArts[allAlbums[index].album] ??
-                                        defaultNone,
-                                  ),
+                  child: Column(
+                    children: [
+                      Padding(padding: EdgeInsets.only(top: 5)),
+                      Hero(
+                        tag: "sterio-$index",
+                        child: PhysicalModel(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(kRounded),
+                          elevation: deviceWidth / 140,
+                          child: Container(
+                            width: orientedCar
+                                ? deviceHeight / 4 - 17
+                                : deviceWidth / 3 - 17,
+                            height: orientedCar
+                                ? deviceHeight / 4 - 17
+                                : deviceWidth / 3 - 17,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(kRounded),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: MemoryImage(
+                                  albumsArts[allAlbums[index].album] ??
+                                      defaultNone,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: orientedCar
-                                  ? deviceHeight / 100
-                                  : deviceWidth / 70),
-                        ),
-                        SizedBox(
-                          width: orientedCar
-                              ? deviceHeight / 4 - 17
-                              : deviceWidth / 3 - 17,
-                          child: Text(
-                            allAlbums[index].album.toString().toUpperCase(),
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: orientedCar
-                                  ? deviceHeight / 58
-                                  : deviceWidth / 32,
-                              fontFamily: "Urban",
-                              fontWeight: FontWeight.w600,
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? Colors.white
-                                  : darkModeOn
-                                      ? Colors.white
-                                      : Colors.black,
-                              shadows: [
-                                Shadow(
-                                  offset: musicBox.get("dynamicArtDB") ?? true
-                                      ? Offset(1.0, 1.0)
-                                      : darkModeOn
-                                          ? Offset(0, 1.0)
-                                          : Offset(0, 0.5),
-                                  blurRadius: 2.0,
-                                  color: Colors.black45,
-                                ),
-                              ],
-                            ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: orientedCar
+                                ? deviceHeight / 100
+                                : deviceWidth / 70),
+                      ),
+                      SizedBox(
+                        width: orientedCar
+                            ? deviceHeight / 4 - 17
+                            : deviceWidth / 3 - 17,
+                        child: Text(
+                          allAlbums[index].album.toString().toUpperCase(),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: orientedCar
+                                ? deviceHeight / 58
+                                : deviceWidth / 32,
+                            fontFamily: "Urban",
+                            fontWeight: FontWeight.w600,
+                            color: musicBox.get("dynamicArtDB") ?? true
+                                ? Colors.white
+                                : darkModeOn
+                                    ? Colors.white
+                                    : Colors.black,
+                            shadows: [
+                              Shadow(
+                                offset: musicBox.get("dynamicArtDB") ?? true
+                                    ? Offset(1.0, 1.0)
+                                    : darkModeOn
+                                        ? Offset(0, 1.0)
+                                        : Offset(0, 0.5),
+                                blurRadius: 2.0,
+                                color: Colors.black45,
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

@@ -138,13 +138,13 @@ class _PhoenixState extends State<Phoenix> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            filter: glassBlur,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: Colors.white.withOpacity(0.05),
+                                color: glassOverlayColor,
                               ),
                               alignment: Alignment.center,
                               child: Column(
@@ -250,12 +250,16 @@ class _PhoenixState extends State<Phoenix> {
                                               borderColor: Colors.white
                                                   .withOpacity(0.04),
                                               borderWidth: 1,
-                                              backgroundColor: Colors.white
-                                                  .withOpacity(0.05),
+                                              backgroundColor:
+                                                  glassOverlayColor,
                                               flushbarStyle:
                                                   FlushbarStyle.FLOATING,
                                               isDismissible: true,
-                                              barBlur: 20,
+                                              barBlur: musicBox
+                                                          .get("glassBlur") ==
+                                                      null
+                                                  ? 18
+                                                  : musicBox.get("glassBlur"),
                                               margin: EdgeInsets.only(
                                                   bottom: 20,
                                                   left: 8,
@@ -310,14 +314,14 @@ class _PhoenixState extends State<Phoenix> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            filter: glassBlur,
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: Colors.white.withOpacity(0.05),
+                                color: glassOverlayColor,
                               ),
                               child: Material(
                                 color: Colors.transparent,

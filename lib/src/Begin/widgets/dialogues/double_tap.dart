@@ -22,10 +22,11 @@ onDoubleTap(BuildContext context) async {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: Colors.white.withOpacity(0.05),
+      backgroundColor: glassOverlayColor,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
-      barBlur: 20,
+      barBlur:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
       margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
     )..show(context);
@@ -45,10 +46,11 @@ onDoubleTap(BuildContext context) async {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: Colors.white.withOpacity(0.05),
+      backgroundColor: glassOverlayColor,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
-      barBlur: 20,
+      barBlur:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
       margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
     )..show(context);

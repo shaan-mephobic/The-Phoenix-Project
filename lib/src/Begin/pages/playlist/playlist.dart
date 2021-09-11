@@ -66,13 +66,13 @@ class _PlaylistState extends State<Playlist>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(kRounded),
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                  filter: glassBlur,
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(kRounded),
                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                      color: Colors.white.withOpacity(0.05),
+                      color: glassOverlayColor,
                     ),
                     child: Center(
                       child: Text(
@@ -123,8 +123,11 @@ class _PlaylistState extends State<Playlist>
         body: Scrollbar(
           controller: _scrollBarController,
           child: RefreshIndicator(
-            backgroundColor: nowColor,
-            color: nowContrast,
+            backgroundColor:
+                musicBox.get("dynamicArtDB") ?? true ? nowColor : Colors.white,
+            color: musicBox.get("dynamicArtDB") ?? true
+                ? nowContrast
+                : kMaterialBlack,
             onRefresh: () async {
               await fetchAll();
             },
@@ -165,7 +168,7 @@ class _PlaylistState extends State<Playlist>
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            filter: glassBlur,
                             child: Material(
                               color: Colors.transparent,
                               child: Container(
@@ -173,7 +176,7 @@ class _PlaylistState extends State<Playlist>
                                   borderRadius: BorderRadius.circular(kRounded),
                                   border: Border.all(
                                       color: Colors.white.withOpacity(0.04)),
-                                  color: Colors.white.withOpacity(0.05),
+                                  color: glassOverlayColor,
                                 ),
                                 alignment: Alignment.center,
                                 child: InkWell(

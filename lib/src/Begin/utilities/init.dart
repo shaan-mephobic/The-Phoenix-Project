@@ -1,5 +1,7 @@
 import 'dart:typed_data';
+import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -30,6 +32,16 @@ dataInit() async {
   musicBox = await Hive.openBox('musicDataBox');
   var info = await DeviceInfoPlugin().androidInfo;
   isAndroid11 = info.version.sdkInt > 29 ? true : false;
+  glassBlur = ImageFilter.blur(
+      sigmaX:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+      sigmaY:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"));
+  glassOverlayColor = Colors.white.withOpacity(
+      (musicBox.get("glassOverlayColor") == null
+              ? 3
+              : musicBox.get("glassOverlayColor")) /
+          100);
 }
 
 fetchSongs() async {

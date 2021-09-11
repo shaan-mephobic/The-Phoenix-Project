@@ -28,7 +28,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
   ScrollController _scrollBarController;
   @override
   void initState() {
-    // playListName = musicBox.get('playlists').keys.toList()[playlistIndex];
     crossfadeStateChange = true;
     _scrollBarController = ScrollController();
     super.initState();
@@ -36,7 +35,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
 
   @override
   void dispose() {
-    // playListName = "Enter Playlist Name";
     crossfadeStateChange = false;
     super.dispose();
   }

@@ -18,7 +18,9 @@ playerontap() async {
   } catch (e) {
     advanceAudioData = {};
   }
-  marqueeController.reset();
+  if (!isMarqueeDead) {
+    marqueeController.reset();
+  }
   if (initialart && art == art2) {
     first = true;
     art = artwork;

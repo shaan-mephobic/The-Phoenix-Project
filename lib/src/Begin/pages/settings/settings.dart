@@ -129,7 +129,7 @@ class _SettingsState extends State<Settings> {
                                                                       child) =>
                                                                   Interface(),
                                                             ),
-                                                          )).then((value) {
+                                                          ),).then((value) {
                                                         setState(() {});
                                                       });
                                                     } else if (i == 1) {

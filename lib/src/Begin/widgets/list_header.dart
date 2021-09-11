@@ -31,11 +31,11 @@ class ListHeader extends StatelessWidget {
       ),
       child: ClipRRect(
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+          filter: glassBlur,
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.white.withOpacity(0.04)),
-              color: Colors.white.withOpacity(0.05),
+              color: glassOverlayColor,
             ),
             alignment: Alignment.center,
             child: Row(

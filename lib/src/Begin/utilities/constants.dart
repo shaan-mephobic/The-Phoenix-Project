@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
@@ -63,7 +64,7 @@ ThemeData themeOfApp = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
 );
 
-///BoxContraints for artwork shape in listtile
+/// BoxContraints for artwork shape in listtile
 BoxConstraints kSqrConstraint = BoxConstraints(
   minWidth: 48,
   minHeight: 48,

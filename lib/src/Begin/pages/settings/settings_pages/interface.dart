@@ -1,4 +1,5 @@
 import 'package:phoenix/src/Begin/begin.dart';
+import 'package:phoenix/src/Begin/pages/settings/settings_pages/glass_effect.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -39,22 +40,19 @@ class _InterfaceState extends State<Interface> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             iconTheme: IconThemeData(
-              color: darkModeOn ? Colors.white : kMaterialBlack,
+              color: Colors.white,
             ),
             shadowColor: Colors.transparent,
             centerTitle: true,
             backgroundColor: Colors.transparent,
-            title: Hero(
-              tag: "crossfire-",
-              child: Text(
-                "Interface",
-                style: TextStyle(
-                  color: darkModeOn ? Colors.white : Colors.black,
-                  inherit: false,
-                  fontSize: deviceWidth / 18,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "Urban",
-                ),
+            title: Text(
+              "Interface",
+              style: TextStyle(
+                color: Colors.white,
+                inherit: false,
+                fontSize: deviceWidth / 18,
+                fontWeight: FontWeight.w600,
+                fontFamily: "Urban",
               ),
             ),
           ),
@@ -63,175 +61,227 @@ class _InterfaceState extends State<Interface> {
             child: Stack(
               children: [
                 BackArt(),
-                ListView(
-                  children: [
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "A fluid bouncing animation on scrolling",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                Container(
+                  padding: EdgeInsets.only(
+                      top: kToolbarHeight + MediaQuery.of(context).padding.top),
+                  child: ListView(
+                    padding: EdgeInsets.all(0),
+                    children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "A fluid bouncing animation on scrolling",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          "Fluid",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("fluidAnimation") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("fluidAnimation", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Use albumart as background",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                          title: Text(
+                            "Fluid",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
                           ),
+                          value: musicBox.get("fluidAnimation") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("fluidAnimation", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "Dynamic Background",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("dynamicArtDB") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("dynamicArtDB", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Square shaped artwork in lists",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Use albumart as background",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          "Square Art",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("squareArt") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("squareArt", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Position icons for driver's ease",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                          title: Text(
+                            "Dynamic Background",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
                           ),
+                          value: musicBox.get("dynamicArtDB") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("dynamicArtDB", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "Left Steering",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("androidAutoLefty") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("androidAutoLefty", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Show additional song data in now playing.",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Square shaped artwork in lists",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          "Audiophile Data",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("audiophileData") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("audiophileData", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: CheckboxListTile(
-                        activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
-                        subtitle: Text(
-                          "Use regular mini-player design.",
-                          style: TextStyle(
-                            fontFamily: 'Urban',
-                            color: darkModeOn ? Colors.white38 : Colors.black38,
+                          title: Text(
+                            "Square Art",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
                           ),
+                          value: musicBox.get("squareArt") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("squareArt", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
                         ),
-                        title: Text(
-                          "Classix Mini-Player",
-                          style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
-                        ),
-                        value: musicBox.get("classix") ?? true,
-                        onChanged: (newValue) {
-                          setState(() {
-                            musicBox.put("classix", newValue);
-                          });
-                        },
-                        controlAffinity: ListTileControlAffinity.leading,
                       ),
-                    ),
-                  ],
-                  physics: musicBox.get("fluidAnimation") ?? true
-                      ? BouncingScrollPhysics()
-                      : ClampingScrollPhysics(),
-                  shrinkWrap: true,
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Position icons for driver's ease",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          title: Text(
+                            "Left Steering",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("androidAutoLefty") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("androidAutoLefty", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Show additional song data in now playing.",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          title: Text(
+                            "Audiophile Data",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("audiophileData") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("audiophileData", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: CheckboxListTile(
+                          activeColor: kCorrect,
+                          checkColor:
+                              darkModeOn ? kMaterialBlack : Colors.white,
+                          subtitle: Text(
+                            "Use regular mini-player design.",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          title: Text(
+                            "Classix Mini-Player",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          value: musicBox.get("classix") ?? true,
+                          onChanged: (newValue) {
+                            setState(() {
+                              musicBox.put("classix", newValue);
+                            });
+                          },
+                          controlAffinity: ListTileControlAffinity.leading,
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: ListTile(
+                          title: Text(
+                            "Glass Effect",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          subtitle: Text(
+                            "Adjust blur and color of glass theme.",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                maintainState: false,
+                                builder: (context) =>
+                                    ChangeNotifierProvider<Leprovider>(
+                                        create: (_) => Leprovider(),
+                                        child: GlassEffect()),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
+                    shrinkWrap: true,
+                  ),
                 ),
               ],
             ),

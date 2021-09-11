@@ -81,10 +81,10 @@ class _AddSongsState extends State<AddSongs> {
                   duration: Duration(seconds: 5),
                   borderColor: Colors.white.withOpacity(0.04),
                   borderWidth: 1,
-                  backgroundColor: Colors.white.withOpacity(0.05),
+                  backgroundColor: glassOverlayColor,
                   flushbarStyle: FlushbarStyle.FLOATING,
                   isDismissible: true,
-                  barBlur: 20,
+                     barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
                   margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                   borderRadius: BorderRadius.circular(15),
                 )..show(context);
@@ -139,7 +139,7 @@ class _AddSongsState extends State<AddSongs> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(kRounded),
                           child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                            filter: glassBlur,
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
@@ -147,7 +147,7 @@ class _AddSongsState extends State<AddSongs> {
                                 border: Border.all(
                                   color: Colors.white.withOpacity(0.04),
                                 ),
-                                color: Colors.white.withOpacity(0.05),
+                                color: glassOverlayColor,
                               ),
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.center,
