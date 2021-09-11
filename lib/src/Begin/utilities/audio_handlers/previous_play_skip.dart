@@ -204,7 +204,7 @@ audioServiceInit() async {
   await AudioService.start(
       backgroundTaskEntrypoint: backgroundTaskEntrypoint,
       androidEnableQueue: true,
-      androidNotificationChannelName: "PHOENIX",
+      androidNotificationChannelName: "Phoenix Music",
       androidNotificationIcon: "drawable/phoenix_awaken",
       androidNotificationChannelDescription: "Phoenix Music Notification");
   await AudioService.connect();
