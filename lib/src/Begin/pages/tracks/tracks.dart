@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
@@ -11,14 +10,6 @@ import 'package:flutter/material.dart';
 import '../../begin.dart';
 import '../../widgets/dialogues/on_hold.dart';
 
-List<Uint8List> artList = [];
-List<Color> artBackColors = [
-  Color(0xFFE92EFB),
-  Color(0xFFFF2079),
-  Color(0xFF440BD4),
-  Color(0xFF04005E),
-];
-int artBackIndex = -1;
 
 class Allofem extends StatefulWidget {
   @override
@@ -84,7 +75,6 @@ class _AllofemState extends State<Allofem>
                   } else {
                     await playThis(index - 1, "all");
                   }
-                  // }
                 },
                 onLongPress: () async {
                   Expanded(
