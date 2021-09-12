@@ -43,6 +43,7 @@ dependencies:
 
   # FLUTTER Related
   device_info: ^2.0.2
+  image_picker: ^0.8.4
   path_provider: ^2.0.3
   permission_handler: ^8.1.6
   provider: ^6.0.0

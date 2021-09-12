@@ -33,21 +33,21 @@ class NowArt extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
                           image: DecorationImage(
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                             image: MemoryImage(defaultNone),
                           ),
                         ),
                       ),
                     ),
                     artworkBorder: BorderRadius.circular(kRounded),
-                    artworkFit: BoxFit.fill)
+                    artworkFit: BoxFit.cover)
                 : AspectRatio(
                     aspectRatio: 1 / 1,
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                         image: DecorationImage(
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           image: MemoryImage(defaultNone),
                         ),
                       ),
@@ -82,18 +82,18 @@ class NowArtLandScape extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                         image: DecorationImage(
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                           image: MemoryImage(defaultNone),
                         ),
                       ),
                     ),
                     artworkBorder: BorderRadius.circular(kRounded),
-                    artworkFit: BoxFit.fill)
+                    artworkFit: BoxFit.cover)
                 : Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(kRounded),
                       image: DecorationImage(
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         image: MemoryImage(defaultNone),
                       ),
                     ),

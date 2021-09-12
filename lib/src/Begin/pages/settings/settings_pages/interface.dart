@@ -1,3 +1,8 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/services.dart';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/glass_effect.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
@@ -5,6 +10,7 @@ import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Interface extends StatefulWidget {
   @override
@@ -66,6 +72,135 @@ class _InterfaceState extends State<Interface> {
                   child: ListView(
                     padding: EdgeInsets.all(0),
                     children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: ListTile(
+                          title: Text(
+                            "Glass Effect",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          subtitle: Text(
+                            "Adjust blur and color of glass theme.",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Colors.white,
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                maintainState: false,
+                                builder: (context) =>
+                                    ChangeNotifierProvider<Leprovider>(
+                                        create: (_) => Leprovider(),
+                                        child: GlassEffect()),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      Material(
+                        color: Colors.transparent,
+                        child: ListTile(
+                          title: Text(
+                            "Default Artwork",
+                            style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                                fontFamily: "Urban"),
+                          ),
+                          subtitle: Text(
+                            "Set custom image as default artwork.",
+                            style: TextStyle(
+                              fontFamily: 'Urban',
+                              color:
+                                  darkModeOn ? Colors.white38 : Colors.black38,
+                            ),
+                          ),
+                          leading: Card(
+                            elevation: 3,
+                            color: Colors.transparent,
+                            child: ConstrainedBox(
+                              constraints: musicBox.get("squareArt") ?? true
+                                  ? kSqrConstraint
+                                  : kRectConstraint,
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: MemoryImage(defaultNone),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          trailing: Icon(
+                            Icons.image_rounded,
+                            color: Colors.white,
+                          ),
+                          onLongPress: () async {
+                            ByteData bytes =
+                                await rootBundle.load('assets/res/default.jpg');
+                            setState(() {
+                              defaultNone = bytes.buffer.asUint8List();
+                            });
+                            await File(
+                                    "${applicationFileDirectory.path}/artworks/null.jpeg")
+                                .writeAsBytes(defaultNone,
+                                    mode: FileMode.write);
+                            Flushbar(
+                              messageText: Text(
+                                  "Default artwork has been reset",
+                                  style: TextStyle(
+                                      fontFamily: "Futura",
+                                      color: Colors.white)),
+                              icon: Icon(
+                                Icons.restore_rounded,
+                                size: 28.0,
+                                color: Colors.white,
+                              ),
+                              shouldIconPulse: true,
+                              dismissDirection:
+                                  FlushbarDismissDirection.HORIZONTAL,
+                              duration: Duration(seconds: 3),
+                              borderColor: Colors.white.withOpacity(0.04),
+                              borderWidth: 1,
+                              backgroundColor: glassOpacity,
+                              flushbarStyle: FlushbarStyle.FLOATING,
+                              isDismissible: true,
+                              barBlur: musicBox.get("glassBlur") == null
+                                  ? 18
+                                  : musicBox.get("glassBlur"),
+                              margin: EdgeInsets.only(
+                                  bottom: 20, left: 8, right: 8),
+                              borderRadius: BorderRadius.circular(15),
+                            )..show(context);
+                            musicBox.put("dominantDefault", null);
+                          },
+                          onTap: () async {
+                            final ImagePicker _picker = ImagePicker();
+                            final XFile image = await _picker.pickImage(
+                                source: ImageSource.gallery);
+                            Uint8List bytes = await image.readAsBytes();
+                            setState(() {
+                              defaultNone = bytes;
+                            });
+                            await File(
+                                    "${applicationFileDirectory.path}/artworks/null.jpeg")
+                                .writeAsBytes(bytes, mode: FileMode.write);
+                            musicBox.put("dominantDefault", null);
+                          },
+                        ),
+                      ),
                       Material(
                         color: Colors.transparent,
                         child: CheckboxListTile(
@@ -238,41 +373,6 @@ class _InterfaceState extends State<Interface> {
                             });
                           },
                           controlAffinity: ListTileControlAffinity.leading,
-                        ),
-                      ),
-                      Material(
-                        color: Colors.transparent,
-                        child: ListTile(
-                          title: Text(
-                            "Glass Effect",
-                            style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
-                          ),
-                          subtitle: Text(
-                            "Adjust blur and color of glass theme.",
-                            style: TextStyle(
-                              fontFamily: 'Urban',
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
-                            ),
-                          ),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.white,
-                          ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                maintainState: false,
-                                builder: (context) =>
-                                    ChangeNotifierProvider<Leprovider>(
-                                        create: (_) => Leprovider(),
-                                        child: GlassEffect()),
-                              ),
-                            );
-                          },
                         ),
                       ),
                     ],

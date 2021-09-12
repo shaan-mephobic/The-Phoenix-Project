@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
@@ -20,11 +21,19 @@ import 'package:device_info/device_info.dart';
 import 'has_network.dart';
 
 cacheImages() async {
+  applicationFileDirectory = await getApplicationDocumentsDirectory();
   ByteData bytes = await rootBundle.load('assets/res/background.jpg');
   art = bytes.buffer.asUint8List();
   defaultArt = art;
-  ByteData bites = await rootBundle.load('assets/res/default.jpg');
-  defaultNone = bites.buffer.asUint8List();
+  if (!await File("${applicationFileDirectory.path}/artworks/null.jpeg")
+      .exists()) {
+    ByteData bites = await rootBundle.load('assets/res/default.jpg');
+    defaultNone = bites.buffer.asUint8List();
+  } else {
+    defaultNone =
+        await File("${applicationFileDirectory.path}/artworks/null.jpeg")
+            .readAsBytes();
+  }
 }
 
 dataInit() async {
@@ -44,9 +53,6 @@ dataInit() async {
           100);
   glassShadowOpacity =
       musicBox.get("glassShadow") == null ? 10 : musicBox.get("glassShadow");
-  // glassShadowBlur = musicBox.get("glassShadowBlur") == null
-  //     ? 13
-  //     : musicBox.get("glassShadowBlur");
 }
 
 fetchSongs() async {
@@ -114,7 +120,6 @@ fetchAll() async {
 }
 
 songListToMediaItem() async {
-  applicationFileDirectory = await getApplicationDocumentsDirectory();
   songListMediaItems = [];
   for (int i = 0; i < songList.length; i++) {
     MediaItem item = MediaItem(

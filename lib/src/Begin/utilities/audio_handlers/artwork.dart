@@ -57,10 +57,19 @@ playerontap() async {
       ? true
       : musicBox.get("colorsDB")[nowMediaItem.id] == null) {
     if (artwork == defaultNone) {
-      nowColor = Color(0xFF383643);
-      nowContrast = Color(0xFFc9d1c8);
+      if (musicBox.get("dominantDefault") != null) {
+        nowColor = Color(musicBox.get("dominantDefault"));
+        nowContrast = Color(musicBox.get("contrastDefault"));
+      } else {
+        await getImagePalette(MemoryImage(artwork));
+        musicBox.put("dominantDefault", nowColor.value);
+        musicBox.put("contrastDefault", nowContrast.value);
+      }
     } else {
-      getImagePalette(MemoryImage(artwork));
+      await getImagePalette(MemoryImage(artwork));
+      Map colorDB = musicBox.get("colorsDB") ?? {};
+      colorDB[nowMediaItem.id] = [nowColor.value, nowContrast.value];
+      musicBox.put("colorsDB", colorDB);
     }
   } else {
     nowColor = Color(musicBox.get("colorsDB")[nowMediaItem.id][0]);
@@ -114,7 +123,4 @@ getImagePalette(ImageProvider imageProvider) async {
     }
     rootCrossfadeState.provideman();
   }
-  Map colorDB = musicBox.get("colorsDB") ?? {};
-  colorDB[nowMediaItem.id] = [nowColor.value, nowContrast.value];
-  musicBox.put("colorsDB", colorDB);
 }
