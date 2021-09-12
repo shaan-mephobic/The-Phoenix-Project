@@ -18,15 +18,15 @@ Color kPhoenixColor = Color(0xFF028ac4);
 /// Crossfade Duration.
 int crossfadeDuration = 300;
 
-/// Shadow for NowArt
-BoxShadow nowArtShadow =
-    BoxShadow(color: Colors.black54, blurRadius: 13.0, offset: kShadowOffset);
-
 /// blur constant for artwork background
 double artworkBlurConst = 16;
 
 /// Shadow Offset of every glassmorphic widgets
 Offset kShadowOffset = Offset(0, 3);
+
+/// Shadow for NowArt
+BoxShadow nowArtShadow =
+    BoxShadow(color: Colors.black54, blurRadius: 13.0, offset: kShadowOffset);
 
 /// Aesthetic Quotes.
 Map quotes = {
@@ -52,7 +52,6 @@ ThemeData themeOfApp = ThemeData(
   splashFactory: CustomRipple.splashFactory,
   unselectedWidgetColor: Colors.grey[900],
   scaffoldBackgroundColor: kMaterialBlack,
-  // materialTapTargetSize: ,
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     isAlwaysShown: false,

@@ -103,8 +103,8 @@ class _PrivacyState extends State<Privacy> {
                                       BorderRadius.circular(deviceWidth / 27),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 13.0,
+                                      color: Colors.black.withOpacity(glassShadowOpacity/100),
+                                      blurRadius: glassShadowBlur,
                                       offset: kShadowOffset,
                                     ),
                                   ],
@@ -122,7 +122,7 @@ class _PrivacyState extends State<Privacy> {
                                         border: Border.all(
                                             color:
                                                 Colors.white.withOpacity(0.04)),
-                                        color: glassOverlayColor,
+                                        color: glassOpacity,
                                       ),
                                       child: Column(
                                         mainAxisAlignment:

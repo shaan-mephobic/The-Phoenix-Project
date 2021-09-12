@@ -16,7 +16,7 @@ androidRSupport(BuildContext context) async {
     duration: Duration(seconds: 3),
     borderColor: Colors.white.withOpacity(0.04),
     borderWidth: 1,
-    backgroundColor:glassOverlayColor,
+    backgroundColor:glassOpacity,
     flushbarStyle: FlushbarStyle.FLOATING,
     isDismissible: true,
     barBlur: musicBox.get("glassBlur")??18,

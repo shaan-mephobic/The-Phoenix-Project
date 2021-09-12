@@ -82,7 +82,9 @@ bool isAndroid11 = false;
 bool ascend = false;
 bool isPlayerShown = false;
 ImageFilter glassBlur;
-Color glassOverlayColor;
+Color glassOpacity;
+double glassShadowBlur = 13;
+double glassShadowOpacity;
 
 class Begin extends StatefulWidget {
   final TabController tabController;
@@ -412,7 +414,7 @@ class _BeginState extends State<Begin>
                                                                       .withOpacity(
                                                                           0.04)),
                                                               color:
-                                                                  glassOverlayColor),
+                                                                  glassOpacity),
                                                           alignment:
                                                               Alignment.center,
                                                           child: Column(
@@ -661,7 +663,7 @@ class _BeginState extends State<Begin>
                                                                     .withOpacity(
                                                                         0.04)),
                                                             color:
-                                                                glassOverlayColor),
+                                                                glassOpacity),
                                                         alignment:
                                                             Alignment.center,
                                                         child: Column(

@@ -58,8 +58,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 13.0,
+                        color:
+                            Colors.black.withOpacity(glassShadowOpacity / 100),
+                        blurRadius: glassShadowBlur,
                         offset: kShadowOffset),
                   ],
                 ),
@@ -71,7 +72,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                       decoration: BoxDecoration(
                         border:
                             Border.all(color: Colors.white.withOpacity(0.04)),
-                        color: glassOverlayColor,
+                        color: glassOpacity,
                       ),
                       child: Column(
                         children: [

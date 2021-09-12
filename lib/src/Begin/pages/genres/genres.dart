@@ -72,8 +72,8 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                         borderRadius: BorderRadius.circular(kRounded),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 13.0,
+                            color: Colors.black.withOpacity(glassShadowOpacity/100),
+                            blurRadius: glassShadowBlur,
                             offset: kShadowOffset,
                           ),
                         ],
@@ -90,7 +90,7 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: glassOverlayColor,
+                                color: glassOpacity,
                               ),
                               alignment: Alignment.center,
                               child: InkWell(

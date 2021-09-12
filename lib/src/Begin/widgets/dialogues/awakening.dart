@@ -28,8 +28,8 @@ class Awakening extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 15.0,
+                  color: Colors.black.withOpacity(glassShadowOpacity/100),
+                  blurRadius: glassShadowBlur,
                   offset: kShadowOffset,
                 ),
               ],
@@ -46,7 +46,7 @@ class Awakening extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(kRounded),
                     border: Border.all(color: Colors.white.withOpacity(0.04)),
-                    color: glassOverlayColor,
+                    color: glassOpacity,
                   ),
                   alignment: Alignment.center,
                   child: Column(

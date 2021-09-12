@@ -127,8 +127,8 @@ class _PhoenixState extends State<Phoenix> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 13.0,
+                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
                           ],
@@ -143,7 +143,7 @@ class _PhoenixState extends State<Phoenix> {
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: glassOverlayColor,
+                                color: glassOpacity,
                               ),
                               alignment: Alignment.center,
                               child: Column(
@@ -240,7 +240,6 @@ class _PhoenixState extends State<Phoenix> {
                                                 size: 28.0,
                                                 color: kCorrect,
                                               ),
-
                                               shouldIconPulse: true,
                                               dismissDirection:
                                                   FlushbarDismissDirection
@@ -250,7 +249,7 @@ class _PhoenixState extends State<Phoenix> {
                                                   .withOpacity(0.04),
                                               borderWidth: 1,
                                               backgroundColor:
-                                                  glassOverlayColor,
+                                                  glassOpacity,
                                               flushbarStyle:
                                                   FlushbarStyle.FLOATING,
                                               isDismissible: true,
@@ -303,8 +302,8 @@ class _PhoenixState extends State<Phoenix> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 13.0,
+                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
                           ],
@@ -320,7 +319,7 @@ class _PhoenixState extends State<Phoenix> {
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: glassOverlayColor,
+                                color: glassOpacity,
                               ),
                               child: Material(
                                 color: Colors.transparent,

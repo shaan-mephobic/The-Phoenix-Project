@@ -20,6 +20,8 @@ class _GlassEffectState extends State<GlassEffect> {
       : musicBox.get("glassOverlayColor");
   double blur =
       musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur");
+  double shadow =
+      musicBox.get("glassShadow") == null ? 10 : musicBox.get("glassShadow");
   @override
   void initState() {
     crossfadeStateChange = true;
@@ -30,8 +32,10 @@ class _GlassEffectState extends State<GlassEffect> {
   void dispose() {
     musicBox.put("glassBlur", blur);
     musicBox.put("glassOverlayColor", whiteOpacity);
+    musicBox.put("glassShadow", shadow);
     glassBlur = ImageFilter.blur(sigmaX: blur, sigmaY: blur);
-    glassOverlayColor = Colors.white.withOpacity(whiteOpacity / 100);
+    glassOpacity = Colors.white.withOpacity(whiteOpacity / 100);
+    glassShadowOpacity = shadow;
     super.dispose();
   }
 
@@ -82,7 +86,7 @@ class _GlassEffectState extends State<GlassEffect> {
                   child: CustomScrollView(
                     slivers: [
                       SliverFillRemaining(
-                        hasScrollBody: true,
+                        hasScrollBody: false,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -99,8 +103,9 @@ class _GlassEffectState extends State<GlassEffect> {
                                           BorderRadius.circular(kRounded),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
-                                          blurRadius: 13.0,
+                                          color: Colors.black
+                                              .withOpacity(shadow / 100),
+                                          blurRadius: 13,
                                           offset: kShadowOffset,
                                         ),
                                       ],
@@ -253,7 +258,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                         child: Slider(
                                           value: whiteOpacity,
                                           min: 0,
-                                          max: 40,
+                                          max: 20,
                                           activeColor:
                                               musicBox.get("dynamicArtDB") ??
                                                       true
@@ -268,7 +273,81 @@ class _GlassEffectState extends State<GlassEffect> {
                                       ),
                                     ),
                                     Text(
-                                      "40",
+                                      "20",
+                                      style: TextStyle(
+                                          fontSize: deviceWidth / 35,
+                                          fontFamily: "Urban",
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(0.5, 0.5),
+                                              blurRadius: 2.0,
+                                              color: Colors.black38,
+                                            ),
+                                          ],
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  "Shadow",
+                                  style: TextStyle(
+                                    fontFamily: "Urban",
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    fontSize: deviceWidth / 18 / 1.3,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${shadow.toInt()}",
+                                      style: TextStyle(
+                                          fontSize: deviceWidth / 35,
+                                          fontFamily: "Urban",
+                                          shadows: [
+                                            Shadow(
+                                              offset: Offset(0.5, 0.5),
+                                              blurRadius: 2.0,
+                                              color: Colors.black38,
+                                            ),
+                                          ],
+                                          color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      width: orientedCar
+                                          ? deviceHeight / 1.5
+                                          : deviceWidth / 1.5,
+                                      child: SliderTheme(
+                                        data: SliderThemeData(
+                                          trackHeight: 3,
+                                          thumbShape: RoundSliderThumbShape(
+                                              enabledThumbRadius: 5),
+                                          inactiveTrackColor:
+                                              musicBox.get("dynamicArtDB") ??
+                                                      true
+                                                  ? nowContrast.withOpacity(0.1)
+                                                  : Colors.white10,
+                                        ),
+                                        child: Slider(
+                                          value: shadow,
+                                          min: 0,
+                                          max: 20,
+                                          activeColor:
+                                              musicBox.get("dynamicArtDB") ??
+                                                      true
+                                                  ? nowContrast
+                                                  : Colors.white,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              shadow = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "20",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
                                           fontFamily: "Urban",
@@ -288,6 +367,8 @@ class _GlassEffectState extends State<GlassEffect> {
                                     setState(() {
                                       whiteOpacity = 3;
                                       blur = 18;
+                                      shadow = 10;
+                                      // shadowBlur = 13;
                                     });
                                   },
                                   style: ButtonStyle(

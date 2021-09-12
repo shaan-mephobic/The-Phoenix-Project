@@ -440,7 +440,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                             decoration: BoxDecoration(
                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                 border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                color: glassOverlayColor),
+                                                                                color: glassOpacity),
                                                                             alignment:
                                                                                 Alignment.center,
                                                                             child:
@@ -599,7 +599,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                           decoration: BoxDecoration(
                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                               border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                              color: glassOverlayColor),
+                                                                              color: glassOpacity),
                                                                           alignment:
                                                                               Alignment.center,
                                                                           child:
@@ -1178,7 +1178,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                               child: BackdropFilter(
                                                                                 filter: glassBlur,
                                                                                 child: Container(
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOverlayColor),
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOpacity),
                                                                                   alignment: Alignment.center,
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1320,7 +1320,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                               child: BackdropFilter(
                                                                                 filter: glassBlur,
                                                                                 child: Container(
-                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOverlayColor),
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(kRounded), border: Border.all(color: Colors.white.withOpacity(0.04)), color: glassOpacity),
                                                                                   alignment: Alignment.center,
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,

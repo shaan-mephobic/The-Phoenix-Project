@@ -37,11 +37,16 @@ dataInit() async {
           musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
       sigmaY:
           musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"));
-  glassOverlayColor = Colors.white.withOpacity(
+  glassOpacity = Colors.white.withOpacity(
       (musicBox.get("glassOverlayColor") == null
               ? 3
               : musicBox.get("glassOverlayColor")) /
           100);
+  glassShadowOpacity =
+      musicBox.get("glassShadow") == null ? 10 : musicBox.get("glassShadow");
+  // glassShadowBlur = musicBox.get("glassShadowBlur") == null
+  //     ? 13
+  //     : musicBox.get("glassShadowBlur");
 }
 
 fetchSongs() async {

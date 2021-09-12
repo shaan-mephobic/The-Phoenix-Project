@@ -69,7 +69,7 @@ Future<Widget> onHold(
                               borderRadius: BorderRadius.circular(kRounded),
                               border: Border.all(
                                   color: Colors.white.withOpacity(0.04)),
-                              color: glassOverlayColor,
+                              color: glassOpacity,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +197,7 @@ Future<Widget> onHold(
                                                             .withOpacity(0.04),
                                                         borderWidth: 1,
                                                         backgroundColor:
-                                                            glassOverlayColor,
+                                                            glassOpacity,
                                                         flushbarStyle:
                                                             FlushbarStyle
                                                                 .FLOATING,
@@ -264,7 +264,7 @@ Future<Widget> onHold(
                                                                                   decoration: BoxDecoration(
                                                                                     borderRadius: BorderRadius.circular(kRounded),
                                                                                     border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                    color: glassOverlayColor,
+                                                                                    color: glassOpacity,
                                                                                   ),
                                                                                   child: Column(
                                                                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -301,11 +301,10 @@ Future<Widget> onHold(
                                                                                                             duration: Duration(seconds: 5),
                                                                                                             borderColor: Colors.white.withOpacity(0.04),
                                                                                                             borderWidth: 1,
-                                                                                                            backgroundColor: glassOverlayColor,
+                                                                                                            backgroundColor: glassOpacity,
                                                                                                             flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                             isDismissible: true,
-                                                                                                               barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
                                                                                                           )..show(context);
@@ -324,11 +323,10 @@ Future<Widget> onHold(
                                                                                                             duration: Duration(seconds: 5),
                                                                                                             borderColor: Colors.white.withOpacity(0.04),
                                                                                                             borderWidth: 1,
-                                                                                                            backgroundColor: glassOverlayColor,
+                                                                                                            backgroundColor: glassOpacity,
                                                                                                             flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                             isDismissible: true,
-    barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                                                                            
+                                                                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
                                                                                                             margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                             borderRadius: BorderRadius.circular(15),
                                                                                                           )..show(context);
@@ -451,7 +449,7 @@ Future<Widget> onHold(
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: glassOverlayColor,
+                                                                                      color: glassOpacity,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -683,13 +681,17 @@ Future<Widget> onHold(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              glassOverlayColor,
+                                                              glassOpacity,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                          barBlur: musicBox.get(
+                                                                      "glassBlur") ==
+                                                                  null
+                                                              ? 18
+                                                              : musicBox.get(
+                                                                  "glassBlur"),
                                                           dismissDirection:
                                                               FlushbarDismissDirection
                                                                   .HORIZONTAL,
@@ -841,7 +843,7 @@ Future<Widget> onHoldExtended(
                                 borderRadius: BorderRadius.circular(kRounded),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
-                                color: glassOverlayColor,
+                                color: glassOpacity,
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -919,13 +921,17 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              glassOverlayColor,
+                                                              glassOpacity,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                            barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                          barBlur: musicBox.get(
+                                                                      "glassBlur") ==
+                                                                  null
+                                                              ? 18
+                                                              : musicBox.get(
+                                                                  "glassBlur"),
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -966,13 +972,17 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              glassOverlayColor,
+                                                              glassOpacity,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                              barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                          barBlur: musicBox.get(
+                                                                      "glassBlur") ==
+                                                                  null
+                                                              ? 18
+                                                              : musicBox.get(
+                                                                  "glassBlur"),
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -1018,13 +1028,17 @@ Future<Widget> onHoldExtended(
                                                                   0.04),
                                                           borderWidth: 1,
                                                           backgroundColor:
-                                                              glassOverlayColor,
+                                                              glassOpacity,
                                                           flushbarStyle:
                                                               FlushbarStyle
                                                                   .FLOATING,
                                                           isDismissible: true,
-                                                             barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                          barBlur: musicBox.get(
+                                                                      "glassBlur") ==
+                                                                  null
+                                                              ? 18
+                                                              : musicBox.get(
+                                                                  "glassBlur"),
                                                           margin:
                                                               EdgeInsets.only(
                                                                   bottom: 20,
@@ -1076,7 +1090,7 @@ Future<Widget> onHoldExtended(
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: glassOverlayColor,
+                                                                                      color: glassOpacity,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1113,11 +1127,10 @@ Future<Widget> onHoldExtended(
                                                                                                               duration: Duration(seconds: 5),
                                                                                                               borderColor: Colors.white.withOpacity(0.04),
                                                                                                               borderWidth: 1,
-                                                                                                              backgroundColor: glassOverlayColor,
+                                                                                                              backgroundColor: glassOpacity,
                                                                                                               flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                               isDismissible: true,
-                                                                                                                  barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                                                                              barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
                                                                                                             )..show(context);
@@ -1136,11 +1149,10 @@ Future<Widget> onHoldExtended(
                                                                                                               duration: Duration(seconds: 5),
                                                                                                               borderColor: Colors.white.withOpacity(0.04),
                                                                                                               borderWidth: 1,
-                                                                                                              backgroundColor: glassOverlayColor,
+                                                                                                              backgroundColor: glassOpacity,
                                                                                                               flushbarStyle: FlushbarStyle.FLOATING,
                                                                                                               isDismissible: true,
-                                                                                                                 barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-
+                                                                                                              barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
                                                                                                               margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                                                                                                               borderRadius: BorderRadius.circular(15),
                                                                                                             )..show(context);
@@ -1275,7 +1287,7 @@ Future<Widget> onHoldExtended(
                                                                                     decoration: BoxDecoration(
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                       border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                      color: glassOverlayColor,
+                                                                                      color: glassOpacity,
                                                                                     ),
                                                                                     child: Column(
                                                                                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1506,13 +1518,17 @@ Future<Widget> onHoldExtended(
                                                                     0.04),
                                                             borderWidth: 1,
                                                             backgroundColor:
-                                                                glassOverlayColor,
+                                                                glassOpacity,
                                                             flushbarStyle:
                                                                 FlushbarStyle
                                                                     .FLOATING,
                                                             isDismissible: true,
-    barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                           
+                                                            barBlur: musicBox.get(
+                                                                        "glassBlur") ==
+                                                                    null
+                                                                ? 18
+                                                                : musicBox.get(
+                                                                    "glassBlur"),
                                                             dismissDirection:
                                                                 FlushbarDismissDirection
                                                                     .HORIZONTAL,

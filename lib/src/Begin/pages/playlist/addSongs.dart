@@ -80,7 +80,7 @@ class _AddSongsState extends State<AddSongs> {
                   duration: Duration(seconds: 5),
                   borderColor: Colors.white.withOpacity(0.04),
                   borderWidth: 1,
-                  backgroundColor: glassOverlayColor,
+                  backgroundColor: glassOpacity,
                   flushbarStyle: FlushbarStyle.FLOATING,
                   isDismissible: true,
                      barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
@@ -128,8 +128,8 @@ class _AddSongsState extends State<AddSongs> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 15.0,
+                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
                           ],
@@ -146,7 +146,7 @@ class _AddSongsState extends State<AddSongs> {
                                 border: Border.all(
                                   color: Colors.white.withOpacity(0.04),
                                 ),
-                                color: glassOverlayColor,
+                                color: glassOpacity,
                               ),
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.center,
