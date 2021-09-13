@@ -99,7 +99,7 @@ class _PhoenixState extends State<Phoenix> {
                             ),
                             Padding(padding: EdgeInsets.only(top: 2)),
                             Text(
-                              "HERTZ",
+                              "FALL",
                               style: TextStyle(
                                 color: Colors.white,
                                 inherit: false,

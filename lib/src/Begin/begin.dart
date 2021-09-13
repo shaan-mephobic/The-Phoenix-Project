@@ -5,7 +5,6 @@ import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
-import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/quick_tips.dart';
 import 'package:phoenix/src/Begin/pages/now_playing/mini_playing.dart';
 import 'package:phoenix/src/Begin/pages/playlist/playlist.dart';
@@ -113,7 +112,6 @@ class _BeginState extends State<Begin>
   @override
   void dispose() {
     animatedPlayPause.dispose();
-    marqueeController.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -125,16 +123,8 @@ class _BeginState extends State<Begin>
         if (onSettings) {
           yeahRotate();
         }
-        if (isMarqueeDead) {
-          marqueeController.repeat();
-          isMarqueeDead = false;
-        }
         break;
       case AppLifecycleState.paused:
-        if (marqueeController.isAnimating) {
-          marqueeController.reset();
-          isMarqueeDead = true;
-        }
         breakRotate = true;
         break;
       case AppLifecycleState.detached:
@@ -960,10 +950,6 @@ class _BeginState extends State<Begin>
                                       : deviceHeight / 36,
                                 ),
                                 onTap: () {
-                                  if (marqueeController.isAnimating) {
-                                    marqueeController.reset();
-                                    isMarqueeDead = true;
-                                  }
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -980,12 +966,6 @@ class _BeginState extends State<Begin>
                                         builder: (context, child) => Settings(),
                                       ),
                                     ),
-                                  ).then(
-                                    (value) {
-                                      if (isMarqueeDead) {
-                                        isMarqueeDead = false;
-                                      }
-                                    },
                                   );
                                 },
                               ),
@@ -1001,7 +981,6 @@ class _BeginState extends State<Begin>
           ),
         ),
       ),
-      // ),
     );
   }
 

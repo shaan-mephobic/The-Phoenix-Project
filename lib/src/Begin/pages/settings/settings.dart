@@ -28,12 +28,11 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   @override
   void initState() {
-    super.initState();
     breakRotate = false;
     statusBarColor = Colors.white;
-
     crossfadeStateChange = true;
     yeahRotate();
+    super.initState();
   }
 
   @override
@@ -47,7 +46,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    rootCrossfadeState = Provider.of<Leprovider>(context);
+    // rootCrossfadeState = Provider.of<Leprovider>(context);
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
       orientedCar = true;
       deviceHeight = MediaQuery.of(context).size.width;
@@ -115,20 +114,20 @@ class _SettingsState extends State<Settings> {
                                                   onTap: () async {
                                                     if (i == 0) {
                                                       Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            maintainState:
-                                                                false,
-                                                            builder: (context) =>
-                                                                ChangeNotifierProvider<
-                                                                    Leprovider>(
-                                                              create: (_) =>
-                                                                  Leprovider(),
-                                                              builder: (context,
-                                                                      child) =>
-                                                                  Interface(),
-                                                            ),
-                                                          ),).then((value) {
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          maintainState: false,
+                                                          builder: (context) =>
+                                                              ChangeNotifierProvider<
+                                                                  Leprovider>(
+                                                            create: (_) =>
+                                                                Leprovider(),
+                                                            builder: (context,
+                                                                    child) =>
+                                                                Interface(),
+                                                          ),
+                                                        ),
+                                                      ).then((value) {
                                                         setState(() {});
                                                       });
                                                     } else if (i == 1) {

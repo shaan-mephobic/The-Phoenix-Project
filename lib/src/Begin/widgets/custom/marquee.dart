@@ -4,9 +4,6 @@ import 'package:flutter/rendering.dart';
 
 /// Credits to zhcode-fun https://github.com/zhcode-fun/flutter-marquee-text
 
-AnimationController marqueeController;
-bool isMarqueeDead = false;
-
 class MarqueeText extends StatelessWidget {
   final String text;
   final TextStyle style;
@@ -39,7 +36,7 @@ class MarqueeText extends StatelessWidget {
       color: Colors.transparent,
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) => ClipPath(
-          child: _MarqueeContainer(
+          child: MarqueeContainer(
             text: text,
             textStyle: style,
             constraints: constraints,
@@ -54,7 +51,7 @@ class MarqueeText extends StatelessWidget {
   }
 }
 
-class _MarqueeContainer extends StatefulWidget {
+class MarqueeContainer extends StatefulWidget {
   final String text;
   final TextStyle textStyle;
   final double speed;
@@ -63,7 +60,7 @@ class _MarqueeContainer extends StatefulWidget {
   final TextDirection textDirection;
   final MarqueeDirection marqueeDirection;
 
-  _MarqueeContainer({
+  MarqueeContainer({
     Key key,
     this.text,
     this.textStyle,
@@ -73,14 +70,15 @@ class _MarqueeContainer extends StatefulWidget {
     this.textDirection,
     this.marqueeDirection,
   }) : super(key: key);
-
   @override
-  _MarqueeContainerState createState() => _MarqueeContainerState();
+  MarqueeContainerState createState() => MarqueeContainerState();
 }
 
-class _MarqueeContainerState extends State<_MarqueeContainer>
+class MarqueeContainerState extends State<MarqueeContainer>
     with SingleTickerProviderStateMixin {
   bool isListening = false;
+  AnimationController marqueeController;
+  bool isMarqueeDead = false;
   Animation<double> _animation;
   bool _showMarquee = false;
 
@@ -88,6 +86,26 @@ class _MarqueeContainerState extends State<_MarqueeContainer>
   void initState() {
     marqueeController = AnimationController(vsync: this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    marqueeController.dispose();
+    super.dispose();
+  }
+
+  void shouldResume() {
+    if (isMarqueeDead) {
+      marqueeController.repeat();
+      isMarqueeDead = false;
+    }
+  }
+
+  void shouldPause() {
+    if (!isMarqueeDead) {
+      marqueeController.reset();
+      isMarqueeDead = true;
+    }
   }
 
   @override
@@ -130,7 +148,8 @@ class _MarqueeContainerState extends State<_MarqueeContainer>
       marqueeController.forward();
     }
 
-    final textWidget =Container(child:Text(
+    final textWidget = Container(
+        child: Text(
       widget.text,
       style: widget.textStyle,
       overflow: TextOverflow.visible,

@@ -44,7 +44,8 @@ Map quotes = {
 
 /// Changelogs
 Map<String, String> changelogs = {
-  "HERTZ - 2.0.0": "• Initial 2.0.0 release.\n• Rebuilt entire app."
+  "HERTZ - 2.0.0": "• Initial 2.0.0 release.\n• Rebuilt entire app.",
+  "FALL - 2.1.0":"• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh."
 };
 
 /// Theme data of entire app

@@ -46,12 +46,13 @@ class _ChangelogsState extends State<Changelogs> {
               children: [
                 BackArt(),
                 Padding(
-                  padding: EdgeInsets.only(top: kToolbarHeight + 20),
+                  padding: EdgeInsets.only(
+                      top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: SingleChildScrollView(
                     padding: EdgeInsets.only(top: 50),
                     child: Column(
                       children: [
-                        for (int i = 0; i < changelogs.length; i++)
+                        for (int i = changelogs.length - 1; i > -1; i--)
                           Column(
                             children: [
                               ListTile(
@@ -70,15 +71,15 @@ class _ChangelogsState extends State<Changelogs> {
                                   fontSize: 17,
                                 ),
                               ),
+                              Divider(
+                                color: Colors.white54,
+                                indent: 50,
+                                thickness: 0.2,
+                                endIndent: 50,
+                                height: 110,
+                              ),
                             ],
                           ),
-                        Divider(
-                          color: Colors.white54,
-                          indent: 50,
-                          thickness: 0.2,
-                          endIndent: 50,
-                          height: 110,
-                        ),
                       ],
                     ),
                   ),
