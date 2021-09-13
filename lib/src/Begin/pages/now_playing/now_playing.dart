@@ -150,10 +150,17 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               width: deviceWidth,
                               child: GestureDetector(
                                 child: NowArt(orientedCar),
+                                onTap: () async {
+                                  HapticFeedback.lightImpact();
+
+                                  await onHoldExtended(context, orientedCar,
+                                      deviceHeight, deviceWidth);
+                                },
                                 onDoubleTap: () {
                                   onDoubleTap(context);
                                 },
                                 onLongPress: () async {
+                                  HapticFeedback.lightImpact();
                                   await onHoldExtended(context, orientedCar,
                                       deviceHeight, deviceWidth);
                                 },
@@ -434,7 +441,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                             BorderRadius.circular(kRounded),
                                                                         child:
                                                                             BackdropFilter(
-                                                                          filter: glassBlur,
+                                                                          filter:
+                                                                              glassBlur,
                                                                           child:
                                                                               Container(
                                                                             decoration: BoxDecoration(
@@ -593,7 +601,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                       // make sure we apply clip it properly
                                                                       child:
                                                                           BackdropFilter(
-                                                                        filter: glassBlur,
+                                                                        filter:
+                                                                            glassBlur,
                                                                         child:
                                                                             Container(
                                                                           decoration: BoxDecoration(
@@ -871,10 +880,16 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     padding: EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
+                                  onTap: () async {
+                                    HapticFeedback.lightImpact();
+                                    await onHoldExtended(context, orientedCar,
+                                        deviceHeight, deviceWidth);
+                                  },
                                   onDoubleTap: () {
                                     onDoubleTap(context);
                                   },
                                   onLongPress: () async {
+                                    HapticFeedback.lightImpact();
                                     await onHoldExtended(context, orientedCar,
                                         deviceHeight, deviceWidth);
                                   },
