@@ -21,6 +21,7 @@ And a bunch more. Why not check it yourself?
 
 ## TODO
 * Android 11 support for editing and deleting files
+* Ringtone setting support
 * Improve performance and stability
 * Lint code
 
