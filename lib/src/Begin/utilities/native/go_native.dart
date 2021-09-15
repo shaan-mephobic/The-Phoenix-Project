@@ -53,7 +53,6 @@ setHomeScreenWallpaper() async {
 }
 
 returnToOld() async {
-  print("going down for real");
   try {
     await platform.invokeMethod("returnToOld");
   } catch (e) {
@@ -74,5 +73,16 @@ broadcastFileChange(String path) async {
   try {
     var data = <String, String>{"filePath": path};
     await platform.invokeMethod("broadcastFileChange", data);
-  } catch (e) {}
+  } catch (e) {
+    print(e);
+  }
+}
+
+setRingtone(String path, String title, String artist) async {
+  try {
+    var data = <String, String>{'path': path, 'title': title, 'artist': artist};
+    await platform.invokeMethod("setRingtone", data);
+  } catch (e) {
+    print(e);
+  }
 }

@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/heart.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
+import 'package:phoenix/src/Begin/widgets/dialogues/ringtone.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres_inside.dart';
@@ -808,11 +809,11 @@ Future<Widget> onHoldExtended(
     "Share File",
     "Edit File",
     // "Save Wallpaper",
+    "Set Ringtone",
     "Set As Home Screen",
     "Delete"
   ];
   bool darkModeOn = true;
-  HapticFeedback.lightImpact();
   return Expanded(
     child: await showDialog(
       context: context,
@@ -1614,11 +1615,20 @@ Future<Widget> onHoldExtended(
                                                     //   }
                                                     // }
                                                     else if (i == 5) {
+                                                      Navigator.pop(context);
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              Ringtone(),
+                                                        ),
+                                                      );
+                                                    } else if (i == 6) {
                                                       // set as home screen
                                                       Navigator.pop(context);
                                                       await screenShotUI(false);
                                                       await setHomeScreenWallpaper();
-                                                    } else if (i == 6) {
+                                                    } else if (i == 7) {
                                                       if (isAndroid11) {
                                                         androidRSupport(
                                                             context);

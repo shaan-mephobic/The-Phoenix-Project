@@ -25,8 +25,9 @@ dependencies:
 
 
   # UI Related
-  animated_text_kit: ^4.2.1
   another_flushbar: ^1.10.24
+  animated_text_kit: ^4.2.1
+  another_xlider: ^1.0.0
   flare_flutter: ^3.0.2
   flare_loading: ^3.0.0
   palette_generator: ^0.3.1
@@ -37,6 +38,7 @@ dependencies:
   # AUDIO Related
   audio_service: ^0.17.1
   audiotagger: ^2.2.1
+  flutter_ffmpeg: ^0.4.2
   just_audio: ^0.9.10
   on_audio_query: 2.2.0
 

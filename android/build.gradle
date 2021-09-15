@@ -18,6 +18,10 @@ allprojects {
     }
 }
 
+ext {
+    flutterFFmpegPackage  = "min"
+}
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
