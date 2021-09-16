@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/set_ringtone.dart';
 import 'package:phoenix/src/Begin/widgets/seek_bar.dart';
 import '../../begin.dart';
@@ -23,7 +24,6 @@ class Ringtone extends StatefulWidget {
       @required this.filePath,
       @required this.artist,
       @required this.title,
-     
       @required this.songDuration});
   @override
   _RingtoneState createState() => _RingtoneState();
@@ -45,6 +45,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
     ranges = [0, widget.songDuration];
     ringtonePlayer.setFilePath(widget.filePath);
     playerState();
+    getSettingPermission();
     super.initState();
   }
 
@@ -213,7 +214,10 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           ),
                                         ),
                                       ),
-                                      RingtoneSeekBar(),
+                                      RingtoneSeekBar(
+                                          duration: Duration(
+                                              milliseconds:
+                                                  widget.songDuration ~/ 1)),
                                       IconButton(
                                         icon: AnimatedIcon(
                                           progress: animatedIcon,

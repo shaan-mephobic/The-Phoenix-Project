@@ -86,3 +86,11 @@ setRingtone(String path) async {
     print(e);
   }
 }
+
+getSettingPermission() async {
+  try {
+    await platform.invokeMethod("checkSettingPermission");
+  } catch (e) {
+    print(e);
+  }
+}

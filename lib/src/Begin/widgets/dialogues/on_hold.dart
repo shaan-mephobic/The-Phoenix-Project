@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/heart.dart';
@@ -26,7 +27,7 @@ var tagger;
 
 Future<Widget> onHold(
     BuildContext classContext,
-    List listOfSong,
+    List<SongModel> listOfSong,
     int index,
     bool car,
     double heightOfDevice,
@@ -37,6 +38,7 @@ Future<Widget> onHold(
     "Add To Queue",
     "Add To PlayList",
     "Share",
+    "Set Ringtone",
     "Edit",
     "Delete"
   ];
@@ -384,10 +386,36 @@ Future<Widget> onHold(
                                                     await Share.shareFiles(
                                                       [listOfSong[index].data],
                                                     );
+                                                  } else if (i == 4) {
+                                                    Navigator.pop(context);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) => Ringtone(
+                                                            artworkId:
+                                                                listOfSong[
+                                                                        index]
+                                                                    .id,
+                                                            filePath:
+                                                                listOfSong[
+                                                                        index]
+                                                                    .data,
+                                                            artist: listOfSong[
+                                                                    index]
+                                                                .artist,
+                                                            title: listOfSong[
+                                                                    index]
+                                                                .title,
+                                                            songDuration:
+                                                                listOfSong[index]
+                                                                        .duration *
+                                                                    1.0),
+                                                      ),
+                                                    );
                                                   }
 
                                                   /// Edit Song
-                                                  else if (i == 4) {
+                                                  else if (i == 5) {
                                                     if (isAndroid11) {
                                                       androidRSupport(context);
                                                     } else {
@@ -708,7 +736,7 @@ Future<Widget> onHold(
                                                         )..show(context);
                                                       }
                                                     }
-                                                  } else if (i == 5) {
+                                                  } else if (i == 6) {
                                                     if (isAndroid11) {
                                                       androidRSupport(context);
                                                     } else {
@@ -1564,7 +1592,10 @@ Future<Widget> onHoldExtended(
                                                                   nowMediaItem
                                                                       .title,
                                                               songDuration:
-                                                                  nowMediaItem.duration.inMilliseconds*1.0),
+                                                                  nowMediaItem
+                                                                          .duration
+                                                                          .inMilliseconds *
+                                                                      1.0),
                                                         ),
                                                       );
                                                     } else if (i == 6) {

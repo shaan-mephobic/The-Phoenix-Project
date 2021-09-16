@@ -76,6 +76,9 @@ class MainActivity : FlutterActivity() {
                 val arguments = call.arguments<Map<Any, String?>>()
                 setRingtone(ringtonePath=arguments["path"]!!)
             }
+            else if(call.method=="checkSettingPermission"){
+                getSettingsPermission()
+            }
 
             result.success("done")
         }
@@ -254,10 +257,14 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-//    private fun resetWallpaper() {
-//        val wallpaperManager = WallpaperManager.getInstance(this)
-//        wallpaperManager.clearWallpaper()
-//    }
+
+    private fun getSettingsPermission(){
+        if(!android.provider.Settings.System.canWrite(context)) {
+            val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.data = Uri.parse("package:" + context.packageName);
+            context.startActivity(intent);
+        }
+    }
 
     private fun setRingtone(ringtonePath: String) {
         if(android.provider.Settings.System.canWrite(context)) {
@@ -273,10 +280,7 @@ class MainActivity : FlutterActivity() {
             }
         }
         else{
-            val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS)
-            intent.data = Uri.parse("package:" + context.packageName)
-            context.startActivity(intent)
-            if(android.provider.Settings.System.canWrite(context)) setRingtone(ringtonePath)
+            getSettingsPermission()
         }
     }
 }

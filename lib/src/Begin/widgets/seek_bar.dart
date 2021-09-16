@@ -169,7 +169,8 @@ class _SeekBarState extends State<SeekBar> {
 }
 
 class RingtoneSeekBar extends StatefulWidget {
-  const RingtoneSeekBar({Key key}) : super(key: key);
+  final Duration duration;
+  RingtoneSeekBar({@required this.duration});
 
   @override
   _RingtoneSeekBarState createState() => _RingtoneSeekBarState();
@@ -202,8 +203,8 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
             maxPeriod: const Duration(milliseconds: 100))
         .listen((event) {
       if (stateChange) {
-        if (event > nowMediaItem.duration) {
-          currentPosition = nowMediaItem.duration;
+        if (event > widget.duration) {
+          currentPosition = widget.duration;
         } else {
           setState(() {
             currentPosition = event;
@@ -276,7 +277,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
             child: Slider(
                 activeColor: Colors.white,
                 min: 00.0,
-                max: nowMediaItem.duration.inMilliseconds * 1.0,
+                max: widget.duration.inMilliseconds * 1.0,
                 value: onRingtoneSeek
                     ? ringtoneSeekValue * 1.0
                     : currentPosition.inMilliseconds * 1.0,
@@ -297,17 +298,17 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
           padding: EdgeInsets.only(
               right: orientedCar ? deviceHeight / 2 / 25 : deviceWidth / 30),
           child: Text(
-            nowMediaItem.duration.inMilliseconds == null
-                ? Duration(milliseconds: nowMediaItem.duration.inMilliseconds)
+            widget.duration.inMilliseconds == null
+                ? Duration(milliseconds: widget.duration.inMilliseconds)
                     .toString()
-                : Duration(milliseconds: nowMediaItem.duration.inMilliseconds)
+                : Duration(milliseconds: widget.duration.inMilliseconds)
                     .toString()
                     .replaceRange(0, 2, "")
                     .replaceRange(
                       7,
                       Duration(
                               milliseconds:
-                                  nowMediaItem.duration.inMilliseconds)
+                                  widget.duration.inMilliseconds)
                           .toString()
                           .replaceRange(0, 2, "")
                           .length,
