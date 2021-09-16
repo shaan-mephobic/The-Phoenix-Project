@@ -43,7 +43,6 @@ gettinAlbums() async {
 }
 
 gettinAlbumsArts() async {
-
   List<String> albumswoArt = [];
   if (!await Directory("${applicationFileDirectory.path}/artworks").exists()) {
     await Directory("${applicationFileDirectory.path}/artworks").create();
@@ -63,11 +62,9 @@ gettinAlbumsArts() async {
               "${applicationFileDirectory.path}/artworks/${allAlbums[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg")
           .readAsBytes();
     } else {
-
       albumsArts[allAlbums[i].album] = await OnAudioQuery().queryArtwork(
           allAlbums[i].id, ArtworkType.ALBUM,
           format: ArtworkFormat.JPEG, size: 350);
-
 
       if (albumsArts[allAlbums[i].album] != null) {
         await File(
@@ -79,28 +76,25 @@ gettinAlbumsArts() async {
     }
   }
   musicBox.put("AlbumsWithoutArt", albumswoArt);
-
 }
 
 albumSongs() async {
   inAlbumSongs = await OnAudioQuery()
       .queryAudiosFrom(AudiosFromType.ALBUM, allAlbums[passedIndexAlbum].album);
   for (int i = 0; i < inAlbumSongs.length; i++) {
-
     MediaItem mi = MediaItem(
         id: inAlbumSongs[i].data,
         album: inAlbumSongs[i].album,
         title: inAlbumSongs[i].title,
         artist: inAlbumSongs[i].artist,
         duration: Duration(milliseconds: getDuration(inAlbumSongs[i])),
-        artUri: Uri.file(
-            allAlbumsName.contains(inAlbumSongs[i].album)
-                ? musicBox.get("AlbumsWithoutArt") == null
-                    ? "${applicationFileDirectory.path}/artworks/${inAlbumSongs[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : musicBox.get("AlbumsWithoutArt").contains(inAlbumSongs[i].album)
-                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/${inAlbumSongs[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+        artUri: Uri.file(allAlbumsName.contains(inAlbumSongs[i].album)
+            ? musicBox.get("AlbumsWithoutArt") == null
+                ? "${applicationFileDirectory.path}/artworks/${inAlbumSongs[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                : musicBox.get("AlbumsWithoutArt").contains(inAlbumSongs[i].album)
+                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                    : "${applicationFileDirectory.path}/artworks/${inAlbumSongs[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+            : "${applicationFileDirectory.path}/artworks/null.jpeg"),
         extras: {"id": inAlbumSongs[i].id});
     albumMediaItems.add(mi);
     inAlbumSongsArtIndex.add(i);

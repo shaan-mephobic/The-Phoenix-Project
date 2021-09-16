@@ -43,7 +43,6 @@ playerontap() async {
     fadeBool = true;
     if (backArtStateChange) {
       rootCrossfadeState.provideman();
-
       if (crossfadeStateChange) {
         globaltaste.provideman();
       }

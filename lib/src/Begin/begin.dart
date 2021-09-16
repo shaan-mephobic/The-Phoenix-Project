@@ -40,7 +40,7 @@ double deviceWidth;
 int indexOfList;
 Uint8List art;
 bool refresh = false;
-var tag;
+Audiotagger tag;
 Random random = Random();
 Color statusBarColor = Colors.transparent;
 bool permissionGiven = false;

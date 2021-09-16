@@ -78,9 +78,9 @@ broadcastFileChange(String path) async {
   }
 }
 
-setRingtone(String path, String title, String artist) async {
+setRingtone(String path) async {
   try {
-    var data = <String, String>{'path': path, 'title': title, 'artist': artist};
+    var data = <String, String>{'path': path};
     await platform.invokeMethod("setRingtone", data);
   } catch (e) {
     print(e);

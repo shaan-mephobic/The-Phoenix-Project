@@ -14,6 +14,7 @@ import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -23,9 +24,6 @@ import kotlin.math.abs
 
 
 class MainActivity : FlutterActivity() {
-    private var young: File? = File("");
-    private var summa = Uri.parse("pain")
-    private var callleach: Uri = summa;
     private val samplingRate = 44100
     private var visualizer: Visualizer? = null
     private var mWaveBuffer: ByteArray? = null
@@ -47,14 +45,12 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         val channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel);
         channel.setMethodCallHandler { call, result ->
-             if (call.method == "KotlinVisualizer") {
-            flashInit()
-        }
-        else if (call.method == "deleteFile") {
+            if (call.method == "KotlinVisualizer") {
+                flashInit()
+            } else if (call.method == "deleteFile") {
                 val arguments = call.arguments<Map<Any, String?>>()
                 val pathToDelete: String = arguments["fileToDelete"]!!
                 deleteThis(pathToDelete)
-
             } else if (call.method == "Pauseit") {
                 pauseSound();
             } else if (call.method == "homescreen") {
@@ -62,29 +58,28 @@ class MainActivity : FlutterActivity() {
             } else if (call.method == "broadcastFileChange") {
                 val arguments = call.arguments<Map<Any, String?>>()
                 val pathToUpdate: String = arguments["filePath"]!!
-                broadcastFileUpdate(pathToUpdate);
+                broadcastFileUpdate(pathToUpdate)
             } else if (call.method == "sensitivityKot") {
-                val arguments = call.arguments<Map<Any, Double?>>();
+                val arguments = call.arguments<Map<Any, Double?>>()
                 sensitivity = arguments["valueFromFlutter"]!!
             } else if (call.method == "ResetKot") {
                 println("inside Reset")
                 resetKot()
             } else if (call.method == "returnToOld") {
-                println("this is your life");
-                resetWallpaper();
+//                resetWallpaper();
             } else if (call.method == "wallpaperSupport?") {
                 val wallpaperManager = WallpaperManager.getInstance(this)
-                val good: Boolean = wallpaperManager.isWallpaperSupported;
-                val prettyGood = wallpaperManager.isSetWallpaperAllowed;
-                println(good);
-                println(prettyGood);
-                if (good && prettyGood) goForWallpaper();
+                val good: Boolean = wallpaperManager.isWallpaperSupported
+                val prettyGood = wallpaperManager.isSetWallpaperAllowed
+                if (good && prettyGood) goForWallpaper()
+            } else if(call.method=="setRingtone"){
+                val arguments = call.arguments<Map<Any, String?>>()
+                setRingtone(ringtonePath=arguments["path"]!!)
             }
 
             result.success("done")
         }
     }
-
 
 
     private fun flashInit() {
@@ -93,7 +88,6 @@ class MainActivity : FlutterActivity() {
         cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
         cameraID = cameraManager.cameraIdList[0]
     }
-
 
 
     private fun deleteThis(path: String) {
@@ -117,7 +111,6 @@ class MainActivity : FlutterActivity() {
         dontFlashDamnit()
         onCompletingFlash = true
     }
-
 
 
     private fun visualize() {
@@ -156,7 +149,6 @@ class MainActivity : FlutterActivity() {
                     }
 
 
-
                 }, Visualizer.getMaxCaptureRate(), true, true)
             }.apply {
                 mDataCaptureSize = captureSize.apply {
@@ -171,7 +163,7 @@ class MainActivity : FlutterActivity() {
     }
 
 
-   private fun updateVisualizer(bytes: ByteArray?) {
+    private fun updateVisualizer(bytes: ByteArray?) {
         var t = calculateRMSLevel(bytes)
         val measurementPeakRms = Visualizer.MeasurementPeakRms()
         var x: Int = visualizer!!.getMeasurementPeakRms(measurementPeakRms)
@@ -262,32 +254,29 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-    private fun resetWallpaper() {
-        val wallpaperManager = WallpaperManager.getInstance(this)
-        wallpaperManager.clearWallpaper()
-    }
+//    private fun resetWallpaper() {
+//        val wallpaperManager = WallpaperManager.getInstance(this)
+//        wallpaperManager.clearWallpaper()
+//    }
 
-    private fun setRingtone() {
-        val values: ContentValues = ContentValues();
-        values.put(MediaStore.MediaColumns.DATA, young!!.getAbsolutePath());
-        values.put(MediaStore.MediaColumns.TITLE, "ring");
-        values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/*");
-        values.put(MediaStore.MediaColumns.SIZE, young!!.length());
-        values.put(MediaStore.Audio.Media.ARTIST, "Phoenix");
-        values.put(MediaStore.Audio.Media.IS_RINGTONE, true);
-        values.put(MediaStore.Audio.Media.IS_NOTIFICATION, false);
-        values.put(MediaStore.Audio.Media.IS_ALARM, false);
-        values.put(MediaStore.Audio.Media.IS_MUSIC, false);
-        try {
-            if (Settings.System.canWrite(getApplicationContext())) {
-                RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, callleach);
-                Toast.makeText(context, " Ringtone has been changed", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Allow modify system settings ==> ON ", Toast.LENGTH_LONG).show();
+    private fun setRingtone(ringtonePath: String) {
+        if(android.provider.Settings.System.canWrite(context)) {
+            try {
+                RingtoneManager.setActualDefaultRingtoneUri(
+                        context,
+                        RingtoneManager.TYPE_RINGTONE,
+                        Uri.fromFile(File(ringtonePath))
+                );
+            } catch (e: Exception) {
+                Log.i("ringtone", e.toString());
+                Toast.makeText(context, "Failed setting ringtone!", Toast.LENGTH_SHORT).show();
             }
-        } catch (e: Exception) {
-            Log.i("ringtone", e.toString());
-            Toast.makeText(context, "Can't set as Ringtone  ", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS)
+            intent.data = Uri.parse("package:" + context.packageName)
+            context.startActivity(intent)
+            if(android.provider.Settings.System.canWrite(context)) setRingtone(ringtonePath)
         }
     }
 }

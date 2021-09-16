@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -808,8 +807,8 @@ Future<Widget> onHoldExtended(
     "Add To PlayList",
     "Share File",
     "Edit File",
-    // "Save Wallpaper",
     "Set Ringtone",
+    "Save Wallpaper",
     "Set As Home Screen",
     "Delete"
   ];
@@ -1547,88 +1546,98 @@ Future<Widget> onHoldExtended(
                                                           )..show(context);
                                                         }
                                                       }
-                                                    }
-                                                    //  else if (i == 5) {
-                                                    //   // Save Wallpaper
-                                                    //   if (await Permission
-                                                    //           .storage
-                                                    //           .request()
-                                                    //           .isGranted
-                                                    //       //     &&
-                                                    //       // await Permission
-                                                    //       //     .manageExternalStorage
-                                                    //       //     .request()
-                                                    //       //     .isGranted
-                                                    //       ) {
-                                                    //     Navigator.pop(context);
-
-                                                    //     Flushbar(
-                                                    //       messageText: Text(
-                                                    //           "Saved In Downloads Directory",
-                                                    //           style: TextStyle(
-                                                    //               fontFamily:
-                                                    //                   "Futura",
-                                                    //               color: Colors
-                                                    //                   .white)),
-                                                    //       icon: Icon(
-                                                    //         MdiIcons.image,
-                                                    //         size: 28.0,
-                                                    //         color: kCorrect,
-                                                    //       ),
-
-                                                    //       shouldIconPulse: true,
-                                                    //       dismissDirection:
-                                                    //           FlushbarDismissDirection
-                                                    //               .HORIZONTAL,
-                                                    //       duration: Duration(
-                                                    //           seconds: 5),
-                                                    //       borderColor: Colors
-                                                    //           .white
-                                                    //           .withOpacity(
-                                                    //               0.04),
-                                                    //       borderWidth: 1,
-                                                    //       backgroundColor:
-                                                    //           Colors.white
-                                                    //               .withOpacity(
-                                                    //                   0.05),
-                                                    //       flushbarStyle:
-                                                    //           FlushbarStyle
-                                                    //               .FLOATING,
-                                                    //       isDismissible: true,
-                                                    //       barBlur: 20,
-                                                    //       margin:
-                                                    //           EdgeInsets.only(
-                                                    //               bottom: 20,
-                                                    //               left: 8,
-                                                    //               right: 8),
-                                                    //       borderRadius:
-                                                    //           BorderRadius
-                                                    //               .circular(15),
-                                                    //       // leftBarIndicatorColor:
-                                                    //       //     Color(0xFFCB0047),
-                                                    //     )..show(context);
-                                                    //     await Future.delayed(
-                                                    //         Duration(
-                                                    //             seconds: 1));
-                                                    //     await screenShotUI(
-                                                    //         true);
-                                                    //   }
-                                                    // }
-                                                    else if (i == 5) {
+                                                    } else if (i == 5) {
                                                       Navigator.pop(context);
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              Ringtone(),
+                                                          builder: (context) => Ringtone(
+                                                              artworkId: nowMediaItem
+                                                                  .extras['id'],
+                                                              filePath:
+                                                                  nowMediaItem
+                                                                      .id,
+                                                              artist:
+                                                                  nowMediaItem
+                                                                      .artist,
+                                                              title:
+                                                                  nowMediaItem
+                                                                      .title,
+                                                              songDuration:
+                                                                  nowMediaItem.duration.inMilliseconds*1.0),
                                                         ),
                                                       );
                                                     } else if (i == 6) {
+                                                      // Save Wallpaper
+                                                      if (await Permission
+                                                              .storage
+                                                              .request()
+                                                              .isGranted
+                                                          //     &&
+                                                          // await Permission
+                                                          //     .manageExternalStorage
+                                                          //     .request()
+                                                          //     .isGranted
+                                                          ) {
+                                                        Navigator.pop(context);
+
+                                                        Flushbar(
+                                                          messageText: Text(
+                                                              "Saved In Downloads Directory",
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "Futura",
+                                                                  color: Colors
+                                                                      .white)),
+                                                          icon: Icon(
+                                                            MdiIcons.image,
+                                                            size: 28.0,
+                                                            color: kCorrect,
+                                                          ),
+
+                                                          shouldIconPulse: true,
+                                                          dismissDirection:
+                                                              FlushbarDismissDirection
+                                                                  .HORIZONTAL,
+                                                          duration: Duration(
+                                                              seconds: 5),
+                                                          borderColor: Colors
+                                                              .white
+                                                              .withOpacity(
+                                                                  0.04),
+                                                          borderWidth: 1,
+                                                          backgroundColor:
+                                                              Colors.white
+                                                                  .withOpacity(
+                                                                      0.05),
+                                                          flushbarStyle:
+                                                              FlushbarStyle
+                                                                  .FLOATING,
+                                                          isDismissible: true,
+                                                          barBlur: 20,
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  bottom: 20,
+                                                                  left: 8,
+                                                                  right: 8),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(15),
+                                                          // leftBarIndicatorColor:
+                                                          //     Color(0xFFCB0047),
+                                                        )..show(context);
+                                                        await Future.delayed(
+                                                            Duration(
+                                                                seconds: 1));
+                                                        await screenShotUI(
+                                                            true);
+                                                      }
+                                                    } else if (i == 7) {
                                                       // set as home screen
                                                       Navigator.pop(context);
                                                       await screenShotUI(false);
                                                       await setHomeScreenWallpaper();
-                                                    } else if (i == 7) {
+                                                    } else if (i == 8) {
                                                       if (isAndroid11) {
                                                         androidRSupport(
                                                             context);

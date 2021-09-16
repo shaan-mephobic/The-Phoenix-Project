@@ -71,12 +71,15 @@ screenShotUI(save) async {
         await pathOfImage.writeAsBytes(bytes);
       } else {
         final pathOfImage =
-            await File('/storage/emulated/0/Download/${aetheticText()}.png')
-                .create();
+            '${applicationFileDirectory.path}/${aetheticText()}.png';
         final Uint8List bytes = capturedImage.buffer.asUint8List();
-        await pathOfImage.writeAsBytes(bytes);
-        await broadcastFileChange(
-            '/storage/emulated/0/Download/${aetheticText()}.png');
+        final String finalPath =
+            "/storage/emulated/0/Download/${aetheticText()}.png"
+                .replaceAll(" ", "-");
+        await File(pathOfImage).writeAsBytes(bytes);
+        await File(pathOfImage).copy(finalPath);
+        await broadcastFileChange(finalPath);
+        await File(pathOfImage).delete();
       }
     },
   );

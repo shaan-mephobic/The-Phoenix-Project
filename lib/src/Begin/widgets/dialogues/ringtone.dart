@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:another_xlider/another_xlider.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -11,28 +12,38 @@ import '../../begin.dart';
 final ringtonePlayer = AudioPlayer();
 
 class Ringtone extends StatefulWidget {
-  const Ringtone({Key key}) : super(key: key);
+  final int artworkId;
+  final String artist;
+  final String title;
+  final double songDuration;
+  final String filePath;
+
+  Ringtone(
+      {@required this.artworkId,
+      @required this.filePath,
+      @required this.artist,
+      @required this.title,
+     
+      @required this.songDuration});
   @override
   _RingtoneState createState() => _RingtoneState();
 }
 
 class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
   var animatedIcon;
-  final int artworkId = nowMediaItem.extras["id"];
-  final String artist = nowMediaItem.artist;
-  final String title = nowMediaItem.title;
-  final String songName = nowMediaItem.title;
-  final double songDuration = nowMediaItem.duration.inMilliseconds * 1.0;
-  List<double> ranges = [0, nowMediaItem.duration.inMilliseconds * 1.0];
+  List<double> ranges = [];
   bool isCompleted = false;
-  final String filePath = nowMediaItem.id;
   bool isStartChanged = false;
+  List<double> fadeIn = [0];
+  bool isProcessing = false;
+
   @override
   void initState() {
     animatedIcon = AnimationController(
         vsync: this, duration: Duration(milliseconds: crossfadeDuration));
     animatedIcon.forward();
-    ringtonePlayer.setFilePath(filePath);
+    ranges = [0, widget.songDuration];
+    ringtonePlayer.setFilePath(widget.filePath);
     playerState();
     super.initState();
   }
@@ -54,7 +65,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    //TODO crossfade and loudness increase for ringtone
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
@@ -71,22 +81,47 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
         splashColor: Colors.transparent,
-        icon: Icon(Icons.check_rounded, color: Colors.black),
-        label: Text("Set Ringtone",
-            style: TextStyle(
-                inherit: false,
-                color: Colors.black,
-                fontSize: deviceWidth / 25,
-                fontFamily: 'Urban',
-                fontWeight: FontWeight.w600)),
+        icon: isProcessing
+            ? null
+            : Icon(Icons.check_rounded, color: Colors.black),
+        label: isProcessing
+            ? Center(
+                child: Container(
+                  height: deviceWidth / 25,
+                  width: deviceWidth / 25,
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.transparent,
+                    color: Colors.black,
+                  ),
+                ),
+              )
+            : Text("Set Ringtone",
+                style: TextStyle(
+                    inherit: false,
+                    color: Colors.black,
+                    fontSize: deviceWidth / 25,
+                    fontFamily: 'Urban',
+                    fontWeight: FontWeight.w600)),
         backgroundColor: Color(0xFF1DB954),
         elevation: 8.0,
-        onPressed: () {
-          ringtoneTrim(
-              pathOfFile: filePath,
-              ranges: ranges,
-              artist: artist,
-              title: title);
+        onPressed: () async {
+          setState(() {
+            isProcessing = true;
+          });
+          try {
+            await ringtoneTrim(
+                pathOfFile: widget.filePath,
+                ranges: ranges,
+                fade: fadeIn[0].toInt(),
+                title: widget.title);
+            ringtoneSuccess(context);
+          } catch (e) {
+            print(e);
+            ringtoneFailed(context);
+          }
+          setState(() {
+            isProcessing = false;
+          });
         },
       ),
       appBar: AppBar(
@@ -115,7 +150,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
               width: double.infinity,
               height: double.infinity,
               child: QueryArtworkWidget(
-                id: artworkId,
+                id: widget.artworkId,
                 type: ArtworkType.AUDIO,
                 format: ArtworkFormat.JPEG,
                 size: 400,
@@ -168,7 +203,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         padding: EdgeInsets.only(
                                             left: 50, right: 50, bottom: 15),
                                         child: Text(
-                                          songName,
+                                          widget.title,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
@@ -190,7 +225,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         onPressed: () async {
                                           if (isCompleted) {
                                             ringtonePlayer
-                                                .setFilePath(filePath);
+                                                .setFilePath(widget.filePath);
                                             ringtonePlayer.play();
                                             isCompleted = false;
                                             animatedIcon.reverse();
@@ -208,8 +243,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                   Padding(
                                     padding: EdgeInsets.only(
                                       bottom: orientedCar
-                                          ? deviceWidth / 6
-                                          : deviceHeight / 6,
+                                          ? deviceWidth / 9
+                                          : deviceHeight / 9,
                                     ),
                                   ),
                                   Column(
@@ -314,7 +349,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                   disabled: true),
                                               rangeSlider: true,
                                               min: 0.0,
-                                              max: songDuration,
+                                              max: widget.songDuration,
                                               onDragging:
                                                   (int index, start, end) {
                                                 if (start != ranges[0]) {
@@ -343,11 +378,85 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           Padding(
                                             padding: EdgeInsets.only(
                                               bottom: orientedCar
-                                                  ? deviceWidth / 4
-                                                  : deviceHeight / 4,
+                                                  ? deviceWidth / 9
+                                                  : deviceHeight / 9,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            "Fade In",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Urban",
+                                              fontSize: deviceWidth / 18,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 50,
+                                            ),
+                                            child: SizedBox(
+                                              width: orientedCar
+                                                  ? deviceHeight / 1.1
+                                                  : deviceWidth / 1.1,
+                                              height: 50,
+                                              child: FlutterSlider(
+                                                tooltip: FlutterSliderTooltip(
+                                                    format: (String value) {
+                                                      return value + "s";
+                                                    },
+                                                    textStyle: TextStyle(
+                                                        color: Colors.white),
+                                                    boxStyle:
+                                                        FlutterSliderTooltipBox(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                    color: Colors
+                                                                        .black26))),
+                                                step: FlutterSliderStep(
+                                                  step: 0.5,
+                                                ),
+                                                trackBar: FlutterSliderTrackBar(
+                                                  inactiveTrackBar:
+                                                      BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    color: Colors.black12,
+                                                    border: Border.all(
+                                                        width: 3,
+                                                        color: Colors.white24),
+                                                  ),
+                                                  activeTrackBar: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      color: Colors.white),
+                                                ),
+                                                values: fadeIn,
+                                                max: 10,
+                                                min: 0,
+                                                onDragging: (handlerIndex,
+                                                    lowerValue, upperValue) {
+                                                  print(lowerValue);
+                                                  setState(() {
+                                                    fadeIn = [lowerValue];
+                                                  });
+                                                },
+                                              ),
                                             ),
                                           )
                                         ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          bottom: orientedCar
+                                              ? deviceWidth / 9
+                                              : deviceHeight / 9,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -366,5 +475,53 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
         ),
       ),
     );
+  }
+
+  ringtoneSuccess(BuildContext context) async {
+    Flushbar(
+      messageText: Text("Ringtone updated!",
+          style: TextStyle(fontFamily: "Futura", color: Colors.white)),
+      icon: Icon(
+        Icons.music_note,
+        size: 28.0,
+        color: kCorrect,
+      ),
+      shouldIconPulse: true,
+      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+      duration: Duration(seconds: 3),
+      borderColor: Colors.white.withOpacity(0.04),
+      borderWidth: 1,
+      backgroundColor: glassOpacity,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      isDismissible: true,
+      barBlur:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      borderRadius: BorderRadius.circular(15),
+    )..show(context);
+  }
+
+  ringtoneFailed(BuildContext context) async {
+    Flushbar(
+      messageText: Text("Failed to set ringtone",
+          style: TextStyle(fontFamily: "Futura", color: Colors.white)),
+      icon: Icon(
+        Icons.error_outline,
+        size: 28.0,
+        color: Color(0xFFCB0447),
+      ),
+      shouldIconPulse: true,
+      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+      duration: Duration(seconds: 3),
+      borderColor: Colors.white.withOpacity(0.04),
+      borderWidth: 1,
+      backgroundColor: glassOpacity,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      isDismissible: true,
+      barBlur:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      borderRadius: BorderRadius.circular(15),
+    )..show(context);
   }
 }
