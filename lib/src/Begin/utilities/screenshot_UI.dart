@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:phoenix/src/Begin/utilities/file_handlers.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:screenshot/screenshot.dart';
 import 'filters.dart';
@@ -39,7 +40,7 @@ screenShotUI(save) async {
                         left: deviceWidth / 12, right: deviceWidth / 12),
                     child: Center(
                       child: Text(
-                        aetheticText(),
+                        aestheticText(nowMediaItem.title),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             inherit: false,
@@ -71,11 +72,11 @@ screenShotUI(save) async {
         await pathOfImage.writeAsBytes(bytes);
       } else {
         final pathOfImage =
-            '${applicationFileDirectory.path}/${aetheticText()}.png';
+            '${applicationFileDirectory.path}/${aestheticText(nowMediaItem.title)}.png';
         final Uint8List bytes = capturedImage.buffer.asUint8List();
-        final String finalPath =
-            "/storage/emulated/0/Download/${aetheticText()}.png"
-                .replaceAll(" ", "-");
+        final String finalPath = await duplicateFile(
+            "/storage/emulated/0/Download/${aestheticText(nowMediaItem.title)}.png"
+                .replaceAll(" ", "-"));
         await File(pathOfImage).writeAsBytes(bytes);
         await File(pathOfImage).copy(finalPath);
         await broadcastFileChange(finalPath);
@@ -105,7 +106,7 @@ class WallpaperArt extends StatelessWidget {
             color: Colors.black.withOpacity(0.2),
             child: Center(
                 child: Text(
-              aetheticText(),
+              aestheticText(nowMediaItem.title),
               textAlign: TextAlign.center,
               style: TextStyle(
                   inherit: false,

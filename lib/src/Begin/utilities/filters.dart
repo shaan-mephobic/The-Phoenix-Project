@@ -1,64 +1,35 @@
-import '../begin.dart';
-
-aetheticText() {
-  String runaway = roundedRecursive(nowMediaItem.title);
-  runaway = squareRecursive(runaway);
-  if (runaway.toUpperCase().contains(" FEAT")) {
-    runaway = runaway.replaceRange(
-        runaway.toUpperCase().indexOf(" FEAT"), runaway.length, "");
-  }
-  if (runaway.toUpperCase().contains(" FT")) {
-    runaway = runaway.replaceRange(
-        runaway.toUpperCase().indexOf(" FT"), runaway.length, "");
-  }
-
-  return runaway;
-}
-
-roundedRecursive(songName) {
-  if (songName.contains("(") && songName.contains(")")) {
-    songName = roundBracketsRemover(songName);
-    if (songName.contains("(") && songName.contains(")")) {
-      songName = roundBracketsRemover(songName);
+String aestheticText(String title) {
+  String roundedRecursive(String songName) {
+    while (true) {
       if (songName.contains("(") && songName.contains(")")) {
-        songName = roundBracketsRemover(songName);
-        if (songName.contains("(") && songName.contains(")")) {
-          songName = roundBracketsRemover(songName);
-        }
+        songName = songName.replaceRange(
+            songName.indexOf("("), songName.indexOf(")") + 1, "");
+      } else {
+        return songName;
       }
     }
   }
-  return songName;
-}
 
-squareRecursive(songName) {
-  if (songName.contains("[") && songName.contains("]")) {
-    songName = squareBracketsRemover(songName);
-    if (songName.contains("[") && songName.contains("]")) {
-      songName = squareBracketsRemover(songName);
+  String squareRecursive(String songName) {
+    while (true) {
       if (songName.contains("[") && songName.contains("]")) {
-        songName = squareBracketsRemover(songName);
-        if (songName.contains("[") && songName.contains("]")) {
-          songName = squareBracketsRemover(songName);
-          if (songName.contains("[") && songName.contains("]")) {
-            songName = squareBracketsRemover(songName);
-          }
-        }
+        songName = songName.replaceRange(
+            songName.indexOf("["), songName.indexOf("]") + 1, "");
+      } else {
+        return songName;
       }
     }
   }
-  return songName;
-}
 
-squareBracketsRemover(songName) {
-  songName = songName.replaceRange(
-      songName.indexOf("["), songName.indexOf("]") + 1, "");
-
-  return songName;
-}
-
-roundBracketsRemover(songName) {
-  songName = songName.replaceRange(
-      songName.indexOf("("), songName.indexOf(")") + 1, "");
-  return songName;
+  String filter1 = roundedRecursive(title);
+  filter1 = squareRecursive(filter1);
+  if (filter1.toUpperCase().contains(" FEAT")) {
+    filter1 = filter1.replaceRange(
+        filter1.toUpperCase().indexOf(" FEAT"), filter1.length, "");
+  }
+  if (filter1.toUpperCase().contains(" FT")) {
+    filter1 = filter1.replaceRange(
+        filter1.toUpperCase().indexOf(" FT"), filter1.length, "");
+  }
+  return filter1;
 }

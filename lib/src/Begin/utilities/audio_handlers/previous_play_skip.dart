@@ -67,7 +67,7 @@ updateStuffs() async {
 
 playThis(int indexOfSong, rnAccess) async {
   lyricsDat = "";
- 
+
   if (rnAccess == "all") {
     rnAccessing = "all";
     await goToAudioService(indexOfSong, songList, songListMediaItems);
@@ -185,8 +185,7 @@ Future<void> shuffleMode() async {
 void holdUpLyrics() async {
   String artistsLyric = nowMediaItem.artist.toString();
   String songNameLyric = nowMediaItem.title.toString();
-  songNameLyric = roundedRecursive(songNameLyric);
-  songNameLyric = squareRecursive(songNameLyric);
+  songNameLyric = aestheticText(songNameLyric);
   if (artistsLyric == "<UNKNOWN>") {
     artistsLyric = " ";
   }
