@@ -143,10 +143,6 @@ class _BeginState extends State<Begin>
 
   @override
   Widget build(BuildContext context) {
-    //TODO isolated all songs colors
-    //TODO check a way to delete and edit files too
-    //TODO if the song artwork == same then don't crossfade
-    //TODO images can be put in music directory
     if (musicBox.get("timeBasedDark") == null
         ? false
         : musicBox.get("timeBasedDark")) {
