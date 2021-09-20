@@ -22,7 +22,7 @@ class _SeekBarState extends State<SeekBar> {
   }
 
   streamOfPosition() {
-    AudioService.positionStream.listen(
+   AudioService.position.listen(
       (Duration position) {
         currentPosition = position;
         if (globalTiming != null) {
@@ -115,7 +115,7 @@ class _SeekBarState extends State<SeekBar> {
                       onChangeEnd: (var valuo) {
                         int seeker = double.parse('$valuo').toInt();
 
-                        AudioService.seekTo(Duration(seconds: seeker));
+                        audioHandler.seek(Duration(seconds: seeker));
                         usingSeek = false;
                       }),
                 ),

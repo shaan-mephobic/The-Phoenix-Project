@@ -30,6 +30,7 @@ import 'package:provider/provider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'utilities/audio_handlers/background.dart';
 import 'widgets/custom/phoenix_icon.dart';
 import 'utilities/native/go_native.dart';
 import 'pages/albums/albums.dart';
@@ -60,6 +61,7 @@ double deviceHeight;
 List<SongModel> songList = [];
 var rootCrossfadeState;
 bool backArtStateChange = true;
+AudioPlayerTask audioHandler;
 PanelController pc = PanelController();
 List<MediaItem> songListMediaItems = [];
 MediaItem nowMediaItem = MediaItem(
@@ -100,7 +102,7 @@ class _BeginState extends State<Begin>
 
   @override
   void initState() {
-    audioServiceInit();
+    audioServiceStream();
     _tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     tag = Audiotagger();
     fetchAll();
@@ -141,6 +143,10 @@ class _BeginState extends State<Begin>
 
   @override
   Widget build(BuildContext context) {
+    //TODO isolated all songs colors
+    //TODO check a way to delete and edit files too
+    //TODO if the song artwork == same then don't crossfade
+    //TODO images can be put in music directory
     if (musicBox.get("timeBasedDark") == null
         ? false
         : musicBox.get("timeBasedDark")) {

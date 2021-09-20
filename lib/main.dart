@@ -14,6 +14,7 @@
 ---------------------------------------------------------------------------------------------------------*/
 
 // @dart=2.10
+import 'package:phoenix/src/Begin/utilities/audio_handlers/background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/privacy.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
@@ -30,6 +31,13 @@ void main() async {
   await cacheImages();
   await dataInit();
   await fetchSongs();
+  audioHandler = await AudioService.init(
+    builder: () => AudioPlayerTask(),
+    config: AudioServiceConfig(
+        androidNotificationChannelName: "Phoenix Music",
+        androidNotificationIcon: "drawable/phoenix_awaken",
+        androidNotificationChannelDescription: "Phoenix Music Notification"),
+  );
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: statusBarColor,
@@ -47,9 +55,7 @@ void main() async {
           ),
           ChangeNotifierProvider<Seek>(create: (_) => Seek()),
         ],
-        child: AudioServiceWidget(
-          child: permissionGiven ? Begin() : Privacy(),
-        ),
+        child: permissionGiven ? Begin() : Privacy(),
       ),
     ),
   );

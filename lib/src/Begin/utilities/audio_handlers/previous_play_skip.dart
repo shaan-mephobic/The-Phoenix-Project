@@ -1,6 +1,5 @@
-import 'package:audio_service/audio_service.dart';
+import 'package:audio_service/audio_service.dart'; 
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/utilities/audio_handlers/background.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import '../page_backend/artists_back.dart';
@@ -22,11 +21,10 @@ bool onGoingProcess = false;
 bool isPlaying = false;
 
 audioServiceStream() async {
-  AudioService.playbackStateStream.listen((event) {
-    if (AudioService.playbackState.playing) {
+  audioHandler.playbackState.listen((event) {
+    if (event.playing) {
       if (!isPlaying) {
         isPlaying = true;
-
         if (isPlayerShown) {
           animatedPlayPause.reverse();
           if (!bgPhoenixVisualizer) {
@@ -50,7 +48,7 @@ audioServiceStream() async {
       }
     }
   });
-  AudioService.currentMediaItemStream.listen((mediaItem) {
+  audioHandler.mediaItem.listen((mediaItem) {
     if (nowMediaItem != mediaItem && mediaItem != null) {
       nowMediaItem = mediaItem;
       updateStuffs();
@@ -126,14 +124,14 @@ void lyricsFoo() async {
 }
 
 void addToQueue(MediaItem mediaitem) async {
-  AudioService.addQueueItem(mediaitem);
+  audioHandler.addQueueItem(mediaitem);
 }
 
 void pauseResume() async {
   if (isPlaying)
-    AudioService.pause();
+    audioHandler.pause();
   else
-    AudioService.play();
+    audioHandler.play();
 }
 
 Future<void> goToAudioService(int indexOfSong, List<SongModel> allSong,
@@ -141,17 +139,14 @@ Future<void> goToAudioService(int indexOfSong, List<SongModel> allSong,
   nowQueue = listOfMediaItems.sublist(indexOfSong) +
       listOfMediaItems.sublist(0, indexOfSong);
   nowMediaItem = nowQueue[0];
-  if (!AudioService.running) {
-    await audioServiceInit();
-  }
   if (nowQueue[0].duration == Duration(milliseconds: 0)) {
     nowQueue.removeAt(0);
   }
-  await AudioService.updateQueue(nowQueue);
+  await audioHandler.updateQueue(nowQueue);
 }
 
 void readyPlay() {
-  AudioService.play();
+  audioHandler.play();
   updateMansion();
 }
 
@@ -170,16 +165,16 @@ Future<void> updateThings() async {
 
 Future<void> loopMode() async {
   if (loopSelected)
-    await AudioService.setRepeatMode(AudioServiceRepeatMode.one);
+    await audioHandler.setRepeatMode(AudioServiceRepeatMode.one);
   else
-    await AudioService.setRepeatMode(AudioServiceRepeatMode.all);
+    await audioHandler.setRepeatMode(AudioServiceRepeatMode.all);
 }
 
 Future<void> shuffleMode() async {
   if (shuffleSelected)
-    await AudioService.setShuffleMode(AudioServiceShuffleMode.all);
+    await audioHandler.setShuffleMode(AudioServiceShuffleMode.all);
   else
-    await AudioService.setShuffleMode(AudioServiceShuffleMode.none);
+    await audioHandler.setShuffleMode(AudioServiceShuffleMode.none);
 }
 
 void holdUpLyrics() async {
@@ -197,18 +192,6 @@ void saveLyrics(songPath, lyric) async {
   Map allData = musicBox.get('offlineLyrics') ?? {};
   allData[songPath] = lyric;
   await musicBox.put('offlineLyrics', allData);
-}
-
-audioServiceInit() async {
-  await AudioService.start(
-      backgroundTaskEntrypoint: backgroundTaskEntrypoint,
-      androidEnableQueue: true,
-      androidNotificationChannelName: "Phoenix Music",
-      androidNotificationIcon: "drawable/phoenix_awaken",
-      androidNotificationChannelDescription: "Phoenix Music Notification");
-  await AudioService.connect();
-
-  audioServiceStream();
 }
 
 int getDuration(SongModel data) {

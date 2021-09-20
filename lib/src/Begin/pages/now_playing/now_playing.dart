@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:audio_service/audio_service.dart';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/widgets/custom/phoenix_icon.dart';
@@ -306,7 +305,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                       iconSize: deviceWidth / 12,
                                       onPressed: () async {
-                                        AudioService.skipToPrevious();
+                                        audioHandler.skipToPrevious();
                                       }),
                                   IconButton(
                                       icon: AnimatedIcon(
@@ -332,7 +331,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     ),
                                     iconSize: deviceWidth / 12,
                                     onPressed: () async {
-                                      AudioService.skipToNext();
+                                      audioHandler.skipToNext();
                                     },
                                   ),
                                   Consumer<Leprovider>(
@@ -1049,7 +1048,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             ),
                                             iconSize: deviceHeight / 23,
                                             onPressed: () async {
-                                              AudioService.skipToPrevious();
+                                              audioHandler.skipToPrevious();
                                             }),
                                         IconButton(
                                             icon: AnimatedIcon(
@@ -1077,7 +1076,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           ),
                                           iconSize: deviceHeight / 23,
                                           onPressed: () async {
-                                            AudioService.skipToNext();
+                                            audioHandler.skipToNext();
                                           },
                                         ),
                                         Consumer<Leprovider>(

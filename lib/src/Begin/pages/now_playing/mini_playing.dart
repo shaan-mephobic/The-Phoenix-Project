@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'package:audio_service/audio_service.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
@@ -274,9 +273,9 @@ class _ClassixState extends State<Classix> {
 gestureDetectorFoo(details) async {
   if (details.primaryVelocity > 0) {
     HapticFeedback.lightImpact();
-    AudioService.skipToPrevious();
+    audioHandler.skipToPrevious();
   } else if (details.primaryVelocity < 0) {
     HapticFeedback.lightImpact();
-    AudioService.skipToNext();
+    audioHandler.skipToNext();
   }
 }

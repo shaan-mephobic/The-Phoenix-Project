@@ -15,12 +15,22 @@ import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.core.content.FileProvider
+import io.flutter.embedding.engine.dart.DartExecutor;
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache;
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 import kotlin.concurrent.thread
 import kotlin.math.abs
+import com.ryanheise.audioservice.AudioServicePlugin
+import io.flutter.plugin.common.BinaryMessenger
+
+
+
+
+
+
 
 
 class MainActivity : FlutterActivity() {
@@ -39,8 +49,12 @@ class MainActivity : FlutterActivity() {
     private var sinatra: MutableList<Double> = mutableListOf();
     private var onCompletingFlash: Boolean = false;
     private val captureSizeRange = Visualizer.getCaptureSizeRange();
-
     private val channel = "com.Phoenix.project/kotlin";
+
+    override fun provideFlutterEngine(context: Context): FlutterEngine? {
+        return AudioServicePlugin.getFlutterEngine(context)
+    }
+
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         val channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel);
