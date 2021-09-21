@@ -78,6 +78,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       deviceWidth = MediaQuery.of(context).size.width;
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
@@ -117,8 +118,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                 title: widget.title);
             ringtoneSuccess(context);
           } catch (e) {
-            print(e);
             ringtoneFailed(context);
+            throw e;
           }
           setState(() {
             isProcessing = false;
@@ -269,55 +270,75 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 10),
-                                                child: Text(
-                                                    Duration(
-                                                            milliseconds:
-                                                                ranges[0] ~/ 1)
-                                                        .toString()
-                                                        .replaceRange(0, 2, "")
-                                                        .replaceRange(
-                                                          7,
-                                                          Duration(
-                                                                  milliseconds:
-                                                                      nowMediaItem
-                                                                          .duration
-                                                                          .inMilliseconds)
-                                                              .toString()
-                                                              .replaceRange(
-                                                                  0, 2, "")
-                                                              .length,
-                                                          "",
-                                                        ),
-                                                    style: TextStyle(
-                                                        color: Colors.white)),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  ringtoneRange(
+                                                      context: context,
+                                                      ms: ranges[0],
+                                                      startend: 'Start point');
+                                                },
+                                                child: Padding(
+                                                  padding:
+                                                      EdgeInsets.only(left: 10),
+                                                  child: Text(
+                                                      Duration(
+                                                              milliseconds:
+                                                                  ranges[0] ~/
+                                                                      1)
+                                                          .toString()
+                                                          .replaceRange(
+                                                              0, 2, "")
+                                                          .replaceRange(
+                                                            7,
+                                                            Duration(
+                                                                    milliseconds:
+                                                                        nowMediaItem
+                                                                            .duration
+                                                                            .inMilliseconds)
+                                                                .toString()
+                                                                .replaceRange(
+                                                                    0, 2, "")
+                                                                .length,
+                                                            "",
+                                                          ),
+                                                      style: TextStyle(
+                                                          color: Colors.white)),
+                                                ),
                                               ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 10),
-                                                child: Text(
-                                                    Duration(
-                                                            milliseconds:
-                                                                ranges[1] ~/ 1)
-                                                        .toString()
-                                                        .replaceRange(0, 2, "")
-                                                        .replaceRange(
-                                                          7,
-                                                          Duration(
-                                                                  milliseconds:
-                                                                      nowMediaItem
-                                                                          .duration
-                                                                          .inMilliseconds)
-                                                              .toString()
-                                                              .replaceRange(
-                                                                  0, 2, "")
-                                                              .length,
-                                                          "",
-                                                        ),
-                                                    style: TextStyle(
-                                                        color: Colors.white)),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  ringtoneRange(
+                                                      context: context,
+                                                      ms: ranges[1],
+                                                      startend: 'End point');
+                                                },
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 10),
+                                                  child: Text(
+                                                      Duration(
+                                                              milliseconds:
+                                                                  ranges[1] ~/
+                                                                      1)
+                                                          .toString()
+                                                          .replaceRange(
+                                                              0, 2, "")
+                                                          .replaceRange(
+                                                            7,
+                                                            Duration(
+                                                                    milliseconds:
+                                                                        nowMediaItem
+                                                                            .duration
+                                                                            .inMilliseconds)
+                                                                .toString()
+                                                                .replaceRange(
+                                                                    0, 2, "")
+                                                                .length,
+                                                            "",
+                                                          ),
+                                                      style: TextStyle(
+                                                          color: Colors.white)),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -347,12 +368,10 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                               ),
                                               axis: Axis.horizontal,
                                               values: ranges,
-                                              step:
-                                                  FlutterSliderStep(step: 100),
                                               tooltip: FlutterSliderTooltip(
                                                   disabled: true),
                                               rangeSlider: true,
-                                              min: 0.0,
+                                              min: 0,
                                               max: widget.songDuration,
                                               onDragging:
                                                   (int index, start, end) {
@@ -445,7 +464,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                 min: 0,
                                                 onDragging: (handlerIndex,
                                                     lowerValue, upperValue) {
-                                                  print(lowerValue);
                                                   setState(() {
                                                     fadeIn = [lowerValue];
                                                   });
@@ -527,5 +545,323 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
     )..show(context);
+  }
+
+  Future<Widget> ringtoneRange(
+      {@required BuildContext context,
+      @required String startend,
+      @required double ms}) async {
+    String duration = Duration(milliseconds: ms ~/ 1)
+        .toString()
+        .replaceRange(0, 2, "")
+        .replaceRange(
+          7,
+          Duration(milliseconds: nowMediaItem.duration.inMilliseconds)
+              .toString()
+              .replaceRange(0, 2, "")
+              .length,
+          "",
+        );
+    String minutes = duration.replaceRange(2, duration.length, "");
+    String seconds = "${duration[3]}${duration[4]}";
+    String milliseconds = duration[duration.length - 1];
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, StateSetter setState) {
+            return Material(
+              color: Colors.transparent,
+              child: Theme(
+                data: themeOfApp,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(kRounded),
+                  ),
+                  alignment: Alignment.center,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(kRounded),
+                    child: BackdropFilter(
+                      filter: glassBlur,
+                      child: Container(
+                        height: 250,
+                        width: 400,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(kRounded),
+                          border:
+                              Border.all(color: Colors.white.withOpacity(0.04)),
+                          color: glassOpacity,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 20, top: 30),
+                                  child: Text(
+                                    startend,
+                                    style: TextStyle(
+                                      fontSize: 26,
+                                      fontFamily: "Urban",
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Material(
+                              color: Colors.transparent,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 40,
+                                    height: 70,
+                                    child: TextField(
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: "Urban",
+                                        color: Colors.white,
+                                      ),
+                                      controller: TextEditingController()
+                                        ..text = minutes
+                                        ..selection = TextSelection.collapsed(
+                                            offset: minutes.length),
+                                      cursorColor: kPhoenixColor,
+                                      decoration: InputDecoration(
+                                        labelText: "min",
+                                        labelStyle: TextStyle(
+                                          color: Colors.white38,
+                                          fontFamily: "Urban",
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white),
+                                        ),
+                                        counterText: "",
+                                      ),
+                                      onChanged: (changes) {
+                                        setState(() {
+                                          minutes = changes.length > 2
+                                              ? changes.replaceRange(
+                                                  2, changes.length, '')
+                                              : changes;
+                                        });
+                                      },
+                                      maxLength: 2,
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(left: 10)),
+                                  SizedBox(
+                                    width: 40,
+                                    height: 70,
+                                    child: TextField(
+                                      cursorColor: kPhoenixColor,
+                                      textAlign: TextAlign.center,
+                                      controller: TextEditingController()
+                                        ..text = seconds
+                                        ..selection = TextSelection.collapsed(
+                                            offset: seconds.length),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "Urban",
+                                      ),
+                                      decoration: InputDecoration(
+                                        labelText: "sec",
+                                        labelStyle: TextStyle(
+                                          color: Colors.white38,
+                                          fontFamily: "Urban",
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white),
+                                        ),
+                                        counterText: "",
+                                      ),
+                                      onChanged: (changes) {
+                                        setState(() {
+                                          seconds = changes.length > 2
+                                              ? changes.replaceRange(
+                                                  2, changes.length, "")
+                                              : changes;
+                                        });
+                                      },
+                                      maxLength: 2,
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsets.only(left: 10)),
+                                  SizedBox(
+                                    width: 40,
+                                    height: 70,
+                                    child: TextField(
+                                        cursorColor: kPhoenixColor,
+                                        textAlign: TextAlign.center,
+                                        controller: TextEditingController()
+                                          ..text = milliseconds
+                                          ..selection = TextSelection.collapsed(
+                                              offset: milliseconds.length),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "Urban",
+                                        ),
+                                        decoration: InputDecoration(
+                                          labelText: "ms",
+                                          labelStyle: TextStyle(
+                                            color: Colors.white38,
+                                            fontFamily: "Urban",
+                                          ),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.black),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.white),
+                                          ),
+                                          counterText: "",
+                                        ),
+                                        onChanged: (changes) {
+                                          setState(() {
+                                            milliseconds = changes.length > 1
+                                                ? changes.replaceRange(
+                                                    1, changes.length, "")
+                                                : changes;
+                                          });
+                                        },
+                                        maxLength: 1,
+                                        keyboardType: TextInputType.number),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    style: ButtonStyle(
+                                        overlayColor: MaterialStateProperty.all(
+                                            Colors.white30)),
+                                    child: Text(
+                                      "CANCEL",
+                                      style: TextStyle(
+                                        fontFamily: "Urban",
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      if (minutes != "" &&
+                                          seconds != "" &&
+                                          milliseconds != "") {
+                                        Duration seekTo = Duration(
+                                                minutes: int.parse(minutes)) +
+                                            Duration(
+                                                seconds: int.parse(seconds)) +
+                                            Duration(
+                                                milliseconds:
+                                                    int.parse(milliseconds) *
+                                                        100);
+                                        if (seekTo.inMilliseconds <
+                                                widget.songDuration &&
+                                            seekTo.inMilliseconds >= 0) {
+                                          if (startend == "Start point") {
+                                            ranges[0] =
+                                                seekTo.inMilliseconds * 1.0;
+                                            ringtonePlayer.seek(Duration(
+                                                milliseconds:
+                                                    seekTo.inMilliseconds));
+                                          } else {
+                                            ranges[1] =
+                                                seekTo.inMilliseconds * 1.0;
+                                          }
+                                          Navigator.pop(context);
+                                        } else {
+                                          Flushbar(
+                                            messageText: Text(
+                                                "Values out of range.",
+                                                style: TextStyle(
+                                                    fontFamily: "Futura",
+                                                    color: Colors.white)),
+                                            icon: Icon(
+                                              Icons.error_outline,
+                                              size: 28.0,
+                                              color: Color(0xFFCB0447),
+                                            ),
+                                            shouldIconPulse: true,
+                                            dismissDirection:
+                                                FlushbarDismissDirection
+                                                    .HORIZONTAL,
+                                            duration: Duration(seconds: 3),
+                                            borderColor:
+                                                Colors.white.withOpacity(0.04),
+                                            borderWidth: 1,
+                                            backgroundColor: glassOpacity,
+                                            flushbarStyle:
+                                                FlushbarStyle.FLOATING,
+                                            isDismissible: true,
+                                            barBlur:
+                                                musicBox.get("glassBlur") ==
+                                                        null
+                                                    ? 18
+                                                    : musicBox.get("glassBlur"),
+                                            margin: EdgeInsets.only(
+                                                bottom: 20, left: 8, right: 8),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          )..show(context);
+                                        }
+                                      }
+                                    },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(kCorrect),
+                                      overlayColor: MaterialStateProperty.all(
+                                        Colors.white30,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "APPLY",
+                                      style: TextStyle(
+                                        fontFamily: "Urban",
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

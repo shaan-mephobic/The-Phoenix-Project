@@ -477,11 +477,11 @@ class _BeginState extends State<Begin>
                                                                             6,
                                                                     customColors:
                                                                         CustomSliderColors(
-                                                                      progressBarColor: darkModeOn
-                                                                          ? Color(
-                                                                              0xFFCF6679)
-                                                                          : Color(
-                                                                              0xFFB00020),
+                                                                      progressBarColor:
+                                                                          kPhoenixColor,
+                                                                      trackColor:
+                                                                          Colors
+                                                                              .black26,
                                                                     ),
                                                                     customWidths:
                                                                         CustomSliderWidths(
@@ -730,11 +730,11 @@ class _BeginState extends State<Begin>
                                                                           6,
                                                                   customColors:
                                                                       CustomSliderColors(
-                                                                    progressBarColor: darkModeOn
-                                                                        ? Color(
-                                                                            0xFFCF6679)
-                                                                        : Color(
-                                                                            0xFFB00020),
+                                                                    progressBarColor:
+                                                                        kPhoenixColor,
+                                                                    trackColor:
+                                                                        Colors
+                                                                            .black26,
                                                                   ),
 
                                                                   customWidths: CustomSliderWidths(

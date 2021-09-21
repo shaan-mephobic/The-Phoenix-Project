@@ -477,7 +477,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                       ),
                                                                                       size: deviceHeight / 6,
                                                                                       customColors: CustomSliderColors(
-                                                                                        progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
+                                                                                        progressBarColor: kPhoenixColor,
+                                                                                        trackColor: Colors.black26,
                                                                                       ),
                                                                                       customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
                                                                                     ),
@@ -644,7 +645,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                     ),
                                                                                     size: deviceHeight / 6,
                                                                                     customColors: CustomSliderColors(
-                                                                                      progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
+                                                                                      progressBarColor: kPhoenixColor,
+                                                                                      trackColor: Colors.black26,
                                                                                     ),
 
                                                                                     customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
@@ -1220,7 +1222,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                             ),
                                                                                             size: deviceHeight / 6,
                                                                                             customColors: CustomSliderColors(
-                                                                                              progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
+                                                                                              progressBarColor: kPhoenixColor,
+                                                                                              trackColor: Colors.black26,
                                                                                             ),
                                                                                             customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
                                                                                           ),
@@ -1362,7 +1365,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                             ),
                                                                                             size: deviceHeight / 6,
                                                                                             customColors: CustomSliderColors(
-                                                                                              progressBarColor: darkModeOn ? Color(0xFFCF6679) : Color(0xFFB00020),
+                                                                                              progressBarColor: kPhoenixColor,
+                                                                                              trackColor: Colors.black26,
                                                                                             ),
                                                                                             customWidths: CustomSliderWidths(progressBarWidth: deviceWidth / 65),
                                                                                           ),

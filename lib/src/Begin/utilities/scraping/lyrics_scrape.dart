@@ -95,8 +95,8 @@ lyricsFetch(songArtist, songName, songData) async {
       onGoingProcess = false;
       if (anotherLyrics
           .contains("Sometimes you may be asked to solve the CAPTCHA")) {
-        print("CAPTCH-MATE");
         anotherLyrics = "Couldn't find any matching lyrics.";
+        throw "CAPTCH-MATE";
       }
       if (anotherLyrics.contains("</div>")) {
         anotherLyrics = anotherLyrics.replaceRange(
