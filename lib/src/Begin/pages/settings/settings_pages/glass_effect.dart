@@ -71,7 +71,6 @@ class _GlassEffectState extends State<GlassEffect> {
                 inherit: false,
                 fontSize: deviceWidth / 18,
                 fontWeight: FontWeight.w600,
-                fontFamily: "Urban",
               ),
             ),
           ),
@@ -145,7 +144,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                 Text(
                                   "Blur",
                                   style: TextStyle(
-                                    fontFamily: "Urban",
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
                                     fontSize: deviceWidth / 18 / 1.3,
@@ -158,7 +156,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${blur.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -204,7 +201,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "40",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -218,7 +214,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                 ),
                                 Text("Opacity",
                                     style: TextStyle(
-                                      fontFamily: "Urban",
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,
                                       fontSize: deviceWidth / 18 / 1.3,
@@ -230,7 +225,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${whiteOpacity.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -276,7 +270,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "20",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -291,7 +284,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                 Text(
                                   "Shadow",
                                   style: TextStyle(
-                                    fontFamily: "Urban",
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
                                     fontSize: deviceWidth / 18 / 1.3,
@@ -304,7 +296,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${shadow.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -350,7 +341,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "20",
                                       style: TextStyle(
                                           fontSize: deviceWidth / 35,
-                                          fontFamily: "Urban",
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -368,7 +358,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                       whiteOpacity = 3;
                                       blur = 18;
                                       shadow = 10;
-                                      // shadowBlur = 13;
                                     });
                                   },
                                   style: ButtonStyle(
@@ -377,7 +366,6 @@ class _GlassEffectState extends State<GlassEffect> {
                                   child: Text(
                                     "Reset",
                                     style: TextStyle(
-                                      fontFamily: "Urban",
                                       color: Colors.white,
                                       fontSize: orientedCar
                                           ? deviceWidth / 34

@@ -102,7 +102,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                     inherit: false,
                     color: Colors.black,
                     fontSize: deviceWidth / 25,
-                    fontFamily: 'Urban',
                     fontWeight: FontWeight.w600)),
         backgroundColor: Color(0xFF1DB954),
         elevation: 8.0,
@@ -140,7 +139,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
             inherit: false,
             fontSize: deviceWidth / 18,
             fontWeight: FontWeight.w600,
-            fontFamily: "Urban",
           ),
         ),
       ),
@@ -209,7 +207,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontFamily: "Urban",
                                             fontWeight: FontWeight.w600,
                                             fontSize: deviceWidth / 18,
                                           ),
@@ -255,10 +252,9 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                   Column(
                                     children: [
                                       Text(
-                                        "Select Range",
+                                        "Select range",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontFamily: "Urban",
                                           fontSize: deviceWidth / 18,
                                         ),
                                       ),
@@ -410,10 +406,9 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                       Column(
                                         children: [
                                           Text(
-                                            "Fade In",
+                                            "Fade in",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontFamily: "Urban",
                                               fontSize: deviceWidth / 18,
                                             ),
                                           ),
@@ -604,7 +599,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     startend,
                                     style: TextStyle(
                                       fontSize: 26,
-                                      fontFamily: "Urban",
                                       color: Colors.white,
                                     ),
                                   ),
@@ -622,7 +616,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     child: TextField(
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: "Urban",
                                         color: Colors.white,
                                       ),
                                       controller: TextEditingController()
@@ -634,7 +627,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         labelText: "min",
                                         labelStyle: TextStyle(
                                           color: Colors.white38,
-                                          fontFamily: "Urban",
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide:
@@ -671,13 +663,11 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             offset: seconds.length),
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontFamily: "Urban",
                                       ),
                                       decoration: InputDecoration(
                                         labelText: "sec",
                                         labelStyle: TextStyle(
                                           color: Colors.white38,
-                                          fontFamily: "Urban",
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide:
@@ -714,13 +704,11 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                               offset: milliseconds.length),
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontFamily: "Urban",
                                         ),
                                         decoration: InputDecoration(
                                           labelText: "ms",
                                           labelStyle: TextStyle(
                                             color: Colors.white38,
-                                            fontFamily: "Urban",
                                           ),
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide:
@@ -761,7 +749,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     child: Text(
                                       "CANCEL",
                                       style: TextStyle(
-                                        fontFamily: "Urban",
                                         color: Colors.white,
                                       ),
                                     ),
@@ -840,7 +827,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     child: Text(
                                       "APPLY",
                                       style: TextStyle(
-                                        fontFamily: "Urban",
                                         color: Colors.black,
                                       ),
                                     ),

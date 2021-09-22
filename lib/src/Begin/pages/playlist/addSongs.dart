@@ -58,7 +58,6 @@ class _AddSongsState extends State<AddSongs> {
                     inherit: false,
                     color: Colors.black,
                     fontSize: deviceWidth / 25,
-                    fontFamily: 'Urban',
                     fontWeight: FontWeight.w600)),
             backgroundColor: Color(0xFF1DB954),
             elevation: 8.0,
@@ -83,7 +82,9 @@ class _AddSongsState extends State<AddSongs> {
                   backgroundColor: glassOpacity,
                   flushbarStyle: FlushbarStyle.FLOATING,
                   isDismissible: true,
-                     barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+                  barBlur: musicBox.get("glassBlur") == null
+                      ? 18
+                      : musicBox.get("glassBlur"),
                   margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
                   borderRadius: BorderRadius.circular(15),
                 )..show(context);
@@ -128,7 +129,8 @@ class _AddSongsState extends State<AddSongs> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              color: Colors.black
+                                  .withOpacity(glassShadowOpacity / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -241,7 +243,6 @@ class _AddSongsState extends State<AddSongs> {
                                   maxLines: 2,
                                   style: TextStyle(
                                     color: Colors.white70,
-                                    fontFamily: 'Urban',
                                     shadows: [
                                       Shadow(
                                         offset: Offset(0, 1.0),
@@ -256,7 +257,6 @@ class _AddSongsState extends State<AddSongs> {
                                   songList[index].artist,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontFamily: 'Urban',
                                     color: Colors.white38,
                                     shadows: [
                                       Shadow(

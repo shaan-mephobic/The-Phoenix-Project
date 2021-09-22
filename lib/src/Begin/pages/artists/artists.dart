@@ -171,7 +171,6 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                             fontSize: orientedCar
                                 ? deviceHeight / 58
                                 : deviceWidth / 32,
-                            fontFamily: "Urban",
                             fontWeight: FontWeight.w600,
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? Colors.white

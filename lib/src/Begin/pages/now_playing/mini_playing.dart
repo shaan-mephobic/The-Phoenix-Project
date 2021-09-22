@@ -99,7 +99,6 @@ class _ModernaState extends State<Moderna> {
                           speed: 20,
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "Urban",
                             fontSize: 19,
                             shadows: [
                               Shadow(
@@ -116,7 +115,6 @@ class _ModernaState extends State<Moderna> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "Urban",
                             fontSize: 13,
                             fontWeight: FontWeight.w300,
                             shadows: [
@@ -226,7 +224,6 @@ class _ClassixState extends State<Classix> {
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? nowContrast
                                 : Colors.white,
-                            fontFamily: "Urban",
                             fontSize: 19,
                             shadows: [
                               Shadow(
@@ -245,7 +242,6 @@ class _ClassixState extends State<Classix> {
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? nowContrast
                                 : Colors.white70,
-                            fontFamily: "Urban",
                             fontSize: 13,
                             fontWeight: FontWeight.w300,
                             shadows: [

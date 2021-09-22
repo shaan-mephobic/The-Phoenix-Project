@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
 
-/// The default Black Color
+/// The default black Color
 Color kMaterialBlack = Color(0xFF000000);
 
 /// Green/Correct Color
@@ -12,19 +12,19 @@ Color kCorrect = Color(0xFF1DB954);
 /// Roundedness of widgets
 double kRounded = 12;
 
-/// Phoenix Color
+/// Phoenix color
 Color kPhoenixColor = Color(0xFF028ac4);
 
-/// Crossfade Duration.
+/// Crossfade duration.
 int crossfadeDuration = 300;
 
-/// blur constant for artwork background
+/// Blur constant for artwork background
 double artworkBlurConst = 16;
 
-/// Shadow Offset of every glassmorphic widgets
+/// Shadow ffset of every glassmorphic widgets
 Offset kShadowOffset = Offset(0, 3);
 
-/// Shadow for NowArt
+/// Shadow for nowart
 BoxShadow nowArtShadow =
     BoxShadow(color: Colors.black54, blurRadius: 13.0, offset: kShadowOffset);
 
@@ -45,7 +45,8 @@ Map quotes = {
 /// Changelogs
 Map<String, String> changelogs = {
   "HERTZ - 2.0.0": "• Initial 2.0.0 release.\n• Rebuilt entire app.",
-  "FALL - 2.1.0":"• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh."
+  "FALL - 2.1.0":
+      "• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh."
 };
 
 /// Theme data of entire app
@@ -53,6 +54,7 @@ ThemeData themeOfApp = ThemeData(
   splashFactory: CustomRipple.splashFactory,
   unselectedWidgetColor: Colors.grey[900],
   scaffoldBackgroundColor: kMaterialBlack,
+  fontFamily: "Urban",
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     isAlwaysShown: false,
@@ -61,7 +63,6 @@ ThemeData themeOfApp = ThemeData(
     crossAxisMargin: 2,
     thumbColor: MaterialStateProperty.all(Colors.white30),
   ),
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
 );
 
 /// BoxContraints for artwork shape in listtile

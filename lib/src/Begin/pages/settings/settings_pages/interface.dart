@@ -57,7 +57,6 @@ class _InterfaceState extends State<Interface> {
                 inherit: false,
                 fontSize: deviceWidth / 18,
                 fontWeight: FontWeight.w600,
-                fontFamily: "Urban",
               ),
             ),
           ),
@@ -78,13 +77,12 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Glass Effect",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           subtitle: Text(
                             "Adjust blur and color of glass theme.",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -113,13 +111,12 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Default Artwork",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           subtitle: Text(
                             "Set custom image as default artwork.",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -210,7 +207,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "A fluid bouncing animation on scrolling",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -218,8 +214,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Fluid",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("fluidAnimation") ?? true,
                           onChanged: (newValue) {
@@ -239,7 +235,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "Use albumart as background",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -247,8 +242,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Dynamic Background",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("dynamicArtDB") ?? true,
                           onChanged: (newValue) {
@@ -268,7 +263,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "Square shaped artwork in lists",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -276,8 +270,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Square Art",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("squareArt") ?? true,
                           onChanged: (newValue) {
@@ -297,7 +291,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "Position icons for driver's ease",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -305,8 +298,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Left Steering",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("androidAutoLefty") ?? true,
                           onChanged: (newValue) {
@@ -326,7 +319,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "Show additional song data in now playing.",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -334,8 +326,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Audiophile Data",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("audiophileData") ?? true,
                           onChanged: (newValue) {
@@ -355,7 +347,6 @@ class _InterfaceState extends State<Interface> {
                           subtitle: Text(
                             "Use regular mini-player design.",
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               color:
                                   darkModeOn ? Colors.white38 : Colors.black38,
                             ),
@@ -363,8 +354,8 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Classix Mini-Player",
                             style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
-                                fontFamily: "Urban"),
+                              color: darkModeOn ? Colors.white : Colors.black,
+                            ),
                           ),
                           value: musicBox.get("classix") ?? true,
                           onChanged: (newValue) {

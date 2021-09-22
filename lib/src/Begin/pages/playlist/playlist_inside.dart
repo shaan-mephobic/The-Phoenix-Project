@@ -54,7 +54,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
             style: TextStyle(
                 color: Colors.white,
                 fontSize: deviceWidth / 18,
-                fontFamily: "Urban",
                 fontWeight: FontWeight.w600),
           ),
         ),
@@ -102,7 +101,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                 maxLines: 2,
                                 style: TextStyle(
                                   color: Colors.white70,
-                                  fontFamily: 'Urban',
                                   shadows: [
                                     Shadow(
                                       offset: Offset(0, 1.0),
@@ -119,7 +117,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                   playlistSongsInside[index].artist,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontFamily: 'Urban',
                                     color: Colors.white70,
                                     shadows: [
                                       Shadow(

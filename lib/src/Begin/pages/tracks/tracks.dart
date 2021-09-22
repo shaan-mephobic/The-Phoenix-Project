@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import '../../begin.dart';
 import '../../widgets/dialogues/on_hold.dart';
 
-
 class Allofem extends StatefulWidget {
   @override
   _AllofemState createState() => _AllofemState();
@@ -87,7 +86,6 @@ class _AllofemState extends State<Allofem>
                   maxLines: 2,
                   style: TextStyle(
                     color: Colors.white70,
-                    fontFamily: 'Urban',
                     shadows: [
                       Shadow(
                         offset: Offset(0, 1.0),
@@ -104,7 +102,6 @@ class _AllofemState extends State<Allofem>
                     songList[index - 1].artist,
                     maxLines: 1,
                     style: TextStyle(
-                      fontFamily: 'Urban',
                       color: Colors.white70,
                       shadows: [
                         Shadow(

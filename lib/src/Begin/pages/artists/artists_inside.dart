@@ -124,7 +124,6 @@ class ArtistsInside extends StatelessWidget {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
-                          fontFamily: "Urban",
                           fontWeight: FontWeight.w600,
                           shadows: [
                             Shadow(
@@ -185,8 +184,6 @@ class ArtistsInside extends StatelessWidget {
                             // fontSize: orientedCar
                             //     ? deviceWidth / 28
                             //     : deviceHeight / 60,
-
-                            fontFamily: 'Urban',
                             shadows: [
                               Shadow(
                                 offset: Offset(0, 1.0),
@@ -203,10 +200,6 @@ class ArtistsInside extends StatelessWidget {
                             inArtistsSongs[index - 1].artist,
                             maxLines: 1,
                             style: TextStyle(
-                              // fontSize: orientedCar
-                              //     ? deviceWidth / 41
-                              //     : deviceHeight / 73,
-                              fontFamily: 'Urban',
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,

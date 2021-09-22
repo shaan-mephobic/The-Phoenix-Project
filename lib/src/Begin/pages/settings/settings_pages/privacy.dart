@@ -103,7 +103,8 @@ class _PrivacyState extends State<Privacy> {
                                       BorderRadius.circular(deviceWidth / 27),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(glassShadowOpacity/100),
+                                      color: Colors.black.withOpacity(
+                                          glassShadowOpacity / 100),
                                       blurRadius: glassShadowBlur,
                                       offset: kShadowOffset,
                                     ),
@@ -173,7 +174,6 @@ class _PrivacyState extends State<Privacy> {
                               Text("#PRIVACYMATTERS",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontFamily: "Urban",
                                     fontWeight: FontWeight.w600,
                                     fontSize: orientedCar
                                         ? deviceWidth / 25

@@ -56,7 +56,6 @@ class _GenresInsideState extends State<GenresInside> {
                 style: TextStyle(
                   inherit: false,
                   fontSize: deviceWidth / 18,
-                  fontFamily: "Urban",
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -116,7 +115,6 @@ class _GenresInsideState extends State<GenresInside> {
                                 maxLines: 2,
                                 style: TextStyle(
                                   color: Colors.white70,
-                                  fontFamily: 'Urban',
                                   shadows: [
                                     Shadow(
                                       offset: Offset(0, 1.0),
@@ -133,7 +131,6 @@ class _GenresInsideState extends State<GenresInside> {
                                   genreSongs[index - 1].artist,
                                   maxLines: 1,
                                   style: TextStyle(
-                                    fontFamily: 'Urban',
                                     color: Colors.white70,
                                     shadows: [
                                       Shadow(

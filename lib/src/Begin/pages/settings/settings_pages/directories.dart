@@ -43,13 +43,15 @@ class _DirectoriesState extends State<Directories> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
           icon: Icon(Icons.check_rounded, color: Colors.black),
-          label: Text("DONE",
-              style: TextStyle(
-                  inherit: false,
-                  color: Colors.black,
-                  fontSize: deviceWidth / 25,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Urban')),
+          label: Text(
+            "DONE",
+            style: TextStyle(
+              inherit: false,
+              color: Colors.black,
+              fontSize: deviceWidth / 25,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           backgroundColor: Color(0xFF1DB954),
           elevation: 8.0,
           onPressed: () async {
@@ -72,7 +74,6 @@ class _DirectoriesState extends State<Directories> {
             inherit: false,
             fontSize: deviceWidth / 18,
             fontWeight: FontWeight.w600,
-            fontFamily: "Urban",
           ),
         ),
         bottom: PreferredSize(
@@ -110,7 +111,6 @@ class _DirectoriesState extends State<Directories> {
                             currentTopDir.replaceAll(topLevelDir, "..."),
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontFamily: 'Urban',
                               fontSize: 20,
                               color:
                                   darkModeOn ? Colors.white70 : Colors.black87,
@@ -161,8 +161,8 @@ class _DirectoriesState extends State<Directories> {
                               .toString()
                               .replaceAll(currentTopDir, ""),
                           style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                              fontFamily: "Urban"),
+                            color: darkModeOn ? Colors.white : Colors.black,
+                          ),
                         ),
                         secondary: Material(
                           color: Colors.transparent,

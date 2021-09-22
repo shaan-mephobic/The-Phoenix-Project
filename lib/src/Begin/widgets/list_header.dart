@@ -45,8 +45,7 @@ class ListHeader extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
                     "${listOfSong.length} Tracks",
-                    style: TextStyle(
-                        fontSize: 15, color: Colors.white, fontFamily: "Urban"),
+                    style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
                 Row(
@@ -76,9 +75,9 @@ class ListHeader extends StatelessWidget {
                         label: Text(
                           "Shuffle",
                           style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontFamily: "Urban"),
+                            fontSize: 15,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

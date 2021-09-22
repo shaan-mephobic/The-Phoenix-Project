@@ -71,7 +71,6 @@ class AlbumsInside extends StatelessWidget {
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
-                          fontFamily: "Urban",
                           fontWeight: FontWeight.w600,
                           shadows: [
                             Shadow(
@@ -94,7 +93,6 @@ class AlbumsInside extends StatelessWidget {
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
-                            fontFamily: "Urban",
                             shadows: [
                               Shadow(
                                 offset: Offset(0, 1.8),
@@ -152,7 +150,6 @@ class AlbumsInside extends StatelessWidget {
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? contrastAlbum
                                 : Colors.white,
-                            fontFamily: 'Urban',
                             shadows: [
                               Shadow(
                                 offset: Offset(0, 1.0),
@@ -172,7 +169,6 @@ class AlbumsInside extends StatelessWidget {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,
-                              fontFamily: 'Urban',
                               shadows: [
                                 Shadow(
                                   offset: Offset(0, 1.0),

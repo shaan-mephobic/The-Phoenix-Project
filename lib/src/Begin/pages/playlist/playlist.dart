@@ -38,7 +38,7 @@ class _PlaylistState extends State<Playlist>
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(glassShadowOpacity/100),
+                  color: Colors.black.withOpacity(glassShadowOpacity / 100),
                   blurRadius: glassShadowBlur,
                   offset: kShadowOffset,
                 ),
@@ -81,7 +81,6 @@ class _PlaylistState extends State<Playlist>
                         maxLines: 2,
                         style: TextStyle(
                           color: Colors.white,
-                          fontFamily: "Urban",
                           fontWeight: FontWeight.w600,
                           fontSize: deviceWidth / 20,
                         ),
@@ -160,7 +159,8 @@ class _PlaylistState extends State<Playlist>
                           borderRadius: BorderRadius.circular(kRounded),
                           boxShadow: [
                             BoxShadow(
-                                color: Colors.black.withOpacity(glassShadowOpacity/100),
+                                color: Colors.black
+                                    .withOpacity(glassShadowOpacity / 100),
                                 blurRadius: glassShadowBlur,
                                 offset: kShadowOffset),
                           ],
@@ -234,11 +234,11 @@ class _PlaylistState extends State<Playlist>
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
                                       style: TextStyle(
-                                          inherit: false,
-                                          color: Colors.white,
-                                          fontSize: deviceWidth / 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: "Urban"),
+                                        inherit: false,
+                                        color: Colors.white,
+                                        fontSize: deviceWidth / 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),

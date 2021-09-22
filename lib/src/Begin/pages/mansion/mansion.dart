@@ -83,7 +83,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                 "Recently Played",
                                 style: TextStyle(
                                     fontSize: deviceWidth / 15,
-                                    fontFamily: "Urban",
                                     fontWeight: FontWeight.w600,
                                     color: musicBox.get("dynamicArtDB") ?? true
                                         ? Colors.white
@@ -182,7 +181,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                         ? Colors.white
                                                         : Colors.black,
                                                 fontSize: deviceWidth / 25,
-                                                fontFamily: "Urban",
                                                 fontWeight: FontWeight.w600,
                                                 shadows: [
                                                   Shadow(
@@ -227,7 +225,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                           "Your Favourite",
                           style: TextStyle(
                               fontSize: deviceWidth / 15,
-                              fontFamily: "Urban",
                               fontWeight: FontWeight.w600,
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? Colors.white
@@ -326,7 +323,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                         ? Colors.white
                                                         : Colors.black,
                                             fontSize: deviceWidth / 25,
-                                            fontFamily: "Urban",
                                             fontWeight: FontWeight.w600,
                                             shadows: [
                                               Shadow(
@@ -370,7 +366,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                           "Try Something New",
                           style: TextStyle(
                               fontSize: deviceWidth / 15,
-                              fontFamily: "Urban",
                               fontWeight: FontWeight.w600,
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? Colors.white
@@ -463,7 +458,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                   ? Colors.white
                                                   : Colors.black,
                                           fontSize: deviceWidth / 25,
-                                          fontFamily: "Urban",
                                           fontWeight: FontWeight.w600,
                                           shadows: [
                                             Shadow(
@@ -506,7 +500,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                           "Favourite Artists",
                           style: TextStyle(
                               fontSize: deviceWidth / 15,
-                              fontFamily: "Urban",
                               fontWeight: FontWeight.w600,
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? Colors.white
@@ -623,7 +616,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                           fontSize: orientedCar
                                               ? deviceHeight / 54
                                               : deviceWidth / 30,
-                                          fontFamily: "Urban",
                                           fontWeight: FontWeight.w600,
                                           shadows: [
                                             Shadow(
@@ -666,7 +658,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                           "Favourite Albums",
                           style: TextStyle(
                             fontSize: deviceWidth / 15,
-                            fontFamily: "Urban",
                             fontWeight: FontWeight.w600,
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? Colors.white
@@ -790,7 +781,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                             fontSize: orientedCar
                                                 ? deviceHeight / 54
                                                 : deviceWidth / 30,
-                                            fontFamily: "Urban",
                                             fontWeight: FontWeight.w600,
                                             shadows: [
                                               Shadow(

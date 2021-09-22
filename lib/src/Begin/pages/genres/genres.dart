@@ -72,7 +72,8 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                         borderRadius: BorderRadius.circular(kRounded),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(glassShadowOpacity/100),
+                            color: Colors.black
+                                .withOpacity(glassShadowOpacity / 100),
                             blurRadius: glassShadowBlur,
                             offset: kShadowOffset,
                           ),
@@ -129,11 +130,11 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
                                       style: TextStyle(
-                                          inherit: false,
-                                          color: Colors.white,
-                                          fontSize: deviceWidth / 20,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: "Urban"),
+                                        inherit: false,
+                                        color: Colors.white,
+                                        fontSize: deviceWidth / 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                                 ),

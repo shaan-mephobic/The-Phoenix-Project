@@ -198,8 +198,6 @@ class _SettingsState extends State<Settings> {
                                                         child: Text(
                                                           settingsList[i],
                                                           style: TextStyle(
-                                                              fontFamily:
-                                                                  "Urban",
                                                               fontSize: orientedCar
                                                                   ? deviceWidth /
                                                                       22

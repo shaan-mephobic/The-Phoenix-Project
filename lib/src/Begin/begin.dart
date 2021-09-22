@@ -425,8 +425,6 @@ class _BeginState extends State<Begin>
                                                                           .white
                                                                       : Colors
                                                                           .black,
-                                                                  fontFamily:
-                                                                      "Urban",
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w700,
@@ -446,8 +444,6 @@ class _BeginState extends State<Begin>
                                                                           TextStyle(
                                                                         inherit:
                                                                             false,
-                                                                        fontFamily:
-                                                                            'Urban',
                                                                         color: darkModeOn
                                                                             ? Colors.white
                                                                             : Colors.black,
@@ -460,8 +456,6 @@ class _BeginState extends State<Begin>
                                                                       mainLabelStyle: TextStyle(
                                                                           inherit:
                                                                               false,
-                                                                          fontFamily:
-                                                                              'Urban',
                                                                           color: darkModeOn
                                                                               ? Colors
                                                                                   .white
@@ -556,8 +550,6 @@ class _BeginState extends State<Begin>
                                                                                 Colors.black,
                                                                             fontSize:
                                                                                 deviceWidth / 25,
-                                                                            fontFamily:
-                                                                                'Urban',
                                                                             fontWeight:
                                                                                 FontWeight.w600,
                                                                           )),
@@ -579,19 +571,19 @@ class _BeginState extends State<Begin>
                                                                       TextAlign
                                                                           .center,
                                                                   maxLines: 2,
-                                                                  style: TextStyle(
-                                                                      inherit:
-                                                                          false,
-                                                                      color: darkModeOn
-                                                                          ? Colors
-                                                                              .white
-                                                                          : Colors
-                                                                              .black,
-                                                                      fontSize:
-                                                                          deviceWidth /
-                                                                              30,
-                                                                      fontFamily:
-                                                                          'Urban'),
+                                                                  style:
+                                                                    TextStyle(
+                                                                    inherit:
+                                                                        false,
+                                                                    color: darkModeOn
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black,
+                                                                    fontSize:
+                                                                        deviceWidth /
+                                                                            30,
+                                                                  ),
                                                                 ),
                                                               )
                                                             ],
@@ -672,8 +664,6 @@ class _BeginState extends State<Begin>
                                                                         .white
                                                                     : Colors
                                                                         .black,
-                                                                fontFamily:
-                                                                    "Urban",
                                                                 fontSize:
                                                                     deviceWidth /
                                                                         14,
@@ -694,9 +684,6 @@ class _BeginState extends State<Begin>
                                                                         TextStyle(
                                                                       inherit:
                                                                           false,
-
-                                                                      fontFamily:
-                                                                          'Urban',
                                                                       color: darkModeOn
                                                                           ? Colors
                                                                               .white
@@ -713,8 +700,6 @@ class _BeginState extends State<Begin>
                                                                         TextStyle(
                                                                       inherit:
                                                                           false,
-                                                                      fontFamily:
-                                                                          'Urban',
                                                                       color: darkModeOn
                                                                           ? Colors
                                                                               .white
@@ -790,20 +775,23 @@ class _BeginState extends State<Begin>
                                                                   ),
                                                                   child: Center(
                                                                     child: Text(
-                                                                        "DONE",
-                                                                        textAlign:
-                                                                            TextAlign
-                                                                                .center,
-                                                                        style: TextStyle(
-                                                                            inherit:
-                                                                                false,
-                                                                            color: Colors
-                                                                                .black,
-                                                                            fontSize: deviceWidth /
+                                                                      "DONE",
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        inherit:
+                                                                            false,
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            deviceWidth /
                                                                                 25,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                            fontFamily: 'Urban')),
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

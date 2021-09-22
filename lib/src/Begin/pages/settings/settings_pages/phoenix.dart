@@ -103,7 +103,6 @@ class _PhoenixState extends State<Phoenix> {
                               style: TextStyle(
                                 color: Colors.white,
                                 inherit: false,
-                                fontFamily: "Urban",
                                 fontWeight: FontWeight.w600,
                                 fontSize: orientedCar
                                     ? deviceWidth / 31
@@ -127,7 +126,8 @@ class _PhoenixState extends State<Phoenix> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              color: Colors.black
+                                  .withOpacity(glassShadowOpacity / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -156,12 +156,12 @@ class _PhoenixState extends State<Phoenix> {
                                       "The Phoenix Project will forever be free and open-source.",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                          color: Colors.white,
-                                          inherit: false,
-                                          fontSize: orientedCar
-                                              ? deviceWidth / 32
-                                              : deviceWidth / 28,
-                                          fontFamily: "Urban"),
+                                        color: Colors.white,
+                                        inherit: false,
+                                        fontSize: orientedCar
+                                            ? deviceWidth / 32
+                                            : deviceWidth / 28,
+                                      ),
                                     ),
                                   ),
                                   Padding(
@@ -248,8 +248,7 @@ class _PhoenixState extends State<Phoenix> {
                                               borderColor: Colors.white
                                                   .withOpacity(0.04),
                                               borderWidth: 1,
-                                              backgroundColor:
-                                                  glassOpacity,
+                                              backgroundColor: glassOpacity,
                                               flushbarStyle:
                                                   FlushbarStyle.FLOATING,
                                               isDismissible: true,
@@ -302,7 +301,8 @@ class _PhoenixState extends State<Phoenix> {
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(glassShadowOpacity/100),
+                              color: Colors.black
+                                  .withOpacity(glassShadowOpacity / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -343,7 +343,6 @@ class _PhoenixState extends State<Phoenix> {
                                           "DATA PRIVACY",
                                           style: TextStyle(
                                             inherit: false,
-                                            fontFamily: "Urban",
                                             fontWeight: FontWeight.w600,
                                             fontSize: orientedCar
                                                 ? deviceWidth / 18
@@ -420,7 +419,6 @@ class _PhoenixState extends State<Phoenix> {
                         "Copyright © 2020, Shaan Faydh",
                         style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "Urban",
                             fontSize: orientedCar
                                 ? deviceWidth / 32
                                 : deviceWidth / 32),
@@ -439,7 +437,6 @@ class _PhoenixState extends State<Phoenix> {
                         child: Text(
                           "Licenses",
                           style: TextStyle(
-                            fontFamily: "Urban",
                             color: Colors.white,
                             fontSize: orientedCar
                                 ? deviceWidth / 34

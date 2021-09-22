@@ -342,7 +342,6 @@ Future<Widget> onHold(
                                                                                                             maxLines: 2,
                                                                                                             style: TextStyle(
                                                                                                               color: musicBox.get("dynamicArtDB") ?? true ? Colors.white70 : Colors.white70,
-                                                                                                              fontFamily: 'Urban',
                                                                                                               fontSize: car ? widthOfDevice / 26 : heightOfDevice / 56,
                                                                                                               shadows: [
                                                                                                                 Shadow(
@@ -670,7 +669,7 @@ Future<Widget> onHold(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -771,7 +770,6 @@ Future<Widget> onHold(
                                                                 true
                                                             ? Colors.white70
                                                             : Colors.white70,
-                                                        fontFamily: 'Urban',
                                                         fontSize: car
                                                             ? widthOfDevice / 26
                                                             : heightOfDevice /
@@ -1198,7 +1196,6 @@ Future<Widget> onHoldExtended(
                                                                                                                     : darkModeOn
                                                                                                                         ? Colors.white70
                                                                                                                         : Colors.black87,
-                                                                                                                fontFamily: 'Urban',
                                                                                                                 fontSize: car ? widthOfDevice / 26 : heightOfDevice / 56,
                                                                                                                 shadows: [
                                                                                                                   Shadow(
@@ -1506,7 +1503,7 @@ Future<Widget> onHoldExtended(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontFamily: 'Urban', fontWeight: FontWeight.w600)),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -1723,7 +1720,6 @@ Future<Widget> onHoldExtended(
                                                                       .white70
                                                                   : Colors
                                                                       .black87,
-                                                          fontFamily: 'Urban',
                                                           fontSize: car
                                                               ? widthOfDevice /
                                                                   26

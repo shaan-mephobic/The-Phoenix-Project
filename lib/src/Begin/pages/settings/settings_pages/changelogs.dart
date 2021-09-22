@@ -34,7 +34,6 @@ class _ChangelogsState extends State<Changelogs> {
               "Changelogs",
               style: TextStyle(
                 color: Colors.white,
-                fontFamily: "Urban",
                 fontWeight: FontWeight.w600,
                 fontSize: deviceWidth / 18,
               ),
@@ -56,18 +55,19 @@ class _ChangelogsState extends State<Changelogs> {
                           Column(
                             children: [
                               ListTile(
-                                title: Text(changelogs.keys.toList()[i],
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: "Urban")),
+                                title: Text(
+                                  changelogs.keys.toList()[i],
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ),
                               Padding(padding: EdgeInsets.only(top: 20)),
                               Text(
                                 changelogs.values.toList()[i],
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: "Urban",
                                   fontSize: 17,
                                 ),
                               ),

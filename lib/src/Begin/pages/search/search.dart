@@ -102,7 +102,8 @@ class _SearchinState extends State<Searchin> {
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(glassShadowOpacity/100),
+                                color: Colors.black
+                                    .withOpacity(glassShadowOpacity / 100),
                                 blurRadius: glassShadowBlur,
                                 offset: kShadowOffset,
                               ),
@@ -233,7 +234,6 @@ class _SearchinState extends State<Searchin> {
                                         maxLines: 2,
                                         style: TextStyle(
                                           color: Colors.white70,
-                                          fontFamily: 'Urban',
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0, 1.0),
@@ -250,7 +250,6 @@ class _SearchinState extends State<Searchin> {
                                           dumps[index].artist,
                                           maxLines: 1,
                                           style: TextStyle(
-                                            fontFamily: 'Urban',
                                             color: Colors.white70,
                                             shadows: [
                                               Shadow(
