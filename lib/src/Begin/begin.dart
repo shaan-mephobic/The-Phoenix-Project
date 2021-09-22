@@ -372,6 +372,233 @@ class _BeginState extends State<Begin>
                                         return Center(
                                           child: SingleChildScrollView(
                                             physics: BouncingScrollPhysics(),
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: Column(
+                                                children: [
+                                                  Expanded(
+                                                    flex: 0,
+                                                    child: Container(
+                                                      height: orientedCar
+                                                          ? deviceHeight / 1.4
+                                                          : deviceWidth * 1.3,
+                                                      width: orientedCar
+                                                          ? deviceHeight / 1.5
+                                                          : deviceWidth / 1.2,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    kRounded),
+                                                      ),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    kRounded),
+                                                        child: BackdropFilter(
+                                                          filter: glassBlur,
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            kRounded),
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .white
+                                                                        .withOpacity(
+                                                                            0.04)),
+                                                                color:
+                                                                    glassOpacity),
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceAround,
+                                                              children: [
+                                                                Text(
+                                                                  "PHOENIX VISUALIZER",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: darkModeOn
+                                                                        ? Colors
+                                                                            .white
+                                                                        : Colors
+                                                                            .black,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        deviceWidth /
+                                                                            14,
+                                                                  ),
+                                                                ),
+                                                                Center(
+                                                                  child:
+                                                                      SleekCircularSlider(
+                                                                    appearance:
+                                                                        CircularSliderAppearance(
+                                                                      infoProperties:
+                                                                          InfoProperties(
+                                                                        bottomLabelStyle:
+                                                                            TextStyle(
+                                                                          color: darkModeOn
+                                                                              ? Colors.white
+                                                                              : Colors.black,
+                                                                          fontSize:
+                                                                              deviceHeight / 60,
+                                                                        ),
+                                                                        bottomLabelText:
+                                                                            'SENSITIVITY',
+                                                                        mainLabelStyle: TextStyle(
+                                                                            color: darkModeOn
+                                                                                ? Colors.white
+                                                                                : Colors.black,
+                                                                            fontSize: deviceHeight / 40,
+                                                                            fontWeight: FontWeight.w400),
+                                                                      ),
+                                                                      size:
+                                                                          deviceHeight /
+                                                                              6,
+                                                                      customColors:
+                                                                          CustomSliderColors(
+                                                                        progressBarColor:
+                                                                            kPhoenixColor,
+                                                                        trackColor:
+                                                                            Colors.black26,
+                                                                      ),
+                                                                      customWidths:
+                                                                          CustomSliderWidths(
+                                                                              progressBarWidth: deviceWidth / 65),
+                                                                    ),
+                                                                    min: 0,
+                                                                    max: 100,
+                                                                    initialValue:
+                                                                        defaultSensitivity,
+                                                                    onChange:
+                                                                        (double
+                                                                            value) async {
+                                                                      goSensitivity(35 +
+                                                                          (value *
+                                                                              0.3));
+                                                                      defaultSensitivity =
+                                                                          value;
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              kRounded),
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  child:
+                                                                      InkWell(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            kRounded),
+                                                                    onTap: () {
+                                                                      bgPhoenixVisualizer =
+                                                                          true;
+                                                                      if (!isFlashin) {
+                                                                        isFlashin =
+                                                                            true;
+                                                                        kotlinVisualizer();
+                                                                      }
+
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          deviceWidth /
+                                                                              12,
+                                                                      width:
+                                                                          deviceWidth /
+                                                                              4,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: Color(
+                                                                            0xFF1DB954),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(kRounded),
+                                                                      ),
+                                                                      child:
+                                                                          Center(
+                                                                        child: Text(
+                                                                            "START",
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: deviceWidth / 25,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            )),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  padding: EdgeInsets.only(
+                                                                      left:
+                                                                          deviceWidth /
+                                                                              10,
+                                                                      right:
+                                                                          deviceWidth /
+                                                                              10),
+                                                                  child: Text(
+                                                                    "NOTE: This will run in the background until stopped, causing battery drain",
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                    maxLines: 2,
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: darkModeOn
+                                                                          ? Colors
+                                                                              .white
+                                                                          : Colors
+                                                                              .black,
+                                                                      fontSize:
+                                                                          deviceWidth /
+                                                                              30,
+                                                                    ),
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                                rootState.provideman();
+                              }
+                            },
+                            onLongPress: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return StatefulBuilder(
+                                    builder: (context, StateSetter setState) {
+                                      return Center(
+                                        child: SingleChildScrollView(
+                                          physics: BouncingScrollPhysics(),
+                                          child: Material(
+                                            color: Colors.transparent,
                                             child: Column(
                                               children: [
                                                 Expanded(
@@ -418,19 +645,17 @@ class _BeginState extends State<Begin>
                                                                 "PHOENIX VISUALIZER",
                                                                 style:
                                                                     TextStyle(
-                                                                  inherit:
-                                                                      false,
                                                                   color: darkModeOn
                                                                       ? Colors
                                                                           .white
                                                                       : Colors
                                                                           .black,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
                                                                   fontSize:
                                                                       deviceWidth /
                                                                           14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
                                                                 ),
                                                               ),
                                                               Center(
@@ -438,33 +663,30 @@ class _BeginState extends State<Begin>
                                                                     SleekCircularSlider(
                                                                   appearance:
                                                                       CircularSliderAppearance(
+                                                                    // animationEnabled: sensitivityanimation,
                                                                     infoProperties:
                                                                         InfoProperties(
                                                                       bottomLabelStyle:
                                                                           TextStyle(
-                                                                        inherit:
-                                                                            false,
                                                                         color: darkModeOn
                                                                             ? Colors.white
                                                                             : Colors.black,
                                                                         fontSize:
                                                                             deviceHeight /
                                                                                 60,
+                                                                        // fontWeight: FontWeight.w600
                                                                       ),
                                                                       bottomLabelText:
                                                                           'SENSITIVITY',
-                                                                      mainLabelStyle: TextStyle(
-                                                                          inherit:
-                                                                              false,
-                                                                          color: darkModeOn
-                                                                              ? Colors
-                                                                                  .white
-                                                                              : Colors
-                                                                                  .black,
-                                                                          fontSize: deviceHeight /
-                                                                              40,
-                                                                          fontWeight:
-                                                                              FontWeight.w400),
+                                                                      mainLabelStyle:
+                                                                          TextStyle(
+                                                                        color: darkModeOn
+                                                                            ? Colors.white
+                                                                            : Colors.black,
+                                                                        fontSize:
+                                                                            deviceHeight /
+                                                                                40,
+                                                                      ),
                                                                     ),
                                                                     size:
                                                                         deviceHeight /
@@ -477,6 +699,7 @@ class _BeginState extends State<Begin>
                                                                           Colors
                                                                               .black26,
                                                                     ),
+
                                                                     customWidths:
                                                                         CustomSliderWidths(
                                                                             progressBarWidth:
@@ -509,14 +732,6 @@ class _BeginState extends State<Begin>
                                                                           .circular(
                                                                               kRounded),
                                                                   onTap: () {
-                                                                    bgPhoenixVisualizer =
-                                                                        true;
-                                                                    if (!isFlashin) {
-                                                                      isFlashin =
-                                                                          true;
-                                                                      kotlinVisualizer();
-                                                                    }
-
                                                                     Navigator.pop(
                                                                         context);
                                                                   },
@@ -538,54 +753,25 @@ class _BeginState extends State<Begin>
                                                                     ),
                                                                     child:
                                                                         Center(
-                                                                      child: Text(
-                                                                          "START",
-                                                                          textAlign: TextAlign
-                                                                              .center,
-                                                                          style:
-                                                                              TextStyle(
-                                                                            inherit:
-                                                                                false,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            fontSize:
-                                                                                deviceWidth / 25,
-                                                                            fontWeight:
-                                                                                FontWeight.w600,
-                                                                          )),
+                                                                      child:
+                                                                          Text(
+                                                                        "DONE",
+                                                                        textAlign:
+                                                                            TextAlign.center,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          fontSize:
+                                                                              deviceWidth / 25,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Container(
-                                                                padding: EdgeInsets.only(
-                                                                    left:
-                                                                        deviceWidth /
-                                                                            10,
-                                                                    right:
-                                                                        deviceWidth /
-                                                                            10),
-                                                                child: Text(
-                                                                  "NOTE: This will run in the background until stopped, causing battery drain",
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                  maxLines: 2,
-                                                                  style:
-                                                                    TextStyle(
-                                                                    inherit:
-                                                                        false,
-                                                                    color: darkModeOn
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .black,
-                                                                    fontSize:
-                                                                        deviceWidth /
-                                                                            30,
-                                                                  ),
-                                                                ),
-                                                              )
                                                             ],
                                                           ),
                                                         ),
@@ -595,215 +781,6 @@ class _BeginState extends State<Begin>
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                );
-                                rootState.provideman();
-                              }
-                            },
-                            onLongPress: () async {
-                              await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return StatefulBuilder(
-                                    builder: (context, StateSetter setState) {
-                                      return Center(
-                                        child: SingleChildScrollView(
-                                          physics: BouncingScrollPhysics(),
-                                          child: Column(
-                                            children: [
-                                              Expanded(
-                                                flex: 0,
-                                                child: Container(
-                                                  height: orientedCar
-                                                      ? deviceHeight / 1.4
-                                                      : deviceWidth * 1.3,
-                                                  width: orientedCar
-                                                      ? deviceHeight / 1.5
-                                                      : deviceWidth / 1.2,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            kRounded),
-                                                  ),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            kRounded),
-                                                    child: BackdropFilter(
-                                                      filter: glassBlur,
-                                                      child: Container(
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        kRounded),
-                                                            border: Border.all(
-                                                                color: Colors
-                                                                    .white
-                                                                    .withOpacity(
-                                                                        0.04)),
-                                                            color:
-                                                                glassOpacity),
-                                                        alignment:
-                                                            Alignment.center,
-                                                        child: Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceAround,
-                                                          children: [
-                                                            Text(
-                                                              "PHOENIX VISUALIZER",
-                                                              style: TextStyle(
-                                                                inherit: false,
-                                                                color: darkModeOn
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .black,
-                                                                fontSize:
-                                                                    deviceWidth /
-                                                                        14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              ),
-                                                            ),
-                                                            Center(
-                                                              child:
-                                                                  SleekCircularSlider(
-                                                                appearance:
-                                                                    CircularSliderAppearance(
-                                                                  // animationEnabled: sensitivityanimation,
-                                                                  infoProperties:
-                                                                      InfoProperties(
-                                                                    bottomLabelStyle:
-                                                                        TextStyle(
-                                                                      inherit:
-                                                                          false,
-                                                                      color: darkModeOn
-                                                                          ? Colors
-                                                                              .white
-                                                                          : Colors
-                                                                              .black,
-                                                                      fontSize:
-                                                                          deviceHeight /
-                                                                              60,
-                                                                      // fontWeight: FontWeight.w600
-                                                                    ),
-                                                                    bottomLabelText:
-                                                                        'SENSITIVITY',
-                                                                    mainLabelStyle:
-                                                                        TextStyle(
-                                                                      inherit:
-                                                                          false,
-                                                                      color: darkModeOn
-                                                                          ? Colors
-                                                                              .white
-                                                                          : Colors
-                                                                              .black,
-                                                                      fontSize:
-                                                                          deviceHeight /
-                                                                              40,
-                                                                    ),
-                                                                  ),
-                                                                  size:
-                                                                      deviceHeight /
-                                                                          6,
-                                                                  customColors:
-                                                                      CustomSliderColors(
-                                                                    progressBarColor:
-                                                                        kPhoenixColor,
-                                                                    trackColor:
-                                                                        Colors
-                                                                            .black26,
-                                                                  ),
-
-                                                                  customWidths: CustomSliderWidths(
-                                                                      progressBarWidth:
-                                                                          deviceWidth /
-                                                                              65),
-                                                                ),
-                                                                min: 0,
-                                                                max: 100,
-                                                                initialValue:
-                                                                    defaultSensitivity,
-                                                                onChange: (double
-                                                                    value) async {
-                                                                  goSensitivity(35 +
-                                                                      (value *
-                                                                          0.3));
-                                                                  defaultSensitivity =
-                                                                      value;
-                                                                },
-                                                              ),
-                                                            ),
-                                                            Material(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          kRounded),
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: InkWell(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            kRounded),
-                                                                onTap: () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  height:
-                                                                      deviceWidth /
-                                                                          12,
-                                                                  width:
-                                                                      deviceWidth /
-                                                                          4,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: Color(
-                                                                        0xFF1DB954),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            kRounded),
-                                                                  ),
-                                                                  child: Center(
-                                                                    child: Text(
-                                                                      "DONE",
-                                                                      textAlign:
-                                                                          TextAlign
-                                                                              .center,
-                                                                      style:
-                                                                          TextStyle(
-                                                                        inherit:
-                                                                            false,
-                                                                        color: Colors
-                                                                            .black,
-                                                                        fontSize:
-                                                                            deviceWidth /
-                                                                                25,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
                                           ),
                                         ),
                                       );

@@ -52,6 +52,9 @@ class _PhoenixState extends State<Phoenix> {
               children: [
                 BackArt(),
                 SingleChildScrollView(
+                  physics: musicBox.get("fluidAnimation") ?? true
+                      ? BouncingScrollPhysics()
+                      : ClampingScrollPhysics(),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -90,7 +93,6 @@ class _PhoenixState extends State<Phoenix> {
                               "PHOENIX",
                               style: TextStyle(
                                   color: Colors.white,
-                                  inherit: false,
                                   fontSize: orientedCar
                                       ? deviceWidth / 18
                                       : deviceWidth / 13,
@@ -102,7 +104,6 @@ class _PhoenixState extends State<Phoenix> {
                               "FALL",
                               style: TextStyle(
                                 color: Colors.white,
-                                inherit: false,
                                 fontWeight: FontWeight.w600,
                                 fontSize: orientedCar
                                     ? deviceWidth / 31
@@ -157,7 +158,6 @@ class _PhoenixState extends State<Phoenix> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        inherit: false,
                                         fontSize: orientedCar
                                             ? deviceWidth / 32
                                             : deviceWidth / 28,
@@ -342,7 +342,7 @@ class _PhoenixState extends State<Phoenix> {
                                         child: Text(
                                           "DATA PRIVACY",
                                           style: TextStyle(
-                                            inherit: false,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.w600,
                                             fontSize: orientedCar
                                                 ? deviceWidth / 18

@@ -47,18 +47,16 @@ class _GenresInsideState extends State<GenresInside> {
             shadowColor: Colors.transparent,
             centerTitle: true,
             backgroundColor: Colors.transparent,
-            title: Hero(
-              tag: "crossfire-$genreSelected",
-              child: Text(
-                musicBox.get('customScan') ?? false
-                    ? insideAllGenreData.keys.toList()[genreSelected]
-                    : allgenres[genreSelected].genre,
-                style: TextStyle(
-                  inherit: false,
-                  fontSize: deviceWidth / 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+            title: 
+                 Text(
+                  musicBox.get('customScan') ?? false
+                      ? insideAllGenreData.keys.toList()[genreSelected]
+                      : allgenres[genreSelected].genre,
+                  style: TextStyle(
+                    fontSize: deviceWidth / 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+               
             ),
           ),
           body: Theme(

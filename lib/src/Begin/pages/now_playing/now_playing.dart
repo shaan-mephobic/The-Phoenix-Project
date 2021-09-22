@@ -514,7 +514,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                         borderRadius: BorderRadius.circular(kRounded),
                                                                                       ),
                                                                                       child: Center(
-                                                                                        child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
+                                                                                        child: Text("START", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -669,7 +669,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                       borderRadius: BorderRadius.circular(kRounded),
                                                                                     ),
                                                                                     child: Center(
-                                                                                      child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
+                                                                                      child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -777,7 +777,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               child: Text(lyricsDat ?? "",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    inherit: false,
                                                     wordSpacing: 2,
                                                     fontSize: deviceWidth / 18,
                                                     fontFamily: "Raleway",
@@ -804,7 +803,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 lyricsDat ?? "",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
-                                                  inherit: false,
                                                   wordSpacing: 2,
                                                   fontSize: deviceWidth / 18,
                                                   fontFamily: "Raleway",
@@ -1255,7 +1253,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                               borderRadius: BorderRadius.circular(kRounded),
                                                                                             ),
                                                                                             child: Center(
-                                                                                              child: Text("START", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
+                                                                                              child: Text("START", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                             ),
                                                                                           ),
                                                                                         ),
@@ -1385,7 +1383,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                                                 "DONE",
                                                                                                 textAlign: TextAlign.center,
                                                                                                 style: TextStyle(
-                                                                                                  inherit: false,
                                                                                                   color: Colors.black,
                                                                                                   fontSize: deviceWidth / 25,
                                                                                                   fontWeight: FontWeight.w600,
@@ -1519,7 +1516,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                         child: Text(lyricsDat ?? "",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              inherit: false,
                                               wordSpacing: 2,
                                               fontSize: deviceWidth / 18,
                                               fontFamily: "Raleway",
@@ -1545,7 +1541,6 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                         child: Text(lyricsDat ?? "",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              inherit: false,
                                               wordSpacing: 2,
                                               fontSize: deviceWidth / 18,
                                               fontFamily: "Raleway",

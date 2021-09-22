@@ -55,7 +55,6 @@ class _AddSongsState extends State<AddSongs> {
             icon: Icon(Icons.check_rounded, color: Colors.black),
             label: Text(widget.modify ? "MODIFY" : "CREATE",
                 style: TextStyle(
-                    inherit: false,
                     color: Colors.black,
                     fontSize: deviceWidth / 25,
                     fontWeight: FontWeight.w600)),

@@ -54,7 +54,6 @@ class _InterfaceState extends State<Interface> {
               "Interface",
               style: TextStyle(
                 color: Colors.white,
-                inherit: false,
                 fontSize: deviceWidth / 18,
                 fontWeight: FontWeight.w600,
               ),

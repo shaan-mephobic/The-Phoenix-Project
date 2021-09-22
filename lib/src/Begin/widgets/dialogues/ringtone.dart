@@ -99,7 +99,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
               )
             : Text("Set Ringtone",
                 style: TextStyle(
-                    inherit: false,
                     color: Colors.black,
                     fontSize: deviceWidth / 25,
                     fontWeight: FontWeight.w600)),
@@ -136,7 +135,6 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
           "RINGTONE",
           style: TextStyle(
             color: Colors.white,
-            inherit: false,
             fontSize: deviceWidth / 18,
             fontWeight: FontWeight.w600,
           ),

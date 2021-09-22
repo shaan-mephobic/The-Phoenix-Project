@@ -63,6 +63,7 @@ ThemeData themeOfApp = ThemeData(
     crossAxisMargin: 2,
     thumbColor: MaterialStateProperty.all(Colors.white30),
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
 );
 
 /// BoxContraints for artwork shape in listtile

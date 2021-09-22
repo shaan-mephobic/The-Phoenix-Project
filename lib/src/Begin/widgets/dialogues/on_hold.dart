@@ -669,7 +669,7 @@ Future<Widget> onHold(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: widthOfDevice / 25, fontWeight: FontWeight.w600)),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle( color: Colors.black, fontSize: widthOfDevice / 25, fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),
@@ -1503,7 +1503,7 @@ Future<Widget> onHoldExtended(
                                                                                                 borderRadius: BorderRadius.circular(kRounded),
                                                                                               ),
                                                                                               child: Center(
-                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(inherit: false, color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
+                                                                                                child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                               ),
                                                                                             ),
                                                                                           ),

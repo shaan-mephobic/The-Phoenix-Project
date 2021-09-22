@@ -234,7 +234,6 @@ class _PlaylistState extends State<Playlist>
                                       textAlign: TextAlign.center,
                                       maxLines: 2,
                                       style: TextStyle(
-                                        inherit: false,
                                         color: Colors.white,
                                         fontSize: deviceWidth / 20,
                                         fontWeight: FontWeight.w600,

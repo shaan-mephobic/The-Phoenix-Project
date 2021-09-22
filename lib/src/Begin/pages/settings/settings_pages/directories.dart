@@ -46,7 +46,7 @@ class _DirectoriesState extends State<Directories> {
           label: Text(
             "DONE",
             style: TextStyle(
-              inherit: false,
+              
               color: Colors.black,
               fontSize: deviceWidth / 25,
               fontWeight: FontWeight.w600,
@@ -71,7 +71,7 @@ class _DirectoriesState extends State<Directories> {
           "PICK YOUR FOLDERS",
           style: TextStyle(
             color: darkModeOn ? Colors.white : Colors.black,
-            inherit: false,
+           
             fontSize: deviceWidth / 18,
             fontWeight: FontWeight.w600,
           ),

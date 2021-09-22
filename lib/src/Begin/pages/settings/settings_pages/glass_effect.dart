@@ -68,7 +68,7 @@ class _GlassEffectState extends State<GlassEffect> {
               "Glass Effect",
               style: TextStyle(
                 color: Colors.white,
-                inherit: false,
+              
                 fontSize: deviceWidth / 18,
                 fontWeight: FontWeight.w600,
               ),

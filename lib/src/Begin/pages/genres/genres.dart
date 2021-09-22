@@ -119,22 +119,18 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                     ),
                                   );
                                 },
-                                child: Hero(
-                                  tag: "crossfire-$index",
-                                  child: Center(
-                                    child: Text(
-                                      musicBox.get('customScan') ?? false
-                                          ? insideAllGenreData.keys
-                                              .toList()[index]
-                                          : allgenres[index].genre,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                        inherit: false,
-                                        color: Colors.white,
-                                        fontSize: deviceWidth / 20,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                child: Center(
+                                  child: Text(
+                                    musicBox.get('customScan') ?? false
+                                        ? insideAllGenreData.keys
+                                            .toList()[index]
+                                        : allgenres[index].genre,
+                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: deviceWidth / 20,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),

@@ -43,7 +43,7 @@ screenShotUI(save) async {
                         aestheticText(nowMediaItem.title),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            inherit: false,
+                            
                             fontFamily: "Raleway",
                             fontWeight: FontWeight.w100,
                             color: Colors.white,
@@ -109,7 +109,7 @@ class WallpaperArt extends StatelessWidget {
               aestheticText(nowMediaItem.title),
               textAlign: TextAlign.center,
               style: TextStyle(
-                  inherit: false,
+                
                   fontFamily: "Raleway",
                   fontWeight: FontWeight.w100,
                   color: Colors.white,
