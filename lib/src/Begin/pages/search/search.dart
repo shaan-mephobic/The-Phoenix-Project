@@ -38,31 +38,17 @@ class _SearchinState extends State<Searchin> {
 
   var focusNode = FocusNode();
 
-  theSearch(astra) async {
-    if (astra != "") {
-      var allD = await OnAudioQuery()
-          .queryWithFilters(astra, WithFiltersType.AUDIOS, AudiosArgs.TITLE);
-      var artistsD = await OnAudioQuery()
-          .queryWithFilters(astra, WithFiltersType.AUDIOS, AudiosArgs.ARTIST);
-      var albumsD = await OnAudioQuery()
-          .queryWithFilters(astra, WithFiltersType.AUDIOS, AudiosArgs.ALBUM);
-      List<SongModel> searchedO =
-          (allD + artistsD + albumsD).toSongModel().toSet().toList();
-      List<SongModel> filteredSongs = [];
-      if (musicBox.get("customScan") ?? false) {
-        for (int i = 0; i < searchedO.length; i++) {
-          for (int o = 0; o < musicBox.get("customLocations").length; o++) {
-            if (searchedO[i]
-                .data
-                .contains(musicBox.get("customLocations")[o])) {
-              filteredSongs.add(searchedO[i]);
-            }
-          }
+  theSearch(name) async {
+    if (name != "") {
+      List<SongModel> tracks = [];
+      for (int i = 0; i < songList.length; i++) {
+        if (songList[i].title.contains(name) ||
+            songList[i].artist.contains(name) ||
+            songList[i].album.contains(name)) {
+          tracks.add(songList[i]);
         }
-        globalastro.thesearch(filteredSongs);
-      } else {
-        globalastro.thesearch(searchedO);
       }
+      globalastro.thesearch(tracks.toSet().toList());
     } else {
       globalastro.thesearch([]);
     }
@@ -164,7 +150,6 @@ class _SearchinState extends State<Searchin> {
                           ),
                         ),
                       ),
-                      // ),
                     ),
                     Consumer<Astronautintheocean>(
                       builder: (context, astronaut, child) {
@@ -181,7 +166,6 @@ class _SearchinState extends State<Searchin> {
                                 shrinkWrap: true,
                                 padding: EdgeInsets.only(top: 0, bottom: 8),
                                 addAutomaticKeepAlives: true,
-                                // itemExtent: deviceWidth / 6,
                                 physics: musicBox.get("fluidAnimation") ?? true
                                     ? BouncingScrollPhysics()
                                     : ClampingScrollPhysics(),
@@ -200,7 +184,6 @@ class _SearchinState extends State<Searchin> {
                                             songindex = si;
                                           }
                                         }
-
                                         if (songListMediaItems[index]
                                                 .duration ==
                                             Duration(milliseconds: 0)) {
