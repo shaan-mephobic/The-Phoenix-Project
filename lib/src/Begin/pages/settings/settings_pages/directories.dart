@@ -46,7 +46,6 @@ class _DirectoriesState extends State<Directories> {
           label: Text(
             "DONE",
             style: TextStyle(
-              
               color: Colors.black,
               fontSize: deviceWidth / 25,
               fontWeight: FontWeight.w600,
@@ -71,7 +70,6 @@ class _DirectoriesState extends State<Directories> {
           "PICK YOUR FOLDERS",
           style: TextStyle(
             color: darkModeOn ? Colors.white : Colors.black,
-           
             fontSize: deviceWidth / 18,
             fontWeight: FontWeight.w600,
           ),
@@ -147,7 +145,9 @@ class _DirectoriesState extends State<Directories> {
                   shrinkWrap: true,
                   padding: EdgeInsets.only(top: 5, bottom: 8),
                   addAutomaticKeepAlives: true,
-                  physics: ClampingScrollPhysics(),
+                  physics: musicBox.get("fluidAnimation") ?? true
+                      ? BouncingScrollPhysics()
+                      : ClampingScrollPhysics(),
                   itemCount: fileExplorer.length,
                   itemBuilder: (context, index) {
                     return Material(

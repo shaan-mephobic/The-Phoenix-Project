@@ -66,6 +66,9 @@ class _MiscellaneousState extends State<Miscellaneous> {
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: ListView(
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     padding: EdgeInsets.all(0),
                     children: [
                       Material(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../begin.dart';
 import '../utilities/provider/provider.dart';
-import 'dialogues/ringtone.dart';
+import '../pages/ringtone/ringtone.dart';
 
 class SeekBar extends StatefulWidget {
   @override

@@ -48,6 +48,9 @@ class _ChangelogsState extends State<Changelogs> {
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: SingleChildScrollView(
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     padding: EdgeInsets.only(top: 50),
                     child: Column(
                       children: [

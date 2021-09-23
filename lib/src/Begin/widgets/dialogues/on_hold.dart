@@ -9,7 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/heart.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
-import 'package:phoenix/src/Begin/widgets/dialogues/ringtone.dart';
+import 'package:phoenix/src/Begin/pages/ringtone/ringtone.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres_inside.dart';

@@ -275,28 +275,29 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                   padding:
                                                       EdgeInsets.only(left: 10),
                                                   child: Text(
-                                                      Duration(
-                                                              milliseconds:
-                                                                  ranges[0] ~/
-                                                                      1)
-                                                          .toString()
-                                                          .replaceRange(
-                                                              0, 2, "")
-                                                          .replaceRange(
-                                                            7,
-                                                            Duration(
-                                                                    milliseconds:
-                                                                        nowMediaItem
-                                                                            .duration
-                                                                            .inMilliseconds)
-                                                                .toString()
-                                                                .replaceRange(
-                                                                    0, 2, "")
-                                                                .length,
-                                                            "",
-                                                          ),
-                                                      style: TextStyle(
-                                                          color: Colors.white)),
+                                                    Duration(
+                                                            milliseconds:
+                                                                ranges[0] ~/ 1)
+                                                        .toString()
+                                                        .replaceRange(0, 2, "")
+                                                        .replaceRange(
+                                                          7,
+                                                          Duration(
+                                                                  milliseconds:
+                                                                      nowMediaItem
+                                                                          .duration
+                                                                          .inMilliseconds)
+                                                              .toString()
+                                                              .replaceRange(
+                                                                  0, 2, "")
+                                                              .length,
+                                                          "",
+                                                        ),
+                                                    style: TextStyle(
+                                                      fontFamily: "Futura",
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                               GestureDetector(
@@ -310,28 +311,29 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                   padding: EdgeInsets.only(
                                                       right: 10),
                                                   child: Text(
-                                                      Duration(
-                                                              milliseconds:
-                                                                  ranges[1] ~/
-                                                                      1)
-                                                          .toString()
-                                                          .replaceRange(
-                                                              0, 2, "")
-                                                          .replaceRange(
-                                                            7,
-                                                            Duration(
-                                                                    milliseconds:
-                                                                        nowMediaItem
-                                                                            .duration
-                                                                            .inMilliseconds)
-                                                                .toString()
-                                                                .replaceRange(
-                                                                    0, 2, "")
-                                                                .length,
-                                                            "",
-                                                          ),
-                                                      style: TextStyle(
-                                                          color: Colors.white)),
+                                                    Duration(
+                                                            milliseconds:
+                                                                ranges[1] ~/ 1)
+                                                        .toString()
+                                                        .replaceRange(0, 2, "")
+                                                        .replaceRange(
+                                                          7,
+                                                          Duration(
+                                                                  milliseconds:
+                                                                      nowMediaItem
+                                                                          .duration
+                                                                          .inMilliseconds)
+                                                              .toString()
+                                                              .replaceRange(
+                                                                  0, 2, "")
+                                                              .length,
+                                                          "",
+                                                        ),
+                                                    style: TextStyle(
+                                                      fontFamily: "Futura",
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
                                             ],

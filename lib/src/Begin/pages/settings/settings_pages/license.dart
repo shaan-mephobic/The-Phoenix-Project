@@ -44,6 +44,9 @@ class _LicensesPageState extends State<LicensesPage> {
               child: Scrollbar(
                 controller: _scrollBarController,
                 child: ListView.builder(
+                  physics: musicBox.get("fluidAnimation") ?? true
+                      ? BouncingScrollPhysics()
+                      : ClampingScrollPhysics(),
                   controller: _scrollBarController,
                   itemCount: snapshot.data.length - 1,
                   itemBuilder: (BuildContext context, int index) {
@@ -112,6 +115,9 @@ class InsideLicense extends StatelessWidget {
         data: themeOfApp,
         child: Scrollbar(
           child: SingleChildScrollView(
+            physics: musicBox.get("fluidAnimation") ?? true
+                ? BouncingScrollPhysics()
+                : ClampingScrollPhysics(),
             child: Column(
               children: [
                 for (int i = 0; i < licenseValue.length; i++)

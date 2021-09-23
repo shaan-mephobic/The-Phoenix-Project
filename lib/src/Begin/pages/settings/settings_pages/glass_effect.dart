@@ -68,7 +68,6 @@ class _GlassEffectState extends State<GlassEffect> {
               "Glass Effect",
               style: TextStyle(
                 color: Colors.white,
-              
                 fontSize: deviceWidth / 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -83,6 +82,9 @@ class _GlassEffectState extends State<GlassEffect> {
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: CustomScrollView(
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? BouncingScrollPhysics()
+                        : ClampingScrollPhysics(),
                     slivers: [
                       SliverFillRemaining(
                         hasScrollBody: false,
