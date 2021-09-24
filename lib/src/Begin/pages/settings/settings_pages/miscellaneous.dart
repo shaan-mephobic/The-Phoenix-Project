@@ -1,3 +1,4 @@
+import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -160,7 +161,14 @@ class _MiscellaneousState extends State<Miscellaneous> {
                                   onPressed: () async {
                                     selectedFolders =
                                         musicBox.get("customLocations") ?? [];
-                                    await iterationManager(topLevelDir);
+                                    externalTopLevelDir =
+                                        await getExternalDirectory() ?? "";
+                                    if (externalTopLevelDir == "") {
+                                      isHome = false;
+                                      await iterationManager(topLevelDir);
+                                    } else {
+                                      await iterationManager("...");
+                                    }
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(

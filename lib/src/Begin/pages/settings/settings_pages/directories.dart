@@ -17,6 +17,7 @@ class _DirectoriesState extends State<Directories> {
     saveLocations();
     backArtStateChange = true;
     refresh = true;
+    isHome = true;
     super.dispose();
   }
 
@@ -42,6 +43,7 @@ class _DirectoriesState extends State<Directories> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
+          splashColor: Colors.transparent,
           icon: Icon(Icons.check_rounded, color: Colors.black),
           label: Text(
             "DONE",
@@ -92,7 +94,8 @@ class _DirectoriesState extends State<Directories> {
                           splashColor: Color(0xFF05464f),
                           onPressed: () async {
                             HapticFeedback.lightImpact();
-                            if (currentTopDir != topLevelDir) {
+                            if (currentTopDir != topLevelDir &&
+                                currentTopDir != externalTopLevelDir) {
                               currentTopDir = previousDir(currentTopDir);
                               await iterationManager(currentTopDir);
                               setState(() {});
@@ -106,7 +109,38 @@ class _DirectoriesState extends State<Directories> {
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Text(
-                            currentTopDir.replaceAll(topLevelDir, "..."),
+                            currentTopDir.contains(topLevelDir)
+                                ? currentTopDir.replaceAll(
+                                    topLevelDir, "Internal/")
+                                : currentTopDir.contains(
+                                        topLevelDir.replaceRange(
+                                            topLevelDir.length - 1,
+                                            topLevelDir.length,
+                                            ""))
+                                    ? currentTopDir.replaceAll(
+                                        topLevelDir.replaceRange(
+                                            topLevelDir.length - 1,
+                                            topLevelDir.length,
+                                            ""),
+                                        "Internal/")
+                                    : currentTopDir
+                                            .contains(externalTopLevelDir)
+                                        ? currentTopDir.replaceAll(
+                                            externalTopLevelDir, "External/")
+                                        : currentTopDir.contains(
+                                                externalTopLevelDir.replaceRange(
+                                                    externalTopLevelDir.length -
+                                                        1,
+                                                    externalTopLevelDir.length,
+                                                    ""))
+                                            ? currentTopDir.replaceAll(
+                                                externalTopLevelDir.replaceRange(
+                                                    externalTopLevelDir.length -
+                                                        1,
+                                                    externalTopLevelDir.length,
+                                                    ""),
+                                                "External/")
+                                            : currentTopDir,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
@@ -157,9 +191,21 @@ class _DirectoriesState extends State<Directories> {
                         checkColor: darkModeOn ? kMaterialBlack : Colors.white,
                         title: Text(
                           fileExplorer.keys
-                              .toList()[index]
-                              .toString()
-                              .replaceAll(currentTopDir, ""),
+                                      .toList()[index]
+                                      .toString()
+                                      .replaceAll(currentTopDir, "") ==
+                                  topLevelDir
+                              ? "Internal storage"
+                              : fileExplorer.keys
+                                          .toList()[index]
+                                          .toString()
+                                          .replaceAll(currentTopDir, "") ==
+                                      externalTopLevelDir
+                                  ? "External storage"
+                                  : fileExplorer.keys
+                                      .toList()[index]
+                                      .toString()
+                                      .replaceAll(currentTopDir, ""),
                           style: TextStyle(
                             color: darkModeOn ? Colors.white : Colors.black,
                           ),
@@ -203,14 +249,40 @@ class _DirectoriesState extends State<Directories> {
   }
 
   Future<bool> _onWillPop() async {
-    if (currentTopDir == topLevelDir) {
-      Navigator.pop(context);
+    if (externalTopLevelDir == "") {
+      if (currentTopDir == topLevelDir ||
+          currentTopDir ==
+              topLevelDir.replaceRange(
+                  topLevelDir.length - 1, topLevelDir.length, "")) {
+        Navigator.pop(context);
+      } else {
+        HapticFeedback.lightImpact();
+        currentTopDir = previousDir(currentTopDir);
+        await iterationManager(currentTopDir);
+        setState(() {});
+      }
     } else {
-      HapticFeedback.lightImpact();
-
-      currentTopDir = previousDir(currentTopDir);
-      await iterationManager(currentTopDir);
-      setState(() {});
+      if (currentTopDir == "...") {
+        Navigator.pop(context);
+      } else if (currentTopDir == topLevelDir ||
+          currentTopDir == externalTopLevelDir ||
+          currentTopDir ==
+              topLevelDir.replaceRange(
+                  topLevelDir.length - 1, topLevelDir.length, "") ||
+          currentTopDir ==
+              externalTopLevelDir.replaceRange(externalTopLevelDir.length - 1,
+                  externalTopLevelDir.length, "")) {
+        HapticFeedback.lightImpact();
+        currentTopDir = "...";
+        isHome = true;
+        await iterationManager(currentTopDir);
+        setState(() {});
+      } else {
+        HapticFeedback.lightImpact();
+        currentTopDir = previousDir(currentTopDir);
+        await iterationManager(currentTopDir);
+        setState(() {});
+      }
     }
     return false;
   }

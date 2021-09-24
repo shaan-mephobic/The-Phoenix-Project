@@ -1,10 +1,12 @@
 import 'dart:io';
 import '../../begin.dart';
 
+bool isHome = true;
 List selectedFolders = [];
 Map fileExplorer = {};
 List tempData = [];
-String topLevelDir = "/storage/emulated/0";
+String topLevelDir = "/storage/emulated/0/";
+String externalTopLevelDir = "";
 String currentTopDir = "/storage/emulated/0/";
 
 iterationManager(where) async {
@@ -12,7 +14,8 @@ iterationManager(where) async {
   fileExplorer = {};
   await getAllDir(where);
   for (int i = 0; i < tempData.length; i++) {
-    if (tempData[i] != "/storage/emulated/0/Android") {
+    if (tempData[i] != "$topLevelDir/Android" &&
+        tempData[i] != "$externalTopLevelDir/Android") {
       fileExplorer[tempData[i]] = [
         selectedFolders.contains(tempData[i]),
         false
@@ -35,12 +38,17 @@ String previousDir(String dir) {
 }
 
 getAllDir(where) async {
-  final dir = Directory(where);
-  final files = await dir.list(recursive: false, followLinks: true).toList();
-  tempData = [];
-  for (int i = 0; i < files.length; i++) {
-    if (files[i].statSync().type.toString() == "directory") {
-      tempData.add(files[i].path);
+  if (isHome && externalTopLevelDir != null) {
+    tempData = [topLevelDir, externalTopLevelDir];
+    isHome = false;
+  } else {
+    final dir = Directory(where);
+    final files = await dir.list(recursive: false, followLinks: true).toList();
+    tempData = [];
+    for (int i = 0; i < files.length; i++) {
+      if (files[i].statSync().type.toString() == "directory") {
+        tempData.add(files[i].path);
+      }
     }
   }
 }

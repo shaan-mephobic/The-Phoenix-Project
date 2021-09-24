@@ -94,3 +94,12 @@ getSettingPermission() async {
     print(e);
   }
 }
+
+Future<String> getExternalDirectory() async {
+  try {
+    return (await platform.invokeMethod("externalStorage"));
+  } catch (e) {
+    print(e);
+  }
+  return null;
+}

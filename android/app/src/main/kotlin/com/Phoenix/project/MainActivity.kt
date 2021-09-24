@@ -1,7 +1,6 @@
 package com.Phoenix.project
 
 import android.app.WallpaperManager
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -9,28 +8,18 @@ import android.hardware.camera2.CameraManager
 import android.media.*
 import android.media.audiofx.Visualizer
 import android.net.Uri
-import android.provider.MediaStore
-import android.provider.Settings
+import android.os.Environment
+import android.os.Environment.getExternalStoragePublicDirectory
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
-import androidx.core.content.FileProvider
-import io.flutter.embedding.engine.dart.DartExecutor;
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache;
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 import kotlin.concurrent.thread
 import kotlin.math.abs
 import com.ryanheise.audioservice.AudioServicePlugin
-import io.flutter.plugin.common.BinaryMessenger
-
-
-
-
-
-
 
 
 class MainActivity : FlutterActivity() {
@@ -89,12 +78,11 @@ class MainActivity : FlutterActivity() {
             } else if(call.method=="setRingtone"){
                 val arguments = call.arguments<Map<Any, String?>>()
                 setRingtone(ringtonePath=arguments["path"]!!)
-            }
-            else if(call.method=="checkSettingPermission"){
+            } else if(call.method=="checkSettingPermission"){
                 getSettingsPermission()
+            } else if(call.method=="externalStorage"){
+                result.success(getExternalStorageDirectories())
             }
-
-            result.success("done")
         }
     }
 
@@ -271,6 +259,15 @@ class MainActivity : FlutterActivity() {
         }
     }
 
+    private fun getExternalStorageDirectories(): String? {
+        val files = getExternalFilesDirs(null)
+        for (file in files) {
+            if (Environment.isExternalStorageRemovable(file)) {
+                return file.path.replace("Android/data/com.Phoenix.project/files","")
+            }
+        }
+        return null
+    }
 
     private fun getSettingsPermission(){
         if(!android.provider.Settings.System.canWrite(context)) {
