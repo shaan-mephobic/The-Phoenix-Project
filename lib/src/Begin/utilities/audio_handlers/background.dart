@@ -151,6 +151,22 @@ class AudioPlayerTask extends BaseAudioHandler {
   @override
   Future<void> seek(Duration position) => _audioPlayer.seek(position);
 
+  @override
+  Future<void> rewind() async {
+    if (_audioPlayer.position > Duration(seconds: 5))
+      _audioPlayer.seek(_audioPlayer.position - Duration(seconds: 5));
+    else
+      _audioPlayer.seek(Duration(seconds: 0));
+  }
+
+  @override
+  Future<void> fastForward() async {
+    if (_audioPlayer.position < _audioPlayer.duration - Duration(seconds: 5))
+      _audioPlayer.seek(_audioPlayer.position + Duration(seconds: 5));
+    else
+      audioHandler.skipToNext();
+  }
+
   Future<void> onTaskRemoved() async {
     await stop();
   }
@@ -159,16 +175,18 @@ class AudioPlayerTask extends BaseAudioHandler {
     playbackState.add(
       PlaybackState(
         controls: [
+          MediaControl.rewind,
           MediaControl.skipToPrevious,
           if (_audioPlayer.playing) MediaControl.pause else MediaControl.play,
           MediaControl.skipToNext,
+          MediaControl.fastForward,
         ],
         systemActions: {
           MediaAction.seek,
           MediaAction.seekForward,
           MediaAction.seekBackward,
         },
-        androidCompactActionIndices: const [0, 1, 2],
+        androidCompactActionIndices: const [1, 2, 3],
         processingState: _getProcessingState(),
         playing: _audioPlayer.playing,
         updatePosition: _audioPlayer.position,
