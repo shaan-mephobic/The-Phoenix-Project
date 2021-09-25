@@ -365,6 +365,54 @@ class _InterfaceState extends State<Interface> {
                           controlAffinity: ListTileControlAffinity.leading,
                         ),
                       ),
+                      Material(
+                        color: Colors.transparent,
+                        child: ListTile(
+                            subtitle: Text(
+                              "Show progress in mini-player.",
+                              style: TextStyle(
+                                color: darkModeOn
+                                    ? Colors.white38
+                                    : Colors.black38,
+                              ),
+                            ),
+                            title: Text(
+                              "Mini-Player Progress",
+                              style: TextStyle(
+                                color: darkModeOn ? Colors.white : Colors.black,
+                              ),
+                            ),
+                            trailing: DropdownButton<String>(
+                              value:
+                                  musicBox.get("miniPlayerProgress") ?? "Top",
+                              icon: Icon(Icons.arrow_drop_down_rounded,
+                                  color: Colors.white70),
+                              elevation: 25,
+                              enableFeedback: true,
+                              borderRadius: BorderRadius.circular(kRounded / 2),
+                              dropdownColor: kMaterialBlack.withOpacity(0.8),
+                              underline: Container(
+                                height: 2,
+                                color: kCorrect,
+                              ),
+                              style: TextStyle(color: Colors.white),
+                              onChanged: (String newValue) async {
+                                await musicBox.put(
+                                    "miniPlayerProgress", newValue);
+                                setState(() {});
+                              },
+                              items: <String>[
+                                'Top',
+                                'Bottom',
+                                'Hidden',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            )),
+                      ),
                     ],
                     physics: musicBox.get("fluidAnimation") ?? true
                         ? BouncingScrollPhysics()

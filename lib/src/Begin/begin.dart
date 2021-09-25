@@ -88,8 +88,6 @@ double glassShadowBlur = 13;
 double glassShadowOpacity;
 
 class Begin extends StatefulWidget {
-  final TabController tabController;
-  Begin({this.tabController});
   @override
   _BeginState createState() => _BeginState();
 }

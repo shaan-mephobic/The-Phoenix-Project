@@ -688,8 +688,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(kRounded),
                                   onTap: () async {
-                                    passedIndexAlbum = allAlbumsName.indexOf(
-                                        mansionAlbums[index].albumName);
+                                    passedIndexAlbum = allAlbumsName
+                                        .indexOf(mansionAlbums[index].album);
                                     albumIndex[index] = passedIndexAlbum;
                                     if (musicBox.get("colorsOfAlbums") == null
                                         ? true
@@ -755,7 +755,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 fit: BoxFit.cover,
                                                 image: MemoryImage(albumsArts[
                                                         mansionAlbums[index]
-                                                            .albumName] ??
+                                                            .album] ??
                                                     defaultNone),
                                               ),
                                             ),
@@ -766,7 +766,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 top: deviceWidth / 40)),
                                         Text(
                                           mansionAlbums[index]
-                                              .albumName
+                                              .album
                                               .toUpperCase(),
                                           maxLines: 2,
                                           textAlign: TextAlign.center,

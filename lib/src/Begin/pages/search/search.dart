@@ -42,9 +42,9 @@ class _SearchinState extends State<Searchin> {
     if (name != "") {
       List<SongModel> tracks = [];
       for (int i = 0; i < songList.length; i++) {
-        if (songList[i].title.contains(name) ||
-            songList[i].artist.contains(name) ||
-            songList[i].album.contains(name)) {
+        if (songList[i].title.toUpperCase().contains(name.toUpperCase()) ||
+            songList[i].artist.toUpperCase().contains(name.toUpperCase()) ||
+            songList[i].album.toUpperCase().contains(name.toUpperCase())) {
           tracks.add(songList[i]);
         }
       }

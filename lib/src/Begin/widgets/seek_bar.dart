@@ -22,7 +22,7 @@ class _SeekBarState extends State<SeekBar> {
   }
 
   streamOfPosition() {
-   AudioService.position.listen(
+    AudioService.position.listen(
       (Duration position) {
         currentPosition = position;
         if (globalTiming != null) {
@@ -306,9 +306,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
                     .replaceRange(0, 2, "")
                     .replaceRange(
                       7,
-                      Duration(
-                              milliseconds:
-                                  widget.duration.inMilliseconds)
+                      Duration(milliseconds: widget.duration.inMilliseconds)
                           .toString()
                           .replaceRange(0, 2, "")
                           .length,
@@ -329,5 +327,76 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
         ),
       ],
     );
+  }
+}
+
+class MiniSeekbar extends StatefulWidget {
+  const MiniSeekbar({Key key}) : super(key: key);
+
+  @override
+  _MiniSeekbarState createState() => _MiniSeekbarState();
+}
+
+class _MiniSeekbarState extends State<MiniSeekbar> {
+  Duration currentPosition = Duration.zero;
+  @override
+  void initState() {
+    streamPosition();
+    super.initState();
+  }
+
+  streamPosition() {
+    AudioService.position.listen(
+      (Duration position) {
+        currentPosition = position;
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // using same consumer used in main seekbar in now playing
+    return Consumer<Seek>(builder: (context, timing, child) {
+      return SizedBox(
+        height: 1,
+        width: orientedCar ? deviceHeight : deviceWidth,
+        child: SliderTheme(
+          data: SliderThemeData(
+            trackHeight: 1,
+            thumbShape: SliderComponentShape.noThumb,
+            trackShape: CustomTrackShape(),
+            thumbColor: Colors.transparent,
+            inactiveTrackColor: musicBox.get("dynamicArtDB") ?? true
+                ? nowContrast.withOpacity(0.1)
+                : Colors.white10,
+          ),
+          child: Slider(
+              activeColor: musicBox.get("dynamicArtDB") ?? true
+                  ? nowContrast
+                  : Colors.white,
+              min: 00.0,
+              max: nowMediaItem.duration.inMilliseconds * 1.0,
+              value: currentPosition.inMilliseconds * 1.0,
+              onChanged: (double value) {}),
+        ),
+      );
+    });
+  }
+}
+
+class CustomTrackShape extends RoundedRectSliderTrackShape {
+  Rect getPreferredRect({
+    @required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    @required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final double trackHeight = sliderTheme.trackHeight;
+    final double trackLeft = offset.dx;
+    final double trackTop =
+        offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final double trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }

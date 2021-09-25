@@ -58,7 +58,7 @@ dataInit() async {
 fetchSongs() async {
   if (await Permission.storage.request().isGranted) {
     var what = OnAudioQuery().querySongs(
-        sortType: SongSortType.DEFAULT,
+        sortType: SongSortType.TITLE,
         orderType: OrderType.ASC_OR_SMALLER,
         uriType: UriType.EXTERNAL);
     songList = await what;
