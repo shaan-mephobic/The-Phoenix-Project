@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:phoenix/src/Begin/utilities/init.dart';
 import '../../pages/albums/albums.dart';
 
 List<AlbumModel> allAlbums = [];
@@ -16,6 +15,7 @@ List inAlbumSongsArtIndex = [];
 List insideInAlbumSongs = [];
 int numberOfAlbumArtist;
 List<MediaItem> albumMediaItems = [];
+bool shouldRefresh = false;
 
 gettinAlbums() async {
   allAlbums = [];
@@ -45,7 +45,6 @@ gettinAlbums() async {
 
 gettinAlbumsArts() async {
   List<String> albumswoArt = [];
-  bool shouldRefresh = false;
   if (!await Directory("${applicationFileDirectory.path}/artworks").exists()) {
     await Directory("${applicationFileDirectory.path}/artworks").create();
   }
@@ -79,10 +78,6 @@ gettinAlbumsArts() async {
     }
   }
   musicBox.put("AlbumsWithoutArt", albumswoArt);
-  if (shouldRefresh) {
-    fetchAll();
-    shouldRefresh = false;
-  }
 }
 
 albumSongs() async {

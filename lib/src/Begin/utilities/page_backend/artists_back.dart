@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import '../../begin.dart';
@@ -88,7 +89,6 @@ gettinArtists() async {
   if (musicBox.get("stopUnknown") ?? false) {
     allArtists.remove("<UNKNOWN>");
   }
-  // print(allArtists);
 }
 
 gettinArtistsAlbums() async {
@@ -97,7 +97,6 @@ gettinArtistsAlbums() async {
     List emall = [];
     for (int i = 0; i < allAlbums.length; i++) {
       if (allAlbums[i].artist.toLowerCase() == artistRN) {
-        // artist_data.add(all_albums[i].albumName);
         emall.add(allAlbums[i]);
       }
     }
@@ -106,51 +105,45 @@ gettinArtistsAlbums() async {
 }
 
 artistsAllSongs(String who) async {
-
   inArtistsSongs = [];
   artistMediaItems = [];
 
   for (int i = 0; i < songList.length; i++) {
     if (songList[i].artist.toLowerCase() == who.toLowerCase()) {
-  
       inArtistsSongs.add(songList[i]);
       MediaItem item = MediaItem(
           id: songList[i].data,
           album: songList[i].album,
           artist: songList[i].artist,
           duration: Duration(milliseconds: getDuration(songList[i])),
-          artUri: Uri.file(
-
-         
-                          allAlbumsName.contains(songList[i].album)
+          artUri: Uri.file(allAlbumsName.contains(songList[i].album)
               ? musicBox.get("AlbumsWithoutArt") == null
                   ? "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                   : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
                       ? "${applicationFileDirectory.path}/artworks/null.jpeg"
                       : "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-              : "${applicationFileDirectory.path}/artworks/null.jpeg"
-              ),
+              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
           title: songList[i].title,
           extras: {"id": songList[i].id});
       artistMediaItems.add(item);
-    
     }
   }
 
   numberOfSongsOfArtist = inArtistsSongs.length;
-  
 }
 
 smartArtistsArts() {
-  // cap fix
   for (int i = 0; i < allArtists.length; i++) {
     for (int o = 0; o < allAlbums.length; o++) {
       if (allArtists[i] == allAlbums[o].artist.toString().toUpperCase()) {
         List add = artistsAlbums[allArtists[i]] ?? [];
         add.add(allAlbums[o].album);
-       
         artistsAlbums[allArtists[i]] = add;
       }
     }
+  }
+  if (shouldRefresh) {
+    fetchAll();
+    shouldRefresh = false;
   }
 }
