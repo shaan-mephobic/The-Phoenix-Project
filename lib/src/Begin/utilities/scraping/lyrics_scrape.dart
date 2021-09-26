@@ -1,14 +1,14 @@
+import 'dart:convert';
+
 import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
 import 'package:html_unescape/html_unescape.dart';
 
-/// Credits to Sjoerd Bolten - https://github.com/Netlob/dart-lyrics
 class Lyrics {
-  final String _url =
-      // "https://www.google.com/search?client=safari&rls=en&ie=UTF-8&oe=UTF-8&q=";
-      "https://www.google.com/search?q=";
+  final String _url = "https://www.google.com/search?q=";
+  final String _url2 = "https://api.lyrics.ovh/v1";
   String _delimiter1 =
       '</div></div></div></div><div class="hwc"><div class="BNeawe tAd8D AP7Wnd"><div><div class="BNeawe tAd8D AP7Wnd">';
   String _delimiter2 =
@@ -23,15 +23,35 @@ class Lyrics {
     _delimiter2 = delimiter2 ?? _delimiter2;
   }
 
-  Future<List> getLyrics({String track, String artist, String path}) async {
+  getLyrics({String track, String artist, String path}) async {
+    String lyrics;
     onGoingProcess = true;
-    // if (track == null || artist == null)
     if (track == null) throw Exception("track must not be null");
 
-    var lyrics;
+    // Scraping lyrics from https://api.lyrics.ovh
+    if (artist != " ") {
+      String firstLyric;
+      try {
+        firstLyric = jsonDecode(
+            (await http.get(Uri.parse(Uri.encodeFull('$_url2/$artist/$track'))))
+                .body)["lyrics"];
+      } catch (e) {
+        firstLyric = null;
+      }
+      if (firstLyric != null) {
+        if (firstLyric.contains("\n\n")) {
+          firstLyric = firstLyric.replaceAll("\n\n", "\n");
+        }
+        if (firstLyric.contains("Paroles de la chanson")) {
+          firstLyric =
+              firstLyric.replaceRange(0, firstLyric.indexOf("\n") + 1, "");
+        }
+        return [firstLyric, path];
+      }
+    }
 
-    // try multiple queries
-
+    /// Credits to Sjoerd Bolten - https://github.com/Netlob/dart-lyrics
+    /// Scraping lyrics from Google.
     if (artist == " ") {
       try {
         lyrics =
