@@ -1,4 +1,4 @@
-import 'package:audio_service/audio_service.dart'; 
+import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
@@ -109,7 +109,7 @@ void lyricsFoo() async {
       : musicBox.get('isolation'))) {
     if (musicBox.get('offlineLyrics') == null
         ? false
-        : musicBox.get('offlineLyrics').containsKey(nowMediaItem)) {
+        : musicBox.get('offlineLyrics').containsKey(nowMediaItem.id)) {
       lyricsDat = musicBox.get('offlineLyrics')[nowMediaItem.id];
       if (lyricsDat == "Couldn't find any matching lyrics." ||
           lyricsDat == "" ||

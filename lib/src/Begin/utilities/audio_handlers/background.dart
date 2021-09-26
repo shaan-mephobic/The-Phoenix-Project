@@ -18,6 +18,7 @@ class AudioPlayerTask extends BaseAudioHandler {
   AudioProcessingState _skipState;
   StreamSubscription<PlaybackEvent> _eventSubscription;
   ConcatenatingAudioSource source;
+  int clicks = 0;
 
   _init() {
     // Broadcast that we're connecting, and what controls are available.
@@ -107,10 +108,31 @@ class AudioPlayerTask extends BaseAudioHandler {
         skipToPrevious();
         break;
       case MediaButton.media:
-        if (_audioPlayer.playing) {
-          await _audioPlayer.pause();
-        } else {
-          audioHandler.play();
+        clicks += 1;
+        if (clicks == 1) {
+          Timer(Duration(milliseconds: 500), () async {
+            switch (clicks) {
+              case 1:
+                if (_audioPlayer.playing) {
+                  _audioPlayer.pause();
+                } else {
+                  audioHandler.play();
+                }
+                clicks = 0;
+                break;
+              case 2:
+                audioHandler.skipToNext();
+                clicks = 0;
+                break;
+              case 3:
+                audioHandler.skipToPrevious();
+                clicks = 0;
+                break;
+              default:
+                clicks = 0;
+                break;
+            }
+          });
         }
         break;
     }
