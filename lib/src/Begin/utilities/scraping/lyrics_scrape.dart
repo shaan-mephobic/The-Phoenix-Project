@@ -39,6 +39,15 @@ class Lyrics {
         firstLyric = null;
       }
       if (firstLyric != null) {
+        if (firstLyric.contains(
+            "Mercedes Benz\nSponsored by Mercedes Benz\nEssayez la Classe A !\nSee More")) {
+          firstLyric = firstLyric.replaceAll(
+              "Mercedes Benz\nSponsored by Mercedes Benz\nEssayez la Classe A !\nSee More",
+              "");
+        }
+        if (firstLyric.contains("???")) {
+          firstLyric = firstLyric.replaceAll("???", "");
+        }
         if (firstLyric.contains("\n\n")) {
           firstLyric = firstLyric.replaceAll("\n\n", "\n");
         }
@@ -116,7 +125,7 @@ lyricsFetch(songArtist, songName, songData) async {
       if (anotherLyrics
           .contains("Sometimes you may be asked to solve the CAPTCHA")) {
         anotherLyrics = "Couldn't find any matching lyrics.";
-        throw "CAPTCH-MATE";
+        throw Exception("CAPTCH-MATE");
       }
       if (anotherLyrics.contains("</div>")) {
         anotherLyrics = anotherLyrics.replaceRange(
