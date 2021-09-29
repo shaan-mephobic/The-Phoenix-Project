@@ -57,11 +57,7 @@ dataInit() async {
 
 fetchSongs() async {
   if (await Permission.storage.request().isGranted) {
-    var what = OnAudioQuery().querySongs(
-        sortType: SongSortType.TITLE,
-        orderType: OrderType.ASC_OR_SMALLER,
-        uriType: UriType.EXTERNAL);
-    songList = await what;
+    songList = await OnAudioQuery().querySongs();
     if (musicBox.get('customScan') ?? false) {
       List<SongModel> updateList = [];
       specificAlbums = [];

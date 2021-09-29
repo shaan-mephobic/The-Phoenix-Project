@@ -9,7 +9,6 @@ import android.media.*
 import android.media.audiofx.Visualizer
 import android.net.Uri
 import android.os.Environment
-import android.os.Environment.getExternalStoragePublicDirectory
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
@@ -33,12 +32,13 @@ class MainActivity : FlutterActivity() {
     private var mAudioRecordState: Boolean = false
     private lateinit var cameraManager: CameraManager
     private lateinit var cameraID: String
+    private var isVisualizing: Boolean = false
     private var torx: Boolean = false
-    private var sensitivity: Double? = 50.0;
-    private var sinatra: MutableList<Double> = mutableListOf();
-    private var onCompletingFlash: Boolean = false;
-    private val captureSizeRange = Visualizer.getCaptureSizeRange();
-    private val channel = "com.Phoenix.project/kotlin";
+    private var sensitivity: Double? = 50.0
+    private var sinatra: MutableList<Double> = mutableListOf()
+    private var onCompletingFlash: Boolean = false
+    private val captureSizeRange = Visualizer.getCaptureSizeRange()
+    private val channel = "com.Phoenix.project/kotlin"
 
     override fun provideFlutterEngine(context: Context): FlutterEngine? {
         return AudioServicePlugin.getFlutterEngine(context)
@@ -46,46 +46,55 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        val channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel);
+        val channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel)
         channel.setMethodCallHandler { call, result ->
             if (call.method == "KotlinVisualizer") {
-                flashInit()
-            } else if (call.method == "deleteFile") {
+                if(!isVisualizing) flashInit()
+                isVisualizing = true
+                result.success("nice")
+            } else if (call.method == "sensitivityKot") {
+                val arguments = call.arguments<Map<Any, Double?>>()
+                sensitivity = arguments["valueFromFlutter"]!!
+                result.success("nice")
+            }  else if (call.method == "ResetKot") {
+                if(isVisualizing) resetKot()
+                isVisualizing=false
+                result.success("nice")
+            }
+            else if (call.method == "deleteFile") {
                 val arguments = call.arguments<Map<Any, String?>>()
                 val pathToDelete: String = arguments["fileToDelete"]!!
                 deleteThis(pathToDelete)
-            } else if (call.method == "Pauseit") {
-                pauseSound();
+                result.success("nice")
             } else if (call.method == "homescreen") {
                 setHomeScreenWallpaper()
+                result.success("nice")
             } else if (call.method == "broadcastFileChange") {
                 val arguments = call.arguments<Map<Any, String?>>()
                 val pathToUpdate: String = arguments["filePath"]!!
                 broadcastFileUpdate(pathToUpdate)
-            } else if (call.method == "sensitivityKot") {
-                val arguments = call.arguments<Map<Any, Double?>>()
-                sensitivity = arguments["valueFromFlutter"]!!
-            } else if (call.method == "ResetKot") {
-                println("inside Reset")
-                resetKot()
-            } else if (call.method == "returnToOld") {
+                result.success("nice")
+            }else if (call.method == "returnToOld") {
 //                resetWallpaper();
+                result.success("nice")
             } else if (call.method == "wallpaperSupport?") {
                 val wallpaperManager = WallpaperManager.getInstance(this)
                 val good: Boolean = wallpaperManager.isWallpaperSupported
                 val prettyGood = wallpaperManager.isSetWallpaperAllowed
                 if (good && prettyGood) goForWallpaper()
+                result.success("nice")
             } else if(call.method=="setRingtone"){
                 val arguments = call.arguments<Map<Any, String?>>()
                 setRingtone(ringtonePath=arguments["path"]!!)
+                result.success("nice")
             } else if(call.method=="checkSettingPermission"){
                 getSettingsPermission()
+                result.success("nice")
             } else if(call.method=="externalStorage"){
                 result.success(getExternalStorageDirectories())
             }
         }
     }
-
 
     private fun flashInit() {
         visualize()
@@ -94,20 +103,14 @@ class MainActivity : FlutterActivity() {
         cameraID = cameraManager.cameraIdList[0]
     }
 
-
     private fun deleteThis(path: String) {
         File(path).delete()
-        broadcastFileUpdate(path);
+        broadcastFileUpdate(path)
     }
 
     private fun broadcastFileUpdate(path: String) {
         context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(File(path))))
         println("updated!")
-    }
-
-    private fun pauseSound() {
-        switchVisualizing()
-        if (torx) dontFlashDamnit()
     }
 
     private fun resetKot() {
@@ -117,22 +120,14 @@ class MainActivity : FlutterActivity() {
         onCompletingFlash = true
     }
 
-
     private fun visualize() {
-        println("OUTSIDE PERMISSIONS CHECK")
-
         mAudioBufferSize = AudioRecord.getMinBufferSize(samplingRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_8BIT)
         mAudioRecord = AudioRecord(MediaRecorder.AudioSource.MIC, samplingRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_8BIT, mAudioBufferSize)
-
-        println("mAudioBufferSize: $mAudioBufferSize")
 
         if (mAudioRecord!!.state != AudioRecord.STATE_INITIALIZED) println("AudioRecord init failed")
         else println("AudioRecord init success")
 
         try {
-            println("BEGIN INITIALIZING VIZUALIZER.")
-            println("Audio Session ID: ${mAudioRecord!!.audioSessionId}")
-
             visualizer = Visualizer(0).apply {
                 enabled = false
 
@@ -167,7 +162,6 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-
     private fun updateVisualizer(bytes: ByteArray?) {
         var t = calculateRMSLevel(bytes)
         val measurementPeakRms = Visualizer.MeasurementPeakRms()
@@ -182,7 +176,7 @@ class MainActivity : FlutterActivity() {
 
     private fun calculateRMSLevel(audioData: ByteArray?) {
 
-        var amplitude: Double = 0.0
+        var amplitude = 0.0
         val loopSize: Int = audioData!!.size / 2
         for (i in 0 until loopSize) {
             val y: Double = (audioData[i * 2].toInt() or (audioData[i * 2 + 1].toInt() shl 8)) / 32768.0
@@ -271,9 +265,9 @@ class MainActivity : FlutterActivity() {
 
     private fun getSettingsPermission(){
         if(!android.provider.Settings.System.canWrite(context)) {
-            val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
-            intent.data = Uri.parse("package:" + context.packageName);
-            context.startActivity(intent);
+            val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS)
+            intent.data = Uri.parse("package:" + context.packageName)
+            context.startActivity(intent)
         }
     }
 
@@ -284,10 +278,10 @@ class MainActivity : FlutterActivity() {
                         context,
                         RingtoneManager.TYPE_RINGTONE,
                         Uri.fromFile(File(ringtonePath))
-                );
+                )
             } catch (e: Exception) {
-                Log.i("ringtone", e.toString());
-                Toast.makeText(context, "Failed setting ringtone!", Toast.LENGTH_SHORT).show();
+                Log.i("ringtone", e.toString())
+                Toast.makeText(context, "Failed setting ringtone!", Toast.LENGTH_SHORT).show()
             }
         }
         else{

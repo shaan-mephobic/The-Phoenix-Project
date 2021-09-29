@@ -23,15 +23,15 @@ Future<void> ringtoneTrim(
       .toString();
   final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
   final String finalFile = await duplicateFile(
-     "/storage/emulated/0/Music/$title$ext".replaceAll(" ", "-"));
+      "/storage/emulated/0/Music/$title$ext".replaceAll(" ", "-"));
   await File(pathOfFile).copy("${applicationFileDirectory.path}/raw$ext");
   await _flutterFFmpeg
       .execute("-ss $start -i $inputFile -t $length -c copy $outputFile")
       .then((rc) => print("FFmpeg process 1 exited with rc $rc"));
   if (fade != 0) {
-    // afade(fade in) works only in flac files in ffmpeg by default. Doing so
-    // will need additional packages. So inorder to keep the app size small
-    // I am converting non-flac files to flac to apply crossfade
+    // afade(fade in) works only in flac files in ffmpeg by default. Doing it for other formats
+    // will need additional packages. So inorder to keep the app size small I am converting 
+    // non-flac files to flac to apply crossfade.
     try {
       if (ext.contains(".flac")) {
         await _flutterFFmpeg
@@ -50,8 +50,7 @@ Future<void> ringtoneTrim(
             "${applicationFileDirectory.path}/$title-fade.flac"
                 .replaceAll(" ", "-");
         final String finalConvertFile = await duplicateFile(
-          
-                "/storage/emulated/0/Music/$title.flac".replaceAll(" ", "-"));
+            "/storage/emulated/0/Music/$title.flac".replaceAll(" ", "-"));
         await _flutterFFmpeg
             .execute('-i $outputFile -f flac $convertFile')
             .then((rc) => print("FFmpeg process 3 exited with rc $rc"));
@@ -69,7 +68,7 @@ Future<void> ringtoneTrim(
       await File(outputFile).copy(finalFile);
       await broadcastFileChange(finalFile);
       await setRingtone(finalFile);
-      print(e);
+      throw Exception(e);
     }
   } else {
     await File(outputFile).copy(finalFile);

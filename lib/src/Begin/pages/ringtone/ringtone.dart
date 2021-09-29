@@ -117,7 +117,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
             ringtoneSuccess(context);
           } catch (e) {
             ringtoneFailed(context);
-            throw e;
+            throw Exception(e);
           }
           setState(() {
             isProcessing = false;

@@ -6,7 +6,7 @@ Future<String> duplicateFile(String expected) async {
   int iterations = 0;
   while (true) {
     if (await File(result).exists()) {
-      iterations = 1;
+      iterations += 1;
       result = result.replaceAll(ext, "");
       result += "($iterations)";
       result += ext;
@@ -22,6 +22,6 @@ String getFileExt(String file) {
     String ext = trim.replaceRange(0, trim.indexOf("."), "");
     return ext;
   } else {
-    throw "No Extension found in $file";
+    throw Exception("No Extension found in $file");
   }
 }

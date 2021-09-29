@@ -220,7 +220,7 @@ class _PhoenixState extends State<Phoenix> {
                                                 "https://github.com/shaan-mephobic/The-Phoenix-Project";
                                             await canLaunch(_url)
                                                 ? await launch(_url)
-                                                : throw 'Could not launch $_url';
+                                                : throw Exception('Could not launch $_url');
                                           }),
                                       IconButton(
                                           iconSize: orientedCar
@@ -272,7 +272,7 @@ class _PhoenixState extends State<Phoenix> {
                                                 "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
                                             await canLaunch(_url)
                                                 ? await launch(_url)
-                                                : throw 'Could not launch $_url';
+                                                : throw Exception('Could not launch $_url');
                                           }),
                                       Padding(
                                           padding: EdgeInsets.only(

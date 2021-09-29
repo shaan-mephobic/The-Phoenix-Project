@@ -58,7 +58,7 @@ audioServiceStream() async {
 
 updateStuffs() async {
   await playerontap();
-  lyricsFoo();
+  if (onLyrics) lyricsFoo();
   updateMansion();
   updateThings();
 }
@@ -98,7 +98,7 @@ playThis(int indexOfSong, rnAccess) async {
   }
   readyPlay();
   await playerontap();
-  lyricsFoo();
+  if (onLyrics) lyricsFoo();
   updateThings();
   indexofcurrent = indexOfSong;
 }
@@ -116,7 +116,6 @@ void lyricsFoo() async {
           lyricsDat == " ") {
         holdUpLyrics();
       }
-      globalBigNow.rawNotify();
     } else {
       holdUpLyrics();
     }

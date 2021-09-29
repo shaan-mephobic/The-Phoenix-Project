@@ -55,20 +55,27 @@ playerontap() async {
       if (musicBox.get("dominantDefault") != null) {
         nowColor = Color(musicBox.get("dominantDefault"));
         nowContrast = Color(musicBox.get("contrastDefault"));
+        isArtworkDark = musicBox.get("isArtworkDarkDefault");
       } else {
         await getImagePalette(MemoryImage(artwork));
         musicBox.put("dominantDefault", nowColor.value);
         musicBox.put("contrastDefault", nowContrast.value);
+        musicBox.put("isArtworkDarkDefault", isArtworkDark);
       }
     } else {
       await getImagePalette(MemoryImage(artwork));
       Map colorDB = musicBox.get("colorsDB") ?? {};
-      colorDB[nowMediaItem.id] = [nowColor.value, nowContrast.value];
+      colorDB[nowMediaItem.id] = [
+        nowColor.value,
+        nowContrast.value,
+        isArtworkDark
+      ];
       musicBox.put("colorsDB", colorDB);
     }
   } else {
     nowColor = Color(musicBox.get("colorsDB")[nowMediaItem.id][0]);
     nowContrast = Color(musicBox.get("colorsDB")[nowMediaItem.id][1]);
+    isArtworkDark = musicBox.get("colorsDB")[nowMediaItem.id][2];
   }
 
   if (!isPlayerShown) {
@@ -81,7 +88,9 @@ getImagePalette(ImageProvider imageProvider) async {
   final PaletteGenerator paletteGenerator =
       await PaletteGenerator.fromImageProvider(imageProvider);
   nowColor = (paletteGenerator.dominantColor.color);
-  if (nowColor.computeLuminance() <= 0.5) {
+  double luminance = nowColor.computeLuminance();
+  isArtworkDark = luminance <= 0.6 ? true : false;
+  if (luminance <= 0.5) {
     try {
       var pal = paletteGenerator.lightMutedColor.color;
       nowContrast = pal;
@@ -103,9 +112,8 @@ getImagePalette(ImageProvider imageProvider) async {
       nowContrast = paletteGenerator.lightMutedColor.color;
     }
   }
-  if ((nowColor.computeLuminance() - nowContrast.computeLuminance()).abs() <
-      0.2) {
-    if (nowColor.computeLuminance() < 0.5) {
+  if ((luminance - nowContrast.computeLuminance()).abs() < 0.2) {
+    if (luminance < 0.5) {
       nowContrast = Colors.white;
     } else {
       nowContrast = Colors.black;

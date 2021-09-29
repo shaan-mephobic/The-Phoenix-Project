@@ -41,6 +41,7 @@ class _SearchinState extends State<Searchin> {
   theSearch(name) async {
     if (name != "") {
       List<SongModel> tracks = [];
+      // TODO Change UI to make seperate sections of types
       for (int i = 0; i < songList.length; i++) {
         if (songList[i].title.toUpperCase().contains(name.toUpperCase()) ||
             songList[i].artist.toUpperCase().contains(name.toUpperCase()) ||

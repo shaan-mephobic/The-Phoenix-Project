@@ -60,8 +60,10 @@ class AlbumsInside extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(kRounded),
                             child: Image.memory(
-                                albumsArts[allAlbums[passedIndexAlbum].album] ??
-                                    defaultNone),
+                              albumsArts[allAlbums[passedIndexAlbum].album] ??
+                                  defaultNone,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

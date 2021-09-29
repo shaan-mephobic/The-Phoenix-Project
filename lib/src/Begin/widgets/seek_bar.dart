@@ -168,6 +168,170 @@ class _SeekBarState extends State<SeekBar> {
   }
 }
 
+class CyberSkySeekBar extends StatefulWidget {
+  @override
+  _CyberSkySeekBarState createState() => _CyberSkySeekBarState();
+}
+
+class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
+  Duration currentPosition = Duration.zero;
+  int seekValue = 0;
+  var globalTiming;
+
+  @override
+  void initState() {
+    streamOfPosition();
+    super.initState();
+  }
+
+  streamOfPosition() {
+    AudioService.position.listen(
+      (Duration position) {
+        currentPosition = position;
+        if (globalTiming != null) {
+          if (usingSeek == false) {
+            globalTiming.incrementTime(currentPosition.inSeconds * 1.0);
+          }
+        }
+      },
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Consumer<Seek>(builder: (context, timing, child) {
+          globalTiming = timing;
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: deviceWidth - 100,
+                child: Column(
+                  children: [
+                    SliderTheme(
+                      data: SliderThemeData(
+                        trackShape: CustomTrackShape(),
+                        trackHeight: 2,
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 1.4),
+                        thumbColor: Colors.transparent,
+                        inactiveTrackColor: musicBox.get("dynamicArtDB") ?? true
+                            ? nowContrast.withOpacity(0.1)
+                            : Colors.white10,
+                      ),
+                      child: Slider(
+                          activeColor: musicBox.get("dynamicArtDB") ?? true
+                              ? nowContrast
+                              : Colors.white,
+                          min: 00.0,
+                          max: nowMediaItem.duration.inMilliseconds / 1000,
+                          value: timing.time,
+                          onChanged: (var valo) async {
+                            usingSeek = true;
+                            seekValue = double.parse('$valo').toInt();
+                            timing.seekIncrementTime(valo);
+                          },
+                          onChangeEnd: (var valuo) {
+                            int seeker = double.parse('$valuo').toInt();
+                            audioHandler.seek(Duration(seconds: seeker));
+                            usingSeek = false;
+                          }),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            !usingSeek
+                                ? currentPosition
+                                    .toString()
+                                    .replaceRange(0, 2, "")
+                                    .replaceRange(
+                                        currentPosition
+                                            .toString()
+                                            .replaceRange(0, 2, "")
+                                            .indexOf("."),
+                                        currentPosition
+                                            .toString()
+                                            .replaceRange(0, 2, "")
+                                            .length,
+                                        "")
+                                : (Duration(seconds: seekValue))
+                                    .toString()
+                                    .replaceRange(0, 2, "")
+                                    .replaceRange(
+                                        currentPosition
+                                            .toString()
+                                            .replaceRange(0, 2, "")
+                                            .indexOf("."),
+                                        currentPosition
+                                            .toString()
+                                            .replaceRange(0, 2, "")
+                                            .length,
+                                        ""),
+                            style: TextStyle(
+                                fontSize: deviceWidth / 35,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(0.5, 0.5),
+                                    blurRadius: 2.0,
+                                    color: Colors.black38,
+                                  ),
+                                ],
+                                color: musicBox.get("dynamicArtDB") ?? true
+                                    ? isArtworkDark
+                                        ? Colors.white
+                                        : Colors.black
+                                    : Colors.white),
+                          ),
+                          Text(
+                            nowMediaItem.duration.inMilliseconds == null
+                                ? Duration(
+                                        milliseconds: nowMediaItem
+                                            .duration.inMilliseconds)
+                                    .toString()
+                                : Duration(
+                                        milliseconds: nowMediaItem
+                                            .duration.inMilliseconds)
+                                    .toString()
+                                    .replaceRange(0, 2, "")
+                                    .replaceRange(
+                                      5,
+                                      Duration(
+                                              milliseconds: nowMediaItem
+                                                  .duration.inMilliseconds)
+                                          .toString()
+                                          .replaceRange(0, 2, "")
+                                          .length,
+                                      "",
+                                    ),
+                            style: TextStyle(
+                                fontSize: deviceWidth / 35,
+                                shadows: [
+                                  Shadow(
+                                    offset: Offset(0.5, 0.5),
+                                    blurRadius: 1.5,
+                                    color: Colors.black38,
+                                  ),
+                                ],
+                                color: musicBox.get("dynamicArtDB") ?? true
+                                    ? isArtworkDark
+                                        ? Colors.white
+                                        : Colors.black
+                                    : Colors.white),
+                          )
+                        ]),
+                  ],
+                ),
+              ),
+            ],
+          );
+        }),
+      ],
+    );
+  }
+}
+
 class RingtoneSeekBar extends StatefulWidget {
   final Duration duration;
   RingtoneSeekBar({@required this.duration});

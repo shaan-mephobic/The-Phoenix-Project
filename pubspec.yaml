@@ -39,8 +39,8 @@ dependencies:
   audio_service: ^0.18.0
   audiotagger: ^2.2.1
   flutter_ffmpeg: ^0.4.2
-  just_audio: ^0.9.10
-  on_audio_query: 2.3.0
+  just_audio: ^0.9.12
+  on_audio_query: 2.4.0
 
  
   # FLUTTER Related
@@ -140,9 +140,9 @@ flutter:
       fonts:
         - asset: assets/fonts/FuturaLT.ttf
 
-    - family:  Phoenixtest
+    - family:  Graviticons
       fonts:
-        - asset: assets/fonts/Phoenixtest.ttf
+        - asset: assets/fonts/Graviticons.ttf
         
         
   #

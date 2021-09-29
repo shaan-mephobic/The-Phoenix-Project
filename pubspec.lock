@@ -351,7 +351,7 @@ packages:
       name: just_audio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.11"
+    version: "0.9.12"
   just_audio_platform_interface:
     dependency: transitive
     description:
@@ -407,21 +407,21 @@ packages:
       name: on_audio_query
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.4.0"
   on_audio_query_platform_interface:
     dependency: transitive
     description:
       name: on_audio_query_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   on_audio_query_web:
     dependency: transitive
     description:
       name: on_audio_query_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   palette_generator:
     dependency: "direct main"
     description:

@@ -114,7 +114,7 @@ class Lyrics {
 }
 
 lyricsFetch(songArtist, songName, songData) async {
-  lyricsDat = "";
+  lyricsDat = "Searching...";
   List lyrics = await Lyrics()
       .getLyrics(artist: songArtist, track: songName, path: songData);
   if (onGoingProcess) {

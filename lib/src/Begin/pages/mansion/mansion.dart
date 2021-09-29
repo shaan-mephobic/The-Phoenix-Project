@@ -711,7 +711,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       musicBox.put(
                                           "colorsOfAlbums", albumColors);
                                     } else {
-                                      print("iamspeeeed");
                                       dominantAlbum = Color(musicBox
                                                   .get("colorsOfAlbums")[
                                               allAlbums[passedIndexAlbum].album]

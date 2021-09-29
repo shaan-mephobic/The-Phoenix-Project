@@ -337,34 +337,34 @@ class _InterfaceState extends State<Interface> {
                           controlAffinity: ListTileControlAffinity.leading,
                         ),
                       ),
-                      Material(
-                        color: Colors.transparent,
-                        child: CheckboxListTile(
-                          activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
-                          subtitle: Text(
-                            "Use regular mini-player design.",
-                            style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
-                            ),
-                          ),
-                          title: Text(
-                            "Classix Mini-Player",
-                            style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
-                            ),
-                          ),
-                          value: musicBox.get("classix") ?? true,
-                          onChanged: (newValue) {
-                            setState(() {
-                              musicBox.put("classix", newValue);
-                            });
-                          },
-                          controlAffinity: ListTileControlAffinity.leading,
-                        ),
-                      ),
+                      // Material(
+                      //   color: Colors.transparent,
+                      //   child: CheckboxListTile(
+                      //     activeColor: kCorrect,
+                      //     checkColor:
+                      //         darkModeOn ? kMaterialBlack : Colors.white,
+                      //     subtitle: Text(
+                      //       "Use regular mini-player design.",
+                      //       style: TextStyle(
+                      //         color:
+                      //             darkModeOn ? Colors.white38 : Colors.black38,
+                      //       ),
+                      //     ),
+                      //     title: Text(
+                      //       "Classix Mini-Player",
+                      //       style: TextStyle(
+                      //         color: darkModeOn ? Colors.white : Colors.black,
+                      //       ),
+                      //     ),
+                      //     value: musicBox.get("classix") ?? true,
+                      //     onChanged: (newValue) {
+                      //       setState(() {
+                      //         musicBox.put("classix", newValue);
+                      //       });
+                      //     },
+                      //     controlAffinity: ListTileControlAffinity.leading,
+                      //   ),
+                      // ),
                       Material(
                         color: Colors.transparent,
                         child: ListTile(

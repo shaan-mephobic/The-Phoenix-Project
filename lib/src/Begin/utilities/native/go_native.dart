@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/visualizer_notification.dart';
@@ -13,7 +15,7 @@ kotlinVisualizer() async {
       await startVisualizerNotification();
     }
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -23,7 +25,7 @@ stopkotlinVisualizer() async {
     activeSession = false;
     await stopVisualizerNotification();
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -32,7 +34,7 @@ goSensitivity(value) async {
     var data = <String, double>{"valueFromFlutter": value};
     await platform.invokeMethod("sensitivityKot", data);
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -40,7 +42,7 @@ checkWallpaperSupport() async {
   try {
     await platform.invokeMethod("wallpaperSupport?");
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -48,7 +50,7 @@ setHomeScreenWallpaper() async {
   try {
     await platform.invokeMethod("homescreen");
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -56,7 +58,7 @@ returnToOld() async {
   try {
     await platform.invokeMethod("returnToOld");
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -65,7 +67,7 @@ deleteAFile(path) async {
     var data = <String, String>{"fileToDelete": path};
     await platform.invokeMethod("deleteFile", data);
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -74,7 +76,7 @@ broadcastFileChange(String path) async {
     var data = <String, String>{"filePath": path};
     await platform.invokeMethod("broadcastFileChange", data);
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -83,7 +85,7 @@ setRingtone(String path) async {
     var data = <String, String>{'path': path};
     await platform.invokeMethod("setRingtone", data);
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -91,7 +93,7 @@ getSettingPermission() async {
   try {
     await platform.invokeMethod("checkSettingPermission");
   } catch (e) {
-    print(e);
+    throw Exception(e);
   }
 }
 
@@ -99,7 +101,7 @@ Future<String> getExternalDirectory() async {
   try {
     return (await platform.invokeMethod("externalStorage"));
   } catch (e) {
-    print(e);
+    log(e);
   }
   return null;
 }

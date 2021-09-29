@@ -131,7 +131,7 @@ class MarqueeContainerState extends State<MarqueeContainer>
     var tweenList = [constraintsWidth, -textWidth];
     if (_showMarquee && !isMarqueeDead) {
       if (widget.speed <= 0) {
-        throw 'marquee_text speed value must be greater than 0';
+        throw Exception('marquee_text speed value must be greater than 0');
       }
       var duration = ((textWidth / (widget.speed * 1.72)) * 1000).floor();
       _showMarquee = true;
