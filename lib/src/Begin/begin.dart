@@ -83,7 +83,6 @@ bool ascend = false;
 bool isPlayerShown = false;
 ImageFilter glassBlur;
 Color glassOpacity;
-double glassShadowBlur = 13;
 double glassShadowOpacity;
 bool isArtworkDark = true;
 bool onLyrics = false;

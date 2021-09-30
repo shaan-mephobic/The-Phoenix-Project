@@ -29,7 +29,8 @@ class NowPlayingSky extends StatefulWidget {
 class _NowPlayingSkyState extends State<NowPlayingSky>
     with TickerProviderStateMixin {
   ScrollController lyricscrollController = ScrollController();
-  double skyBlur = 70;
+  double skyBlur = 30;
+  Color skyOverlayColor = Colors.black.withOpacity(0.15);
   int skyFadeDuration = 600;
 
   @override
@@ -68,20 +69,19 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             fit: BoxFit.cover,
                           ),
                         ),
-                        child: ClipRRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                                sigmaX: skyBlur, sigmaY: skyBlur),
-                            child: Container(
-                              alignment: Alignment.center,
-                              color: Colors.grey[900].withOpacity(0.05),
-                              child: Center(
-                                child: SizedBox(
-                                  height:
-                                      orientedCar ? deviceWidth : deviceHeight,
-                                  width:
-                                      orientedCar ? deviceHeight : deviceWidth,
-                                ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                              tileMode: TileMode.mirror,
+                              sigmaX: skyBlur,
+                              sigmaY: skyBlur),
+                          child: Container(
+                            alignment: Alignment.center,
+                            color: skyOverlayColor,
+                            child: Center(
+                              child: SizedBox(
+                                height:
+                                    orientedCar ? deviceWidth : deviceHeight,
+                                width: orientedCar ? deviceHeight : deviceWidth,
                               ),
                             ),
                           ),
@@ -94,20 +94,19 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             fit: BoxFit.cover,
                           ),
                         ),
-                        child: ClipRRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(
-                                sigmaX: skyBlur, sigmaY: skyBlur),
-                            child: Container(
-                              alignment: Alignment.center,
-                              color: Colors.black.withOpacity(0.15),
-                              child: Center(
-                                child: SizedBox(
-                                  height:
-                                      orientedCar ? deviceWidth : deviceHeight,
-                                  width:
-                                      orientedCar ? deviceHeight : deviceWidth,
-                                ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(
+                              tileMode: TileMode.mirror,
+                              sigmaX: skyBlur,
+                              sigmaY: skyBlur),
+                          child: Container(
+                            alignment: Alignment.center,
+                            color: skyOverlayColor,
+                            child: Center(
+                              child: SizedBox(
+                                height:
+                                    orientedCar ? deviceWidth : deviceHeight,
+                                width: orientedCar ? deviceHeight : deviceWidth,
                               ),
                             ),
                           ),
@@ -414,7 +413,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               child: Padding(
                                 padding: const EdgeInsets.all(17.0),
                                 child: Icon(
-                                  Graviticons.lyrics,
+                                  Graviticons.lyrics_awesome,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? onLyrics
                                           ? isArtworkDark
@@ -426,7 +425,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                       : onLyrics
                                           ? Colors.white
                                           : Colors.white38,
-                                  size: deviceWidth / 17,
+                                  size: deviceWidth / 15,
                                 ),
                               ),
                             ),
@@ -517,22 +516,20 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               fit: BoxFit.cover,
                             ),
                           ),
-                          child: ClipRRect(
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(
-                                  sigmaX: skyBlur, sigmaY: skyBlur),
-                              child: Container(
-                                alignment: Alignment.center,
-                                color: Colors.grey[900].withOpacity(0.05),
-                                child: Center(
-                                  child: SizedBox(
-                                    height: orientedCar
-                                        ? deviceHeight
-                                        : deviceWidth,
-                                    width: orientedCar
-                                        ? deviceWidth
-                                        : deviceHeight,
-                                  ),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                                tileMode: TileMode.mirror,
+                                sigmaX: skyBlur,
+                                sigmaY: skyBlur),
+                            child: Container(
+                              alignment: Alignment.center,
+                              color: skyOverlayColor,
+                              child: Center(
+                                child: SizedBox(
+                                  height:
+                                      orientedCar ? deviceHeight : deviceWidth,
+                                  width:
+                                      orientedCar ? deviceWidth : deviceHeight,
                                 ),
                               ),
                             ),
@@ -545,22 +542,20 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               fit: BoxFit.cover,
                             ),
                           ),
-                          child: ClipRRect(
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(
-                                  sigmaX: skyBlur, sigmaY: skyBlur),
-                              child: Container(
-                                alignment: Alignment.center,
-                                color: Colors.black.withOpacity(0.15),
-                                child: Center(
-                                  child: SizedBox(
-                                    height: orientedCar
-                                        ? deviceHeight
-                                        : deviceWidth,
-                                    width: orientedCar
-                                        ? deviceWidth
-                                        : deviceHeight,
-                                  ),
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(
+                                tileMode: TileMode.mirror,
+                                sigmaX: skyBlur,
+                                sigmaY: skyBlur),
+                            child: Container(
+                              alignment: Alignment.center,
+                              color: skyOverlayColor,
+                              child: Center(
+                                child: SizedBox(
+                                  height:
+                                      orientedCar ? deviceHeight : deviceWidth,
+                                  width:
+                                      orientedCar ? deviceWidth : deviceHeight,
                                 ),
                               ),
                             ),
@@ -931,7 +926,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               padding:
                                                   const EdgeInsets.all(17.0),
                                               child: Icon(
-                                                Graviticons.lyrics,
+                                                Graviticons.lyrics_awesome,
                                                 color: musicBox.get(
                                                             "dynamicArtDB") ??
                                                         true
@@ -949,7 +944,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     : onLyrics
                                                         ? Colors.white
                                                         : Colors.white38,
-                                                size: deviceWidth / 17,
+                                                size: deviceWidth / 15,
                                               ),
                                             ),
                                           ),

@@ -19,7 +19,10 @@ Color kPhoenixColor = Color(0xFF028ac4);
 int crossfadeDuration = 300;
 
 /// Blur constant for artwork background
-double artworkBlurConst = 16;
+double artworkBlurConst = 14;
+
+/// Blur constant for glass shadow
+double glassShadowBlur = 13;
 
 /// Shadow ffset of every glassmorphic widgets
 Offset kShadowOffset = Offset(0, 3);

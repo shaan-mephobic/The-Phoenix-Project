@@ -15,13 +15,13 @@ class GlassEffect extends StatefulWidget {
 }
 
 class _GlassEffectState extends State<GlassEffect> {
-  double whiteOpacity = musicBox.get("glassOverlayColor") == null
-      ? 3
-      : musicBox.get("glassOverlayColor");
   double blur =
-      musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur");
+      musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur");
+  double whiteOpacity = musicBox.get("glassOverlayColor") == null
+      ? 2
+      : musicBox.get("glassOverlayColor");
   double shadow =
-      musicBox.get("glassShadow") == null ? 10 : musicBox.get("glassShadow");
+      musicBox.get("glassShadow") == null ? 6 : musicBox.get("glassShadow");
   @override
   void initState() {
     crossfadeStateChange = true;
@@ -357,9 +357,9 @@ class _GlassEffectState extends State<GlassEffect> {
                                 TextButton(
                                   onPressed: () {
                                     setState(() {
-                                      whiteOpacity = 3;
-                                      blur = 18;
-                                      shadow = 10;
+                                      blur = 10;
+                                      whiteOpacity = 2;
+                                      shadow = 6;
                                     });
                                   },
                                   style: ButtonStyle(

@@ -18,18 +18,18 @@ class BackArt extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: artworkBlurConst, sigmaY: artworkBlurConst),
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.black.withOpacity(0.2),
-                child: Center(
-                  child: SizedBox(
-                    height: orientedCar ? deviceWidth : deviceHeight,
-                    width: orientedCar ? deviceHeight : deviceWidth,
-                  ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+                tileMode: TileMode.mirror,
+                sigmaX: artworkBlurConst,
+                sigmaY: artworkBlurConst),
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.black.withOpacity(0.22),
+              child: Center(
+                child: SizedBox(
+                  height: orientedCar ? deviceWidth : deviceHeight,
+                  width: orientedCar ? deviceHeight : deviceWidth,
                 ),
               ),
             ),
@@ -42,18 +42,18 @@ class BackArt extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: artworkBlurConst, sigmaY: artworkBlurConst),
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.black.withOpacity(0.2),
-                child: Center(
-                  child: SizedBox(
-                    height: orientedCar ? deviceWidth : deviceHeight,
-                    width: orientedCar ? deviceHeight : deviceWidth,
-                  ),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+                tileMode: TileMode.mirror,
+                sigmaX: artworkBlurConst,
+                sigmaY: artworkBlurConst),
+            child: Container(
+              alignment: Alignment.center,
+              color: Colors.black.withOpacity(0.22),
+              child: Center(
+                child: SizedBox(
+                  height: orientedCar ? deviceWidth : deviceHeight,
+                  width: orientedCar ? deviceHeight : deviceWidth,
                 ),
               ),
             ),
