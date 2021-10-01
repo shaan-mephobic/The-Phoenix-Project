@@ -85,11 +85,6 @@ class _BeginState extends State<Begin>
 
   @override
   Widget build(BuildContext context) {
-    //TODO search UI
-    //TODO isolated all songs colors
-    //TODO if the song artwork == same then don't crossfade
-    //TODO images can be put in music directory
-    //TODO update screenshots, readme, changelog, version, photo update and name.
     if (musicBox.get("timeBasedDark") == null
         ? false
         : musicBox.get("timeBasedDark")) {
