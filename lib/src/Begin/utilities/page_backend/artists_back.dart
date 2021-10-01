@@ -1,9 +1,9 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import '../../begin.dart';
 
 List<String> allArtists = [];
 Map<String, List<dynamic>> artistData = {};

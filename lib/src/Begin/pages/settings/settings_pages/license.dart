@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import "dart:collection";
+
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 class LicensesPage extends StatefulWidget {
   const LicensesPage({Key key}) : super(key: key);

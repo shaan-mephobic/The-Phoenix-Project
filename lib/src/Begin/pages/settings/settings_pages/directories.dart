@@ -1,7 +1,7 @@
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import '../../../utilities/page_backend/file_exporer.dart';
 
 class Directories extends StatefulWidget {

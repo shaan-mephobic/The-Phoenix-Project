@@ -1,11 +1,8 @@
-import 'dart:io';
-import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui';
-import 'package:audio_service/audio_service.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
 import 'package:phoenix/src/Begin/pages/now_playing/now_playing_sky.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/custom/graviticons.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/phoenix_visualizer.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/quick_tips.dart';
@@ -29,63 +26,9 @@ import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/visualizer_notification.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'utilities/audio_handlers/background.dart';
 import 'pages/albums/albums.dart';
-import 'pages/now_playing/now_playing.dart';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
-
-double deviceWidth;
-int indexOfList;
-Uint8List art;
-bool refresh = false;
-Audiotagger tag;
-Random random = Random();
-Color statusBarColor = Colors.transparent;
-bool permissionGiven = false;
-List specificAlbums = [];
-var musicBox;
-Color nowColor = Color(0xFF091e25);
-Color nowContrast = Color(0xFF8296a4);
-bool crossfadeStateChange = false;
-bool phoenixVisualizerShown = true;
-Uint8List art2 = art;
-bool fadeBool = true;
-bool widgetvisible = false;
-Uint8List artwork;
-bool initialart = true;
-bool first = false;
-double deviceHeight;
-List<SongModel> songList = [];
-var rootCrossfadeState;
-bool backArtStateChange = true;
-AudioPlayerTask audioHandler;
-PanelController pc = PanelController();
-List<MediaItem> songListMediaItems = [];
-MediaItem nowMediaItem = MediaItem(
-    title: "",
-    id: "",
-    album: "",
-    artist: "",
-    duration: Duration(seconds: 69),
-    extras: {"id": 69420});
-List<MediaItem> nowQueue = [];
-Directory applicationFileDirectory;
-TabController _tabController;
-var rootState;
-bool orientedCar = false;
-bool bgPhoenixVisualizer = false;
-Uint8List defaultArt;
-Uint8List defaultNone;
-bool isAndroid11 = false;
-bool ascend = false;
-bool isPlayerShown = false;
-ImageFilter glassBlur;
-Color glassOpacity;
-double glassShadowOpacity;
-bool isArtworkDark = true;
-bool onLyrics = false;
 
 class Begin extends StatefulWidget {
   @override
@@ -97,11 +40,12 @@ class _BeginState extends State<Begin>
   bool exitapp = false;
   bool isonexit = false;
   bool stackedPhoenix = false;
+  TabController tabController;
 
   @override
   void initState() {
     audioServiceStream();
-    _tabController = TabController(vsync: this, length: 6, initialIndex: 1);
+    tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     tag = Audiotagger();
     fetchAll();
     visualizerNotificationInit();
@@ -141,6 +85,11 @@ class _BeginState extends State<Begin>
 
   @override
   Widget build(BuildContext context) {
+    //TODO search UI
+    //TODO isolated all songs colors
+    //TODO if the song artwork == same then don't crossfade
+    //TODO images can be put in music directory
+    //TODO update screenshots, readme, changelog, version, photo update and name.
     if (musicBox.get("timeBasedDark") == null
         ? false
         : musicBox.get("timeBasedDark")) {
@@ -291,7 +240,7 @@ class _BeginState extends State<Begin>
                             isScrollable: true,
                             enableFeedback: false,
                             physics: ScrollPhysics(),
-                            controller: _tabController,
+                            controller: tabController,
                             tabs: tabsData(deviceWidth, deviceHeight),
                             indicatorColor: Colors.transparent,
                           ),
@@ -304,7 +253,7 @@ class _BeginState extends State<Begin>
                             EdgeInsets.only(bottom: isPlayerShown ? 60 : 0),
                         child: TabBarView(
                           physics: CustomPageViewScrollPhysics(),
-                          controller: _tabController,
+                          controller: tabController,
                           children: [
                             Mansion(),
                             Allofem(),

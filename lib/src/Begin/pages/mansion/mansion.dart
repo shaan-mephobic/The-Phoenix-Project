@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:phoenix/src/Begin/pages/albums/albums.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/pages/albums/albums_inside.dart';
@@ -15,7 +16,6 @@ import 'package:phoenix/src/Begin/widgets/dialogues/on_hold.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../begin.dart';
 import '../../utilities/page_backend/mansion_back.dart';
 
 var globalMansionConsumer;

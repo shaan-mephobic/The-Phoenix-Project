@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 bool isHome = true;
 List selectedFolders = [];

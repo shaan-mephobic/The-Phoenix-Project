@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/begin.dart';
-import 'package:phoenix/src/Begin/pages/now_playing/now_playing.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import '../../widgets/artwork_background.dart';
 
 Map advanceAudioData = {};
 
 playerontap() async {
-  if (!widgetvisible) widgetvisible = true;
+  if (!playerVisible) playerVisible = true;
   artwork = await OnAudioQuery().queryArtwork(
           nowMediaItem.extras["id"], ArtworkType.AUDIO,
           format: ArtworkFormat.JPEG, size: 200) ??

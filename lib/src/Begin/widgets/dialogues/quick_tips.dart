@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 quickTip(BuildContext context) {
   Flushbar(

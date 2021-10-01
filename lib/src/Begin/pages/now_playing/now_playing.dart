@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:phoenix/src/Begin/begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/custom/graviticons.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/artwork.dart';
@@ -16,19 +16,6 @@ import 'package:ionicons/ionicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
-bool isFlashin = false;
-var globalBigNow;
-bool loopEnabled = false;
-bool loopSelected = false;
-double defaultSensitivity = 50.0;
-bool shuffleSelected = false;
-BorderRadius radiusFullscreen = BorderRadius.only(
-  topLeft: Radius.circular(deviceWidth / 40),
-  topRight: Radius.circular(deviceWidth / 40),
-);
-var animatedPlayPause;
-bool swapController = false;
 
 class NowPlaying extends StatefulWidget {
   @override

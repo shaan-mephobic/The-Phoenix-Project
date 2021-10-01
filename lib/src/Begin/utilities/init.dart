@@ -10,12 +10,12 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/genres_back.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/Begin/utilities/scraping/image_scrape.dart';
-import '../begin.dart';
 import 'package:device_info/device_info.dart';
 
 import 'has_network.dart';

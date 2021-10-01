@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 List<Tab> tabsData(double width, double height) {
   double letterspace = width / 250;

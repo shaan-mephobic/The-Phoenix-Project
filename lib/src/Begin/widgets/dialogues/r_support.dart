@@ -1,6 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 androidRSupport(BuildContext context) async {
   Flushbar(

@@ -1,10 +1,10 @@
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
-import '../../../begin.dart';
 import 'directories.dart';
 import '../../../utilities/page_backend/file_exporer.dart';
 

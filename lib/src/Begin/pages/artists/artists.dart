@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:phoenix/src/Begin/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/widgets/artist_collage.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/awakening.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'artists_inside.dart';
 
 class Artists extends StatefulWidget {

@@ -2,7 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'albums_back.dart';
 
 List<GenreModel> allgenres = [];

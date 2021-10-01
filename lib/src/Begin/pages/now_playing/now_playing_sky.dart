@@ -1,15 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:phoenix/src/Begin/begin.dart';
-import 'package:phoenix/src/Begin/pages/now_playing/now_playing.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/artwork.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:phoenix/src/Begin/widgets/custom/graviticons.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';

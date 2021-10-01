@@ -1,12 +1,11 @@
 import 'dart:ui';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/custom/marquee.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:phoenix/src/Begin/widgets/seek_bar.dart';
-import '../../begin.dart';
-import 'now_playing.dart';
 
 class Moderna extends StatefulWidget {
   @override

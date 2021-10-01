@@ -6,6 +6,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/heart.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
@@ -18,7 +19,6 @@ import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/Begin/utilities/screenshot_UI.dart';
 import 'package:share_plus/share_plus.dart';
-import '../../begin.dart';
 import '../../utilities/constants.dart';
 import '../../utilities/edit_song.dart';
 import 'r_support.dart';

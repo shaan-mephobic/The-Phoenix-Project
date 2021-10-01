@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
-import '../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:flutter/material.dart';
 
 var globaltaste;

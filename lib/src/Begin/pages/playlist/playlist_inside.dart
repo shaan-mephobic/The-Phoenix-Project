@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';

@@ -2,7 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_loading/flare_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 class Awakening extends StatelessWidget {
   @override

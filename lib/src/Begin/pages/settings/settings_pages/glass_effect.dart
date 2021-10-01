@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:provider/provider.dart';

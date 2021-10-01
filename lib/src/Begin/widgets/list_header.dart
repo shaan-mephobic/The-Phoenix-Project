@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import '../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/Begin/pages/genres/genres_inside.dart';
-import 'package:phoenix/src/Begin/pages/now_playing/now_playing.dart';
 import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import '../begin.dart';
 
 class ListHeader extends StatelessWidget {
   final double widthOfDevice;

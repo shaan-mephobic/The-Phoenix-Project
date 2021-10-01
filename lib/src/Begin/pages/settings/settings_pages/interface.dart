@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/services.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/glass_effect.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';

@@ -17,6 +17,7 @@
 import 'package:phoenix/src/Begin/utilities/audio_handlers/background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/privacy.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/init.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:audio_service/audio_service.dart';
@@ -41,7 +42,7 @@ void main() async {
   );
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      statusBarColor: statusBarColor,
+      statusBarColor: Colors.transparent,
     ),
   );
   runApp(

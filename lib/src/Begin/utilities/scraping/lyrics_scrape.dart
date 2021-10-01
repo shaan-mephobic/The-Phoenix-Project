@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
 import 'package:html_unescape/html_unescape.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 class Lyrics {
   final String _url = "https://www.google.com/search?q=";

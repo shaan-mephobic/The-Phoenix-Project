@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:phoenix/src/Begin/pages/playlist/addSongs.dart';
 import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import '../../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'albums_back.dart';
 
 fetchPlaylistSongs(String playlistName) {

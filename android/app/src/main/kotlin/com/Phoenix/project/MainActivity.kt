@@ -48,50 +48,61 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         val channel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, channel)
         channel.setMethodCallHandler { call, result ->
-            if (call.method == "KotlinVisualizer") {
-                if(!isVisualizing) flashInit()
-                isVisualizing = true
-                result.success("nice")
-            } else if (call.method == "sensitivityKot") {
-                val arguments = call.arguments<Map<Any, Double?>>()
-                sensitivity = arguments["valueFromFlutter"]!!
-                result.success("nice")
-            }  else if (call.method == "ResetKot") {
-                if(isVisualizing) resetKot()
-                isVisualizing=false
-                result.success("nice")
-            }
-            else if (call.method == "deleteFile") {
-                val arguments = call.arguments<Map<Any, String?>>()
-                val pathToDelete: String = arguments["fileToDelete"]!!
-                deleteThis(pathToDelete)
-                result.success("nice")
-            } else if (call.method == "homescreen") {
-                setHomeScreenWallpaper()
-                result.success("nice")
-            } else if (call.method == "broadcastFileChange") {
-                val arguments = call.arguments<Map<Any, String?>>()
-                val pathToUpdate: String = arguments["filePath"]!!
-                broadcastFileUpdate(pathToUpdate)
-                result.success("nice")
-            }else if (call.method == "returnToOld") {
+            when (call.method) {
+                "KotlinVisualizer" -> {
+                    if (!isVisualizing) flashInit()
+                    isVisualizing = true
+                    result.success("nice")
+                }
+                "sensitivityKot" -> {
+                    val arguments = call.arguments<Map<Any, Double?>>()
+                    sensitivity = arguments["valueFromFlutter"]!!
+                    result.success("nice")
+                }
+                "ResetKot" -> {
+                    if (isVisualizing) resetKot()
+                    isVisualizing = false
+                    result.success("nice")
+                }
+                "deleteFile" -> {
+                    val arguments = call.arguments<Map<Any, String?>>()
+                    val pathToDelete: String = arguments["fileToDelete"]!!
+                    deleteThis(pathToDelete)
+                    result.success("nice")
+                }
+                "homescreen" -> {
+                    setHomeScreenWallpaper()
+                    result.success("nice")
+                }
+                "broadcastFileChange" -> {
+                    val arguments = call.arguments<Map<Any, String?>>()
+                    val pathToUpdate: String = arguments["filePath"]!!
+                    broadcastFileUpdate(pathToUpdate)
+                    result.success("nice")
+                }
+                "returnToOld" -> {
 //                resetWallpaper();
-                result.success("nice")
-            } else if (call.method == "wallpaperSupport?") {
-                val wallpaperManager = WallpaperManager.getInstance(this)
-                val good: Boolean = wallpaperManager.isWallpaperSupported
-                val prettyGood = wallpaperManager.isSetWallpaperAllowed
-                if (good && prettyGood) goForWallpaper()
-                result.success("nice")
-            } else if(call.method=="setRingtone"){
-                val arguments = call.arguments<Map<Any, String?>>()
-                setRingtone(ringtonePath=arguments["path"]!!)
-                result.success("nice")
-            } else if(call.method=="checkSettingPermission"){
-                getSettingsPermission()
-                result.success("nice")
-            } else if(call.method=="externalStorage"){
-                result.success(getExternalStorageDirectories())
+                    result.success("nice")
+                }
+                "wallpaperSupport?" -> {
+                    val wallpaperManager = WallpaperManager.getInstance(this)
+                    val good: Boolean = wallpaperManager.isWallpaperSupported
+                    val prettyGood = wallpaperManager.isSetWallpaperAllowed
+                    if (good && prettyGood) goForWallpaper()
+                    result.success("nice")
+                }
+                "setRingtone" -> {
+                    val arguments = call.arguments<Map<Any, String?>>()
+                    setRingtone(ringtonePath = arguments["path"]!!)
+                    result.success("nice")
+                }
+                "checkSettingPermission" -> {
+                    getSettingsPermission()
+                    result.success("nice")
+                }
+                "externalStorage" -> {
+                    result.success(getExternalStorageDirectories())
+                }
             }
         }
     }
@@ -257,14 +268,14 @@ class MainActivity : FlutterActivity() {
         val files = getExternalFilesDirs(null)
         for (file in files) {
             if (Environment.isExternalStorageRemovable(file)) {
-                return file.path.replace("Android/data/com.Phoenix.project/files","")
+                return file.path.replace("Android/data/com.Phoenix.project/files", "")
             }
         }
         return null
     }
 
-    private fun getSettingsPermission(){
-        if(!android.provider.Settings.System.canWrite(context)) {
+    private fun getSettingsPermission() {
+        if (!android.provider.Settings.System.canWrite(context)) {
             val intent = Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS)
             intent.data = Uri.parse("package:" + context.packageName)
             context.startActivity(intent)
@@ -272,7 +283,7 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun setRingtone(ringtonePath: String) {
-        if(android.provider.Settings.System.canWrite(context)) {
+        if (android.provider.Settings.System.canWrite(context)) {
             try {
                 RingtoneManager.setActualDefaultRingtoneUri(
                         context,
@@ -283,8 +294,7 @@ class MainActivity : FlutterActivity() {
                 Log.i("ringtone", e.toString())
                 Toast.makeText(context, "Failed setting ringtone!", Toast.LENGTH_SHORT).show()
             }
-        }
-        else{
+        } else {
             getSettingsPermission()
         }
     }

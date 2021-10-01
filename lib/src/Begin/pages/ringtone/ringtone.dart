@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
 import 'package:phoenix/src/Begin/utilities/set_ringtone.dart';
 import 'package:phoenix/src/Begin/widgets/seek_bar.dart';
-import '../../begin.dart';
 
 final ringtonePlayer = AudioPlayer();
 

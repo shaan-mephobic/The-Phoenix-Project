@@ -1,12 +1,12 @@
 import 'dart:ui';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/Begin/widgets/list_header.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/on_hold.dart';
 import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
-import '../../begin.dart';
 import 'albums.dart';
 import '../../utilities/page_backend/albums_back.dart';
 

@@ -1,13 +1,13 @@
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/changelogs.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/interface.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/phoenix.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
-import '../../begin.dart';
 import 'settings_pages/miscellaneous.dart';
 
 bool breakRotate = false;
@@ -29,7 +29,6 @@ class _SettingsState extends State<Settings> {
   @override
   void initState() {
     breakRotate = false;
-    statusBarColor = Colors.white;
     crossfadeStateChange = true;
     yeahRotate();
     super.initState();
@@ -37,7 +36,6 @@ class _SettingsState extends State<Settings> {
 
   @override
   void dispose() {
-    statusBarColor = Colors.transparent;
     breakRotate = true;
     onSettings = false;
     crossfadeStateChange = false;

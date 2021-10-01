@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/privacy.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
 import 'package:phoenix/src/Begin/pages/settings/settings_pages/license.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../begin.dart';
 
 class Phoenix extends StatefulWidget {
   @override

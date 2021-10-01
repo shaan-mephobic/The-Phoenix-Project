@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/begin.dart';
 import 'package:phoenix/src/Begin/utilities/file_handlers.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'native/go_native.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 

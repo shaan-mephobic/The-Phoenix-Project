@@ -1,4 +1,4 @@
-import '../begin.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 
 void addToLikedSong(data) async {
   Map check = musicBox.get('playlists') ?? {};

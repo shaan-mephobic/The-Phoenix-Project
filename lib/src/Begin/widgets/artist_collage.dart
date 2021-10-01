@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
-import '../begin.dart';
 import '../utilities/page_backend/artists_back.dart';
 
 Widget artistCollage(

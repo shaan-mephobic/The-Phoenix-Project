@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
+import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
@@ -10,9 +11,8 @@ import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.da
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
-import '../../begin.dart';
 
-var globalastro;
+var searchProvider;
 
 class Searchin extends StatefulWidget {
   @override
@@ -49,9 +49,9 @@ class _SearchinState extends State<Searchin> {
           tracks.add(songList[i]);
         }
       }
-      globalastro.thesearch(tracks.toSet().toList());
+      searchProvider.thesearch(tracks.toSet().toList());
     } else {
-      globalastro.thesearch([]);
+      searchProvider.thesearch([]);
     }
   }
 
@@ -154,7 +154,7 @@ class _SearchinState extends State<Searchin> {
                     ),
                     Consumer<Astronautintheocean>(
                       builder: (context, astronaut, child) {
-                        globalastro = astronaut;
+                        searchProvider = astronaut;
                         var dumps = astronaut.searchen;
                         return Expanded(
                           child: MediaQuery.removePadding(
