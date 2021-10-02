@@ -13,7 +13,6 @@ import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.da
 import 'package:flutter/material.dart';
 
 int artistPassed;
-bool artistHero = false;
 
 class ArtistsInside extends StatelessWidget {
   @override
@@ -28,6 +27,7 @@ class ArtistsInside extends StatelessWidget {
       deviceWidth = MediaQuery.of(context).size.width;
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Theme(
         data: themeOfApp,
         child: Container(

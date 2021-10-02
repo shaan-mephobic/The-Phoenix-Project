@@ -13,64 +13,7 @@ Map artistsAlbums = {};
 List<MediaItem> artistMediaItems = [];
 int numberOfSongsOfArtist = 0;
 
-// PURE artist method but has bugs with THE EDEN PROJECT
-
-// gettin_artists() async {
-//   var artistic = await OnAudioQuery().queryArtists(
-//       ArtistSortType.DEFAULT, OrderType.ASC_OR_SMALLER, UriType.EXTERNAL);
-//   for (int i = 0; i < artistic.length; i++) {
-//     print(artistic[i].artistName);
-//     if (is_not_albumless(artistic[i])) {
-//       all_artists.add(artistic[i]);
-//     }
-//   }
-// }
-
-// is_not_albumless(e) {
-//   bool t_or_f = false;
-//   print(e.artistName);
-//   nig:
-//   for (int i = 0; i < all_albums.length; i++) {
-//     if (all_albums[i].artist.toUpperCase() == e.artistName.toUpperCase()) {
-//       t_or_f = true;
-//       break nig;
-//     }
-//   }
-//   return t_or_f;
-// }
-
-// gettin_artists_albums() async {
-//   for (int a = 0; a < all_artists.length; a++) {
-//     String artistRN = all_artists[a].artistName;
-//     List emall = [];
-//     for (int i = 0; i < all_albums.length; i++) {
-//       if (all_albums[i].artist.toUpperCase() == artistRN.toUpperCase()) {
-//         // artist_data.add(all_albums[i].albumName);
-//         emall.add(all_albums[i]);
-//       }
-//     }
-//     artist_data[artistRN] = emall;
-//   }
-// }
-
-// artists_all_songs() {
-//   for (int i = 0;
-//       i < artist_data[all_artists[artist_passed].artistName].length;
-//       i++) {
-//     var ok = artist_data[all_artists[artist_passed].artistName][i].albumName;
-//     for (int i = 0; i < songList.length; i++) {
-//       if (songList[i].album == ok) {
-//         in_artists_songs.add(songList[i]);
-//       }
-//     }
-//   }
-// // Above method uses only songs that are in albums and doesn't consider album less.
-// // add customization to only show album having artists so you can unshow illenium of individuals.
-// // Workaround for now is by default not show songs like that
-//   return in_artists_songs.length;
-// }
-
-// IMPURE artist method with album
+// IMPURE artist method. Get all the artists from the albums.
 gettinArtists() async {
   allArtists = [];
   artistData = {};

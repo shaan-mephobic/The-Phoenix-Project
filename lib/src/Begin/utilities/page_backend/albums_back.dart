@@ -64,9 +64,9 @@ gettinAlbumsArts() async {
               "${applicationFileDirectory.path}/artworks/${allAlbums[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg")
           .readAsBytes();
     } else {
-      albumsArts[allAlbums[i].album] = await OnAudioQuery().queryArtwork(
-          allAlbums[i].id, ArtworkType.ALBUM,
-          format: ArtworkFormat.JPEG, size: 350);
+        albumsArts[allAlbums[i].album] = await OnAudioQuery().queryArtwork(
+            allAlbums[i].id, ArtworkType.ALBUM,
+            format: ArtworkFormat.JPEG, size: 350);
 
       if (albumsArts[allAlbums[i].album] != null) {
         await File(

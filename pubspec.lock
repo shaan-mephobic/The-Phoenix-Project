@@ -407,7 +407,7 @@ packages:
       name: on_audio_query
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.4.1"
+    version: "2.4.2"
   on_audio_query_platform_interface:
     dependency: transitive
     description:

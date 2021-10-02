@@ -681,123 +681,115 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       ? mansionAlbums.length
                                       : 6);
                               index++)
-                            Hero(
-                              tag: "sterio-${albumIndex[index]}",
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(kRounded),
-                                  onTap: () async {
-                                    passedIndexAlbum = allAlbumsName
-                                        .indexOf(mansionAlbums[index].album);
-                                    albumIndex[index] = passedIndexAlbum;
-                                    if (musicBox.get("colorsOfAlbums") == null
-                                        ? true
-                                        : musicBox.get("colorsOfAlbums")[
-                                                allAlbums[passedIndexAlbum]
-                                                    .album] ==
-                                            null) {
-                                      await albumColor(MemoryImage(albumsArts[
+                            Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(kRounded),
+                                onTap: () async {
+                                  passedIndexAlbum = allAlbumsName
+                                      .indexOf(mansionAlbums[index].album);
+                                  albumIndex[index] = passedIndexAlbum;
+                                  if (musicBox.get("colorsOfAlbums") == null
+                                      ? true
+                                      : musicBox.get("colorsOfAlbums")[
                                               allAlbums[passedIndexAlbum]
-                                                  .album] ??
-                                          defaultNone));
-                                      Map albumColors =
-                                          musicBox.get("colorsOfAlbums") ?? {};
-                                      albumColors[
-                                          allAlbums[passedIndexAlbum].album] = [
-                                        dominantAlbum.value,
-                                        contrastAlbum.value
-                                      ];
-                                      musicBox.put(
-                                          "colorsOfAlbums", albumColors);
-                                    } else {
-                                      dominantAlbum = Color(musicBox
-                                                  .get("colorsOfAlbums")[
-                                              allAlbums[passedIndexAlbum].album]
-                                          [0]);
-                                      contrastAlbum = Color(musicBox
-                                                  .get("colorsOfAlbums")[
-                                              allAlbums[passedIndexAlbum].album]
-                                          [1]);
-                                    }
-                                    inAlbumSongs = [];
-                                    inAlbumSongsArtIndex = [];
-                                    albumMediaItems = [];
-                                    await albumSongs();
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AlbumsInside()),
-                                    );
-                                  },
-                                  child: SizedBox(
-                                    height: deviceWidth / 2,
-                                    width: deviceWidth / 2.5,
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                top: deviceWidth / 30)),
-                                        PhysicalModel(
-                                          color: Colors.transparent,
-                                          borderRadius:
-                                              BorderRadius.circular(kRounded),
-                                          elevation: deviceWidth / 140,
-                                          child: Container(
-                                            height: deviceWidth / 3,
-                                            width: deviceWidth / 3,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      kRounded),
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: MemoryImage(albumsArts[
-                                                        mansionAlbums[index]
-                                                            .album] ??
-                                                    defaultNone),
-                                              ),
+                                                  .album] ==
+                                          null) {
+                                    await albumColor(MemoryImage(albumsArts[
+                                            allAlbums[passedIndexAlbum]
+                                                .album] ??
+                                        defaultNone));
+                                    Map albumColors =
+                                        musicBox.get("colorsOfAlbums") ?? {};
+                                    albumColors[
+                                        allAlbums[passedIndexAlbum].album] = [
+                                      dominantAlbum.value,
+                                      contrastAlbum.value
+                                    ];
+                                    musicBox.put("colorsOfAlbums", albumColors);
+                                  } else {
+                                    dominantAlbum = Color(musicBox
+                                            .get("colorsOfAlbums")[
+                                        allAlbums[passedIndexAlbum].album][0]);
+                                    contrastAlbum = Color(musicBox
+                                            .get("colorsOfAlbums")[
+                                        allAlbums[passedIndexAlbum].album][1]);
+                                  }
+                                  inAlbumSongs = [];
+                                  inAlbumSongsArtIndex = [];
+                                  albumMediaItems = [];
+                                  await albumSongs();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AlbumsInside()),
+                                  );
+                                },
+                                child: SizedBox(
+                                  height: deviceWidth / 2,
+                                  width: deviceWidth / 2.5,
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: deviceWidth / 30)),
+                                      PhysicalModel(
+                                        color: Colors.transparent,
+                                        borderRadius:
+                                            BorderRadius.circular(kRounded),
+                                        elevation: deviceWidth / 140,
+                                        child: Container(
+                                          height: deviceWidth / 3,
+                                          width: deviceWidth / 3,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(kRounded),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: MemoryImage(albumsArts[
+                                                      mansionAlbums[index]
+                                                          .album] ??
+                                                  defaultNone),
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                top: deviceWidth / 40)),
-                                        Text(
-                                          mansionAlbums[index]
-                                              .album
-                                              .toUpperCase(),
-                                          maxLines: 2,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color:
-                                                musicBox.get("dynamicArtDB") ??
-                                                        true
-                                                    ? Colors.white
-                                                    : darkModeOn
-                                                        ? Colors.white
-                                                        : Colors.black,
-                                            fontSize: orientedCar
-                                                ? deviceHeight / 54
-                                                : deviceWidth / 30,
-                                            fontWeight: FontWeight.w600,
-                                            shadows: [
-                                              Shadow(
-                                                offset: musicBox.get(
-                                                            "dynamicArtDB") ??
-                                                        true
-                                                    ? Offset(1.0, 1.0)
-                                                    : darkModeOn
-                                                        ? Offset(0, 1.0)
-                                                        : Offset(0, 0.5),
-                                                blurRadius: 2.0,
-                                                color: Colors.black45,
-                                              ),
-                                            ],
-                                          ),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: deviceWidth / 40)),
+                                      Text(
+                                        mansionAlbums[index]
+                                            .album
+                                            .toUpperCase(),
+                                        maxLines: 2,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: musicBox.get("dynamicArtDB") ??
+                                                  true
+                                              ? Colors.white
+                                              : darkModeOn
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                          fontSize: orientedCar
+                                              ? deviceHeight / 54
+                                              : deviceWidth / 30,
+                                          fontWeight: FontWeight.w600,
+                                          shadows: [
+                                            Shadow(
+                                              offset: musicBox.get(
+                                                          "dynamicArtDB") ??
+                                                      true
+                                                  ? Offset(1.0, 1.0)
+                                                  : darkModeOn
+                                                      ? Offset(0, 1.0)
+                                                      : Offset(0, 0.5),
+                                              blurRadius: 2.0,
+                                              color: Colors.black45,
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

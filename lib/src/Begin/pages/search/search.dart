@@ -1,7 +1,13 @@
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
+import 'package:phoenix/src/Begin/pages/albums/albums.dart';
+import 'package:phoenix/src/Begin/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/Begin/pages/artists/artists_inside.dart';
 import 'package:phoenix/src/Begin/utilities/global_variables.dart';
 import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
+import 'package:phoenix/src/Begin/utilities/page_backend/artists_back.dart';
+import 'package:phoenix/src/Begin/widgets/artist_collage.dart';
 import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
 import 'package:phoenix/src/Begin/utilities/constants.dart';
 import 'package:phoenix/src/Begin/widgets/dialogues/corrupted_file_dialog.dart';
@@ -12,8 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
-var searchProvider;
-
 class Searchin extends StatefulWidget {
   @override
   _SearchinState createState() => _SearchinState();
@@ -21,6 +25,9 @@ class Searchin extends StatefulWidget {
 
 class _SearchinState extends State<Searchin> {
   ScrollController _scrollBarController;
+  List searchedAlbums = [];
+  List searchedArtists = [];
+  List searchedTracks = [];
 
   @override
   void initState() {
@@ -36,22 +43,27 @@ class _SearchinState extends State<Searchin> {
     super.dispose();
   }
 
-  var focusNode = FocusNode();
+  FocusNode focusNode = FocusNode();
 
-  theSearch(name) async {
+  theSearch(String name) async {
     if (name != "") {
-      List<SongModel> tracks = [];
-      // TODO Change UI to make seperate sections of types
-      for (int i = 0; i < songList.length; i++) {
-        if (songList[i].title.toUpperCase().contains(name.toUpperCase()) ||
-            songList[i].artist.toUpperCase().contains(name.toUpperCase()) ||
-            songList[i].album.toUpperCase().contains(name.toUpperCase())) {
-          tracks.add(songList[i]);
+      searchedTracks =
+          await OnAudioQuery().queryWithFilters(name, WithFiltersType.AUDIOS);
+      searchedAlbums =
+          await OnAudioQuery().queryWithFilters(name, WithFiltersType.ALBUMS);
+      searchedArtists = [];
+      for (int i = 0; i < allArtists.length; i++) {
+        if (allArtists[i].toUpperCase().contains(name.toUpperCase())) {
+          searchedArtists.add(allArtists[i]);
         }
       }
-      searchProvider.thesearch(tracks.toSet().toList());
+      setState(() {});
     } else {
-      searchProvider.thesearch([]);
+      setState(() {
+        searchedAlbums = [];
+        searchedTracks = [];
+        searchedArtists = [];
+      });
     }
   }
 
@@ -62,6 +74,15 @@ class _SearchinState extends State<Searchin> {
 
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).orientation != Orientation.portrait) {
+      orientedCar = true;
+      deviceHeight = MediaQuery.of(context).size.width;
+      deviceWidth = MediaQuery.of(context).size.height;
+    } else {
+      orientedCar = false;
+      deviceHeight = MediaQuery.of(context).size.height;
+      deviceWidth = MediaQuery.of(context).size.width;
+    }
     return Consumer<Leprovider>(
       builder: (context, taste, _) {
         globaltaste = taste;
@@ -152,130 +173,573 @@ class _SearchinState extends State<Searchin> {
                         ),
                       ),
                     ),
-                    Consumer<Astronautintheocean>(
-                      builder: (context, astronaut, child) {
-                        searchProvider = astronaut;
-                        var dumps = astronaut.searchen;
-                        return Expanded(
-                          child: MediaQuery.removePadding(
-                            context: context,
-                            removeTop: true,
-                            child: Scrollbar(
-                              controller: _scrollBarController,
-                              child: ListView.builder(
-                                controller: _scrollBarController,
-                                shrinkWrap: true,
-                                padding: EdgeInsets.only(top: 0, bottom: 8),
-                                addAutomaticKeepAlives: true,
-                                physics: musicBox.get("fluidAnimation") ?? true
-                                    ? BouncingScrollPhysics()
-                                    : ClampingScrollPhysics(),
-                                itemCount: astronaut.searchen.length,
-                                itemBuilder: (context, index) {
-                                  return Material(
-                                    color: Colors.transparent,
-                                    child: ListTile(
-                                      onTap: () async {
-                                        var songindex = 0;
-                                        for (int si = 0;
-                                            si < songList.length;
-                                            si++) {
-                                          if (dumps[index].id ==
-                                              songList[si].id) {
-                                            songindex = si;
+                    Expanded(
+                      child: MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: Scrollbar(
+                          controller: _scrollBarController,
+                          child: ListView.builder(
+                            controller: _scrollBarController,
+                            shrinkWrap: true,
+                            padding: EdgeInsets.only(top: 0, bottom: 8),
+                            addAutomaticKeepAlives: true,
+                            physics: musicBox.get("fluidAnimation") ?? true
+                                ? BouncingScrollPhysics()
+                                : ClampingScrollPhysics(),
+                            itemCount: searchedTracks.length + 3,
+                            itemBuilder: (context, index) {
+                              if (index == 0) {
+                                return Visibility(
+                                  visible: searchedAlbums.isNotEmpty,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 25.0),
+                                              child: SizedBox(
+                                                height: deviceWidth / 9,
+                                                child: Text(
+                                                  "Albums",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          deviceWidth / 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: deviceWidth / 1.9,
+                                          width: orientedCar
+                                              ? deviceHeight
+                                              : deviceWidth,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: searchedAlbums.length,
+                                              physics: musicBox.get(
+                                                          "fluidAnimation") ??
+                                                      true
+                                                  ? BouncingScrollPhysics()
+                                                  : ClampingScrollPhysics(),
+                                              scrollDirection: Axis.horizontal,
+                                              itemBuilder: (context, index) {
+                                                return Material(
+                                                    color: Colors.transparent,
+                                                    child: InkWell(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              kRounded),
+                                                      onTap: () async {
+                                                        passedIndexAlbum =
+                                                            allAlbumsName.indexOf(
+                                                                searchedAlbums[
+                                                                        index]
+                                                                    ['album']);
+
+                                                        if (musicBox.get(
+                                                                    "colorsOfAlbums") ==
+                                                                null
+                                                            ? true
+                                                            : musicBox.get(
+                                                                    "colorsOfAlbums")[allAlbums[
+                                                                        passedIndexAlbum]
+                                                                    .album] ==
+                                                                null) {
+                                                          await albumColor(MemoryImage(
+                                                              albumsArts[allAlbums[
+                                                                          passedIndexAlbum]
+                                                                      .album] ??
+                                                                  defaultNone));
+                                                          Map albumColors =
+                                                              musicBox.get(
+                                                                      "colorsOfAlbums") ??
+                                                                  {};
+                                                          albumColors[allAlbums[
+                                                                  passedIndexAlbum]
+                                                              .album] = [
+                                                            dominantAlbum.value,
+                                                            contrastAlbum.value
+                                                          ];
+                                                          musicBox.put(
+                                                              "colorsOfAlbums",
+                                                              albumColors);
+                                                        } else {
+                                                          dominantAlbum = Color(
+                                                              musicBox.get(
+                                                                  "colorsOfAlbums")[allAlbums[
+                                                                      passedIndexAlbum]
+                                                                  .album][0]);
+                                                          contrastAlbum = Color(
+                                                              musicBox.get(
+                                                                  "colorsOfAlbums")[allAlbums[
+                                                                      passedIndexAlbum]
+                                                                  .album][1]);
+                                                        }
+                                                        inAlbumSongs = [];
+                                                        inAlbumSongsArtIndex =
+                                                            [];
+                                                        albumMediaItems = [];
+                                                        await albumSongs();
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  AlbumsInside()),
+                                                        );
+                                                      },
+                                                      child: SizedBox(
+                                                        height: deviceWidth / 2,
+                                                        width:
+                                                            deviceWidth / 2.5,
+                                                        child: Column(
+                                                          children: [
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: deviceWidth /
+                                                                            30)),
+                                                            PhysicalModel(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          kRounded),
+                                                              elevation:
+                                                                  deviceWidth /
+                                                                      140,
+                                                              child: Container(
+                                                                height:
+                                                                    deviceWidth /
+                                                                        3,
+                                                                width:
+                                                                    deviceWidth /
+                                                                        3,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              kRounded),
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    image: MemoryImage(albumsArts[searchedAlbums[index]
+                                                                            [
+                                                                            'album']] ??
+                                                                        defaultNone),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: deviceWidth /
+                                                                            40)),
+                                                            Text(
+                                                              searchedAlbums[
+                                                                          index]
+                                                                      ['album']
+                                                                  .toUpperCase(),
+                                                              maxLines: 2,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: orientedCar
+                                                                    ? deviceHeight /
+                                                                        54
+                                                                    : deviceWidth /
+                                                                        30,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                shadows: [
+                                                                  Shadow(
+                                                                    offset: musicBox.get("dynamicArtDB") ??
+                                                                            true
+                                                                        ? Offset(
+                                                                            1.0,
+                                                                            1.0)
+                                                                        : Offset(
+                                                                            0,
+                                                                            1.0),
+                                                                    blurRadius:
+                                                                        2.0,
+                                                                    color: Colors
+                                                                        .black45,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  
+                                                );
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              } else if (index == 1) {
+                                return Visibility(
+                                  visible: searchedArtists.isNotEmpty,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 25.0),
+                                              child: SizedBox(
+                                                height: deviceWidth / 9,
+                                                child: Text(
+                                                  "Artists",
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          deviceWidth / 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.white),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: deviceWidth / 1.9,
+                                          width: deviceWidth,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: searchedArtists.length,
+                                              physics: musicBox.get(
+                                                          "fluidAnimation") ??
+                                                      true
+                                                  ? BouncingScrollPhysics()
+                                                  : ClampingScrollPhysics(),
+                                              scrollDirection: Axis.horizontal,
+                                              itemBuilder: (context, index) { 
+                                                return Material(
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            kRounded),
+                                                    onTap: () async {
+                                                      inArtistsSongs = [];
+                                                      artistPassed =
+                                                          allArtists.indexOf(
+                                                              searchedArtists[
+                                                                  index]);
+                                                      await artistsAllSongs(
+                                                          searchedArtists[
+                                                              index]);
+                                                      if (musicBox.get(
+                                                                  "mapOfArtists") !=
+                                                              null &&
+                                                          musicBox.get(
+                                                                      "mapOfArtists")[
+                                                                  searchedArtists[
+                                                                      index]] !=
+                                                              null) {
+                                                        if (musicBox.get(
+                                                                    "colorsOfArtists") ==
+                                                                null
+                                                            ? true
+                                                            : musicBox.get(
+                                                                        "colorsOfArtists")[
+                                                                    searchedArtists[
+                                                                        index]] ==
+                                                                null) {
+                                                          try {
+                                                            await albumColor(
+                                                                FileImage(File(
+                                                                    "${applicationFileDirectory.path}/artists/${searchedArtists[index]}.jpg")));
+                                                            Map colorMap =
+                                                                musicBox.get(
+                                                                        "colorsOfArtists") ??
+                                                                    {};
+                                                            colorMap[
+                                                                searchedArtists[
+                                                                    index]] = [
+                                                              dominantAlbum
+                                                                  .value,
+                                                              contrastAlbum
+                                                                  .value
+                                                            ];
+                                                            musicBox.put(
+                                                                "colorsOfArtists",
+                                                                colorMap);
+                                                          } catch (e) {
+                                                            contrastAlbum =
+                                                                Color(
+                                                                    0xFF3cb9cd);
+                                                            dominantAlbum =
+                                                                kMaterialBlack;
+                                                          }
+                                                        } else {
+                                                          dominantAlbum = Color(
+                                                              musicBox.get(
+                                                                      "colorsOfArtists")[
+                                                                  searchedArtists[
+                                                                      index]][0]);
+                                                          contrastAlbum = Color(
+                                                              musicBox.get(
+                                                                      "colorsOfArtists")[
+                                                                  searchedArtists[
+                                                                      index]][1]);
+                                                        }
+                                                      } else {
+                                                        contrastAlbum =
+                                                            Colors.white;
+                                                        dominantAlbum =
+                                                            kMaterialBlack;
+                                                      }
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                ArtistsInside()),
+                                                      );
+                                                    },
+                                                    child: SizedBox(
+                                                      height: deviceWidth / 2,
+                                                      width: deviceWidth / 2.5,
+                                                      child: Column(
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: deviceWidth /
+                                                                          30)),
+                                                          PhysicalModel(
+                                                            color: Colors
+                                                                .transparent,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            elevation:
+                                                                deviceWidth /
+                                                                    140,
+                                                            child: Container(
+                                                              height:
+                                                                  deviceWidth /
+                                                                      3,
+                                                              width:
+                                                                  deviceWidth /
+                                                                      3,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                              child: artistCollage(
+                                                                  index,
+                                                                  searchedArtists,
+                                                                  deviceWidth /
+                                                                      1.5,
+                                                                  deviceWidth /
+                                                                      3),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: deviceWidth /
+                                                                          40)),
+                                                          Text(
+                                                            searchedArtists[
+                                                                index],
+                                                            maxLines: 2,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              color: musicBox.get(
+                                                                          "dynamicArtDB") ??
+                                                                      true
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .white,
+                                                              fontSize: orientedCar
+                                                                  ? deviceHeight /
+                                                                      54
+                                                                  : deviceWidth /
+                                                                      30,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              shadows: [
+                                                                Shadow(
+                                                                  offset: musicBox.get(
+                                                                              "dynamicArtDB") ??
+                                                                          true
+                                                                      ? Offset(
+                                                                          1.0,
+                                                                          1.0)
+                                                                      : Offset(
+                                                                          0,
+                                                                          1.0),
+                                                                  blurRadius:
+                                                                      2.0,
+                                                                  color: Colors
+                                                                      .black45,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              } else if (index == 2) {
+                                return Visibility(
+                                  visible: searchedTracks.isNotEmpty,
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 25.0),
+                                        child: SizedBox(
+                                          height: deviceWidth / 9,
+                                          child: Text(
+                                            "Tracks",
+                                            style: TextStyle(
+                                                fontSize: deviceWidth / 15,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Material(
+                                  color: Colors.transparent,
+                                  child: ListTile(
+                                    onTap: () async {
+                                      for (int i = 0;
+                                          i < songList.length;
+                                          i++) {
+                                        if (searchedTracks[index - 3]['_id'] ==
+                                            songList[i].id) {
+                                          if (songListMediaItems[i].duration ==
+                                              Duration(milliseconds: 0)) {
+                                            corruptedFile(context);
+                                          } else {
+                                            await playThis(i, "all");
                                           }
+                                          break;
                                         }
-                                        if (songListMediaItems[index]
-                                                .duration ==
-                                            Duration(milliseconds: 0)) {
-                                          corruptedFile(context);
-                                        } else {
-                                          await playThis(songindex, "all");
+                                      }
+                                    },
+                                    onLongPress: () async {
+                                      for (int i = 0;
+                                          i < songList.length;
+                                          i++) {
+                                        if (searchedTracks[index - 3]['_id'] ==
+                                            songList[i].id) {
+                                          await onHold(
+                                              context,
+                                              songList,
+                                              i,
+                                              orientedCar,
+                                              deviceHeight,
+                                              deviceWidth,
+                                              "all");
+                                          break;
                                         }
-                                      },
-                                      onLongPress: () async {
-                                        int indexThis;
-                                        for (int si = 0;
-                                            si < songList.length;
-                                            si++) {
-                                          if (dumps[index].data ==
-                                              songList[si].data) {
-                                            indexThis = si;
-                                            await onHold(
-                                                context,
-                                                songList,
-                                                indexThis,
-                                                orientedCar,
-                                                deviceHeight,
-                                                deviceWidth,
-                                                "all");
-                                          }
-                                        }
-                                      },
-                                      dense: false,
-                                      title: Text(
-                                        dumps[index].title,
-                                        maxLines: 2,
+                                      }
+                                    },
+                                    dense: false,
+                                    title: Text(
+                                      searchedTracks[index - 3]['title'],
+                                      maxLines: 2,
+                                      style: TextStyle(
+                                        color: Colors.white70,
+                                        shadows: [
+                                          Shadow(
+                                            offset: Offset(0, 1.0),
+                                            blurRadius: 2.0,
+                                            color: Colors.black45,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    tileColor: Colors.transparent,
+                                    subtitle: Opacity(
+                                      opacity: 0.5,
+                                      child: Text(
+                                        searchedTracks[index - 3]['artist'],
+                                        maxLines: 1,
                                         style: TextStyle(
                                           color: Colors.white70,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0, 1.0),
-                                              blurRadius: 2.0,
-                                              color: Colors.black45,
+                                              blurRadius: 1.0,
+                                              color: Colors.black38,
                                             ),
                                           ],
                                         ),
                                       ),
-                                      tileColor: Colors.transparent,
-                                      subtitle: Opacity(
-                                        opacity: 0.5,
-                                        child: Text(
-                                          dumps[index].artist,
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            color: Colors.white70,
-                                            shadows: [
-                                              Shadow(
-                                                offset: Offset(0, 1.0),
-                                                blurRadius: 1.0,
-                                                color: Colors.black38,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      leading: Card(
-                                        elevation: 3,
-                                        color: Colors.transparent,
-                                        child: ConstrainedBox(
-                                          constraints:
-                                              musicBox.get("squareArt") ?? true
-                                                  ? kSqrConstraint
-                                                  : kRectConstraint,
-                                          child: Container(
-                                            alignment: Alignment.center,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                              image: DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: MemoryImage(albumsArts[
-                                                        dumps[index].album] ??
-                                                    defaultNone),
-                                              ),
+                                    ),
+                                    leading: Card(
+                                      elevation: 3,
+                                      color: Colors.transparent,
+                                      child: ConstrainedBox(
+                                        constraints:
+                                            musicBox.get("squareArt") ?? true
+                                                ? kSqrConstraint
+                                                : kRectConstraint,
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(3),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: MemoryImage(albumsArts[
+                                                      searchedTracks[index - 3]
+                                                          ['album']] ??
+                                                  defaultNone),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
-                              ),
-                            ),
+                                  ),
+                                );
+                              }
+                            },
                           ),
-                        );
-                      },
+                        ),
+                      ),
                     )
                   ],
                 )
