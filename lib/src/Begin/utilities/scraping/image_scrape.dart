@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
 
 import '../page_backend/artists_back.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
 import 'dart:isolate';
 import 'package:http/http.dart' as http;
 import 'dart:async';

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:phoenix/src/Begin/utilities/visualizer_notification.dart';
+import 'package:phoenix/src/begin/utilities/visualizer_notification.dart';
 
 bool activeSession = false;
 const platform = const MethodChannel("com.Phoenix.project/kotlin");

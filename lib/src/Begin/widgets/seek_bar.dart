@@ -1,6 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
 import 'package:provider/provider.dart';
 import '../utilities/provider/provider.dart';
 import '../pages/ringtone/ringtone.dart';

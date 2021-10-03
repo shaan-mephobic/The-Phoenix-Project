@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:phoenix/src/Begin/pages/albums/albums_inside.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/init.dart';
-import 'package:phoenix/src/Begin/widgets/artist_collage.dart';
+import 'package:phoenix/src/begin/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/init.dart';
+import 'package:phoenix/src/begin/widgets/artist_collage.dart';
 import '../../utilities/page_backend/artists_back.dart';
-import 'package:phoenix/src/Begin/widgets/dialogues/awakening.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/widgets/dialogues/awakening.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'artists_inside.dart';
 

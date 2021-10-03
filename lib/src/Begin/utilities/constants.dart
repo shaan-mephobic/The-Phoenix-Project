@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/widgets/custom/ripple.dart';
+import 'package:phoenix/src/begin/widgets/custom/ripple.dart';
 
 /// The default black Color
 Color kMaterialBlack = Color(0xFF000000);

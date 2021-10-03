@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
 
 class AudioPlayerTask extends BaseAudioHandler {
   AudioPlayerTask() {

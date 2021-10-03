@@ -1,9 +1,9 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/pages/playlist/addSongs.dart';
-import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
-import 'package:phoenix/src/Begin/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/pages/playlist/addSongs.dart';
+import 'package:phoenix/src/begin/pages/playlist/playlist_inside.dart';
+import 'package:phoenix/src/begin/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
 import 'albums_back.dart';
 
 fetchPlaylistSongs(String playlistName) {

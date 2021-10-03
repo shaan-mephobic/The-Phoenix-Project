@@ -1,11 +1,11 @@
 import 'dart:ui';
-import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/pages/playlist/playlist_inside.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/init.dart';
-import 'package:phoenix/src/Begin/utilities/page_backend/playlist_back.dart';
-import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/init.dart';
+import 'package:phoenix/src/begin/utilities/page_backend/playlist_back.dart';
+import 'package:phoenix/src/begin/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'addSongs.dart';
 

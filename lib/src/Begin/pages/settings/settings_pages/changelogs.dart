@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
-import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/provider/provider.dart';
+import 'package:phoenix/src/begin/widgets/artwork_background.dart';
 import 'package:provider/provider.dart';
 
 class Changelogs extends StatefulWidget {

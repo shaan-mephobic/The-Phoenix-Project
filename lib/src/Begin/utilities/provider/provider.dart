@@ -1,6 +1,6 @@
-import 'package:phoenix/src/Begin/pages/settings/settings.dart';
+import 'package:phoenix/src/begin/pages/settings/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
 
 bool usingSeek = false;
 

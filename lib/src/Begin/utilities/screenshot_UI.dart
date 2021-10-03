@@ -3,9 +3,9 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:phoenix/src/Begin/utilities/file_handlers.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
+import 'package:phoenix/src/begin/utilities/file_handlers.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/native/go_native.dart';
 import 'package:screenshot/screenshot.dart';
 import 'filters.dart';
 

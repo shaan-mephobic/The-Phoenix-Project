@@ -1,10 +1,10 @@
-import 'package:phoenix/src/Begin/pages/settings/settings_pages/changelogs.dart';
-import 'package:phoenix/src/Begin/pages/settings/settings_pages/interface.dart';
-import 'package:phoenix/src/Begin/pages/settings/settings_pages/phoenix.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/widgets/artwork_background.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
-import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
+import 'package:phoenix/src/begin/pages/settings/settings_pages/changelogs.dart';
+import 'package:phoenix/src/begin/pages/settings/settings_pages/interface.dart';
+import 'package:phoenix/src/begin/pages/settings/settings_pages/phoenix.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/widgets/artwork_background.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/utilities/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';

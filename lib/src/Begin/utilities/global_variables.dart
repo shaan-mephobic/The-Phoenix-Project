@@ -7,7 +7,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:audiotagger/audiotagger.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/utilities/audio_handlers/background.dart';
+import 'package:phoenix/src/begin/utilities/audio_handlers/background.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 double deviceWidth;

@@ -1,13 +1,13 @@
 import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
-import 'package:phoenix/src/Begin/pages/genres/genres_inside.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/init.dart';
-import 'package:phoenix/src/Begin/widgets/dialogues/awakening.dart';
-import 'package:phoenix/src/Begin/utilities/constants.dart';
+import 'package:phoenix/src/begin/pages/genres/genres_inside.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/init.dart';
+import 'package:phoenix/src/begin/widgets/dialogues/awakening.dart';
+import 'package:phoenix/src/begin/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/utilities/provider/provider.dart';
+import 'package:phoenix/src/begin/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 import '../../utilities/page_backend/genres_back.dart';
 

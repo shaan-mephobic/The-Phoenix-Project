@@ -1,16 +1,16 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/Begin/utilities/global_variables.dart';
-import 'package:phoenix/src/Begin/utilities/native/go_native.dart';
-import 'package:phoenix/src/Begin/utilities/page_backend/albums_back.dart';
+import 'package:phoenix/src/begin/utilities/global_variables.dart';
+import 'package:phoenix/src/begin/utilities/native/go_native.dart';
+import 'package:phoenix/src/begin/utilities/page_backend/albums_back.dart';
 import '../page_backend/artists_back.dart';
-import 'package:phoenix/src/Begin/pages/genres/genres.dart';
-import 'package:phoenix/src/Begin/pages/genres/genres_inside.dart';
-import 'package:phoenix/src/Begin/pages/playlist/playlist_inside.dart';
-import 'package:phoenix/src/Begin/utilities/audio_handlers/artwork.dart';
-import 'package:phoenix/src/Begin/utilities/screenshot_UI.dart';
+import 'package:phoenix/src/begin/pages/genres/genres.dart';
+import 'package:phoenix/src/begin/pages/genres/genres_inside.dart';
+import 'package:phoenix/src/begin/pages/playlist/playlist_inside.dart';
+import 'package:phoenix/src/begin/utilities/audio_handlers/artwork.dart';
+import 'package:phoenix/src/begin/utilities/screenshot_UI.dart';
 import '../page_backend/mansion_back.dart';
-import 'package:phoenix/src/Begin/utilities/scraping/lyrics_scrape.dart';
+import 'package:phoenix/src/begin/utilities/scraping/lyrics_scrape.dart';
 import '../filters.dart';
 
 int indexofcurrent;
