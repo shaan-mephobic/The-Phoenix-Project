@@ -14,17 +14,17 @@
 ---------------------------------------------------------------------------------------------------------*/
 
 // @dart=2.10
-import 'package:phoenix/src/begin/utilities/audio_handlers/background.dart';
-import 'package:phoenix/src/begin/utilities/constants.dart';
-import 'package:phoenix/src/begin/pages/settings/settings_pages/privacy.dart';
-import 'package:phoenix/src/begin/utilities/global_variables.dart';
-import 'package:phoenix/src/begin/utilities/init.dart';
-import 'package:phoenix/src/begin/utilities/provider/provider.dart';
+import 'package:phoenix/src/beginning/utilities/audio_handlers/background.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
+import 'package:phoenix/src/beginning/pages/settings/settings_pages/privacy.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/init.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'src/begin/begin.dart';
+import 'src/beginning/begin.dart';
 
 void main() async {
   Paint.enableDithering = true;
