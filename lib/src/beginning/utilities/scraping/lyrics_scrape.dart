@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:html_unescape/html_unescape.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
+import '../has_network.dart';
+
 class Lyrics {
   final String _url = "https://www.google.com/search?q=";
   final String _url2 = "https://api.lyrics.ovh/v1";
@@ -27,6 +29,10 @@ class Lyrics {
     String lyrics;
     onGoingProcess = true;
     if (track == null) throw Exception("track must not be null");
+
+    // Check if device is connected to the internet
+    if (!await hasNetwork())
+      return (["Couldn't find any matching lyrics.", path]);
 
     // Scraping lyrics from https://api.lyrics.ovh
     if (artist != " ") {
