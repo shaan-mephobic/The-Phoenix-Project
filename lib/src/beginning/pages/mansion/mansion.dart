@@ -353,136 +353,144 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
 
               // NEVER LISTENED TO
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 7)),
-              SizedBox(
-                height: deviceWidth / 1.6,
-                width: deviceWidth,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: deviceWidth / 9,
-                      child: Center(
-                        child: Text(
-                          "Try Something New",
-                          style: TextStyle(
-                              fontSize: deviceWidth / 15,
-                              fontWeight: FontWeight.w600,
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? Colors.white
-                                  : darkModeOn
+              Visibility(
+                visible: everPlayedLimited.isNotEmpty,
+                child: Padding(
+                  padding: EdgeInsets.only(top: deviceWidth / 7),
+                  child: SizedBox(
+                    height: deviceWidth / 1.6,
+                    width: deviceWidth,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: deviceWidth / 9,
+                          child: Center(
+                            child: Text(
+                              "Try Something New",
+                              style: TextStyle(
+                                  fontSize: deviceWidth / 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: musicBox.get("dynamicArtDB") ?? true
                                       ? Colors.white
-                                      : Colors.black),
+                                      : darkModeOn
+                                          ? Colors.white
+                                          : Colors.black),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      physics: musicBox.get("fluidAnimation") ?? true
-                          ? BouncingScrollPhysics()
-                          : ClampingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          for (int index = 0;
-                              index <
-                                  (everPlayedLimited.length < 6
-                                      ? everPlayedLimited.length
-                                      : 6);
-                              index++)
-                            Material(
-                              color: Colors.transparent,
-                              child: SizedBox(
-                                height: deviceWidth / 2,
-                                width: deviceWidth / 1.6,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(kRounded),
-                                  onTap: () async {
-                                    if (everPlayedLimitedMediaItems[index]
-                                            .duration ==
-                                        Duration(milliseconds: 0)) {
-                                      corruptedFile(context);
-                                    } else {
-                                      await playThis(index, "never");
-                                    }
-                                  },
-                                  onLongPress: () async {
-                                    Expanded(
-                                      child: await onHold(
-                                          context,
-                                          everPlayedLimited,
-                                          index,
-                                          orientedCar,
-                                          deviceHeight,
-                                          deviceWidth,
-                                          "never"),
-                                    );
-                                  },
-                                  child: Column(children: [
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: deviceWidth / 30)),
-                                    PhysicalModel(
-                                      elevation: deviceWidth / 140,
+                        SingleChildScrollView(
+                          physics: musicBox.get("fluidAnimation") ?? true
+                              ? BouncingScrollPhysics()
+                              : ClampingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for (int index = 0;
+                                  index <
+                                      (everPlayedLimited.length < 6
+                                          ? everPlayedLimited.length
+                                          : 6);
+                                  index++)
+                                Material(
+                                  color: Colors.transparent,
+                                  child: SizedBox(
+                                    height: deviceWidth / 2,
+                                    width: deviceWidth / 1.6,
+                                    child: InkWell(
                                       borderRadius:
                                           BorderRadius.circular(kRounded),
-                                      color: Colors.transparent,
-                                      child: Container(
-                                        height: deviceWidth / 3,
-                                        width: deviceWidth / 2,
-                                        decoration: BoxDecoration(
+                                      onTap: () async {
+                                        if (everPlayedLimitedMediaItems[index]
+                                                .duration ==
+                                            Duration(milliseconds: 0)) {
+                                          corruptedFile(context);
+                                        } else {
+                                          await playThis(index, "never");
+                                        }
+                                      },
+                                      onLongPress: () async {
+                                        Expanded(
+                                          child: await onHold(
+                                              context,
+                                              everPlayedLimited,
+                                              index,
+                                              orientedCar,
+                                              deviceHeight,
+                                              deviceWidth,
+                                              "never"),
+                                        );
+                                      },
+                                      child: Column(children: [
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: deviceWidth / 30)),
+                                        PhysicalModel(
+                                          elevation: deviceWidth / 140,
                                           borderRadius:
                                               BorderRadius.circular(kRounded),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: MemoryImage(albumsArts[
-                                                    everPlayedLimited[index]
-                                                        .album] ??
-                                                defaultNone),
+                                          color: Colors.transparent,
+                                          child: Container(
+                                            height: deviceWidth / 3,
+                                            width: deviceWidth / 2,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      kRounded),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: MemoryImage(albumsArts[
+                                                        everPlayedLimited[index]
+                                                            .album] ??
+                                                    defaultNone),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: deviceWidth / 40)),
-                                    SizedBox(
-                                      width: deviceWidth / 2,
-                                      child: Text(
-                                        everPlayedLimited[index].title,
-                                        maxLines: 2,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: musicBox.get("dynamicArtDB") ??
-                                                  true
-                                              ? Colors.white
-                                              : darkModeOn
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                          fontSize: deviceWidth / 25,
-                                          fontWeight: FontWeight.w600,
-                                          shadows: [
-                                            Shadow(
-                                              offset: musicBox.get(
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: deviceWidth / 40)),
+                                        SizedBox(
+                                          width: deviceWidth / 2,
+                                          child: Text(
+                                            everPlayedLimited[index].title,
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
-                                                  ? Offset(1.0, 1.0)
+                                                  ? Colors.white
                                                   : darkModeOn
-                                                      ? Offset(0, 1.0)
-                                                      : Offset(0, 0.5),
-                                              blurRadius: 2.0,
-                                              color: Colors.black45,
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                              fontSize: deviceWidth / 25,
+                                              fontWeight: FontWeight.w600,
+                                              shadows: [
+                                                Shadow(
+                                                  offset: musicBox.get(
+                                                              "dynamicArtDB") ??
+                                                          true
+                                                      ? Offset(1.0, 1.0)
+                                                      : darkModeOn
+                                                          ? Offset(0, 1.0)
+                                                          : Offset(0, 0.5),
+                                                  blurRadius: 2.0,
+                                                  color: Colors.black45,
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ]),
+                                          ),
+                                        )
+                                      ]),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                        ],
-                      ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
 

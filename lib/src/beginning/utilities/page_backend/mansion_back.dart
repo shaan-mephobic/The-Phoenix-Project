@@ -148,25 +148,27 @@ neverPlayed(Map raw) async {
     }
   }
   if (songList.length > 0) {
-    for (int i = 0; i < 11; i++) {
-      int randomNumber = random.nextInt(everPlayed.length);
-      everPlayedLimited.add(everPlayed[randomNumber]);
-      MediaItem item = MediaItem(
-          id: everPlayedLimited[i].data,
-          album: everPlayedLimited[i].album,
-          artist: everPlayedLimited[i].artist,
-          duration: Duration(milliseconds: getDuration(everPlayedLimited[i])),
-          artUri: Uri.file(allAlbumsName.contains(everPlayedLimited[i].album)
-              ? musicBox.get("AlbumsWithoutArt") == null
-                  ? "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : musicBox.get("AlbumsWithoutArt").contains(everPlayedLimited[i].album)
-                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                      : "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
-          title: everPlayedLimited[i].title,
-          extras: {"id": everPlayedLimited[i].id});
-      everPlayedLimitedMediaItems.add(item);
-    }
+    if (everPlayed.isNotEmpty) {
+      for (int i = 0; i < 11; i++) {
+        int randomNumber = random.nextInt(everPlayed.length);
+        everPlayedLimited.add(everPlayed[randomNumber]);
+        MediaItem item = MediaItem(
+            id: everPlayedLimited[i].data,
+            album: everPlayedLimited[i].album,
+            artist: everPlayedLimited[i].artist,
+            duration: Duration(milliseconds: getDuration(everPlayedLimited[i])),
+            artUri: Uri.file(allAlbumsName.contains(everPlayedLimited[i].album)
+                ? musicBox.get("AlbumsWithoutArt") == null
+                    ? "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                    : musicBox.get("AlbumsWithoutArt").contains(everPlayedLimited[i].album)
+                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                        : "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            title: everPlayedLimited[i].title,
+            extras: {"id": everPlayedLimited[i].id});
+        everPlayedLimitedMediaItems.add(item);
+      }
+    } else {}
   }
 }
 
