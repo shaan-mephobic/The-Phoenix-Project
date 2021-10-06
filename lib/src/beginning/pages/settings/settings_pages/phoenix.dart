@@ -101,7 +101,7 @@ class _PhoenixState extends State<Phoenix> {
                             ),
                             Padding(padding: EdgeInsets.only(top: 2)),
                             Text(
-                              "FALL",
+                              "FORTRESS",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,

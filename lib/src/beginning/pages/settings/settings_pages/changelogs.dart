@@ -62,16 +62,22 @@ class _ChangelogsState extends State<Changelogs> {
                                   changelogs.keys.toList()[i],
                                   style: TextStyle(
                                     color: Colors.white,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
                               Padding(padding: EdgeInsets.only(top: 20)),
-                              Text(
-                                changelogs.values.toList()[i],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
+                              Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.only(left: 50, right: 25),
+                                child: Text(
+                                  changelogs.values.toList()[i],
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                  ),
                                 ),
                               ),
                               Divider(
