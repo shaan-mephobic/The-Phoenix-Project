@@ -40,7 +40,11 @@ dependencies:
   audiotagger: ^2.2.1
   flutter_ffmpeg: ^0.4.2
   just_audio: ^0.9.12
-  on_audio_query: 2.4.2
+  # on_audio_query: 2.4.2
+  on_audio_query:
+    git:
+      url: https://github.com/shaan-mephobic/on_audio_query.git
+      path: on_audio_query
 
  
   # FLUTTER Related

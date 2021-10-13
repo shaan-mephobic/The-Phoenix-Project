@@ -404,9 +404,11 @@ packages:
   on_audio_query:
     dependency: "direct main"
     description:
-      name: on_audio_query
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: on_audio_query
+      ref: HEAD
+      resolved-ref: ba20bdabe03d57694d995d0aeb8101b20430db85
+      url: "https://github.com/shaan-mephobic/on_audio_query.git"
+    source: git
     version: "2.4.2"
   on_audio_query_platform_interface:
     dependency: transitive
