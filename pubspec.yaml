@@ -30,7 +30,7 @@ dependencies:
   another_xlider: ^1.0.0
   flare_flutter: ^3.0.2
   flare_loading: ^3.0.0
-  palette_generator: ^0.3.1
+  palette_generator: ^0.3.2
   sleek_circular_slider: ^2.0.1
   sliding_up_panel: ^2.0.0+1
 
@@ -39,12 +39,8 @@ dependencies:
   audio_service: ^0.18.0
   audiotagger: ^2.2.1
   flutter_ffmpeg: ^0.4.2
-  just_audio: ^0.9.12
-  # on_audio_query: 2.4.2
-  on_audio_query:
-    git:
-      url: https://github.com/shaan-mephobic/on_audio_query.git
-      path: on_audio_query
+  just_audio: ^0.9.13
+  on_audio_query: '2.5.0'
 
  
   # FLUTTER Related
@@ -52,9 +48,9 @@ dependencies:
   # flutter_isolate: ^2.0.1-pre
   image_picker: ^0.8.4+2
   path_provider: ^2.0.5
-  permission_handler: ^8.1.6
+  permission_handler: ^8.2.5
   provider: ^6.0.1
-  share_plus: ^2.1.4
+  share_plus: ^3.0.4
 
 
   # DATABASE Related
@@ -67,7 +63,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_remixicon: ^2.5.1
   ionicons: ^0.1.2
-  material_design_icons_flutter: ^4.0.5955
+  material_design_icons_flutter: ^5.0.6295
 
 
   # WEB Related
@@ -77,7 +73,7 @@ dependencies:
 
 
   # MISCELLANEOUS
-  awesome_notifications: ^0.0.6+10
+  awesome_notifications: ^0.0.6+11
   screenshot: ^1.2.3
 
 
