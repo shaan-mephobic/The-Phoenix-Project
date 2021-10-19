@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/widgets/custom/graviticons.dart';
 import 'package:phoenix/src/beginning/widgets/custom/marquee.dart';
@@ -135,18 +136,48 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               width: deviceWidth,
                               child: GestureDetector(
                                 child: NowArt(orientedCar),
-                                onTap: () async {
+                                onTap: () {
                                   HapticFeedback.lightImpact();
-                                  await onHoldExtended(context, orientedCar,
-                                      deviceHeight, deviceWidth);
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.size,
+                                      alignment: Alignment.center,
+                                      duration: dialogueAnimationDuration,
+                                      reverseDuration:
+                                          dialogueAnimationDuration,
+                                      child: OnHoldExtended(
+                                        context: context,
+                                        car: orientedCar,
+                                        heightOfDevice: deviceHeight,
+                                        widthOfDevice: deviceWidth,
+                                      ),
+                                    ),
+                                  );
                                 },
                                 onDoubleTap: () {
                                   onDoubleTap(context);
                                 },
-                                onLongPress: () async {
+                                onLongPress: () {
                                   HapticFeedback.lightImpact();
-                                  await onHoldExtended(context, orientedCar,
-                                      deviceHeight, deviceWidth);
+                                  // await onHoldExtended(context, orientedCar,
+                                  //     deviceHeight, deviceWidth);
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.size,
+                                      alignment: Alignment.center,
+                                      duration: dialogueAnimationDuration,
+                                      reverseDuration:
+                                          dialogueAnimationDuration,
+                                      child: OnHoldExtended(
+                                        context: context,
+                                        car: orientedCar,
+                                        heightOfDevice: deviceHeight,
+                                        widthOfDevice: deviceWidth,
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ),
@@ -380,16 +411,48 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 ),
                                               ),
                                               onTap: () async {
-                                                await phoenixStart(
-                                                        context: context)
-                                                    .then((value) =>
-                                                        haunt.provideman());
+                                                if (phoenixVisualizerShown) {
+                                                  await Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .size,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      duration:
+                                                          dialogueAnimationDuration,
+                                                      reverseDuration:
+                                                          dialogueAnimationDuration,
+                                                      child:
+                                                          const PhoenixVisualizer(),
+                                                    ),
+                                                  ).then((value) async {
+                                                    if (value) {
+                                                      setState(() {});
+                                                    }
+                                                  });
+                                                } else {
+                                                  stopPhoenixVisualizer();
+                                                  setState(() {});
+                                                }
                                               },
                                               onLongPress: () async {
-                                                await phoenixCustomize(
-                                                        context: context)
-                                                    .then((value) =>
-                                                        haunt.provideman());
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type:
+                                                        PageTransitionType.size,
+                                                    alignment: Alignment.center,
+                                                    duration:
+                                                        dialogueAnimationDuration,
+                                                    reverseDuration:
+                                                        dialogueAnimationDuration,
+                                                    child:
+                                                        const PhoenixVisualizerCustomize(),
+                                                  ),
+                                                ).then((value) async {
+                                                  setState(() {});
+                                                });
                                               },
                                             ),
                                           ),
@@ -573,18 +636,46 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     padding: EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
-                                  onTap: () async {
+                                  onTap: () {
                                     HapticFeedback.lightImpact();
-                                    await onHoldExtended(context, orientedCar,
-                                        deviceHeight, deviceWidth);
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.size,
+                                        alignment: Alignment.center,
+                                        duration: dialogueAnimationDuration,
+                                        reverseDuration:
+                                            dialogueAnimationDuration,
+                                        child: OnHoldExtended(
+                                          context: context,
+                                          car: orientedCar,
+                                          heightOfDevice: deviceHeight,
+                                          widthOfDevice: deviceWidth,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   onDoubleTap: () {
                                     onDoubleTap(context);
                                   },
-                                  onLongPress: () async {
+                                  onLongPress: () {
                                     HapticFeedback.lightImpact();
-                                    await onHoldExtended(context, orientedCar,
-                                        deviceHeight, deviceWidth);
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.size,
+                                        alignment: Alignment.center,
+                                        duration: dialogueAnimationDuration,
+                                        reverseDuration:
+                                            dialogueAnimationDuration,
+                                        child: OnHoldExtended(
+                                          context: context,
+                                          car: orientedCar,
+                                          heightOfDevice: deviceHeight,
+                                          widthOfDevice: deviceWidth,
+                                        ),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),
@@ -839,16 +930,56 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                       ),
                                                     ),
                                                     onTap: () async {
-                                                      await phoenixStart(
-                                                              context: context)
-                                                          .then((value) => haunt
-                                                              .provideman());
+                                                      if (phoenixVisualizerShown) {
+                                                        await Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type:
+                                                                PageTransitionType
+                                                                    .size,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            duration:
+                                                                dialogueAnimationDuration,
+                                                            reverseDuration:
+                                                                dialogueAnimationDuration,
+                                                            child:
+                                                                const PhoenixVisualizer(),
+                                                          ),
+                                                        ).then((value) async {
+                                                          setState(() {});
+                                                        });
+                                                      } else {
+                                                        stopPhoenixVisualizer();
+                                                        setState(() {});
+                                                      }
                                                     },
                                                     onLongPress: () async {
-                                                      await phoenixStart(
-                                                              context: context)
-                                                          .then((value) => haunt
-                                                              .provideman());
+                                                      if (phoenixVisualizerShown) {
+                                                        await Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type:
+                                                                PageTransitionType
+                                                                    .size,
+                                                            alignment: Alignment
+                                                                .center,
+                                                            duration:
+                                                                dialogueAnimationDuration,
+                                                            reverseDuration:
+                                                                dialogueAnimationDuration,
+                                                            child:
+                                                                const PhoenixVisualizer(),
+                                                          ),
+                                                        ).then((value) async {
+                                                          if (value) {
+                                                            setState(() {});
+                                                          }
+                                                        });
+                                                      } else {
+                                                        stopPhoenixVisualizer();
+                                                        setState(() {});
+                                                      }
                                                     },
                                                   ),
                                                 ),
@@ -904,9 +1035,23 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   onDoubleTap: () {
                                     onDoubleTap(context);
                                   },
-                                  onLongPress: () async {
-                                    await onHoldExtended(context, orientedCar,
-                                        deviceHeight, deviceWidth);
+                                  onLongPress: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.size,
+                                        alignment: Alignment.center,
+                                        duration: dialogueAnimationDuration,
+                                        reverseDuration:
+                                            dialogueAnimationDuration,
+                                        child: OnHoldExtended(
+                                          context: context,
+                                          car: orientedCar,
+                                          heightOfDevice: deviceHeight,
+                                          widthOfDevice: deviceWidth,
+                                        ),
+                                      ),
+                                    );
                                   },
                                 ),
                               ),

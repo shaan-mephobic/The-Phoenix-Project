@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/artwork.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
@@ -136,10 +137,23 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             });
                             if (onLyrics) lyricsFoo();
                           },
-                          onLongPress: () async {
+                          onLongPress: () {
                             HapticFeedback.lightImpact();
-                            await onHoldExtended(context, orientedCar,
-                                deviceHeight, deviceWidth);
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.size,
+                                alignment: Alignment.center,
+                                duration: dialogueAnimationDuration,
+                                reverseDuration: dialogueAnimationDuration,
+                                child: OnHoldExtended(
+                                  context: context,
+                                  car: orientedCar,
+                                  heightOfDevice: deviceHeight,
+                                  widthOfDevice: deviceWidth,
+                                ),
+                              ),
+                            );
                           },
                           child: Center(
                             child: Padding(
@@ -313,9 +327,9 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
-                                        color: Colors.black.withOpacity(0.3),
+                                        color: Colors.black.withOpacity(0.2),
                                         blurRadius: 8,
-                                        offset: Offset(0, 3)),
+                                        offset: Offset(0, 2)),
                                   ],
                                 ),
                                 child: ClipRRect(
@@ -327,7 +341,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                     child: AnimatedContainer(
                                       duration: Duration(
                                           milliseconds: skyFadeDuration),
-                                      color: nowColor.withOpacity(0.2),
+                                      color: nowColor.withOpacity(0.3),
                                       child: Center(
                                         child: IconButton(
                                             padding: EdgeInsets.zero,
@@ -459,12 +473,38 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             child: InkWell(
                               borderRadius: BorderRadius.circular(kRounded),
                               onTap: () async {
-                                await phoenixStart(context: context)
-                                    .then((value) => setState(() {}));
+                                if (phoenixVisualizerShown) {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.size,
+                                      alignment: Alignment.center,
+                                      duration: dialogueAnimationDuration,
+                                      reverseDuration:
+                                          dialogueAnimationDuration,
+                                      child: const PhoenixVisualizer(),
+                                    ),
+                                  ).then((value) async {
+                                    setState(() {});
+                                  });
+                                } else {
+                                  stopPhoenixVisualizer();
+                                  setState(() {});
+                                }
                               },
                               onLongPress: () async {
-                                await phoenixCustomize(context: context)
-                                    .then((value) => setState(() {}));
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.size,
+                                    alignment: Alignment.center,
+                                    duration: dialogueAnimationDuration,
+                                    reverseDuration: dialogueAnimationDuration,
+                                    child: const PhoenixVisualizerCustomize(),
+                                  ),
+                                ).then((value) async {
+                                  setState(() {});
+                                });
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(17.0),
@@ -649,10 +689,23 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 });
                                 if (onLyrics) lyricsFoo();
                               },
-                              onLongPress: () async {
+                              onLongPress: () {
                                 HapticFeedback.lightImpact();
-                                await onHoldExtended(context, orientedCar,
-                                    deviceHeight, deviceWidth);
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.size,
+                                    alignment: Alignment.center,
+                                    duration: dialogueAnimationDuration,
+                                    reverseDuration: dialogueAnimationDuration,
+                                    child: OnHoldExtended(
+                                      context: context,
+                                      car: orientedCar,
+                                      heightOfDevice: deviceHeight,
+                                      widthOfDevice: deviceWidth,
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           ),
@@ -809,9 +862,9 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                         boxShadow: [
                                           BoxShadow(
                                               color:
-                                                  Colors.black.withOpacity(0.3),
+                                                  Colors.black.withOpacity(0.2),
                                               blurRadius: 8,
-                                              offset: Offset(0, 3)),
+                                              offset: Offset(0, 2)),
                                         ],
                                       ),
                                       child: ClipRRect(
@@ -823,7 +876,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           child: AnimatedContainer(
                                             duration: Duration(
                                                 milliseconds: skyFadeDuration),
-                                            color: nowColor.withOpacity(0.2),
+                                            color: nowColor.withOpacity(0.3),
                                             child: Center(
                                               child: IconButton(
                                                   padding: EdgeInsets.zero,
@@ -984,16 +1037,47 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             borderRadius:
                                                 BorderRadius.circular(kRounded),
                                             onTap: () async {
-                                              await phoenixStart(
-                                                      context: context)
-                                                  .then((value) =>
-                                                      setState(() {}));
+                                              if (phoenixVisualizerShown) {
+                                                await Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type:
+                                                        PageTransitionType.size,
+                                                    alignment: Alignment.center,
+                                                    duration: const Duration(
+                                                        milliseconds: 200),
+                                                    reverseDuration:
+                                                        const Duration(
+                                                            milliseconds: 200),
+                                                    child:
+                                                        const PhoenixVisualizer(),
+                                                  ),
+                                                ).then((value) async {
+                                                  if (value) {
+                                                    setState(() {});
+                                                  }
+                                                });
+                                              } else {
+                                                stopPhoenixVisualizer();
+                                                setState(() {});
+                                              }
                                             },
                                             onLongPress: () async {
-                                              await phoenixCustomize(
-                                                      context: context)
-                                                  .then((value) =>
-                                                      setState(() {}));
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.size,
+                                                  alignment: Alignment.center,
+                                                  duration:
+                                                      dialogueAnimationDuration,
+                                                  reverseDuration:
+                                                      dialogueAnimationDuration,
+                                                  child:
+                                                      const PhoenixVisualizerCustomize(),
+                                                ),
+                                              ).then((value) async {
+                                                setState(() {});
+                                              });
                                             },
                                             child: Padding(
                                               padding:
@@ -1112,10 +1196,23 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 });
                                 if (onLyrics) lyricsFoo();
                               },
-                              onLongPress: () async {
+                              onLongPress: ()  {
                                 HapticFeedback.lightImpact();
-                                await onHoldExtended(context, orientedCar,
-                                    deviceHeight, deviceWidth);
+                                     Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.size,
+                                alignment: Alignment.center,
+                                duration: dialogueAnimationDuration,
+                                reverseDuration: dialogueAnimationDuration,
+                                child: OnHoldExtended(
+                                  context: context,
+                                  car: orientedCar,
+                                  heightOfDevice: deviceHeight,
+                                  widthOfDevice: deviceWidth,
+                                ),
+                              ),
+                            );
                               },
                             ),
                           ),

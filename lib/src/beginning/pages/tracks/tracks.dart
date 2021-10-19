@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:audiotagger/audiotagger.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
@@ -76,9 +77,23 @@ class _AllofemState extends State<Allofem>
                   }
                 },
                 onLongPress: () async {
-                  Expanded(
-                      child: await onHold(context, songList, index - 1,
-                          orientedCar, deviceHeight, deviceWidth, "all"));
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.size,
+                      alignment: Alignment.center,
+                      duration: dialogueAnimationDuration,
+                      reverseDuration: dialogueAnimationDuration,
+                      child: OnHold(
+                          classContext: context,
+                          listOfSong: songList,
+                          index: index - 1,
+                          car: orientedCar,
+                          heightOfDevice: deviceHeight,
+                          widthOfDevice: deviceWidth,
+                          songOf: "all"),
+                    ),
+                  );
                 },
                 dense: false,
                 title: Text(

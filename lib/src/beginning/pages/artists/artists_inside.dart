@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums_inside.dart';
@@ -160,20 +161,26 @@ class ArtistsInside extends StatelessWidget {
                             await playThis(index - 1, "artist");
                           }
                         },
-                        onLongPress: () async {
-                          Expanded(
-                            child: await onHold(
-                                context,
-                                inArtistsSongs,
-                                index - 1,
-                                orientedCar,
-                                deviceHeight,
-                                deviceWidth,
-                                "artist"),
+                        onLongPress: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.size,
+                              alignment: Alignment.center,
+                              duration: dialogueAnimationDuration,
+                              reverseDuration: dialogueAnimationDuration,
+                              child: OnHold(
+                                  classContext: context,
+                                  listOfSong: inArtistsSongs,
+                                  index: index - 1,
+                                  car: orientedCar,
+                                  heightOfDevice: deviceHeight,
+                                  widthOfDevice: deviceWidth,
+                                  songOf: "artist"),
+                            ),
                           );
                         },
                         dense: false,
-                        // enabled: true,
                         title: Text(
                           inArtistsSongs[index - 1].title,
                           maxLines: 2,

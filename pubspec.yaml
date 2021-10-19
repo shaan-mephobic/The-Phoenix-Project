@@ -30,6 +30,7 @@ dependencies:
   another_xlider: ^1.0.0
   flare_flutter: ^3.0.2
   flare_loading: ^3.0.0
+  page_transition: ^2.0.4
   palette_generator: ^0.3.2
   sleek_circular_slider: ^2.0.1
   sliding_up_panel: ^2.0.0+1

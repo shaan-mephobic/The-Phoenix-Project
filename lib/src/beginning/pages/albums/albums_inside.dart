@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
@@ -133,17 +134,24 @@ class AlbumsInside extends StatelessWidget {
                             await playThis(index - 1, "album");
                           }
                         },
-                        onLongPress: () async {
-                          Expanded(
-                            child: await onHold(
-                                context,
-                                inAlbumSongs,
-                                index - 1,
-                                orientedCar,
-                                deviceHeight,
-                                deviceWidth,
-                                "album"),
-                          );
+                        onLongPress: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.size,
+                              alignment: Alignment.center,
+                              duration: dialogueAnimationDuration,
+                              reverseDuration: dialogueAnimationDuration,
+                              child: OnHold(
+                                  classContext: context,
+                                  listOfSong: inAlbumSongs,
+                                  index: index - 1,
+                                  car: orientedCar,
+                                  heightOfDevice: deviceHeight,
+                                  widthOfDevice: deviceWidth,
+                                  songOf: "album"),
+                            ),
+                          );                         
                         },
                         dense: false,
                         title: Text(

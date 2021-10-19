@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums_inside.dart';
 import 'package:phoenix/src/beginning/pages/artists/artists_inside.dart';
@@ -661,20 +662,31 @@ class _SearchinState extends State<Searchin> {
                                         }
                                       }
                                     },
-                                    onLongPress: () async {
+                                    onLongPress: () {
                                       for (int i = 0;
                                           i < songList.length;
                                           i++) {
                                         if (searchedTracks[index - 3]['_id'] ==
                                             songList[i].id) {
-                                          await onHold(
-                                              context,
-                                              songList,
-                                              i,
-                                              orientedCar,
-                                              deviceHeight,
-                                              deviceWidth,
-                                              "all");
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.size,
+                                              alignment: Alignment.center,
+                                              duration:
+                                                  dialogueAnimationDuration,
+                                              reverseDuration:
+                                                  dialogueAnimationDuration,
+                                              child: OnHold(
+                                                  classContext: context,
+                                                  listOfSong: songList,
+                                                  index: i,
+                                                  car: orientedCar,
+                                                  heightOfDevice: deviceHeight,
+                                                  widthOfDevice: deviceWidth,
+                                                  songOf: "all"),
+                                            ),
+                                          );
                                           break;
                                         }
                                       }

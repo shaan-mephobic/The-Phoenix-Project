@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import '../../utilities/page_backend/genres_back.dart';
@@ -93,16 +94,23 @@ class _GenresInsideState extends State<GenresInside> {
                                   await playThis(index - 1, "genre");
                                 }
                               },
-                              onLongPress: () async {
-                                Expanded(
-                                  child: await onHold(
-                                      context,
-                                      genreSongs,
-                                      index - 1,
-                                      orientedCar,
-                                      deviceHeight,
-                                      deviceWidth,
-                                      "genre"),
+                              onLongPress: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.size,
+                                    alignment: Alignment.center,
+                                    duration: dialogueAnimationDuration,
+                                    reverseDuration: dialogueAnimationDuration,
+                                    child: OnHold(
+                                        classContext: context,
+                                        listOfSong: genreSongs,
+                                        index: index - 1,
+                                        car: orientedCar,
+                                        heightOfDevice: deviceHeight,
+                                        widthOfDevice: deviceWidth,
+                                        songOf: "genre"),
+                                  ),
                                 );
                               },
                               dense: false,

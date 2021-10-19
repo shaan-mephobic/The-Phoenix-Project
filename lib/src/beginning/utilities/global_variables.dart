@@ -59,6 +59,7 @@ bool isPlayerShown = false;
 ImageFilter glassBlur;
 Color glassOpacity;
 double glassShadowOpacity;
+final Duration dialogueAnimationDuration = const Duration(milliseconds: 200);
 bool isArtworkDark = true;
 bool onLyrics = false;
 bool isFlashin = false;

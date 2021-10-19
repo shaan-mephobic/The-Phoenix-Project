@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:audiotagger/audiotagger.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/pages/now_playing/now_playing_sky.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -300,12 +301,39 @@ class _BeginState extends State<Begin>
                                   : deviceHeight / 36,
                             ),
                             onTap: () async {
-                              return await phoenixGlobal(context: context)
-                                  .then((value) => rootState.provideman());
+                              if (bgPhoenixVisualizer) {
+                                stopPhoenixVisualizerGlobal();
+                                setState(() {});
+                              } else {
+                                await Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.size,
+                                    alignment: Alignment.center,
+                                    duration:  dialogueAnimationDuration,
+                                    reverseDuration:
+                                        dialogueAnimationDuration,
+                                    child: const PhoenixVisualizerGlobal(),
+                                  ),
+                                ).then((value) async {
+                                  setState(() {});
+                                });
+                              }
                             },
                             onLongPress: () async {
-                              return await phoenixCustomize(context: context)
-                                  .then((value) => rootState.provideman());
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.size,
+                                  alignment: Alignment.center,
+                                  duration: dialogueAnimationDuration,
+                                  reverseDuration:
+                                     dialogueAnimationDuration,
+                                  child: const PhoenixVisualizerCustomize(),
+                                ),
+                              ).then((value) async {
+                                setState(() {});
+                              });
                             },
                           ),
                         ),

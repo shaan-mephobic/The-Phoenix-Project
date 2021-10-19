@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
@@ -123,17 +124,26 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 "all");
                                           }
                                         },
-                                        onLongPress: () async {
-                                          Expanded(
-                                            child: await onHold(
-                                                context,
-                                                recentPlayed,
-                                                songList.indexOf(
-                                                    recentPlayed[index]),
-                                                orientedCar,
-                                                deviceHeight,
-                                                deviceWidth,
-                                                "all"),
+                                        onLongPress: () {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.size,
+                                              alignment: Alignment.center,
+                                              duration:
+                                                  dialogueAnimationDuration,
+                                              reverseDuration:
+                                                  dialogueAnimationDuration,
+                                              child: OnHold(
+                                                  classContext: context,
+                                                  listOfSong: recentPlayed,
+                                                  index: songList.indexOf(
+                                                      recentPlayed[index]),
+                                                  car: orientedCar,
+                                                  heightOfDevice: deviceHeight,
+                                                  widthOfDevice: deviceWidth,
+                                                  songOf: "all"),
+                                            ),
                                           );
                                         },
                                         child: Column(
@@ -263,17 +273,24 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       await playThis(index, "mostly");
                                     }
                                   },
-                                  onLongPress: () async {
-                                    print(alwaysPlayed[index].title);
-                                    Expanded(
-                                      child: await onHold(
-                                          context,
-                                          alwaysPlayed,
-                                          index,
-                                          orientedCar,
-                                          deviceHeight,
-                                          deviceWidth,
-                                          "mostly"),
+                                  onLongPress: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.size,
+                                        alignment: Alignment.center,
+                                        duration: dialogueAnimationDuration,
+                                        reverseDuration:
+                                            dialogueAnimationDuration,
+                                        child: OnHold(
+                                            classContext: context,
+                                            listOfSong: alwaysPlayed,
+                                            index: index,
+                                            car: orientedCar,
+                                            heightOfDevice: deviceHeight,
+                                            widthOfDevice: deviceWidth,
+                                            songOf: "mostly"),
+                                      ),
                                     );
                                   },
                                   child: Column(
@@ -408,16 +425,24 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                           await playThis(index, "never");
                                         }
                                       },
-                                      onLongPress: () async {
-                                        Expanded(
-                                          child: await onHold(
-                                              context,
-                                              everPlayedLimited,
-                                              index,
-                                              orientedCar,
-                                              deviceHeight,
-                                              deviceWidth,
-                                              "never"),
+                                      onLongPress: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.size,
+                                            alignment: Alignment.center,
+                                            duration: dialogueAnimationDuration,
+                                            reverseDuration:
+                                                dialogueAnimationDuration,
+                                            child: OnHold(
+                                                classContext: context,
+                                                listOfSong: everPlayedLimited,
+                                                index: index,
+                                                car: orientedCar,
+                                                heightOfDevice: deviceHeight,
+                                                widthOfDevice: deviceWidth,
+                                                songOf: "never"),
+                                          ),
                                         );
                                       },
                                       child: Column(children: [
