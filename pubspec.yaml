@@ -37,17 +37,17 @@ dependencies:
 
 
   # AUDIO Related
-  audio_service: ^0.18.0
+  audio_service: ^0.18.1
   audiotagger: ^2.2.1
   flutter_ffmpeg: ^0.4.2
   just_audio: ^0.9.13
-  on_audio_query: '2.5.0'
+  on_audio_query: '2.5.1'
 
  
   # FLUTTER Related
   device_info: ^2.0.2
   # flutter_isolate: ^2.0.1-pre
-  image_picker: ^0.8.4+2
+  image_picker: ^0.8.4+3
   path_provider: ^2.0.5
   permission_handler: ^8.2.5
   provider: ^6.0.1
