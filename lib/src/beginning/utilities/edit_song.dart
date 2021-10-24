@@ -1,20 +1,14 @@
-import '../widgets/dialogues/on_hold.dart';
+import 'package:flutter/material.dart';
+import 'package:on_audio_edit/on_audio_edit.dart';
 
-editSong(songFile, title, album, artist, genre) async {
-  Map<String, String> tags = {
-    "title": title,
-    "artist": artist,
-    "genre": genre,
-    "trackNumber": null,
-    "trackTotal": null,
-    "discNumber": null,
-    "discTotal": null,
-    "lyrics": null,
-    "comment": null,
-    "album": album,
-    "albumArtist": null,
-    "year": null,
-    "artwork": null, // Null if obtained from readTags or readTagsAsMap
+editSong({songFile, title, album, artist, genre}) async {
+  Map<TagType, dynamic> tags = {
+    TagType.TITLE: title,
+    TagType.ARTIST: artist,
+    TagType.GENRE: genre,
+    TagType.ALBUM: album,
   };
-  await tagger.writeTagsFromMap(path: songFile, tags: tags);
+  bool song =
+      await OnAudioEdit().editAudio(songFile, tags, searchInsideFolders: true);
+  debugPrint(song.toString());
 }

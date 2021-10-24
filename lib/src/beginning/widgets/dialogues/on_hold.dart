@@ -21,7 +21,6 @@ import 'package:phoenix/src/beginning/utilities/screenshot_UI.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../utilities/constants.dart';
 import '../../utilities/edit_song.dart';
-import 'r_support.dart';
 
 var tagger;
 
@@ -449,348 +448,341 @@ class _OnHoldState extends State<OnHold> {
 
                                                 /// Edit Song
                                                 else if (i == 5) {
-                                                  if (isAndroid11) {
-                                                    androidRSupport(context);
-                                                  } else {
-                                                    Navigator.pop(context);
-                                                    try {
-                                                      final tag =
-                                                          await tagger.readTags(
-                                                              path: widget
-                                                                  .listOfSong[
-                                                                      widget
-                                                                          .index]
-                                                                  .data);
-                                                      var titleOfSong =
-                                                          tag.title;
-                                                      var artistOfSong =
-                                                          tag.artist;
-                                                      var genreOfSong =
-                                                          tag.genre;
-                                                      var albumOfSong =
-                                                          tag.album;
+                                                  // if (isAndroid11) {
+                                                  //   androidRSupport(context);
+                                                  // } else {
+                                                  Navigator.pop(context);
+                                                  try {
+                                                    final tag =
+                                                        await tagger.readTags(
+                                                            path: widget
+                                                                .listOfSong[
+                                                                    widget
+                                                                        .index]
+                                                                .data);
+                                                    var titleOfSong = tag.title;
+                                                    var artistOfSong =
+                                                        tag.artist;
+                                                    var genreOfSong = tag.genre;
+                                                    var albumOfSong = tag.album;
 
-                                                      bool shouldEdit = false;
+                                                    bool shouldEdit = false;
 
-                                                      Expanded(
-                                                        child: await showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return StatefulBuilder(
-                                                              builder: (context,
-                                                                  StateSetter
-                                                                      setState) {
-                                                                return Center(
-                                                                  child:
-                                                                      SingleChildScrollView(
-                                                                    physics:
-                                                                        BouncingScrollPhysics(),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .center,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          flex:
-                                                                              0,
+                                                    Expanded(
+                                                      child: await showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return StatefulBuilder(
+                                                            builder: (context,
+                                                                StateSetter
+                                                                    setState) {
+                                                              return Center(
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  physics:
+                                                                      BouncingScrollPhysics(),
+                                                                  child: Column(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        flex: 0,
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(kRounded),
+                                                                          ),
+                                                                          alignment:
+                                                                              Alignment.center,
+                                                                          width: widget.car
+                                                                              ? widget.heightOfDevice / 2
+                                                                              : widget.widthOfDevice / 1.2,
                                                                           child:
-                                                                              Container(
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                            ),
-                                                                            alignment:
-                                                                                Alignment.center,
-                                                                            width: widget.car
-                                                                                ? widget.heightOfDevice / 2
-                                                                                : widget.widthOfDevice / 1.2,
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(kRounded),
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                              child: BackdropFilter(
-                                                                                filter: glassBlur,
-                                                                                child: Container(
-                                                                                  alignment: Alignment.center,
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(kRounded),
-                                                                                    border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                    color: glassOpacity,
-                                                                                  ),
-                                                                                  child: Column(
-                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                    children: [
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = titleOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              titleOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "TITLE",
-                                                                                                hintText: "",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                      ///ALBUM
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Container(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: Colors.transparent,
-                                                                                          ),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = albumOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              albumOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ALBUM",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                      ///Artist
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = artistOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              artistOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "ARTIST",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                      ///Genre
-                                                                                      Material(
-                                                                                        color: Colors.transparent,
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                          child: TextField(
-                                                                                            cursorColor: Color(0xFF3cb9cd),
-                                                                                            autofocus: false,
-                                                                                            controller: TextEditingController()..text = genreOfSong,
-                                                                                            style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                            onChanged: (text) {
-                                                                                              shouldEdit = true;
-                                                                                              genreOfSong = text;
-                                                                                            },
-                                                                                            decoration: InputDecoration(
-                                                                                                border: OutlineInputBorder(
-                                                                                                  borderRadius: const BorderRadius.all(
-                                                                                                    Radius.circular(10.0),
-                                                                                                  ),
-                                                                                                ),
-                                                                                                enabledBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                focusedBorder: OutlineInputBorder(
-                                                                                                  borderRadius: BorderRadius.circular(10.0),
-                                                                                                  borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                                ),
-                                                                                                filled: true,
-                                                                                                hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                                labelText: "GENRE",
-                                                                                                labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                                hintText: "",
-                                                                                                fillColor: Colors.transparent),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-                                                                                      Material(
-                                                                                        borderRadius: BorderRadius.circular(kRounded),
-                                                                                        color: Colors.transparent,
-                                                                                        child: InkWell(
-                                                                                          borderRadius: BorderRadius.circular(kRounded),
-                                                                                          onTap: () async {
-                                                                                            if (shouldEdit) {
-                                                                                              Navigator.pop(context);
-                                                                                              await editSong(widget.listOfSong[widget.index].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
-                                                                                              refresh = true;
-                                                                                              await Future.delayed(Duration(seconds: 1));
-                                                                                              rootState.provideman();
-                                                                                            }
+                                                                                BackdropFilter(
+                                                                              filter: glassBlur,
+                                                                              child: Container(
+                                                                                alignment: Alignment.center,
+                                                                                decoration: BoxDecoration(
+                                                                                  borderRadius: BorderRadius.circular(kRounded),
+                                                                                  border: Border.all(color: Colors.white.withOpacity(0.04)),
+                                                                                  color: glassOpacity,
+                                                                                ),
+                                                                                child: Column(
+                                                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                                                  children: [
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
+                                                                                    Material(
+                                                                                      color: Colors.transparent,
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                        child: TextField(
+                                                                                          cursorColor: Color(0xFF3cb9cd),
+                                                                                          autofocus: false,
+                                                                                          controller: TextEditingController()..text = titleOfSong,
+                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                          onChanged: (text) {
+                                                                                            shouldEdit = true;
+                                                                                            titleOfSong = text;
                                                                                           },
-                                                                                          child: Container(
-                                                                                            height: widget.widthOfDevice / 12,
-                                                                                            width: widget.widthOfDevice / 4,
-                                                                                            decoration: BoxDecoration(
-                                                                                              boxShadow: [
-                                                                                                BoxShadow(
-                                                                                                  color: Colors.black12,
-                                                                                                  blurRadius: 1.0,
-                                                                                                  spreadRadius: widget.widthOfDevice / 220,
+                                                                                          decoration: InputDecoration(
+                                                                                              border: OutlineInputBorder(
+                                                                                                borderRadius: const BorderRadius.all(
+                                                                                                  Radius.circular(10.0),
                                                                                                 ),
-                                                                                              ],
-                                                                                              color: Color(0xFF1DB954),
-                                                                                              borderRadius: BorderRadius.circular(kRounded),
-                                                                                            ),
-                                                                                            child: Center(
-                                                                                              child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: widget.widthOfDevice / 25, fontWeight: FontWeight.w600)),
-                                                                                            ),
+                                                                                              ),
+                                                                                              enabledBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              focusedBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              filled: true,
+                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                              labelText: "TITLE",
+                                                                                              hintText: "",
+                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                              fillColor: Colors.transparent),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                    ///ALBUM
+                                                                                    Material(
+                                                                                      color: Colors.transparent,
+                                                                                      child: Container(
+                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                        decoration: BoxDecoration(
+                                                                                          color: Colors.transparent,
+                                                                                        ),
+                                                                                        child: TextField(
+                                                                                          cursorColor: Color(0xFF3cb9cd),
+                                                                                          autofocus: false,
+                                                                                          controller: TextEditingController()..text = albumOfSong,
+                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                          onChanged: (text) {
+                                                                                            shouldEdit = true;
+                                                                                            albumOfSong = text;
+                                                                                          },
+                                                                                          decoration: InputDecoration(
+                                                                                              border: OutlineInputBorder(
+                                                                                                borderRadius: const BorderRadius.all(
+                                                                                                  Radius.circular(10.0),
+                                                                                                ),
+                                                                                              ),
+                                                                                              enabledBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              focusedBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              filled: true,
+                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                              labelText: "ALBUM",
+                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                              hintText: "",
+                                                                                              fillColor: Colors.transparent),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                    ///Artist
+                                                                                    Material(
+                                                                                      color: Colors.transparent,
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                        child: TextField(
+                                                                                          cursorColor: Color(0xFF3cb9cd),
+                                                                                          autofocus: false,
+                                                                                          controller: TextEditingController()..text = artistOfSong,
+                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                          onChanged: (text) {
+                                                                                            shouldEdit = true;
+                                                                                            artistOfSong = text;
+                                                                                          },
+                                                                                          decoration: InputDecoration(
+                                                                                              border: OutlineInputBorder(
+                                                                                                borderRadius: const BorderRadius.all(
+                                                                                                  Radius.circular(10.0),
+                                                                                                ),
+                                                                                              ),
+                                                                                              enabledBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              focusedBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              filled: true,
+                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                              labelText: "ARTIST",
+                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                              hintText: "",
+                                                                                              fillColor: Colors.transparent),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                    ///Genre
+                                                                                    Material(
+                                                                                      color: Colors.transparent,
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                        child: TextField(
+                                                                                          cursorColor: Color(0xFF3cb9cd),
+                                                                                          autofocus: false,
+                                                                                          controller: TextEditingController()..text = genreOfSong,
+                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                          onChanged: (text) {
+                                                                                            shouldEdit = true;
+                                                                                            genreOfSong = text;
+                                                                                          },
+                                                                                          decoration: InputDecoration(
+                                                                                              border: OutlineInputBorder(
+                                                                                                borderRadius: const BorderRadius.all(
+                                                                                                  Radius.circular(10.0),
+                                                                                                ),
+                                                                                              ),
+                                                                                              enabledBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              focusedBorder: OutlineInputBorder(
+                                                                                                borderRadius: BorderRadius.circular(10.0),
+                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                              ),
+                                                                                              filled: true,
+                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                              labelText: "GENRE",
+                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                              hintText: "",
+                                                                                              fillColor: Colors.transparent),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+                                                                                    Material(
+                                                                                      borderRadius: BorderRadius.circular(kRounded),
+                                                                                      color: Colors.transparent,
+                                                                                      child: InkWell(
+                                                                                        borderRadius: BorderRadius.circular(kRounded),
+                                                                                        onTap: () async {
+                                                                                          if (shouldEdit) {
+                                                                                            Navigator.pop(context);
+                                                                                            await editSong(songFile:widget.listOfSong[widget.index].data,title: titleOfSong, album:albumOfSong, artist:artistOfSong, genre:genreOfSong);
+                                                                                            refresh = true;
+                                                                                            await Future.delayed(Duration(seconds: 1));
+                                                                                            rootState.provideman();
+                                                                                          }
+                                                                                        },
+                                                                                        child: Container(
+                                                                                          height: widget.widthOfDevice / 12,
+                                                                                          width: widget.widthOfDevice / 4,
+                                                                                          decoration: BoxDecoration(
+                                                                                            boxShadow: [
+                                                                                              BoxShadow(
+                                                                                                color: Colors.black12,
+                                                                                                blurRadius: 1.0,
+                                                                                                spreadRadius: widget.widthOfDevice / 220,
+                                                                                              ),
+                                                                                            ],
+                                                                                            color: Color(0xFF1DB954),
+                                                                                            borderRadius: BorderRadius.circular(kRounded),
+                                                                                          ),
+                                                                                          child: Center(
+                                                                                            child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: widget.widthOfDevice / 25, fontWeight: FontWeight.w600)),
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
-                                                                                    ],
-                                                                                  ),
+                                                                                    ),
+                                                                                    Padding(padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
+                                                                                  ],
                                                                                 ),
                                                                               ),
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                      ],
-                                                                    ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                        ),
-                                                      );
-                                                    } catch (e) {
-                                                      Flushbar(
-                                                        message:
-                                                            "The File Might be Unsupported/Corrupted.",
-                                                        icon: Icon(
-                                                          Icons.info_outline,
-                                                          size: 28.0,
-                                                          color:
-                                                              Color(0xFFCB0447),
-                                                        ),
-                                                        shouldIconPulse: true,
-                                                        borderColor: Colors
-                                                            .white
-                                                            .withOpacity(0.04),
-                                                        borderWidth: 1,
-                                                        backgroundColor:
-                                                            glassOpacity,
-                                                        flushbarStyle:
-                                                            FlushbarStyle
-                                                                .FLOATING,
-                                                        isDismissible: true,
-                                                        barBlur: musicBox.get(
-                                                                    "glassBlur") ==
-                                                                null
-                                                            ? 18
-                                                            : musicBox.get(
-                                                                "glassBlur"),
-                                                        dismissDirection:
-                                                            FlushbarDismissDirection
-                                                                .HORIZONTAL,
-                                                        duration: Duration(
-                                                            seconds: 5),
-                                                        margin: EdgeInsets.only(
-                                                            bottom: 20,
-                                                            left: 8,
-                                                            right: 8),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                      )..show(context);
-                                                    }
+                                                                ),
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                                  } catch (e) {
+                                                    Flushbar(
+                                                      message:
+                                                          "The File Might be Unsupported/Corrupted.",
+                                                      icon: Icon(
+                                                        Icons.info_outline,
+                                                        size: 28.0,
+                                                        color:
+                                                            Color(0xFFCB0447),
+                                                      ),
+                                                      shouldIconPulse: true,
+                                                      borderColor: Colors.white
+                                                          .withOpacity(0.04),
+                                                      borderWidth: 1,
+                                                      backgroundColor:
+                                                          glassOpacity,
+                                                      flushbarStyle:
+                                                          FlushbarStyle
+                                                              .FLOATING,
+                                                      isDismissible: true,
+                                                      barBlur: musicBox.get(
+                                                                  "glassBlur") ==
+                                                              null
+                                                          ? 18
+                                                          : musicBox
+                                                              .get("glassBlur"),
+                                                      dismissDirection:
+                                                          FlushbarDismissDirection
+                                                              .HORIZONTAL,
+                                                      duration:
+                                                          Duration(seconds: 5),
+                                                      margin: EdgeInsets.only(
+                                                          bottom: 20,
+                                                          left: 8,
+                                                          right: 8),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                    )..show(context);
                                                   }
+                                                  // }
                                                 } else if (i == 6) {
-                                                  if (isAndroid11) {
-                                                    androidRSupport(context);
-                                                  } else {
-                                                    if (await Permission.storage
-                                                        .request()
-                                                        .isGranted) {
-                                                      await deleteAFile(widget
-                                                          .listOfSong[
-                                                              widget.index]
-                                                          .data);
-                                                      Navigator.pop(context);
-                                                      await Future.delayed(
-                                                          Duration(seconds: 2));
+                                                  if (await Permission.storage
+                                                      .request()
+                                                      .isGranted) {
+                                                    await deleteAFile(widget
+                                                        .listOfSong[
+                                                            widget.index]
+                                                        .data);
+                                                    Navigator.pop(context);
+                                                    await Future.delayed(
+                                                        Duration(seconds: 2));
 
-                                                      refresh = true;
-                                                      rootState.provideman();
-                                                    }
+                                                    refresh = true;
+                                                    rootState.provideman();
                                                   }
                                                 }
                                               },
@@ -1291,324 +1283,322 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
 
                                                 /// Edit Song
                                                 else if (i == 4) {
-                                                  if (isAndroid11) {
-                                                    androidRSupport(context);
-                                                  } else {
-                                                    Navigator.pop(context);
-                                                    try {
-                                                      final tag =
-                                                          await tagger.readTags(
-                                                              path: nowMediaItem
-                                                                  .id);
-                                                      bool shouldEdit = false;
-                                                      var titleOfSong =
-                                                          tag.title;
-                                                      var artistOfSong =
-                                                          tag.artist;
-                                                      var genreOfSong =
-                                                          tag.genre;
-                                                      var albumOfSong =
-                                                          tag.album;
-                                                      Expanded(
-                                                          child:
-                                                              await showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return StatefulBuilder(
-                                                            builder: (context,
-                                                                StateSetter
-                                                                    setState) {
-                                                              return Center(
-                                                                child:
-                                                                    SingleChildScrollView(
-                                                                  physics:
-                                                                      BouncingScrollPhysics(),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        flex: 0,
+                                                  //  else {
+                                                  Navigator.pop(context);
+                                                  try {
+                                                    final tag =
+                                                        await tagger.readTags(
+                                                            path: nowMediaItem
+                                                                .id);
+                                                    bool shouldEdit = false;
+                                                    var titleOfSong = tag.title;
+                                                    var artistOfSong =
+                                                        tag.artist;
+                                                    var genreOfSong = tag.genre;
+                                                    var albumOfSong = tag.album;
+                                                    /// TODO New UI and statefull widget
+                                                    Expanded(
+                                                        child: await showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return StatefulBuilder(
+                                                          builder: (context,
+                                                              StateSetter
+                                                                  setState) {
+                                                            return Center(
+                                                              child:
+                                                                  SingleChildScrollView(
+                                                                physics:
+                                                                    BouncingScrollPhysics(),
+                                                                child: Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      flex: 0,
+                                                                      child:
+                                                                          Container(
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(kRounded),
+                                                                        ),
+                                                                        alignment:
+                                                                            Alignment.center,
+                                                                        width: widget.car
+                                                                            ? widget.heightOfDevice /
+                                                                                2
+                                                                            : widget.widthOfDevice /
+                                                                                1.2,
                                                                         child:
-                                                                            Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                          ),
-                                                                          alignment:
-                                                                              Alignment.center,
-                                                                          width: widget.car
-                                                                              ? widget.heightOfDevice / 2
-                                                                              : widget.widthOfDevice / 1.2,
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(kRounded),
                                                                           child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
+                                                                              BackdropFilter(
+                                                                            filter:
+                                                                                glassBlur,
                                                                             child:
-                                                                                BackdropFilter(
-                                                                              filter: glassBlur,
-                                                                              child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                decoration: BoxDecoration(
-                                                                                  borderRadius: BorderRadius.circular(kRounded),
-                                                                                  border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                  color: glassOpacity,
-                                                                                ),
-                                                                                child: Column(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: Padding(
-                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                        child: TextField(
-                                                                                          cursorColor: Color(0xFF3cb9cd),
-                                                                                          autofocus: false,
-                                                                                          controller: TextEditingController()..text = titleOfSong,
-                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                          onChanged: (text) {
-                                                                                            shouldEdit = true;
-                                                                                            titleOfSong = text;
-                                                                                          },
-                                                                                          decoration: InputDecoration(
-                                                                                              border: OutlineInputBorder(
-                                                                                                borderRadius: const BorderRadius.all(
-                                                                                                  Radius.circular(10.0),
-                                                                                                ),
-                                                                                              ),
-                                                                                              enabledBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              focusedBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              filled: true,
-                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                              labelText: "TITLE",
-                                                                                              hintText: "",
-                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                              fillColor: Colors.transparent),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                    ///ALBUM
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: Padding(
-                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                        child: TextField(
-                                                                                          cursorColor: Color(0xFF3cb9cd),
-                                                                                          autofocus: false,
-                                                                                          controller: TextEditingController()..text = albumOfSong,
-                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                          onChanged: (text) {
-                                                                                            shouldEdit = true;
-                                                                                            albumOfSong = text;
-                                                                                          },
-                                                                                          decoration: InputDecoration(
-                                                                                              border: OutlineInputBorder(
-                                                                                                borderRadius: const BorderRadius.all(
-                                                                                                  Radius.circular(10.0),
-                                                                                                ),
-                                                                                              ),
-                                                                                              enabledBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              focusedBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              filled: true,
-                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                              labelText: "ALBUM",
-                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                              hintText: "",
-                                                                                              fillColor: Colors.transparent),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                    ///Artist
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: Padding(
-                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                        child: TextField(
-                                                                                          cursorColor: Color(0xFF3cb9cd),
-                                                                                          autofocus: false,
-                                                                                          controller: TextEditingController()..text = artistOfSong,
-                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                          onChanged: (text) {
-                                                                                            shouldEdit = true;
-                                                                                            artistOfSong = text;
-                                                                                          },
-                                                                                          decoration: InputDecoration(
-                                                                                              border: OutlineInputBorder(
-                                                                                                borderRadius: const BorderRadius.all(
-                                                                                                  Radius.circular(10.0),
-                                                                                                ),
-                                                                                              ),
-                                                                                              enabledBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              focusedBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              filled: true,
-                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                              labelText: "ARTIST",
-                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                              hintText: "",
-                                                                                              fillColor: Colors.transparent),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                    ///Genre
-                                                                                    Material(
-                                                                                      color: Colors.transparent,
-                                                                                      child: Padding(
-                                                                                        padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-                                                                                        child: TextField(
-                                                                                          cursorColor: Color(0xFF3cb9cd),
-                                                                                          autofocus: false,
-                                                                                          controller: TextEditingController()..text = genreOfSong,
-                                                                                          style: TextStyle(color: Colors.white, fontFamily: "Futura"),
-                                                                                          onChanged: (text) {
-                                                                                            shouldEdit = true;
-                                                                                            genreOfSong = text;
-                                                                                          },
-                                                                                          decoration: InputDecoration(
-                                                                                              border: OutlineInputBorder(
-                                                                                                borderRadius: const BorderRadius.all(
-                                                                                                  Radius.circular(10.0),
-                                                                                                ),
-                                                                                              ),
-                                                                                              enabledBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              focusedBorder: OutlineInputBorder(
-                                                                                                borderRadius: BorderRadius.circular(10.0),
-                                                                                                borderSide: BorderSide(color: Color(0xFF3cb9cd)),
-                                                                                              ),
-                                                                                              filled: true,
-                                                                                              hintStyle: TextStyle(color: Colors.grey[350]),
-                                                                                              labelText: "GENRE",
-                                                                                              labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
-                                                                                              hintText: "",
-                                                                                              fillColor: Colors.transparent),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
-                                                                                    Material(
-                                                                                      borderRadius: BorderRadius.circular(kRounded),
-                                                                                      color: Colors.transparent,
-                                                                                      child: InkWell(
-                                                                                        borderRadius: BorderRadius.circular(kRounded),
-                                                                                        onTap: () async {
-                                                                                          if (shouldEdit) {
-                                                                                            Navigator.pop(context);
-                                                                                            await editSong(songList[indexOfList].data, titleOfSong, albumOfSong, artistOfSong, genreOfSong);
-                                                                                            refresh = true;
-                                                                                            await Future.delayed(Duration(seconds: 1));
-                                                                                            rootState.provideman();
-                                                                                          }
+                                                                                Container(
+                                                                              alignment: Alignment.center,
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.circular(kRounded),
+                                                                                border: Border.all(color: Colors.white.withOpacity(0.04)),
+                                                                                color: glassOpacity,
+                                                                              ),
+                                                                              child: Column(
+                                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                                children: [
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
+                                                                                  Material(
+                                                                                    color: Colors.transparent,
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                      child: TextField(
+                                                                                        cursorColor: Color(0xFF3cb9cd),
+                                                                                        autofocus: false,
+                                                                                        controller: TextEditingController()..text = titleOfSong,
+                                                                                        style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                        onChanged: (text) {
+                                                                                          shouldEdit = true;
+                                                                                          titleOfSong = text;
                                                                                         },
-                                                                                        child: Container(
-                                                                                          height: deviceWidth / 12,
-                                                                                          width: deviceWidth / 4,
-                                                                                          decoration: BoxDecoration(
-                                                                                            boxShadow: [
-                                                                                              BoxShadow(
-                                                                                                color: Colors.black12,
-                                                                                                blurRadius: 1.0,
-                                                                                                spreadRadius: deviceWidth / 220,
+                                                                                        decoration: InputDecoration(
+                                                                                            border: OutlineInputBorder(
+                                                                                              borderRadius: const BorderRadius.all(
+                                                                                                Radius.circular(10.0),
                                                                                               ),
-                                                                                            ],
-                                                                                            color: Color(0xFF1DB954),
-                                                                                            borderRadius: BorderRadius.circular(kRounded),
-                                                                                          ),
-                                                                                          child: Center(
-                                                                                            child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
-                                                                                          ),
+                                                                                            ),
+                                                                                            enabledBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            focusedBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            filled: true,
+                                                                                            hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                            labelText: "TITLE",
+                                                                                            hintText: "",
+                                                                                            labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                            fillColor: Colors.transparent),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                  ///ALBUM
+                                                                                  Material(
+                                                                                    color: Colors.transparent,
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                      child: TextField(
+                                                                                        cursorColor: Color(0xFF3cb9cd),
+                                                                                        autofocus: false,
+                                                                                        controller: TextEditingController()..text = albumOfSong,
+                                                                                        style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                        onChanged: (text) {
+                                                                                          shouldEdit = true;
+                                                                                          albumOfSong = text;
+                                                                                        },
+                                                                                        decoration: InputDecoration(
+                                                                                            border: OutlineInputBorder(
+                                                                                              borderRadius: const BorderRadius.all(
+                                                                                                Radius.circular(10.0),
+                                                                                              ),
+                                                                                            ),
+                                                                                            enabledBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            focusedBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            filled: true,
+                                                                                            hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                            labelText: "ALBUM",
+                                                                                            labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                            hintText: "",
+                                                                                            fillColor: Colors.transparent),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                  ///Artist
+                                                                                  Material(
+                                                                                    color: Colors.transparent,
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                      child: TextField(
+                                                                                        cursorColor: Color(0xFF3cb9cd),
+                                                                                        autofocus: false,
+                                                                                        controller: TextEditingController()..text = artistOfSong,
+                                                                                        style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                        onChanged: (text) {
+                                                                                          shouldEdit = true;
+                                                                                          artistOfSong = text;
+                                                                                        },
+                                                                                        decoration: InputDecoration(
+                                                                                            border: OutlineInputBorder(
+                                                                                              borderRadius: const BorderRadius.all(
+                                                                                                Radius.circular(10.0),
+                                                                                              ),
+                                                                                            ),
+                                                                                            enabledBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            focusedBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            filled: true,
+                                                                                            hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                            labelText: "ARTIST",
+                                                                                            labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                            hintText: "",
+                                                                                            fillColor: Colors.transparent),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                  ///Genre
+                                                                                  Material(
+                                                                                    color: Colors.transparent,
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
+                                                                                      child: TextField(
+                                                                                        cursorColor: Color(0xFF3cb9cd),
+                                                                                        autofocus: false,
+                                                                                        controller: TextEditingController()..text = genreOfSong,
+                                                                                        style: TextStyle(color: Colors.white, fontFamily: "Futura"),
+                                                                                        onChanged: (text) {
+                                                                                          shouldEdit = true;
+                                                                                          genreOfSong = text;
+                                                                                        },
+                                                                                        decoration: InputDecoration(
+                                                                                            border: OutlineInputBorder(
+                                                                                              borderRadius: const BorderRadius.all(
+                                                                                                Radius.circular(10.0),
+                                                                                              ),
+                                                                                            ),
+                                                                                            enabledBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            focusedBorder: OutlineInputBorder(
+                                                                                              borderRadius: BorderRadius.circular(10.0),
+                                                                                              borderSide: BorderSide(color: Color(0xFF3cb9cd)),
+                                                                                            ),
+                                                                                            filled: true,
+                                                                                            hintStyle: TextStyle(color: Colors.grey[350]),
+                                                                                            labelText: "GENRE",
+                                                                                            labelStyle: TextStyle(color: Colors.grey[350], fontFamily: "Futura"),
+                                                                                            hintText: "",
+                                                                                            fillColor: Colors.transparent),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 8 : widget.heightOfDevice / 20)),
+                                                                                  Material(
+                                                                                    borderRadius: BorderRadius.circular(kRounded),
+                                                                                    color: Colors.transparent,
+                                                                                    child: InkWell(
+                                                                                      borderRadius: BorderRadius.circular(kRounded),
+                                                                                      onTap: () async {
+                                                                                        if (shouldEdit) {
+                                                                                          Navigator.pop(context);
+                                                                                          await editSong(songFile:songList[indexOfList].data,title: titleOfSong,album: albumOfSong,artist: artistOfSong,genre: genreOfSong);
+                                                                                          refresh = true;
+                                                                                          await Future.delayed(Duration(seconds: 1));
+                                                                                          rootState.provideman();
+                                                                                        }
+                                                                                      },
+                                                                                      child: Container(
+                                                                                        height: deviceWidth / 12,
+                                                                                        width: deviceWidth / 4,
+                                                                                        decoration: BoxDecoration(
+                                                                                          boxShadow: [
+                                                                                            BoxShadow(
+                                                                                              color: Colors.black12,
+                                                                                              blurRadius: 1.0,
+                                                                                              spreadRadius: deviceWidth / 220,
+                                                                                            ),
+                                                                                          ],
+                                                                                          color: Color(0xFF1DB954),
+                                                                                          borderRadius: BorderRadius.circular(kRounded),
+                                                                                        ),
+                                                                                        child: Center(
+                                                                                          child: Text("DONE", textAlign: TextAlign.center, style: TextStyle(color: Colors.black, fontSize: deviceWidth / 25, fontWeight: FontWeight.w600)),
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                    Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
-                                                                                  ],
-                                                                                ),
+                                                                                  ),
+                                                                                  Padding(padding: EdgeInsets.only(top: orientedCar ? widget.widthOfDevice / 16 : widget.heightOfDevice / 40)),
+                                                                                ],
                                                                               ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                    ],
-                                                                  ),
+                                                                    ),
+                                                                  ],
                                                                 ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      ));
-                                                    } catch (e) {
-                                                      Flushbar(
-                                                        message:
-                                                            "The File Might be Unsupported/Corrupted.",
-                                                        icon: Icon(
-                                                          Icons.info_outline,
-                                                          size: 28.0,
-                                                          color:
-                                                              Color(0xFFCB0447),
-                                                        ),
-                                                        shouldIconPulse: true,
-                                                        borderColor: Colors
-                                                            .white
-                                                            .withOpacity(0.04),
-                                                        borderWidth: 1,
-                                                        backgroundColor:
-                                                            glassOpacity,
-                                                        flushbarStyle:
-                                                            FlushbarStyle
-                                                                .FLOATING,
-                                                        isDismissible: true,
-                                                        barBlur: musicBox.get(
-                                                                    "glassBlur") ==
-                                                                null
-                                                            ? 18
-                                                            : musicBox.get(
-                                                                "glassBlur"),
-                                                        dismissDirection:
-                                                            FlushbarDismissDirection
-                                                                .HORIZONTAL,
-                                                        duration: Duration(
-                                                            seconds: 5),
-                                                        margin: EdgeInsets.only(
-                                                            bottom: 20,
-                                                            left: 8,
-                                                            right: 8),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                      )..show(context);
-                                                    }
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ));
+                                                  } catch (e) {
+                                                    Flushbar(
+                                                      message:
+                                                          "The File Might be Unsupported/Corrupted.",
+                                                      icon: Icon(
+                                                        Icons.info_outline,
+                                                        size: 28.0,
+                                                        color:
+                                                            Color(0xFFCB0447),
+                                                      ),
+                                                      shouldIconPulse: true,
+                                                      borderColor: Colors.white
+                                                          .withOpacity(0.04),
+                                                      borderWidth: 1,
+                                                      backgroundColor:
+                                                          glassOpacity,
+                                                      flushbarStyle:
+                                                          FlushbarStyle
+                                                              .FLOATING,
+                                                      isDismissible: true,
+                                                      barBlur: musicBox.get(
+                                                                  "glassBlur") ==
+                                                              null
+                                                          ? 18
+                                                          : musicBox
+                                                              .get("glassBlur"),
+                                                      dismissDirection:
+                                                          FlushbarDismissDirection
+                                                              .HORIZONTAL,
+                                                      duration:
+                                                          Duration(seconds: 5),
+                                                      margin: EdgeInsets.only(
+                                                          bottom: 20,
+                                                          left: 8,
+                                                          right: 8),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15),
+                                                    )..show(context);
                                                   }
+                                                  // }
                                                 } else if (i == 5) {
                                                   Navigator.pop(context);
                                                   Navigator.push(
@@ -1694,28 +1684,18 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                   await screenShotUI(false);
                                                   await setHomeScreenWallpaper();
                                                 } else if (i == 8) {
-                                                  if (isAndroid11) {
-                                                    androidRSupport(context);
-                                                  } else {
-                                                    if (await Permission.storage
-                                                            .request()
-                                                            .isGranted
-                                                        //     &&
-                                                        // await Permission
-                                                        //     .manageExternalStorage
-                                                        //     .request()
-                                                        //     .isGranted
-                                                        ) {
-                                                      await deleteAFile(
-                                                          songList[indexOfList]
-                                                              .data);
-                                                      Navigator.pop(context);
-                                                      await Future.delayed(
-                                                          Duration(seconds: 2));
+                                                  if (await Permission.storage
+                                                      .request()
+                                                      .isGranted) {
+                                                    await deleteAFile(
+                                                        songList[indexOfList]
+                                                            .data);
+                                                    Navigator.pop(context);
+                                                    await Future.delayed(
+                                                        Duration(seconds: 2));
 
-                                                      refresh = true;
-                                                      rootState.provideman();
-                                                    }
+                                                    refresh = true;
+                                                    rootState.provideman();
                                                   }
                                                 }
                                               },
