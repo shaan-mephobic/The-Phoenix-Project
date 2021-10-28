@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:audiotagger/audiotagger.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:phoenix/src/beginning/begin.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
@@ -22,7 +22,6 @@ class _AllofemState extends State<Allofem>
   @override
   void initState() {
     _scrollBarController = ScrollController();
-    tagger = Audiotagger();
     super.initState();
   }
 
@@ -46,6 +45,7 @@ class _AllofemState extends State<Allofem>
     return Scrollbar(
       controller: _scrollBarController,
       child: RefreshIndicator(
+        key: Begin.refreshIndicatorKey,
         backgroundColor:
             musicBox.get("dynamicArtDB") ?? true ? nowColor : Colors.white,
         color:

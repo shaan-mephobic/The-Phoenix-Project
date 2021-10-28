@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/artwork.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -448,7 +447,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               child: Text(
                                   (advanceAudioData == null
                                       ? ""
-                                      : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
+                                      : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       overflow: TextOverflow.ellipsis,
@@ -1008,7 +1007,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             child: Text(
                                                 (advanceAudioData == null
                                                     ? ""
-                                                    : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
+                                                    : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     overflow:
@@ -1196,23 +1195,23 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 });
                                 if (onLyrics) lyricsFoo();
                               },
-                              onLongPress: ()  {
+                              onLongPress: () {
                                 HapticFeedback.lightImpact();
-                                     Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.size,
-                                alignment: Alignment.center,
-                                duration: dialogueAnimationDuration,
-                                reverseDuration: dialogueAnimationDuration,
-                                child: OnHoldExtended(
-                                  context: context,
-                                  car: orientedCar,
-                                  heightOfDevice: deviceHeight,
-                                  widthOfDevice: deviceWidth,
-                                ),
-                              ),
-                            );
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.size,
+                                    alignment: Alignment.center,
+                                    duration: dialogueAnimationDuration,
+                                    reverseDuration: dialogueAnimationDuration,
+                                    child: OnHoldExtended(
+                                      context: context,
+                                      car: orientedCar,
+                                      heightOfDevice: deviceHeight,
+                                      widthOfDevice: deviceWidth,
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           ),

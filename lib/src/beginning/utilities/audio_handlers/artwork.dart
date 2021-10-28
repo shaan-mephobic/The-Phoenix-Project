@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:on_audio_edit/on_audio_edit.dart' as onAudioEdit;
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../../widgets/artwork_background.dart';
-
-Map advanceAudioData = {};
 
 playerontap() async {
   if (!playerVisible) playerVisible = true;
@@ -13,9 +12,10 @@ playerontap() async {
           format: ArtworkFormat.JPEG, size: 200) ??
       defaultNone;
   try {
-    advanceAudioData = await tag.readAudioFileAsMap(path: nowMediaItem.id);
+    advanceAudioData =
+        await onAudioEdit.OnAudioEdit().readAudio(nowMediaItem.id);
   } catch (e) {
-    advanceAudioData = {};
+    advanceAudioData = null;
   }
   if (initialart && art == art2) {
     first = true;

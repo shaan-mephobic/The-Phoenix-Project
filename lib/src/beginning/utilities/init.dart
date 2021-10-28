@@ -16,7 +16,6 @@ import 'package:phoenix/src/beginning/utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/genres_back.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/beginning/utilities/scraping/image_scrape.dart';
-import 'package:device_info/device_info.dart';
 
 import 'has_network.dart';
 
@@ -39,8 +38,6 @@ cacheImages() async {
 dataInit() async {
   await Hive.initFlutter();
   musicBox = await Hive.openBox('musicDataBox');
-  var info = await DeviceInfoPlugin().androidInfo;
-  isAndroid11 = info.version.sdkInt > 29 ? true : false;
   glassBlur = ImageFilter.blur(
       sigmaX:
           musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur"),

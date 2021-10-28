@@ -3,7 +3,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/widgets/custom/graviticons.dart';
 import 'package:phoenix/src/beginning/widgets/custom/marquee.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/artwork.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/phoenix_visualizer.dart';
 import 'package:phoenix/src/beginning/widgets/now_art.dart';
 import 'package:phoenix/src/beginning/widgets/seek_bar.dart';
@@ -471,7 +470,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   child: Text(
                                       (advanceAudioData == null
                                           ? ""
-                                          : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
+                                          : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
                                       style: TextStyle(
                                           fontSize: deviceWidth / 37,
                                           fontFamily: "Futura",
@@ -999,7 +998,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                         child: Text(
                                             (advanceAudioData == null
                                                 ? ""
-                                                : "${advanceAudioData['bitRate']}Kbps ${advanceAudioData['sampleRate']}KHz ${advanceAudioData['format']}"),
+                                                : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
                                             style: TextStyle(
                                                 fontSize: deviceWidth / 37,
                                                 fontFamily: "Futura",

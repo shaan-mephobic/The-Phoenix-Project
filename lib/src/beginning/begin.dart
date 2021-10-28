@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'package:audiotagger/audiotagger.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/pages/now_playing/now_playing_sky.dart';
@@ -14,7 +15,6 @@ import 'pages/tracks/tracks.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres.dart';
 import 'package:phoenix/src/beginning/pages/artists/artists.dart';
 import 'package:phoenix/src/beginning/pages/search/search.dart';
-import 'package:phoenix/src/beginning/utilities/init.dart';
 import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
 import 'package:phoenix/src/beginning/pages/mansion/mansion.dart';
 import 'package:phoenix/src/beginning/widgets/custom/physics.dart';
@@ -32,14 +32,16 @@ import 'pages/albums/albums.dart';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
 
 class Begin extends StatefulWidget {
+  static final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
   @override
   _BeginState createState() => _BeginState();
 }
 
 class _BeginState extends State<Begin>
     with TickerProviderStateMixin, WidgetsBindingObserver {
-  bool exitapp = false;
   bool isonexit = false;
+  bool isEditing = false;
   bool stackedPhoenix = false;
   TabController tabController;
 
@@ -47,8 +49,9 @@ class _BeginState extends State<Begin>
   void initState() {
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
-    tag = Audiotagger();
-    fetchAll();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Begin.refreshIndicatorKey.currentState?.show();
+    });
     visualizerNotificationInit();
     WidgetsBinding.instance.addObserver(this);
     super.initState();
@@ -96,9 +99,11 @@ class _BeginState extends State<Begin>
       }
     }
     if (refresh) {
-      print("Refreshing...");
+      debugPrint("Refreshing...");
       refresh = false;
-      fetchAll();
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        Begin.refreshIndicatorKey.currentState?.show();
+      });
     }
     orientedCar = false;
     deviceHeight = MediaQuery.of(context).size.height;
@@ -168,47 +173,48 @@ class _BeginState extends State<Begin>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
-                                  child: Stack(
-                                children: [
-                                  Visibility(
-                                    visible: stackedPhoenix,
-                                    child: Text(
-                                      "  PHOENIX",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: orientedCar
-                                              ? deviceWidth / 16
-                                              : deviceHeight / 32,
-                                          fontFamily: "NightMachine"),
-                                      textAlign: TextAlign.start,
+                                child: Stack(
+                                  children: [
+                                    Visibility(
+                                      visible: stackedPhoenix,
+                                      child: Text(
+                                        "  PHOENIX",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: orientedCar
+                                                ? deviceWidth / 16
+                                                : deviceHeight / 32,
+                                            fontFamily: "NightMachine"),
+                                        textAlign: TextAlign.start,
+                                      ),
                                     ),
-                                  ),
-                                  Visibility(
-                                    visible: !stackedPhoenix,
-                                    child: AnimatedTextKit(
-                                      animatedTexts: [
-                                        TypewriterAnimatedText(
-                                          "  PHOENIX",
-                                          cursor: " ",
-                                          speed: Duration(milliseconds: 70),
-                                          textStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: orientedCar
-                                                  ? deviceWidth / 16
-                                                  : deviceHeight / 32,
-                                              fontFamily: "NightMachine"),
-                                          textAlign: TextAlign.start,
-                                        ),
-                                      ],
-                                      isRepeatingAnimation: false,
-                                      onFinished: () {
-                                        stackedPhoenix = true;
-                                        rootState.provideman();
-                                      },
+                                    Visibility(
+                                      visible: !stackedPhoenix,
+                                      child: AnimatedTextKit(
+                                        animatedTexts: [
+                                          TypewriterAnimatedText(
+                                            "  PHOENIX",
+                                            cursor: " ",
+                                            speed: Duration(milliseconds: 70),
+                                            textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: orientedCar
+                                                    ? deviceWidth / 16
+                                                    : deviceHeight / 32,
+                                                fontFamily: "NightMachine"),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                        ],
+                                        isRepeatingAnimation: false,
+                                        onFinished: () {
+                                          stackedPhoenix = true;
+                                          rootState.provideman();
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              )),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                           Padding(
@@ -310,9 +316,8 @@ class _BeginState extends State<Begin>
                                   PageTransition(
                                     type: PageTransitionType.size,
                                     alignment: Alignment.center,
-                                    duration:  dialogueAnimationDuration,
-                                    reverseDuration:
-                                        dialogueAnimationDuration,
+                                    duration: dialogueAnimationDuration,
+                                    reverseDuration: dialogueAnimationDuration,
                                     child: const PhoenixVisualizerGlobal(),
                                   ),
                                 ).then((value) async {
@@ -327,8 +332,7 @@ class _BeginState extends State<Begin>
                                   type: PageTransitionType.size,
                                   alignment: Alignment.center,
                                   duration: dialogueAnimationDuration,
-                                  reverseDuration:
-                                     dialogueAnimationDuration,
+                                  reverseDuration: dialogueAnimationDuration,
                                   child: const PhoenixVisualizerCustomize(),
                                 ),
                               ).then((value) async {
@@ -500,23 +504,63 @@ class _BeginState extends State<Begin>
   Future<bool> _onWillPop() async {
     if (pc.isPanelOpen) {
       pc.close();
-      rootState.provideman();
       return false;
-    } else if (pc.isPanelClosed && !isonexit) {
+    } else if ((pc.isPanelClosed || !pc.isPanelShown) && !isonexit) {
       isonexit = true;
-
-      fivesecsbacker();
-
-      return false;
-    } else if (pc.isPanelClosed && isonexit) {
-      return true;
+      bool result = await fivesecsbacker() &&
+          isonexit &&
+          (pc.isPanelClosed || !pc.isPanelShown);
+      isonexit = false;
+      return result;
     }
     return false;
   }
 
-  fivesecsbacker() async {
-    await Future.delayed(Duration(seconds: 5));
-    isonexit = false;
-    exitapp = false;
+  Future<bool> fivesecsbacker() async {
+    bool confirmExit = false;
+    bool isAutoDismiss = false;
+    Future.delayed(Duration(seconds: 5)).then((value) {
+      isAutoDismiss = true;
+    });
+    await Flushbar(
+      onStatusChanged: (FlushbarStatus status) {
+        switch (status) {
+          case FlushbarStatus.DISMISSED:
+            break;
+          case FlushbarStatus.SHOWING:
+            break;
+          case FlushbarStatus.IS_APPEARING:
+            break;
+          case FlushbarStatus.IS_HIDING:
+            confirmExit = true;
+            break;
+        }
+      },
+      messageText: Text("Go back once more to exit",
+          style: TextStyle(fontFamily: "Futura", color: Colors.white)),
+      icon: Icon(
+        Icons.exit_to_app_rounded,
+        size: 28.0,
+        color: Color(0xFFCB0447),
+      ),
+      shouldIconPulse: true,
+      dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+      duration: const Duration(milliseconds: 5000),
+      borderColor: Colors.white.withOpacity(0.04),
+      borderWidth: 1,
+      backgroundColor: glassOpacity,
+      flushbarStyle: FlushbarStyle.FLOATING,
+      isDismissible: true,
+      barBlur:
+          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      borderRadius: BorderRadius.circular(15),
+    ).show(context);
+    if (confirmExit && !isAutoDismiss) {
+      return true;
+    } else {
+      isonexit = false;
+      return false;
+    }
   }
 }

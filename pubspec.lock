@@ -71,20 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.6+1"
-  audiotagger:
-    dependency: "direct main"
-    description:
-      name: audiotagger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1"
-  awesome_notifications:
-    dependency: "direct main"
-    description:
-      name: awesome_notifications
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.6+11"
   boolean_selector:
     dependency: transitive
     description:
@@ -233,10 +219,12 @@ packages:
   flutter_remixicon:
     dependency: "direct main"
     description:
-      name: flutter_remixicon
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.5.1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "968fa4429daf093a22b16870bb4593c165926e64"
+      url: "https://github.com/KarimAbdo/flutter_remixicon.git"
+    source: git
+    version: "2.5.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -324,13 +312,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
-  intl:
-    dependency: transitive
-    description:
-      name: intl
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.17.0"
   ionicons:
     dependency: "direct main"
     description:
@@ -407,14 +388,14 @@ packages:
       name: on_audio_edit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.4.0+1"
   on_audio_query:
     dependency: "direct main"
     description:
       name: on_audio_query
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.1"
+    version: "2.5.2"
   on_audio_query_platform_interface:
     dependency: transitive
     description:
