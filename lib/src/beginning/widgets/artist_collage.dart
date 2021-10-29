@@ -4,11 +4,11 @@ import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import '../utilities/page_backend/artists_back.dart';
 
-Widget artistCollage(
-    int index, List listOfArtists, double cornerRadius, double size) {
+Widget? artistCollage(
+    int? index, List listOfArtists, double cornerRadius, double size) {
   if (musicBox.get("mapOfArtists") == null
       ? false
-      : musicBox.get("mapOfArtists")[listOfArtists[index]] != null) {
+      : musicBox.get("mapOfArtists")[listOfArtists[index!]] != null) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(cornerRadius),
@@ -22,7 +22,7 @@ Widget artistCollage(
       ),
     );
   } else {
-    if (artistsAlbums[listOfArtists[index]].length == 0) {
+    if (artistsAlbums[listOfArtists[index!]].length == 0) {
       return null;
     } else if (artistsAlbums[listOfArtists[index]].length == 1) {
       return Container(
@@ -34,7 +34,7 @@ Widget artistCollage(
             fit: BoxFit.cover,
             image: MemoryImage(
                 albumsArts[artistsAlbums[listOfArtists[index]][0]] ??
-                    defaultNone),
+                    defaultNone!),
           ),
         ),
       );
@@ -54,7 +54,7 @@ Widget artistCollage(
                 fit: BoxFit.cover,
                 image: MemoryImage(
                     albumsArts[artistsAlbums[listOfArtists[index]][0]] ??
-                        defaultNone),
+                        defaultNone!),
               ),
             ),
           ),
@@ -69,7 +69,7 @@ Widget artistCollage(
                 fit: BoxFit.cover,
                 image: MemoryImage(
                     albumsArts[artistsAlbums[listOfArtists[index]][1]] ??
-                        defaultNone),
+                        defaultNone!),
               ),
             ),
           ),
@@ -93,7 +93,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][0]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),
@@ -108,7 +108,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][1]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),
@@ -126,7 +126,7 @@ Widget artistCollage(
                 fit: BoxFit.cover,
                 image: MemoryImage(
                     albumsArts[artistsAlbums[listOfArtists[index]][2]] ??
-                        defaultNone),
+                        defaultNone!),
               ),
             ),
           ),
@@ -150,7 +150,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][0]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),
@@ -165,7 +165,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][1]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),
@@ -184,7 +184,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][2]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),
@@ -199,7 +199,7 @@ Widget artistCollage(
                     fit: BoxFit.cover,
                     image: MemoryImage(
                         albumsArts[artistsAlbums[listOfArtists[index]][3]] ??
-                            defaultNone),
+                            defaultNone!),
                   ),
                 ),
               ),

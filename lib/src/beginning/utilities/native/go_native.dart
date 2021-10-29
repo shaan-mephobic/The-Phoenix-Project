@@ -97,11 +97,11 @@ getSettingPermission() async {
   }
 }
 
-Future<String> getExternalDirectory() async {
+Future<String?> getExternalDirectory() async {
   try {
     return (await platform.invokeMethod("externalStorage"));
   } catch (e) {
-    log(e);
+    log(e.toString());
   }
   return null;
 }

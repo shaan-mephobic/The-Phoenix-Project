@@ -15,7 +15,7 @@ isolatedArtistScrapeInit() async {
     await Directory("${applicationFileDirectory.path}/artists").create();
   }
   Map mapOfArtists = musicBox.get("mapOfArtists") ?? {};
-  List insideDB = mapOfArtists.keys.toList() ?? [];
+  List insideDB = mapOfArtists.keys.toList();
   neverDone = [];
   for (int i = 0; i < allArtists.length; i++) {
     if (!insideDB.contains(allArtists[i])) {
@@ -49,13 +49,13 @@ isolatedArtistScrapeInit() async {
 
 class IsolatedArtistScrape {
   final receivePort = ReceivePort();
-  Isolate _isolate;
+  Isolate? _isolate;
 
   void stop() {
     isIsolated = false;
     if (_isolate != null) {
       receivePort.close();
-      _isolate.kill(priority: Isolate.immediate);
+      _isolate!.kill(priority: Isolate.immediate);
       _isolate = null;
     }
   }
@@ -91,7 +91,7 @@ class IsolatedArtistScrape {
   }
 
   static void _entryPoint(Map map) async {
-    SendPort port = map['port'];
+    SendPort? port = map['port'];
     List<int> pallete = [];
 
     // colorPallete(ImageProvider image) async {
@@ -190,7 +190,7 @@ class IsolatedArtistScrape {
 
     for (int i = 0; i < map['artists'].length; i++) {
       pallete = [];
-      String finalLink;
+      String? finalLink;
       if (map['artists'][i] == "<UNKNOWN>") {
         finalLink = null;
       } else {
@@ -209,7 +209,7 @@ class IsolatedArtistScrape {
         //   pallete = [map['kMaterialBlack'].value, Colors.white.value];
         // }
       }
-      port.send([map['artists'][i], finalLink, pallete]);
+      port!.send([map['artists'][i], finalLink, pallete]);
     }
     IsolatedArtistScrape().stop();
   }

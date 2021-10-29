@@ -13,7 +13,6 @@
 * along with The Phoenix Project.  If not, see <http://www.gnu.org/licenses/>.
 ---------------------------------------------------------------------------------------------------------*/
 
-// @dart=2.10
 import 'package:phoenix/src/beginning/utilities/audio_handlers/background.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/pages/settings/settings_pages/privacy.dart';
@@ -43,6 +42,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
     ),
   );
   runApp(

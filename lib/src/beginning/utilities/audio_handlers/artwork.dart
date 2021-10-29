@@ -8,7 +8,7 @@ import '../../widgets/artwork_background.dart';
 playerontap() async {
   if (!playerVisible) playerVisible = true;
   artwork = await OnAudioQuery().queryArtwork(
-          nowMediaItem.extras["id"], ArtworkType.AUDIO,
+          nowMediaItem.extras!["id"], ArtworkType.AUDIO,
           format: ArtworkFormat.JPEG, size: 200) ??
       defaultNone;
   try {
@@ -57,13 +57,13 @@ playerontap() async {
         nowContrast = Color(musicBox.get("contrastDefault"));
         isArtworkDark = musicBox.get("isArtworkDarkDefault");
       } else {
-        await getImagePalette(MemoryImage(artwork));
+        await getImagePalette(MemoryImage(artwork!));
         musicBox.put("dominantDefault", nowColor.value);
         musicBox.put("contrastDefault", nowContrast.value);
         musicBox.put("isArtworkDarkDefault", isArtworkDark);
       }
     } else {
-      await getImagePalette(MemoryImage(artwork));
+      await getImagePalette(MemoryImage(artwork!));
       Map colorDB = musicBox.get("colorsDB") ?? {};
       colorDB[nowMediaItem.id] = [
         nowColor.value,
@@ -87,29 +87,29 @@ playerontap() async {
 getImagePalette(ImageProvider imageProvider) async {
   final PaletteGenerator paletteGenerator =
       await PaletteGenerator.fromImageProvider(imageProvider);
-  nowColor = (paletteGenerator.dominantColor.color);
+  nowColor = (paletteGenerator.dominantColor!.color);
   double luminance = nowColor.computeLuminance();
   isArtworkDark = luminance <= 0.6 ? true : false;
   if (luminance <= 0.5) {
     try {
-      var pal = paletteGenerator.lightMutedColor.color;
+      var pal = paletteGenerator.lightMutedColor!.color;
       nowContrast = pal;
     } catch (e) {
       nowContrast = Colors.white;
     }
     if (nowColor == nowContrast) {
-      nowContrast = paletteGenerator.darkMutedColor.color;
+      nowContrast = paletteGenerator.darkMutedColor!.color;
     }
   } else {
     try {
-      var pal = (paletteGenerator.darkMutedColor.color);
+      var pal = (paletteGenerator.darkMutedColor!.color);
       nowContrast = pal;
     } catch (e) {
       nowContrast = Colors.black;
     }
 
     if (nowColor == nowContrast) {
-      nowContrast = paletteGenerator.lightMutedColor.color;
+      nowContrast = paletteGenerator.lightMutedColor!.color;
     }
   }
   if ((luminance - nowContrast.computeLuminance()).abs() < 0.2) {

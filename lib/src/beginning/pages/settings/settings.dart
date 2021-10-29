@@ -18,7 +18,7 @@ List settingsList = [
   "CHANGELOGS",
   "PHOENIX",
 ];
-var globalRotational;
+late var globalRotational;
 
 class Settings extends StatefulWidget {
   @override
@@ -55,7 +55,6 @@ class _SettingsState extends State<Settings> {
       deviceWidth = MediaQuery.of(context).size.width;
     }
     onSettings = true;
-    bool darkModeOn = true;
     return Consumer<Leprovider>(
       builder: (context, taste, _) {
         globaltaste = taste;
@@ -79,18 +78,19 @@ class _SettingsState extends State<Settings> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? deviceWidth / 4.2
-                                        : deviceHeight / 5.5),
+                                        ? deviceWidth! / 4.2
+                                        : deviceHeight! / 5.5),
                               ),
                               SizedBox(
                                 height: orientedCar
-                                    ? deviceWidth - deviceWidth / 4.2
-                                    : deviceHeight - deviceHeight / 5.5,
+                                    ? deviceWidth! - deviceWidth! / 4.2
+                                    : deviceHeight! - deviceHeight! / 5.5,
                                 width: orientedCar ? deviceHeight : deviceWidth,
                                 child: Center(
                                   child: ListView(
                                     padding: EdgeInsets.only(
-                                        top: orientedCar ? deviceWidth / 7 : 0),
+                                        top:
+                                            orientedCar ? deviceWidth! / 7 : 0),
                                     shrinkWrap: true,
                                     physics: BouncingScrollPhysics(),
                                     scrollDirection: Axis.vertical,
@@ -103,7 +103,7 @@ class _SettingsState extends State<Settings> {
                                           width: orientedCar
                                               ? deviceHeight
                                               : deviceWidth,
-                                          height: deviceWidth / 5,
+                                          height: deviceWidth! / 5,
                                           child: Row(
                                             children: [
                                               Material(
@@ -190,20 +190,19 @@ class _SettingsState extends State<Settings> {
                                                           ? deviceHeight
                                                           : deviceWidth,
                                                       height: orientedCar
-                                                          ? deviceWidth / 5.1
-                                                          : deviceHeight / 12,
+                                                          ? deviceWidth! / 5.1
+                                                          : deviceHeight! / 12,
                                                       child: Center(
                                                         child: Text(
                                                           settingsList[i],
                                                           style: TextStyle(
                                                               fontSize: orientedCar
-                                                                  ? deviceWidth /
+                                                                  ? deviceWidth! /
                                                                       22
-                                                                  : deviceHeight /
+                                                                  : deviceHeight! /
                                                                       40,
-                                                              color: darkModeOn
-                                                                  ? Colors.white
-                                                                  : kMaterialBlack),
+                                                              color:
+                                                                  Colors.white),
                                                         ),
                                                       ),
                                                     ),
@@ -222,17 +221,16 @@ class _SettingsState extends State<Settings> {
                         ),
                         AppBar(
                           iconTheme: IconThemeData(
-                            color: darkModeOn ? kMaterialBlack : Colors.white,
+                            color: kMaterialBlack,
                           ),
-                          elevation: deviceWidth / 60,
+                          elevation: deviceWidth! / 60,
                           toolbarHeight: orientedCar
-                              ? deviceWidth / 4.2
-                              : deviceHeight / 5.5,
-                          backgroundColor:
-                              darkModeOn ? Colors.white : kMaterialBlack,
+                              ? deviceWidth! / 4.2
+                              : deviceHeight! / 5.5,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(deviceWidth / 14),
+                              bottom: Radius.circular(deviceWidth! / 14),
                             ),
                           ),
                           centerTitle: true,
@@ -241,31 +239,30 @@ class _SettingsState extends State<Settings> {
                             style: TextStyle(
                                 letterSpacing: 1,
                                 fontFamily: "Futura",
-                                fontSize: deviceWidth / 10,
-                                color:
-                                    darkModeOn ? kMaterialBlack : Colors.white),
+                                fontSize: deviceWidth! / 10,
+                                color: kMaterialBlack),
                           ),
                         ),
                         Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.only(
                               top: orientedCar
-                                  ? deviceWidth / 4.2 -
-                                      deviceWidth / 14 +
+                                  ? deviceWidth! / 4.2 -
+                                      deviceWidth! / 14 +
                                       MediaQuery.of(context).padding.top
-                                  : deviceHeight / 5.5 -
-                                      deviceWidth / 14 +
+                                  : deviceHeight! / 5.5 -
+                                      deviceWidth! / 14 +
                                       MediaQuery.of(context).padding.top),
                           child: Container(
-                            height: deviceWidth / 7,
-                            width: deviceWidth / 7,
+                            height: deviceWidth! / 7,
+                            width: deviceWidth! / 7,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
                                   offset: Offset(0, 1),
                                   color: Colors.black12,
                                   blurRadius: 1.0,
-                                  spreadRadius: deviceWidth / 230,
+                                  spreadRadius: deviceWidth! / 230,
                                 ),
                               ],
                               color: kMaterialBlack,
@@ -281,7 +278,7 @@ class _SettingsState extends State<Settings> {
                                     child: Icon(
                                       Ionicons.settings_sharp,
                                       color: Color(0xFF02c9d3),
-                                      size: deviceWidth / 9,
+                                      size: deviceWidth! / 9,
                                     ),
                                   ),
                                 );

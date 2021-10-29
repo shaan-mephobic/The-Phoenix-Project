@@ -32,7 +32,6 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    bool darkModeOn = true;
     if (ascend) {
       return Consumer<MrMan>(builder: (context, mansionConsumer, child) {
         globalMansionConsumer = mansionConsumer;
@@ -51,16 +50,16 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                 ? BouncingScrollPhysics()
                 : ClampingScrollPhysics(),
             children: [
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 14)),
+              Padding(padding: EdgeInsets.only(top: deviceWidth! / 14)),
               // Recently Played
               Container(
-                height: deviceWidth / 1.636,
+                height: deviceWidth! / 1.636,
                 width: deviceWidth,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                         color:
-                            Colors.black.withOpacity(glassShadowOpacity / 100),
+                            Colors.black.withOpacity(glassShadowOpacity! / 100),
                         blurRadius: glassShadowBlur,
                         offset: kShadowOffset),
                   ],
@@ -78,18 +77,14 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: deviceWidth / 9,
+                            height: deviceWidth! / 9,
                             child: Center(
                               child: Text(
                                 "Recently Played",
                                 style: TextStyle(
-                                    fontSize: deviceWidth / 15,
+                                    fontSize: deviceWidth! / 15,
                                     fontWeight: FontWeight.w600,
-                                    color: musicBox.get("dynamicArtDB") ?? true
-                                        ? Colors.white
-                                        : darkModeOn
-                                            ? Colors.white
-                                            : Colors.black),
+                                    color: Colors.white),
                               ),
                             ),
                           ),
@@ -105,112 +100,101 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                               itemCount: recentPlayingLengthFoo(),
                               itemBuilder: (BuildContext context, int index) {
                                 return Material(
-                                    color: Colors.transparent,
-                                    child: SizedBox(
-                                      height: deviceWidth / 2,
-                                      width: deviceWidth / 2.5,
-                                      child: InkWell(
-                                        borderRadius:
-                                            BorderRadius.circular(kRounded),
-                                        onTap: () async {
-                                          if (recentPlayedMediaItems[index]
-                                                  .duration ==
-                                              Duration(milliseconds: 0)) {
-                                            corruptedFile(context);
-                                          } else {
-                                            await playThis(
-                                                songList.indexOf(
-                                                    recentPlayed[index]),
-                                                "all");
-                                          }
-                                        },
-                                        onLongPress: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.size,
-                                              alignment: Alignment.center,
-                                              duration:
-                                                  dialogueAnimationDuration,
-                                              reverseDuration:
-                                                  dialogueAnimationDuration,
-                                              child: OnHold(
-                                                  classContext: context,
-                                                  listOfSong: recentPlayed,
-                                                  index: songList.indexOf(
-                                                      recentPlayed[index]),
-                                                  car: orientedCar,
-                                                  heightOfDevice: deviceHeight,
-                                                  widthOfDevice: deviceWidth,
-                                                  songOf: "all"),
-                                            ),
-                                          );
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: deviceWidth / 30)),
-                                            PhysicalModel(
-                                              color: Colors.transparent,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      kRounded),
-                                              elevation: deviceWidth / 140,
-                                              child: Container(
-                                                height: deviceWidth / 3,
-                                                width: deviceWidth / 3,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          kRounded),
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: MemoryImage(
-                                                        albumsArts[recentPlayed[
-                                                                    index]
-                                                                .album] ??
-                                                            defaultNone),
-                                                  ),
+                                  color: Colors.transparent,
+                                  child: SizedBox(
+                                    height: deviceWidth! / 2,
+                                    width: deviceWidth! / 2.5,
+                                    child: InkWell(
+                                      borderRadius:
+                                          BorderRadius.circular(kRounded),
+                                      onTap: () async {
+                                        if (recentPlayedMediaItems[index]
+                                                .duration ==
+                                            Duration(milliseconds: 0)) {
+                                          corruptedFile(context);
+                                        } else {
+                                          await playThis(
+                                              songList
+                                                  .indexOf(recentPlayed[index]),
+                                              "all");
+                                        }
+                                      },
+                                      onLongPress: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.size,
+                                            alignment: Alignment.center,
+                                            duration: dialogueAnimationDuration,
+                                            reverseDuration:
+                                                dialogueAnimationDuration,
+                                            child: OnHold(
+                                                classContext: context,
+                                                listOfSong: recentPlayed,
+                                                index: index,
+                                                car: orientedCar,
+                                                heightOfDevice: deviceHeight,
+                                                widthOfDevice: deviceWidth,
+                                                songOf: "all"),
+                                          ),
+                                        );
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: deviceWidth! / 30)),
+                                          PhysicalModel(
+                                            color: Colors.transparent,
+                                            borderRadius:
+                                                BorderRadius.circular(kRounded),
+                                            elevation: deviceWidth! / 140,
+                                            child: Container(
+                                              height: deviceWidth! / 3,
+                                              width: deviceWidth! / 3,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        kRounded),
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: MemoryImage(albumsArts[
+                                                          recentPlayed[index]
+                                                              .album!] ??
+                                                      defaultNone!),
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: deviceWidth / 40)),
-                                            Text(
-                                              recentPlayed[index].title,
-                                              maxLines: 2,
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: musicBox.get(
-                                                            "dynamicArtDB") ??
-                                                        true
-                                                    ? Colors.white
-                                                    : darkModeOn
-                                                        ? Colors.white
-                                                        : Colors.black,
-                                                fontSize: deviceWidth / 25,
-                                                fontWeight: FontWeight.w600,
-                                                shadows: [
-                                                  Shadow(
-                                                    offset: musicBox.get(
-                                                                "dynamicArtDB") ??
-                                                            true
-                                                        ? Offset(1.0, 1.0)
-                                                        : darkModeOn
-                                                            ? Offset(0, 1.0)
-                                                            : Offset(0, 0.5),
-                                                    blurRadius: 2.0,
-                                                    color: Colors.black45,
-                                                  ),
-                                                ],
-                                              ),
+                                          ),
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: deviceWidth! / 40)),
+                                          Text(
+                                            recentPlayed[index].title,
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: deviceWidth! / 25,
+                                              fontWeight: FontWeight.w600,
+                                              shadows: [
+                                                Shadow(
+                                                  offset: musicBox.get(
+                                                              "dynamicArtDB") ??
+                                                          true
+                                                      ? Offset(1.0, 1.0)
+                                                      : Offset(0, 1.0),
+                                                  blurRadius: 2.0,
+                                                  color: Colors.black45,
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ));
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                           ),
@@ -222,25 +206,21 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
 
               // MOSTLY LISTENED TO
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 7)),
+              Padding(padding: EdgeInsets.only(top: deviceWidth! / 7)),
               SizedBox(
-                height: deviceWidth / 1.6,
+                height: deviceWidth! / 1.6,
                 width: deviceWidth,
                 child: Column(
                   children: [
                     SizedBox(
-                      height: deviceWidth / 9,
+                      height: deviceWidth! / 9,
                       child: Center(
                         child: Text(
                           "Your Favourite",
                           style: TextStyle(
-                              fontSize: deviceWidth / 15,
+                              fontSize: deviceWidth! / 15,
                               fontWeight: FontWeight.w600,
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? Colors.white
-                                  : darkModeOn
-                                      ? Colors.white
-                                      : Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -260,8 +240,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                             Material(
                               color: Colors.transparent,
                               child: SizedBox(
-                                height: deviceWidth / 2,
-                                width: deviceWidth / 1.6,
+                                height: deviceWidth! / 2,
+                                width: deviceWidth! / 1.6,
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(kRounded),
                                   onTap: () async {
@@ -297,15 +277,15 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                     children: [
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 30)),
+                                              top: deviceWidth! / 30)),
                                       PhysicalModel(
                                         color: Colors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(kRounded),
-                                        elevation: deviceWidth / 140,
+                                        elevation: deviceWidth! / 140,
                                         child: Container(
-                                          height: deviceWidth / 3,
-                                          width: deviceWidth / 2,
+                                          height: deviceWidth! / 3,
+                                          width: deviceWidth! / 2,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(kRounded),
@@ -313,8 +293,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                               fit: BoxFit.cover,
                                               image: MemoryImage(albumsArts[
                                                           alwaysPlayed[index]
-                                                              .album] ??
-                                                      defaultNone
+                                                              .album!] ??
+                                                      defaultNone!
                                                   // alwaysPlayedArt[index] ??
                                                   //     defaultNone
                                                   ),
@@ -324,22 +304,16 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 40)),
+                                              top: deviceWidth! / 40)),
                                       SizedBox(
-                                        width: deviceWidth / 2,
+                                        width: deviceWidth! / 2,
                                         child: Text(
                                           alwaysPlayed[index].title,
                                           maxLines: 2,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            color:
-                                                musicBox.get("dynamicArtDB") ??
-                                                        true
-                                                    ? Colors.white
-                                                    : darkModeOn
-                                                        ? Colors.white
-                                                        : Colors.black,
-                                            fontSize: deviceWidth / 25,
+                                            color: Colors.white,
+                                            fontSize: deviceWidth! / 25,
                                             fontWeight: FontWeight.w600,
                                             shadows: [
                                               Shadow(
@@ -347,9 +321,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                             "dynamicArtDB") ??
                                                         true
                                                     ? Offset(1.0, 1.0)
-                                                    : darkModeOn
-                                                        ? Offset(0, 1.0)
-                                                        : Offset(0, 0.5),
+                                                    : Offset(0, 1.0),
                                                 blurRadius: 2.0,
                                                 color: Colors.black45,
                                               ),
@@ -373,25 +345,21 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               Visibility(
                 visible: everPlayedLimited.isNotEmpty,
                 child: Padding(
-                  padding: EdgeInsets.only(top: deviceWidth / 7),
+                  padding: EdgeInsets.only(top: deviceWidth! / 7),
                   child: SizedBox(
-                    height: deviceWidth / 1.6,
+                    height: deviceWidth! / 1.6,
                     width: deviceWidth,
                     child: Column(
                       children: [
                         SizedBox(
-                          height: deviceWidth / 9,
+                          height: deviceWidth! / 9,
                           child: Center(
                             child: Text(
                               "Try Something New",
                               style: TextStyle(
-                                  fontSize: deviceWidth / 15,
+                                  fontSize: deviceWidth! / 15,
                                   fontWeight: FontWeight.w600,
-                                  color: musicBox.get("dynamicArtDB") ?? true
-                                      ? Colors.white
-                                      : darkModeOn
-                                          ? Colors.white
-                                          : Colors.black),
+                                  color: Colors.white),
                             ),
                           ),
                         ),
@@ -411,8 +379,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                 Material(
                                   color: Colors.transparent,
                                   child: SizedBox(
-                                    height: deviceWidth / 2,
-                                    width: deviceWidth / 1.6,
+                                    height: deviceWidth! / 2,
+                                    width: deviceWidth! / 1.6,
                                     child: InkWell(
                                       borderRadius:
                                           BorderRadius.circular(kRounded),
@@ -448,15 +416,15 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       child: Column(children: [
                                         Padding(
                                             padding: EdgeInsets.only(
-                                                top: deviceWidth / 30)),
+                                                top: deviceWidth! / 30)),
                                         PhysicalModel(
-                                          elevation: deviceWidth / 140,
+                                          elevation: deviceWidth! / 140,
                                           borderRadius:
                                               BorderRadius.circular(kRounded),
                                           color: Colors.transparent,
                                           child: Container(
-                                            height: deviceWidth / 3,
-                                            width: deviceWidth / 2,
+                                            height: deviceWidth! / 3,
+                                            width: deviceWidth! / 2,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(
@@ -465,30 +433,24 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 fit: BoxFit.cover,
                                                 image: MemoryImage(albumsArts[
                                                         everPlayedLimited[index]
-                                                            .album] ??
-                                                    defaultNone),
+                                                            .album!] ??
+                                                    defaultNone!),
                                               ),
                                             ),
                                           ),
                                         ),
                                         Padding(
                                             padding: EdgeInsets.only(
-                                                top: deviceWidth / 40)),
+                                                top: deviceWidth! / 40)),
                                         SizedBox(
-                                          width: deviceWidth / 2,
+                                          width: deviceWidth! / 2,
                                           child: Text(
                                             everPlayedLimited[index].title,
                                             maxLines: 2,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: musicBox.get(
-                                                          "dynamicArtDB") ??
-                                                      true
-                                                  ? Colors.white
-                                                  : darkModeOn
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                              fontSize: deviceWidth / 25,
+                                              color: Colors.white,
+                                              fontSize: deviceWidth! / 25,
                                               fontWeight: FontWeight.w600,
                                               shadows: [
                                                 Shadow(
@@ -496,9 +458,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                               "dynamicArtDB") ??
                                                           true
                                                       ? Offset(1.0, 1.0)
-                                                      : darkModeOn
-                                                          ? Offset(0, 1.0)
-                                                          : Offset(0, 0.5),
+                                                      : Offset(0, 1.0),
                                                   blurRadius: 2.0,
                                                   color: Colors.black45,
                                                 ),
@@ -520,25 +480,21 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
 
               // Artists
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 7)),
+              Padding(padding: EdgeInsets.only(top: deviceWidth! / 7)),
               SizedBox(
-                height: deviceWidth / 1.6,
+                height: deviceWidth! / 1.6,
                 width: deviceWidth,
                 child: Column(
                   children: [
                     SizedBox(
-                      height: deviceWidth / 9,
+                      height: deviceWidth! / 9,
                       child: Center(
                         child: Text(
                           "Favourite Artists",
                           style: TextStyle(
-                              fontSize: deviceWidth / 15,
+                              fontSize: deviceWidth! / 15,
                               fontWeight: FontWeight.w600,
-                              color: musicBox.get("dynamicArtDB") ?? true
-                                  ? Colors.white
-                                  : darkModeOn
-                                      ? Colors.white
-                                      : Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -580,8 +536,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                             musicBox.get("colorsOfArtists") ??
                                                 {};
                                         colorMap[mansionArtists[index]] = [
-                                          dominantAlbum.value,
-                                          contrastAlbum.value
+                                          dominantAlbum!.value,
+                                          contrastAlbum!.value
                                         ];
                                         musicBox.put(
                                             "colorsOfArtists", colorMap);
@@ -608,47 +564,42 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   );
                                 },
                                 child: SizedBox(
-                                  height: deviceWidth / 2,
-                                  width: deviceWidth / 2.5,
+                                  height: deviceWidth! / 2,
+                                  width: deviceWidth! / 2.5,
                                   child: Column(
                                     children: [
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 30)),
+                                              top: deviceWidth! / 30)),
                                       PhysicalModel(
                                         color: Colors.transparent,
                                         shape: BoxShape.circle,
-                                        elevation: deviceWidth / 140,
+                                        elevation: deviceWidth! / 140,
                                         child: Container(
-                                          height: deviceWidth / 3,
-                                          width: deviceWidth / 3,
+                                          height: deviceWidth! / 3,
+                                          width: deviceWidth! / 3,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: artistCollage(
                                               index,
                                               mansionArtists,
-                                              deviceWidth / 1.5,
-                                              deviceWidth / 3),
+                                              deviceWidth! / 1.5,
+                                              deviceWidth! / 3),
                                         ),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 40)),
+                                              top: deviceWidth! / 40)),
                                       Text(
                                         mansionArtists[index],
                                         maxLines: 2,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color: musicBox.get("dynamicArtDB") ??
-                                                  true
-                                              ? Colors.white
-                                              : darkModeOn
-                                                  ? Colors.white
-                                                  : Colors.black,
+                                          color: Colors.white,
                                           fontSize: orientedCar
-                                              ? deviceHeight / 54
-                                              : deviceWidth / 30,
+                                              ? deviceHeight! / 54
+                                              : deviceWidth! / 30,
                                           fontWeight: FontWeight.w600,
                                           shadows: [
                                             Shadow(
@@ -656,9 +607,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                           "dynamicArtDB") ??
                                                       true
                                                   ? Offset(1.0, 1.0)
-                                                  : darkModeOn
-                                                      ? Offset(0, 1.0)
-                                                      : Offset(0, 0.5),
+                                                  : Offset(0, 1.0),
                                               blurRadius: 2.0,
                                               color: Colors.black45,
                                             ),
@@ -678,25 +627,21 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
               ),
 
               // Albums
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 7)),
+              Padding(padding: EdgeInsets.only(top: deviceWidth! / 7)),
               SizedBox(
-                height: deviceWidth / 1.6,
+                height: deviceWidth! / 1.6,
                 width: deviceWidth,
                 child: Column(
                   children: [
                     SizedBox(
-                      height: deviceWidth / 9,
+                      height: deviceWidth! / 9,
                       child: Center(
                         child: Text(
                           "Favourite Albums",
                           style: TextStyle(
-                            fontSize: deviceWidth / 15,
+                            fontSize: deviceWidth! / 15,
                             fontWeight: FontWeight.w600,
-                            color: musicBox.get("dynamicArtDB") ?? true
-                                ? Colors.white
-                                : darkModeOn
-                                    ? Colors.white
-                                    : Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -721,32 +666,32 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                 onTap: () async {
                                   passedIndexAlbum = allAlbumsName
                                       .indexOf(mansionAlbums[index].album);
-                                  albumIndex[index] = passedIndexAlbum;
+                                  albumIndex[index] = passedIndexAlbum!;
                                   if (musicBox.get("colorsOfAlbums") == null
                                       ? true
                                       : musicBox.get("colorsOfAlbums")[
-                                              allAlbums[passedIndexAlbum]
+                                              allAlbums[passedIndexAlbum!]
                                                   .album] ==
                                           null) {
                                     await albumColor(MemoryImage(albumsArts[
-                                            allAlbums[passedIndexAlbum]
+                                            allAlbums[passedIndexAlbum!]
                                                 .album] ??
-                                        defaultNone));
+                                        defaultNone!));
                                     Map albumColors =
                                         musicBox.get("colorsOfAlbums") ?? {};
                                     albumColors[
-                                        allAlbums[passedIndexAlbum].album] = [
-                                      dominantAlbum.value,
-                                      contrastAlbum.value
+                                        allAlbums[passedIndexAlbum!].album] = [
+                                      dominantAlbum!.value,
+                                      contrastAlbum!.value
                                     ];
                                     musicBox.put("colorsOfAlbums", albumColors);
                                   } else {
                                     dominantAlbum = Color(musicBox
                                             .get("colorsOfAlbums")[
-                                        allAlbums[passedIndexAlbum].album][0]);
+                                        allAlbums[passedIndexAlbum!].album][0]);
                                     contrastAlbum = Color(musicBox
                                             .get("colorsOfAlbums")[
-                                        allAlbums[passedIndexAlbum].album][1]);
+                                        allAlbums[passedIndexAlbum!].album][1]);
                                   }
                                   inAlbumSongs = [];
                                   inAlbumSongsArtIndex = [];
@@ -759,21 +704,21 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   );
                                 },
                                 child: SizedBox(
-                                  height: deviceWidth / 2,
-                                  width: deviceWidth / 2.5,
+                                  height: deviceWidth! / 2,
+                                  width: deviceWidth! / 2.5,
                                   child: Column(
                                     children: [
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 30)),
+                                              top: deviceWidth! / 30)),
                                       PhysicalModel(
                                         color: Colors.transparent,
                                         borderRadius:
                                             BorderRadius.circular(kRounded),
-                                        elevation: deviceWidth / 140,
+                                        elevation: deviceWidth! / 140,
                                         child: Container(
-                                          height: deviceWidth / 3,
-                                          width: deviceWidth / 3,
+                                          height: deviceWidth! / 3,
+                                          width: deviceWidth! / 3,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(kRounded),
@@ -782,14 +727,14 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                               image: MemoryImage(albumsArts[
                                                       mansionAlbums[index]
                                                           .album] ??
-                                                  defaultNone),
+                                                  defaultNone!),
                                             ),
                                           ),
                                         ),
                                       ),
                                       Padding(
                                           padding: EdgeInsets.only(
-                                              top: deviceWidth / 40)),
+                                              top: deviceWidth! / 40)),
                                       Text(
                                         mansionAlbums[index]
                                             .album
@@ -797,15 +742,10 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                         maxLines: 2,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          color: musicBox.get("dynamicArtDB") ??
-                                                  true
-                                              ? Colors.white
-                                              : darkModeOn
-                                                  ? Colors.white
-                                                  : Colors.black,
+                                          color: Colors.white,
                                           fontSize: orientedCar
-                                              ? deviceHeight / 54
-                                              : deviceWidth / 30,
+                                              ? deviceHeight! / 54
+                                              : deviceWidth! / 30,
                                           fontWeight: FontWeight.w600,
                                           shadows: [
                                             Shadow(
@@ -813,9 +753,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                           "dynamicArtDB") ??
                                                       true
                                                   ? Offset(1.0, 1.0)
-                                                  : darkModeOn
-                                                      ? Offset(0, 1.0)
-                                                      : Offset(0, 0.5),
+                                                  : Offset(0, 1.0),
                                               blurRadius: 2.0,
                                               color: Colors.black45,
                                             ),
@@ -833,7 +771,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                   ],
                 ),
               ),
-              Padding(padding: EdgeInsets.only(top: deviceWidth / 7)),
+              Padding(padding: EdgeInsets.only(top: deviceWidth! / 7)),
             ],
           ),
         );

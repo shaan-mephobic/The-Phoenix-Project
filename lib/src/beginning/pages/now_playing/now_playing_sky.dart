@@ -18,7 +18,7 @@ import 'package:phoenix/src/beginning/widgets/seek_bar.dart';
 import 'package:provider/provider.dart';
 
 class NowPlayingSky extends StatefulWidget {
-  const NowPlayingSky({Key key}) : super(key: key);
+  const NowPlayingSky({Key? key}) : super(key: key);
 
   @override
   _NowPlayingSkyState createState() => _NowPlayingSkyState();
@@ -63,7 +63,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                       firstChild: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: MemoryImage(art),
+                            image: MemoryImage(art!),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -88,7 +88,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                       secondChild: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: MemoryImage(art2),
+                            image: MemoryImage(art2!),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -121,12 +121,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                     children: [
                       SafeArea(
                         child: Padding(
-                          padding: EdgeInsets.only(top: deviceHeight / 30),
+                          padding: EdgeInsets.only(top: deviceHeight! / 30),
                         ),
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: deviceHeight / 1.7,
+                        height: deviceHeight! / 1.7,
                         child: InkWell(
                           enableFeedback: false,
                           onTap: () {
@@ -179,10 +179,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           ],
                                               colors: [
                                             Colors.transparent,
-                                            isArtworkDark
+                                            isArtworkDark!
                                                 ? Colors.white
                                                 : Colors.black,
-                                            isArtworkDark
+                                            isArtworkDark!
                                                 ? Colors.white
                                                 : Colors.black,
                                             Colors.transparent
@@ -191,20 +191,20 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                       child: SingleChildScrollView(
                                         controller: lyricscrollController,
                                         padding: EdgeInsets.only(
-                                            bottom: deviceHeight / 18,
-                                            top: deviceHeight / 18),
+                                            bottom: deviceHeight! / 18,
+                                            top: deviceHeight! / 18),
                                         physics: BouncingScrollPhysics(),
                                         child: Text(
                                           lyricsDat ?? "",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             wordSpacing: 2,
-                                            fontSize: deviceWidth / 18,
+                                            fontSize: deviceWidth! / 18,
                                             fontWeight: FontWeight.w600,
                                             color:
                                                 musicBox.get("dynamicArtDB") ??
                                                         true
-                                                    ? isArtworkDark
+                                                    ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
                                                     : kMaterialBlack,
@@ -220,7 +220,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(bottom: deviceHeight / 50)),
+                          padding: EdgeInsets.only(bottom: deviceHeight! / 50)),
                       Column(
                         children: [
                           Row(children: [
@@ -234,11 +234,11 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   style: TextStyle(
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
-                                              ? isArtworkDark
+                                              ? isArtworkDark!
                                                   ? Colors.white
                                                   : Colors.black
                                               : Colors.white,
-                                      fontSize: deviceHeight / 35,
+                                      fontSize: deviceHeight! / 35,
                                       fontWeight: FontWeight.w600),
                                   speed: 20,
                                 ),
@@ -257,10 +257,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                     maxLines: 1,
                                     style: TextStyle(
                                         overflow: TextOverflow.ellipsis,
-                                        fontSize: deviceHeight / 65,
+                                        fontSize: deviceHeight! / 65,
                                         color:
                                             musicBox.get("dynamicArtDB") ?? true
-                                                ? isArtworkDark
+                                                ? isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black
                                                 : Colors.white,
@@ -274,7 +274,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                       ),
                       CyberSkySeekBar(),
                       SizedBox(
-                        width: deviceWidth - 100,
+                        width: deviceWidth! - 100,
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -284,10 +284,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
                                               ? shuffleSelected
-                                                  ? isArtworkDark
+                                                  ? isArtworkDark!
                                                       ? Colors.white
                                                       : Colors.black
-                                                  : isArtworkDark
+                                                  : isArtworkDark!
                                                       ? Colors.white
                                                           .withOpacity(0.4)
                                                       : Colors.black
@@ -295,7 +295,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               : shuffleSelected
                                                   ? Colors.white
                                                   : Colors.white38),
-                                  iconSize: deviceWidth / 18,
+                                  iconSize: deviceWidth! / 18,
                                   onPressed: () async {
                                     if (shuffleSelected) {
                                       shuf.changeShuffle(false);
@@ -310,18 +310,18 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   icon: Icon(
                                     MdiIcons.skipPrevious,
                                     color: musicBox.get("dynamicArtDB") ?? true
-                                        ? isArtworkDark
+                                        ? isArtworkDark!
                                             ? Colors.white
                                             : Colors.black
                                         : Colors.white,
                                   ),
-                                  iconSize: deviceWidth / 14,
+                                  iconSize: deviceWidth! / 14,
                                   onPressed: () async {
                                     audioHandler.skipToPrevious();
                                   }),
                               Container(
-                                width: deviceWidth / 8,
-                                height: deviceWidth / 8,
+                                width: deviceWidth! / 8,
+                                height: deviceWidth! / 8,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   boxShadow: [
@@ -333,7 +333,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 ),
                                 child: ClipRRect(
                                   borderRadius:
-                                      BorderRadius.circular(deviceWidth / 16),
+                                      BorderRadius.circular(deviceWidth! / 16),
                                   child: BackdropFilter(
                                     filter: ImageFilter.blur(
                                         sigmaX: skyBlur, sigmaY: skyBlur),
@@ -350,12 +350,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               color: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
-                                                  ? isArtworkDark
+                                                  ? isArtworkDark!
                                                       ? Colors.white
                                                       : Colors.black
                                                   : Colors.white,
                                             ),
-                                            iconSize: deviceWidth / 11,
+                                            iconSize: deviceWidth! / 11,
                                             alignment: Alignment.center,
                                             onPressed: () async {
                                               pauseResume();
@@ -369,12 +369,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 icon: Icon(
                                   MdiIcons.skipNext,
                                   color: musicBox.get("dynamicArtDB") ?? true
-                                      ? isArtworkDark
+                                      ? isArtworkDark!
                                           ? Colors.white
                                           : Colors.black
                                       : Colors.white,
                                 ),
-                                iconSize: deviceWidth / 14,
+                                iconSize: deviceWidth! / 14,
                                 onPressed: () async {
                                   audioHandler.skipToNext();
                                 },
@@ -385,17 +385,17 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                     Ionicons.repeat_outline,
                                     color: musicBox.get("dynamicArtDB") ?? true
                                         ? loopSelected
-                                            ? isArtworkDark
+                                            ? isArtworkDark!
                                                 ? Colors.white
                                                 : Colors.black
-                                            : isArtworkDark
+                                            : isArtworkDark!
                                                 ? Colors.white.withOpacity(0.4)
                                                 : Colors.black.withOpacity(0.4)
                                         : loopSelected
                                             ? Colors.white
                                             : Colors.white38,
                                   ),
-                                  iconSize: deviceWidth / 17,
+                                  iconSize: deviceWidth! / 17,
                                   onPressed: () async {
                                     if (loopSelected) {
                                       loo.changeLoop(false);
@@ -427,16 +427,16 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   Graviticons.lyrics_awesome,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? onLyrics
-                                          ? isArtworkDark
+                                          ? isArtworkDark!
                                               ? Colors.white
                                               : Colors.black
-                                          : isArtworkDark
+                                          : isArtworkDark!
                                               ? Colors.white.withOpacity(0.4)
                                               : Colors.black.withOpacity(0.4)
                                       : onLyrics
                                           ? Colors.white
                                           : Colors.white38,
-                                  size: deviceWidth / 15,
+                                  size: deviceWidth! / 15,
                                 ),
                               ),
                             ),
@@ -447,11 +447,11 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               child: Text(
                                   (advanceAudioData == null
                                       ? ""
-                                      : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
+                                      : "${advanceAudioData!.bitrate}Kbps ${advanceAudioData!.sampleRate}KHz ${advanceAudioData!.format}"),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       overflow: TextOverflow.ellipsis,
-                                      fontSize: deviceWidth / 37,
+                                      fontSize: deviceWidth! / 37,
                                       shadows: [
                                         Shadow(
                                           offset: Offset(0.5, 0.5),
@@ -461,7 +461,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                       ],
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
-                                              ? isArtworkDark
+                                              ? isArtworkDark!
                                                   ? Colors.white
                                                   : Colors.black
                                               : Colors.white)),
@@ -511,16 +511,16 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   Graviticons.phoenix,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? isFlashin
-                                          ? isArtworkDark
+                                          ? isArtworkDark!
                                               ? Colors.white
                                               : Colors.black
-                                          : isArtworkDark
+                                          : isArtworkDark!
                                               ? Colors.white.withOpacity(0.4)
                                               : Colors.black.withOpacity(0.4)
                                       : isFlashin
                                           ? Colors.white
                                           : Colors.white38,
-                                  size: deviceWidth / 16,
+                                  size: deviceWidth! / 16,
                                 ),
                               ),
                             ),
@@ -549,7 +549,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                         firstChild: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: MemoryImage(art),
+                              image: MemoryImage(art!),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -575,7 +575,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                         secondChild: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: MemoryImage(art2),
+                              image: MemoryImage(art2!),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -612,7 +612,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               : !musicBox.get("androidAutoLefty"),
                           child: SizedBox(
                             height: deviceWidth,
-                            width: deviceHeight / 2,
+                            width: deviceHeight! / 2,
                             child: InkWell(
                               enableFeedback: false,
                               child: Padding(
@@ -640,10 +640,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               ],
                                                   colors: [
                                                 Colors.transparent,
-                                                isArtworkDark
+                                                isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black,
-                                                isArtworkDark
+                                                isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black,
                                                 Colors.transparent
@@ -655,20 +655,20 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           child: SingleChildScrollView(
                                             controller: lyricscrollController,
                                             padding: EdgeInsets.only(
-                                                bottom: deviceHeight / 18,
-                                                top: deviceHeight / 18),
+                                                bottom: deviceHeight! / 18,
+                                                top: deviceHeight! / 18),
                                             physics: BouncingScrollPhysics(),
                                             child: Text(
                                               lyricsDat ?? "",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 wordSpacing: 2,
-                                                fontSize: deviceWidth / 18,
+                                                fontSize: deviceWidth! / 18,
                                                 fontWeight: FontWeight.w600,
                                                 color: musicBox.get(
                                                             "dynamicArtDB") ??
                                                         true
-                                                    ? isArtworkDark
+                                                    ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
                                                     : kMaterialBlack,
@@ -710,7 +710,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                           ),
                         ),
                         SizedBox(
-                          width: deviceHeight / 2,
+                          width: deviceHeight! / 2,
                           height: deviceWidth,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -718,7 +718,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: deviceHeight / 2,
+                                    width: deviceHeight! / 2,
                                     child: Padding(
                                       padding:
                                           EdgeInsets.only(left: 50, right: 50),
@@ -728,12 +728,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                         style: TextStyle(
                                           color: musicBox.get("dynamicArtDB") ??
                                                   true
-                                              ? isArtworkDark
+                                              ? isArtworkDark!
                                                   ? Colors.white
                                                   : Colors.black
                                               : Colors.white,
                                           fontWeight: FontWeight.w600,
-                                          fontSize: deviceHeight / 35,
+                                          fontSize: deviceHeight! / 35,
                                           height: 1.3,
                                           shadows: [
                                             Shadow(
@@ -753,7 +753,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 child: Row(
                                   children: [
                                     SizedBox(
-                                      width: deviceHeight / 2,
+                                      width: deviceHeight! / 2,
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             left: 50, right: 50),
@@ -765,12 +765,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             color:
                                                 musicBox.get("dynamicArtDB") ??
                                                         true
-                                                    ? isArtworkDark
+                                                    ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
                                                     : Colors.white,
                                             height: 1,
-                                            fontSize: deviceHeight / 60,
+                                            fontSize: deviceHeight! / 60,
                                             shadows: [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
@@ -787,11 +787,11 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 90),
+                                    EdgeInsets.only(top: deviceHeight! / 90),
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: deviceHeight / 2,
+                                  width: deviceHeight! / 2,
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                         left: 50.0, right: 50),
@@ -801,10 +801,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 100),
+                                    EdgeInsets.only(top: deviceHeight! / 100),
                               ),
                               SizedBox(
-                                width: deviceHeight / 2 - 100,
+                                width: deviceHeight! / 2 - 100,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -817,10 +817,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                         .get("dynamicArtDB") ??
                                                     true
                                                 ? shuffleSelected
-                                                    ? isArtworkDark
+                                                    ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
-                                                    : isArtworkDark
+                                                    : isArtworkDark!
                                                         ? Colors.white
                                                             .withOpacity(0.4)
                                                         : Colors.black
@@ -828,7 +828,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                 : shuffleSelected
                                                     ? Colors.white
                                                     : Colors.white38),
-                                        iconSize: deviceHeight / 36,
+                                        iconSize: deviceHeight! / 36,
                                         onPressed: () async {
                                           if (shuffleSelected) {
                                             shuf.changeShuffle(false);
@@ -844,18 +844,18 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           MdiIcons.skipPrevious,
                                           color: musicBox.get("dynamicArtDB") ??
                                                   true
-                                              ? isArtworkDark
+                                              ? isArtworkDark!
                                                   ? Colors.white
                                                   : Colors.black
                                               : Colors.white,
                                         ),
-                                        iconSize: deviceHeight / 25,
+                                        iconSize: deviceHeight! / 25,
                                         onPressed: () async {
                                           audioHandler.skipToPrevious();
                                         }),
                                     Container(
-                                      width: deviceHeight / 16,
-                                      height: deviceHeight / 16,
+                                      width: deviceHeight! / 16,
+                                      height: deviceHeight! / 16,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         boxShadow: [
@@ -868,7 +868,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                       ),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(
-                                            deviceHeight / 32),
+                                            deviceHeight! / 32),
                                         child: BackdropFilter(
                                           filter: ImageFilter.blur(
                                               sigmaX: skyBlur, sigmaY: skyBlur),
@@ -886,12 +886,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     color: musicBox.get(
                                                                 "dynamicArtDB") ??
                                                             true
-                                                        ? isArtworkDark
+                                                        ? isArtworkDark!
                                                             ? Colors.white
                                                             : Colors.black
                                                         : Colors.white,
                                                   ),
-                                                  iconSize: deviceHeight / 20,
+                                                  iconSize: deviceHeight! / 20,
                                                   alignment: Alignment.center,
                                                   onPressed: () async {
                                                     pauseResume();
@@ -906,12 +906,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                         MdiIcons.skipNext,
                                         color:
                                             musicBox.get("dynamicArtDB") ?? true
-                                                ? isArtworkDark
+                                                ? isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black
                                                 : Colors.white,
                                       ),
-                                      iconSize: deviceHeight / 25,
+                                      iconSize: deviceHeight! / 25,
                                       onPressed: () async {
                                         audioHandler.skipToNext();
                                       },
@@ -924,10 +924,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           color: musicBox.get("dynamicArtDB") ??
                                                   true
                                               ? loopSelected
-                                                  ? isArtworkDark
+                                                  ? isArtworkDark!
                                                       ? Colors.white
                                                       : Colors.black
-                                                  : isArtworkDark
+                                                  : isArtworkDark!
                                                       ? Colors.white
                                                           .withOpacity(0.4)
                                                       : Colors.black
@@ -936,7 +936,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                   ? Colors.white
                                                   : Colors.white38,
                                         ),
-                                        iconSize: deviceHeight / 31,
+                                        iconSize: deviceHeight! / 31,
                                         onPressed: () async {
                                           if (loopSelected) {
                                             loo.changeLoop(false);
@@ -952,11 +952,11 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               ),
                               Padding(
                                   padding:
-                                      EdgeInsets.only(top: deviceHeight / 38)),
+                                      EdgeInsets.only(top: deviceHeight! / 38)),
                               Consumer<Leprovider>(
                                 builder: (context, haunt, _) {
                                   return SizedBox(
-                                    width: deviceHeight / 2 - 100,
+                                    width: deviceHeight! / 2 - 100,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -981,10 +981,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                             "dynamicArtDB") ??
                                                         true
                                                     ? onLyrics
-                                                        ? isArtworkDark
+                                                        ? isArtworkDark!
                                                             ? Colors.white
                                                             : Colors.black
-                                                        : isArtworkDark
+                                                        : isArtworkDark!
                                                             ? Colors.white
                                                                 .withOpacity(
                                                                     0.4)
@@ -994,7 +994,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     : onLyrics
                                                         ? Colors.white
                                                         : Colors.white38,
-                                                size: deviceWidth / 15,
+                                                size: deviceWidth! / 15,
                                               ),
                                             ),
                                           ),
@@ -1007,12 +1007,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             child: Text(
                                                 (advanceAudioData == null
                                                     ? ""
-                                                    : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
+                                                    : "${advanceAudioData!.bitrate}Kbps ${advanceAudioData!.sampleRate}KHz ${advanceAudioData!.format}"),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     overflow:
                                                         TextOverflow.ellipsis,
-                                                    fontSize: deviceWidth / 37,
+                                                    fontSize: deviceWidth! / 37,
                                                     shadows: [
                                                       Shadow(
                                                         offset:
@@ -1024,7 +1024,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     color: musicBox.get(
                                                                 "dynamicArtDB") ??
                                                             true
-                                                        ? isArtworkDark
+                                                        ? isArtworkDark!
                                                             ? Colors.white
                                                             : Colors.black
                                                         : Colors.white)),
@@ -1087,10 +1087,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                             "dynamicArtDB") ??
                                                         true
                                                     ? isFlashin
-                                                        ? isArtworkDark
+                                                        ? isArtworkDark!
                                                             ? Colors.white
                                                             : Colors.black
-                                                        : isArtworkDark
+                                                        : isArtworkDark!
                                                             ? Colors.white
                                                                 .withOpacity(
                                                                     0.4)
@@ -1100,7 +1100,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     : isFlashin
                                                         ? Colors.white
                                                         : Colors.white38,
-                                                size: deviceWidth / 16,
+                                                size: deviceWidth! / 16,
                                               ),
                                             ),
                                           ),
@@ -1119,7 +1119,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               : false,
                           child: SizedBox(
                             height: deviceWidth,
-                            width: deviceHeight / 2,
+                            width: deviceHeight! / 2,
                             child: InkWell(
                               enableFeedback: false,
                               child: Padding(
@@ -1147,10 +1147,10 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               ],
                                                   colors: [
                                                 Colors.transparent,
-                                                isArtworkDark
+                                                isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black,
-                                                isArtworkDark
+                                                isArtworkDark!
                                                     ? Colors.white
                                                     : Colors.black,
                                                 Colors.transparent
@@ -1162,20 +1162,20 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           child: SingleChildScrollView(
                                             controller: lyricscrollController,
                                             padding: EdgeInsets.only(
-                                                bottom: deviceHeight / 18,
-                                                top: deviceHeight / 18),
+                                                bottom: deviceHeight! / 18,
+                                                top: deviceHeight! / 18),
                                             physics: BouncingScrollPhysics(),
                                             child: Text(
                                               lyricsDat ?? "",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 wordSpacing: 2,
-                                                fontSize: deviceWidth / 18,
+                                                fontSize: deviceWidth! / 18,
                                                 fontWeight: FontWeight.w600,
                                                 color: musicBox.get(
                                                             "dynamicArtDB") ??
                                                         true
-                                                    ? isArtworkDark
+                                                    ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
                                                     : kMaterialBlack,

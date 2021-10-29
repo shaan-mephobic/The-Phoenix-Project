@@ -1,12 +1,11 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/pages/playlist/addSongs.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'albums_back.dart';
 
-fetchPlaylistSongs(String playlistName) {
+fetchPlaylistSongs(String? playlistName) {
   playlistMediaItems = [];
   playlistSongsInside = [];
   playListSongsId = [];
@@ -27,13 +26,13 @@ fetchPlaylistSongs(String playlistName) {
                     id: songList[o].data,
                     album: songList[o].album,
                     artist: songList[o].artist,
-                    duration: Duration(milliseconds: getDuration(songList[o])),
+                    duration: Duration(milliseconds: getDuration(songList[o])!),
                     artUri: Uri.file(allAlbumsName.contains(songList[o].album)
                         ? musicBox.get("AlbumsWithoutArt") == null
-                            ? "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                            ? "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                             : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
                                 ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                                : "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                                : "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                         : "${applicationFileDirectory.path}/artworks/null.jpeg"),
                     title: songList[o].title,
                     extras: {"id": songList[o].id});
@@ -49,13 +48,13 @@ fetchPlaylistSongs(String playlistName) {
               id: songList[o].data,
               album: songList[o].album,
               artist: songList[o].artist,
-              duration: Duration(milliseconds: getDuration(songList[o])),
+              duration: Duration(milliseconds: getDuration(songList[o])!),
               artUri: Uri.file(allAlbumsName.contains(songList[o].album)
                   ? musicBox.get("AlbumsWithoutArt") == null
-                      ? "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                      ? "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                       : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
                           ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                          : "${applicationFileDirectory.path}/artworks/${songList[o].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                          : "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                   : "${applicationFileDirectory.path}/artworks/null.jpeg"),
               title: songList[o].title,
               extras: {"id": songList[o].id});
@@ -66,7 +65,7 @@ fetchPlaylistSongs(String playlistName) {
   }
 }
 
-void newPlaylist(String playListName, List queue) {
+void newPlaylist(String? playListName, List queue) {
   Map check = musicBox.get('playlists') ?? {};
   check[playListName] = queue;
   musicBox.put('playlists', check);
@@ -88,7 +87,7 @@ void updateQueuePlayList(name, updatedQueue) {
   musicBox.put('playlists', check);
 }
 
-playlistSongsSelected({@required bool fresh, playlistName}) {
+playlistSongsSelected({required bool fresh, playlistName}) {
   if (fresh) {
     playListCheck = [];
     for (int i = 0; i < songList.length; i++) {

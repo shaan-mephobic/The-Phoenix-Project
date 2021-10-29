@@ -9,7 +9,7 @@ import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'addSongs.dart';
 
-List modifyPlayList = [];
+List? modifyPlayList = [];
 
 class Playlist extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class Playlist extends StatefulWidget {
 
 class _PlaylistState extends State<Playlist>
     with AutomaticKeepAliveClientMixin {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
 
   @override
   void initState() {
@@ -31,49 +31,50 @@ class _PlaylistState extends State<Playlist>
     super.build(context);
     if (musicBox.get('playlists') == null ||
         musicBox.get("playlists").isEmpty) {
-      return Material(
-        color: Colors.transparent,
-        child: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(glassShadowOpacity / 100),
-                  blurRadius: glassShadowBlur,
-                  offset: kShadowOffset,
+      return Center(
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(glassShadowOpacity! / 100),
+                blurRadius: glassShadowBlur,
+                offset: kShadowOffset,
+              ),
+            ],
+            borderRadius: BorderRadius.circular(kRounded),
+          ),
+          width: deviceWidth! / 1.7,
+          height: deviceWidth! / 8,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(kRounded),
+            child: BackdropFilter(
+              filter: glassBlur,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(kRounded),
+                  border: Border.all(color: Colors.white.withOpacity(0.04)),
+                  color: glassOpacity,
                 ),
-              ],
-              borderRadius: BorderRadius.circular(kRounded),
-            ),
-            width: deviceWidth / 1.7,
-            height: deviceWidth / 8,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(kRounded),
-              onTap: () {
-                playlistSongsSelected(fresh: true);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider<Leprovider>(
-                        create: (_) => Leprovider(),
-                        builder: (context, child) => AddSongs(
-                              modify: false,
-                              playlistName: "Enter Playlist Name",
-                            )),
-                  ),
-                );
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(kRounded),
-                child: BackdropFilter(
-                  filter: glassBlur,
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kRounded),
-                      border: Border.all(color: Colors.white.withOpacity(0.04)),
-                      color: glassOpacity,
-                    ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(kRounded),
+                    onTap: () {
+                      playlistSongsSelected(fresh: true);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ChangeNotifierProvider<Leprovider>(
+                                  create: (_) => Leprovider(),
+                                  builder: (context, child) => AddSongs(
+                                        modify: false,
+                                        playlistName: "Enter Playlist Name",
+                                      )),
+                        ),
+                      );
+                    },
                     child: Center(
                       child: Text(
                         'Create Playlist',
@@ -82,7 +83,7 @@ class _PlaylistState extends State<Playlist>
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          fontSize: deviceWidth / 20,
+                          fontSize: deviceWidth! / 20,
                         ),
                       ),
                     ),
@@ -134,33 +135,33 @@ class _PlaylistState extends State<Playlist>
               controller: _scrollBarController,
               padding: EdgeInsets.only(top: 5, bottom: 8),
               addAutomaticKeepAlives: true,
-              itemExtent: orientedCar ? deviceWidth / 1.4 : deviceWidth / 2,
+              itemExtent: orientedCar ? deviceWidth! / 1.4 : deviceWidth! / 2,
               physics: musicBox.get("fluidAnimation") ?? true
                   ? BouncingScrollPhysics()
                   : ClampingScrollPhysics(),
               itemCount: musicBox.get('playlists').length,
               itemBuilder: (context, index) {
                 return SizedBox(
-                  height: orientedCar ? deviceHeight / 3 : deviceWidth / 2,
+                  height: orientedCar ? deviceHeight! / 3 : deviceWidth! / 2,
                   width: orientedCar ? deviceHeight : deviceWidth,
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: deviceWidth / 25),
+                        padding: EdgeInsets.only(top: deviceWidth! / 25),
                       ),
                       Container(
                         width: orientedCar
-                            ? deviceHeight / 1.4
-                            : deviceWidth / 1.05,
+                            ? deviceHeight! / 1.4
+                            : deviceWidth! / 1.05,
                         height: orientedCar
-                            ? deviceHeight / 3.3
-                            : deviceWidth / 2.2,
+                            ? deviceHeight! / 3.3
+                            : deviceWidth! / 2.2,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black
-                                    .withOpacity(glassShadowOpacity / 100),
+                                    .withOpacity(glassShadowOpacity! / 100),
                                 blurRadius: glassShadowBlur,
                                 offset: kShadowOffset),
                           ],
@@ -182,7 +183,7 @@ class _PlaylistState extends State<Playlist>
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(kRounded),
                                   onTap: () async {
-                                    String playListName = musicBox
+                                    String? playListName = musicBox
                                         .get('playlists')
                                         .keys
                                         .toList()[index];
@@ -202,7 +203,7 @@ class _PlaylistState extends State<Playlist>
                                     );
                                   },
                                   onLongPress: () {
-                                    String playListName = musicBox
+                                    String? playListName = musicBox
                                         .get('playlists')
                                         .keys
                                         .toList()[index];
@@ -235,7 +236,7 @@ class _PlaylistState extends State<Playlist>
                                       maxLines: 2,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: deviceWidth / 20,
+                                        fontSize: deviceWidth! / 20,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),

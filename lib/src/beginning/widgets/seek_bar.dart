@@ -45,7 +45,7 @@ class _SeekBarState extends State<SeekBar> {
               Padding(
                 padding: EdgeInsets.only(
                     left:
-                        orientedCar ? deviceHeight / 2 / 25 : deviceWidth / 30),
+                        orientedCar ? deviceHeight! / 2 / 25 : deviceWidth! / 30),
                 child: Text(
                   !usingSeek
                       ? currentPosition
@@ -75,7 +75,7 @@ class _SeekBarState extends State<SeekBar> {
                                   .length,
                               ""),
                   style: TextStyle(
-                      fontSize: deviceWidth / 35,
+                      fontSize: deviceWidth! / 35,
                       fontFamily: "Futura",
                       shadows: [
                         Shadow(
@@ -90,7 +90,7 @@ class _SeekBarState extends State<SeekBar> {
                 ),
               ),
               SizedBox(
-                width: orientedCar ? deviceHeight / 2 / 1.5 : deviceWidth / 1.5,
+                width: orientedCar ? deviceHeight! / 2 / 1.5 : deviceWidth! / 1.5,
                 child: SliderTheme(
                   data: SliderThemeData(
                     trackHeight: 3,
@@ -105,7 +105,7 @@ class _SeekBarState extends State<SeekBar> {
                           ? nowContrast
                           : Colors.white,
                       min: 00.0,
-                      max: nowMediaItem.duration.inMilliseconds / 1000,
+                      max: nowMediaItem.duration!.inMilliseconds / 1000,
                       value: timing.time,
                       onChanged: (var valo) async {
                         usingSeek = true;
@@ -123,30 +123,30 @@ class _SeekBarState extends State<SeekBar> {
               Padding(
                 padding: EdgeInsets.only(
                     right:
-                        orientedCar ? deviceHeight / 2 / 25 : deviceWidth / 30),
+                        orientedCar ? deviceHeight! / 2 / 25 : deviceWidth! / 30),
                 child: Text(
-                  nowMediaItem.duration.inMilliseconds == null
+                  nowMediaItem.duration==null
                       ? Duration(
                               milliseconds:
-                                  nowMediaItem.duration.inMilliseconds)
+                                  nowMediaItem.duration!.inMilliseconds)
                           .toString()
                       : Duration(
                               milliseconds:
-                                  nowMediaItem.duration.inMilliseconds)
+                                  nowMediaItem.duration!.inMilliseconds)
                           .toString()
                           .replaceRange(0, 2, "")
                           .replaceRange(
                             5,
                             Duration(
                                     milliseconds:
-                                        nowMediaItem.duration.inMilliseconds)
+                                        nowMediaItem.duration!.inMilliseconds)
                                 .toString()
                                 .replaceRange(0, 2, "")
                                 .length,
                             "",
                           ),
                   style: TextStyle(
-                      fontSize: deviceWidth / 35,
+                      fontSize: deviceWidth! / 35,
                       fontFamily: "Futura",
                       shadows: [
                         Shadow(
@@ -206,7 +206,7 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: deviceWidth - 100,
+                width: deviceWidth! - 100,
                 child: Column(
                   children: [
                     SliderTheme(
@@ -225,7 +225,7 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
                               ? nowContrast
                               : Colors.white,
                           min: 00.0,
-                          max: nowMediaItem.duration.inMilliseconds / 1000,
+                          max: nowMediaItem.duration!.inMilliseconds / 1000,
                           value: timing.time,
                           onChanged: (var valo) async {
                             usingSeek = true;
@@ -270,7 +270,7 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
                                             .length,
                                         ""),
                             style: TextStyle(
-                                fontSize: deviceWidth / 35,
+                                fontSize: deviceWidth! / 35,
                                 shadows: [
                                   Shadow(
                                     offset: Offset(0.5, 0.5),
@@ -279,34 +279,34 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
                                   ),
                                 ],
                                 color: musicBox.get("dynamicArtDB") ?? true
-                                    ? isArtworkDark
+                                    ? isArtworkDark!
                                         ? Colors.white
                                         : Colors.black
                                     : Colors.white),
                           ),
                           Text(
-                            nowMediaItem.duration.inMilliseconds == null
+                            nowMediaItem.duration == null
                                 ? Duration(
                                         milliseconds: nowMediaItem
-                                            .duration.inMilliseconds)
+                                            .duration!.inMilliseconds)
                                     .toString()
                                 : Duration(
                                         milliseconds: nowMediaItem
-                                            .duration.inMilliseconds)
+                                            .duration!.inMilliseconds)
                                     .toString()
                                     .replaceRange(0, 2, "")
                                     .replaceRange(
                                       5,
                                       Duration(
                                               milliseconds: nowMediaItem
-                                                  .duration.inMilliseconds)
+                                                  .duration!.inMilliseconds)
                                           .toString()
                                           .replaceRange(0, 2, "")
                                           .length,
                                       "",
                                     ),
                             style: TextStyle(
-                                fontSize: deviceWidth / 35,
+                                fontSize: deviceWidth! / 35,
                                 shadows: [
                                   Shadow(
                                     offset: Offset(0.5, 0.5),
@@ -315,7 +315,7 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
                                   ),
                                 ],
                                 color: musicBox.get("dynamicArtDB") ?? true
-                                    ? isArtworkDark
+                                    ? isArtworkDark!
                                         ? Colors.white
                                         : Colors.black
                                     : Colors.white),
@@ -334,7 +334,7 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
 
 class RingtoneSeekBar extends StatefulWidget {
   final Duration duration;
-  RingtoneSeekBar({@required this.duration});
+  RingtoneSeekBar({required this.duration});
 
   @override
   _RingtoneSeekBarState createState() => _RingtoneSeekBarState();
@@ -385,7 +385,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
       children: [
         Padding(
           padding: EdgeInsets.only(
-              left: orientedCar ? deviceHeight / 2 / 25 : deviceWidth / 30),
+              left: orientedCar ? deviceHeight! / 2 / 25 : deviceWidth! / 30),
           child: Text(
             !onRingtoneSeek
                 ? currentPosition
@@ -417,7 +417,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
                             .length,
                         ""),
             style: TextStyle(
-                fontSize: deviceWidth / 35,
+                fontSize: deviceWidth! / 35,
                 fontFamily: "Futura",
                 shadows: [
                   Shadow(
@@ -430,7 +430,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
           ),
         ),
         SizedBox(
-          width: orientedCar ? deviceHeight / 1.5 : deviceWidth / 1.5,
+          width: orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.5,
           child: SliderTheme(
             data: SliderThemeData(
               trackHeight: 3,
@@ -460,12 +460,9 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
         ),
         Padding(
           padding: EdgeInsets.only(
-              right: orientedCar ? deviceHeight / 2 / 25 : deviceWidth / 30),
+              right: orientedCar ? deviceHeight! / 2 / 25 : deviceWidth! / 30),
           child: Text(
-            widget.duration.inMilliseconds == null
-                ? Duration(milliseconds: widget.duration.inMilliseconds)
-                    .toString()
-                : Duration(milliseconds: widget.duration.inMilliseconds)
+             Duration(milliseconds: widget.duration.inMilliseconds)
                     .toString()
                     .replaceRange(0, 2, "")
                     .replaceRange(
@@ -477,7 +474,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
                       "",
                     ),
             style: TextStyle(
-                fontSize: deviceWidth / 35,
+                fontSize: deviceWidth! / 35,
                 fontFamily: "Futura",
                 shadows: [
                   Shadow(
@@ -495,7 +492,7 @@ class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
 }
 
 class MiniSeekbar extends StatefulWidget {
-  const MiniSeekbar({Key key}) : super(key: key);
+  const MiniSeekbar({Key? key}) : super(key: key);
 
   @override
   _MiniSeekbarState createState() => _MiniSeekbarState();
@@ -539,7 +536,7 @@ class _MiniSeekbarState extends State<MiniSeekbar> {
                   ? nowContrast
                   : Colors.white,
               min: 00.0,
-              max: nowMediaItem.duration.inMilliseconds * 1.0,
+              max: nowMediaItem.duration!.inMilliseconds * 1.0,
               value: currentPosition.inMilliseconds * 1.0,
               onChanged: (double value) {}),
         ),
@@ -550,13 +547,13 @@ class _MiniSeekbarState extends State<MiniSeekbar> {
 
 class CustomTrackShape extends RoundedRectSliderTrackShape {
   Rect getPreferredRect({
-    @required RenderBox parentBox,
+    required RenderBox parentBox,
     Offset offset = Offset.zero,
-    @required SliderThemeData sliderTheme,
+    required SliderThemeData sliderTheme,
     bool isEnabled = false,
     bool isDiscrete = false,
   }) {
-    final double trackHeight = sliderTheme.trackHeight;
+    final double trackHeight = sliderTheme.trackHeight!;
     final double trackLeft = offset.dx;
     final double trackTop =
         offset.dy + (parentBox.size.height - trackHeight) / 2;

@@ -28,7 +28,7 @@ class Awakening extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(glassShadowOpacity / 100),
+                  color: Colors.black.withOpacity(glassShadowOpacity! / 100),
                   blurRadius: glassShadowBlur,
                   offset: kShadowOffset,
                 ),

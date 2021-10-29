@@ -9,21 +9,21 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/background.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-double deviceWidth;
-double deviceHeight;
+double? deviceWidth;
+double? deviceHeight;
 bool orientedCar = false;
-Uint8List art;
-Uint8List art2 = art;
-Uint8List defaultArt;
-Uint8List defaultNone;
-Uint8List artwork;
+Uint8List? art;
+Uint8List? art2 = art;
+Uint8List? defaultArt;
+Uint8List? defaultNone;
+Uint8List? artwork;
 Color nowColor = Color(0xFF091e25);
 Color nowContrast = Color(0xFF8296a4);
-AudioModel advanceAudioData;
+AudioModel? advanceAudioData;
 Random random = Random();
 bool refresh = false;
 bool permissionGiven = false;
-var musicBox;
+late var musicBox;
 bool crossfadeStateChange = false;
 bool phoenixVisualizerShown = true;
 bool fadeBool = true;
@@ -41,30 +41,31 @@ MediaItem nowMediaItem = MediaItem(
     duration: Duration(seconds: 69),
     extras: {"id": 69420});
 List<MediaItem> nowQueue = [];
-int indexOfList;
-AudioPlayerTask audioHandler;
+late int indexOfList;
+late AudioPlayerTask audioHandler;
+late bool isAndroid11;
 bool backArtStateChange = true;
 PanelController pc = PanelController();
-Directory applicationFileDirectory;
-var rootCrossfadeState;
-var rootState;
-var globalBigNow;
-var animatedPlayPause;
+late Directory applicationFileDirectory;
+late var rootCrossfadeState;
+late var rootState;
+late var globalBigNow;
+late var animatedPlayPause;
 bool swapController = false;
 bool bgPhoenixVisualizer = false;
 bool ascend = false;
 bool isPlayerShown = false;
-ImageFilter glassBlur;
-Color glassOpacity;
-double glassShadowOpacity;
+late ImageFilter glassBlur;
+Color? glassOpacity;
+double? glassShadowOpacity;
 final Duration dialogueAnimationDuration = const Duration(milliseconds: 200);
-bool isArtworkDark = true;
+bool? isArtworkDark = true;
 bool onLyrics = false;
 bool isFlashin = false;
 bool loopSelected = false;
 double defaultSensitivity = 50.0;
 bool shuffleSelected = false;
 BorderRadius radiusFullscreen = BorderRadius.only(
-  topLeft: Radius.circular(deviceWidth / 40),
-  topRight: Radius.circular(deviceWidth / 40),
+  topLeft: Radius.circular(deviceWidth! / 40),
+  topRight: Radius.circular(deviceWidth! / 40),
 );

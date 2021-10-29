@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
@@ -38,6 +39,8 @@ cacheImages() async {
 dataInit() async {
   await Hive.initFlutter();
   musicBox = await Hive.openBox('musicDataBox');
+  var info = await DeviceInfoPlugin().androidInfo;
+  isAndroid11 = info.version.sdkInt > 29 ? true : false;
   glassBlur = ImageFilter.blur(
       sigmaX:
           musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur"),
@@ -66,7 +69,7 @@ fetchSongs() async {
                 .data
                 .contains(musicBox.get('customLocations')[o].toString())) {
               updateList.add(songList[i]);
-              specificAlbums.add(songList[i].album.toUpperCase());
+              specificAlbums.add(songList[i].album!.toUpperCase());
               break foundAlready;
             }
           }
@@ -77,7 +80,7 @@ fetchSongs() async {
     }
     if (musicBox.get('clutterFree') ?? false) {
       for (int i = 0; i < songList.length; i++) {
-        if (getDuration(songList[i]) < 30000) {
+        if (getDuration(songList[i])! < 30000) {
           songList.remove(songList[i]);
           i -= 1;
         }
@@ -119,13 +122,13 @@ songListToMediaItem() async {
         id: songList[i].data,
         album: songList[i].album,
         artist: songList[i].artist,
-        duration: Duration(milliseconds: getDuration(songList[i])),
+        duration: Duration(milliseconds: getDuration(songList[i])!),
         artUri: Uri.file(allAlbumsName.contains(songList[i].album)
             ? musicBox.get("AlbumsWithoutArt") == null
-                ? "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                ? "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                 : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
                     ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                    : "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
             : "${applicationFileDirectory.path}/artworks/null.jpeg"),
         title: songList[i].title,
         extras: {"id": songList[i].id});

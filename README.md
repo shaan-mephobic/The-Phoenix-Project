@@ -7,12 +7,13 @@ A Non-Commercial Music Player Made With Flutter.
      height="80">](https://play.google.com/store/apps/details?id=com.Phoenix.project)
 
 ## Why Phoenix?
-* Beautiful Glassmorphism Design
+* Beautiful glassmorphism design
 * Lyrics
-* A Flashlight-Visualizer
-* Share Now-Playing
-* Ad-Free
-* Wallpapers From Artwork
+* Cut, fade and set ringtone
+* A flashlight-visualizer
+* Share now-playing
+* Ad-free
+* Wallpapers from artwork
 
 And a bunch more. Why not check it yourself?
 
@@ -20,8 +21,7 @@ And a bunch more. Why not check it yourself?
 <img alt="Tracks" src="./screenshots/tracks.png" width="32%"> <img alt="NowPlaying" src="./screenshots/nowplaying.png" width="32%">  <img alt="Genres" src="./screenshots/genres.png" width="32%"> <img alt="Inside Genre" src="./screenshots/space.png" width="32%"> <img alt="Playlists" src="./screenshots/playlists.png" width="32%"> <img alt="Options" src="./screenshots/options.png" width="32%"> <img alt="Lyrics" src="./screenshots/lyrics.png" width="32%"> <img alt="Visualizer" src="./screenshots/visualizer.png" width="32%"> <img alt="Wallpaper" src="./screenshots/wallpaper.png" width="32%">
 
 ## TODO
-* Android 11 support for editing and deleting files
-* Migrate to null-safety
+* Android 11 support for deleting files
 * Improve performance and stability
 * Lint code
 

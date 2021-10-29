@@ -60,28 +60,28 @@ class _PhoenixState extends State<Phoenix> {
                     children: [
                       SizedBox(
                         width:
-                            orientedCar ? deviceWidth / 1.8 : deviceWidth / 1.8,
+                            orientedCar ? deviceWidth! / 1.8 : deviceWidth! / 1.8,
                         height: orientedCar
-                            ? deviceWidth / 2.5 +
-                                deviceWidth / 5 +
-                                deviceWidth / 13
-                            : deviceWidth / 1.5 +
-                                deviceWidth / 4 +
-                                deviceWidth / 12,
+                            ? deviceWidth! / 2.5 +
+                                deviceWidth! / 5 +
+                                deviceWidth! / 13
+                            : deviceWidth! / 1.5 +
+                                deviceWidth! / 4 +
+                                deviceWidth! / 12,
                         child: Column(
                           children: [
                             Container(
                               color: Colors.transparent,
                               padding: EdgeInsets.only(
                                   top: orientedCar
-                                      ? deviceWidth / 6
-                                      : deviceWidth / 5),
+                                      ? deviceWidth! / 6
+                                      : deviceWidth! / 5),
                               width: orientedCar
-                                  ? deviceWidth / 1.8
-                                  : deviceWidth / 1.8,
+                                  ? deviceWidth! / 1.8
+                                  : deviceWidth! / 1.8,
                               height: orientedCar
-                                  ? deviceWidth / 2.8 + deviceWidth / 5
-                                  : deviceWidth / 1.8 + deviceWidth / 4,
+                                  ? deviceWidth! / 2.8 + deviceWidth! / 5
+                                  : deviceWidth! / 1.8 + deviceWidth! / 4,
                               child: Center(
                                 child: Image.asset(
                                   "assets/res/phoenix.png",
@@ -94,8 +94,8 @@ class _PhoenixState extends State<Phoenix> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: orientedCar
-                                      ? deviceWidth / 18
-                                      : deviceWidth / 13,
+                                      ? deviceWidth! / 18
+                                      : deviceWidth! / 13,
                                   fontFamily: "NightMachine"),
                               textAlign: TextAlign.start,
                             ),
@@ -106,8 +106,8 @@ class _PhoenixState extends State<Phoenix> {
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: orientedCar
-                                    ? deviceWidth / 31
-                                    : deviceWidth / 26,
+                                    ? deviceWidth! / 31
+                                    : deviceWidth! / 26,
                               ),
                             ),
                           ],
@@ -116,19 +116,19 @@ class _PhoenixState extends State<Phoenix> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceWidth / 8
-                                : deviceWidth / 4),
+                                ? deviceWidth! / 8
+                                : deviceWidth! / 4),
                       ),
                       Container(
                         height:
-                            orientedCar ? deviceHeight / 4 : deviceWidth / 1.6,
+                            orientedCar ? deviceHeight! / 4 : deviceWidth! / 1.6,
                         width:
-                            orientedCar ? deviceHeight / 2 : deviceWidth / 1.1,
+                            orientedCar ? deviceHeight! / 2 : deviceWidth! / 1.1,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
-                                  .withOpacity(glassShadowOpacity / 100),
+                                  .withOpacity(glassShadowOpacity! / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -159,16 +159,16 @@ class _PhoenixState extends State<Phoenix> {
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: orientedCar
-                                            ? deviceWidth / 32
-                                            : deviceWidth / 28,
+                                            ? deviceWidth! / 32
+                                            : deviceWidth! / 28,
                                       ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: orientedCar
-                                            ? deviceWidth / 16
-                                            : deviceWidth / 16),
+                                            ? deviceWidth! / 16
+                                            : deviceWidth! / 16),
                                   ),
                                   Text(
                                     '@SHΛΛИ FΛYDH',
@@ -176,15 +176,15 @@ class _PhoenixState extends State<Phoenix> {
                                       fontFamily: 'Inter',
                                       color: Colors.white,
                                       fontSize: orientedCar
-                                          ? deviceWidth / 27
-                                          : deviceWidth / 25,
+                                          ? deviceWidth! / 27
+                                          : deviceWidth! / 25,
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: orientedCar
-                                            ? deviceWidth / 32
-                                            : deviceWidth / 32),
+                                            ? deviceWidth! / 32
+                                            : deviceWidth! / 32),
                                   ),
                                   Material(
                                     type: MaterialType.transparency,
@@ -195,12 +195,12 @@ class _PhoenixState extends State<Phoenix> {
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 left: orientedCar
-                                                    ? deviceWidth / 17
-                                                    : deviceWidth / 17)),
+                                                    ? deviceWidth! / 17
+                                                    : deviceWidth! / 17)),
                                         IconButton(
                                             iconSize: orientedCar
-                                                ? deviceWidth / 17
-                                                : deviceWidth / 17,
+                                                ? deviceWidth! / 17
+                                                : deviceWidth! / 17,
                                             icon: Icon(MdiIcons.gmail,
                                                 color: Colors.white),
                                             onPressed: () {
@@ -213,8 +213,8 @@ class _PhoenixState extends State<Phoenix> {
                                             }),
                                         IconButton(
                                             iconSize: orientedCar
-                                                ? deviceWidth / 17
-                                                : deviceWidth / 17,
+                                                ? deviceWidth! / 17
+                                                : deviceWidth! / 17,
                                             icon: Icon(MdiIcons.github,
                                                 color: Colors.white),
                                             onPressed: () async {
@@ -227,8 +227,8 @@ class _PhoenixState extends State<Phoenix> {
                                             }),
                                         IconButton(
                                             iconSize: orientedCar
-                                                ? deviceWidth / 17
-                                                : deviceWidth / 17,
+                                                ? deviceWidth! / 17
+                                                : deviceWidth! / 17,
                                             icon: Icon(Ionicons.logo_paypal,
                                                 color: Colors.white),
                                             onPressed: () async {
@@ -252,7 +252,7 @@ class _PhoenixState extends State<Phoenix> {
                                                 borderColor: Colors.white
                                                     .withOpacity(0.04),
                                                 borderWidth: 1,
-                                                backgroundColor: glassOpacity,
+                                                backgroundColor: glassOpacity!,
                                                 flushbarStyle:
                                                     FlushbarStyle.FLOATING,
                                                 isDismissible: true,
@@ -282,8 +282,8 @@ class _PhoenixState extends State<Phoenix> {
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 right: orientedCar
-                                                    ? deviceWidth / 17
-                                                    : deviceWidth / 17)),
+                                                    ? deviceWidth! / 17
+                                                    : deviceWidth! / 17)),
                                       ],
                                     ),
                                   ),
@@ -296,19 +296,19 @@ class _PhoenixState extends State<Phoenix> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceWidth / 10
-                                : deviceWidth / 8),
+                                ? deviceWidth! / 10
+                                : deviceWidth! / 8),
                       ),
                       Container(
                         height:
-                            orientedCar ? deviceWidth / 3 : deviceWidth / 3.0,
+                            orientedCar ? deviceWidth! / 3 : deviceWidth! / 3.0,
                         width:
-                            orientedCar ? deviceWidth / 1.5 : deviceWidth / 1.5,
+                            orientedCar ? deviceWidth! / 1.5 : deviceWidth! / 1.5,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
-                                  .withOpacity(glassShadowOpacity / 100),
+                                  .withOpacity(glassShadowOpacity! / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -332,11 +332,11 @@ class _PhoenixState extends State<Phoenix> {
                                 borderRadius: BorderRadius.circular(kRounded),
                                 child: Container(
                                   height: orientedCar
-                                      ? deviceWidth / 3.0
-                                      : deviceWidth / 3.0,
+                                      ? deviceWidth! / 3.0
+                                      : deviceWidth! / 3.0,
                                   width: orientedCar
-                                      ? deviceWidth / 1.5
-                                      : deviceWidth / 1.5,
+                                      ? deviceWidth! / 1.5
+                                      : deviceWidth! / 1.5,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.circular(kRounded),
@@ -351,8 +351,8 @@ class _PhoenixState extends State<Phoenix> {
                                             color: Colors.white,
                                             fontWeight: FontWeight.w600,
                                             fontSize: orientedCar
-                                                ? deviceWidth / 18
-                                                : deviceWidth / 18,
+                                                ? deviceWidth! / 18
+                                                : deviceWidth! / 18,
                                           ),
                                         ),
                                       ),
@@ -378,14 +378,14 @@ class _PhoenixState extends State<Phoenix> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceWidth / 10
-                                : deviceWidth / 8),
+                                ? deviceWidth! / 10
+                                : deviceWidth! / 8),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
                           right:
-                              orientedCar ? deviceWidth / 6 : deviceWidth / 6,
-                          left: orientedCar ? deviceWidth / 6 : deviceWidth / 6,
+                              orientedCar ? deviceWidth! / 6 : deviceWidth! / 6,
+                          left: orientedCar ? deviceWidth! / 6 : deviceWidth! / 6,
                         ),
                         child: Column(
                           children: [
@@ -396,8 +396,8 @@ class _PhoenixState extends State<Phoenix> {
                                   color: Colors.white,
                                   fontFamily: "Raleway",
                                   fontSize: orientedCar
-                                      ? deviceWidth / 30
-                                      : deviceWidth / 30),
+                                      ? deviceWidth! / 30
+                                      : deviceWidth! / 30),
                             ),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -408,8 +408,8 @@ class _PhoenixState extends State<Phoenix> {
                                         color: Colors.white,
                                         fontFamily: "Raleway",
                                         fontSize: orientedCar
-                                            ? deviceWidth / 32
-                                            : deviceWidth / 32),
+                                            ? deviceWidth! / 32
+                                            : deviceWidth! / 32),
                                   ),
                                 ]),
                           ],
@@ -418,16 +418,16 @@ class _PhoenixState extends State<Phoenix> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceWidth / 10
-                                : deviceWidth / 8),
+                                ? deviceWidth! / 10
+                                : deviceWidth! / 8),
                       ),
                       Text(
                         "Copyright © 2020, Shaan Faydh",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: orientedCar
-                                ? deviceWidth / 32
-                                : deviceWidth / 32),
+                                ? deviceWidth! / 32
+                                : deviceWidth! / 32),
                       ),
                       TextButton(
                         onPressed: () {
@@ -445,8 +445,8 @@ class _PhoenixState extends State<Phoenix> {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: orientedCar
-                                ? deviceWidth / 34
-                                : deviceWidth / 34,
+                                ? deviceWidth! / 34
+                                : deviceWidth! / 34,
                           ),
                         ),
                       ),

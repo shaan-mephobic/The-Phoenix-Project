@@ -10,8 +10,8 @@ import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 
 class ListHeader extends StatelessWidget {
-  final double widthOfDevice;
-  final List<SongModel> listOfSong;
+  final double? widthOfDevice;
+  final List<SongModel>? listOfSong;
   final String rnAccess;
   ListHeader(this.widthOfDevice, this.listOfSong, this.rnAccess);
   @override
@@ -22,7 +22,7 @@ class ListHeader extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(glassShadowOpacity / 100 / 1.4),
+            color: Colors.black.withOpacity(glassShadowOpacity! / 100 / 1.4),
             blurRadius: glassShadowBlur / 2,
             offset: kShadowOffset,
           ),
@@ -43,7 +43,7 @@ class ListHeader extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
-                    "${listOfSong.length} Tracks",
+                    "${listOfSong!.length} Tracks",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
@@ -64,7 +64,7 @@ class ListHeader extends StatelessWidget {
                             insideplaylistSongsInside = listOfSong;
                           }
                           await playThis(
-                              random.nextInt(listOfSong.length), rnAccess);
+                              random.nextInt(listOfSong!.length), rnAccess);
                         },
                         icon:
                             Icon(Ionicons.shuffle_outline, color: Colors.white),

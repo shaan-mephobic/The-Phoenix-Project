@@ -1,15 +1,14 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/file_handlers.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'native/go_native.dart';
 import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 
 Future<void> ringtoneTrim(
-    {@required pathOfFile,
-    @required List ranges,
-    @required String title,
-    @required int fade}) async {
+    {required pathOfFile,
+    required List ranges,
+    required String title,
+    required int fade}) async {
   final String ext = getFileExt(pathOfFile);
   final String inputFile =
       "${applicationFileDirectory.path}/raw$ext".replaceAll(' ', "-");

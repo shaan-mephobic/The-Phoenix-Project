@@ -13,6 +13,8 @@ import 'package:phoenix/src/beginning/utilities/heart.dart';
 import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/pages/ringtone/ringtone.dart';
+import 'package:phoenix/src/beginning/widgets/dialogues/add_to_playlist.dart';
+import 'package:phoenix/src/beginning/widgets/dialogues/r_support.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/song_edit.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres.dart';
@@ -26,21 +28,21 @@ import '../../utilities/constants.dart';
 
 class OnHold extends StatefulWidget {
   final BuildContext classContext;
-  final List<SongModel> listOfSong;
+  final List<SongModel>? listOfSong;
   final int index;
   final bool car;
-  final double heightOfDevice;
-  final double widthOfDevice;
+  final double? heightOfDevice;
+  final double? widthOfDevice;
   final String songOf;
   const OnHold(
-      {Key key,
-      @required this.classContext,
-      @required this.listOfSong,
-      @required this.index,
-      @required this.car,
-      @required this.heightOfDevice,
-      @required this.widthOfDevice,
-      @required this.songOf})
+      {Key? key,
+      required this.classContext,
+      required this.listOfSong,
+      required this.index,
+      required this.car,
+      required this.heightOfDevice,
+      required this.widthOfDevice,
+      required this.songOf})
       : super(key: key);
 
   @override
@@ -85,8 +87,8 @@ class _OnHoldState extends State<OnHold> {
                     ),
                     alignment: Alignment.center,
                     width: widget.car
-                        ? widget.heightOfDevice / 2
-                        : widget.widthOfDevice / 1.2,
+                        ? widget.heightOfDevice! / 2
+                        : widget.widthOfDevice! / 1.2,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(kRounded),
                       child: BackdropFilter(
@@ -106,12 +108,6 @@ class _OnHoldState extends State<OnHold> {
                                 physics: BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: widget.car
-                                            ? widget.widthOfDevice / 12
-                                            : widget.heightOfDevice / 25),
-                                  ),
                                   for (int i = 0; i < songMoreInfo.length; i++)
                                     Material(
                                       color: Colors.transparent,
@@ -122,8 +118,8 @@ class _OnHoldState extends State<OnHold> {
                                               ? widget.heightOfDevice
                                               : widget.widthOfDevice,
                                           height: widget.car
-                                              ? widget.widthOfDevice / 6
-                                              : widget.heightOfDevice / 12.5,
+                                              ? widget.widthOfDevice! / 6
+                                              : widget.heightOfDevice! / 12.5,
                                           child: Material(
                                             color: Colors.transparent,
                                             child: InkWell(
@@ -222,7 +218,7 @@ class _OnHoldState extends State<OnHold> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -242,166 +238,32 @@ class _OnHoldState extends State<OnHold> {
                                                               15),
                                                       // leftBarIndicatorColor:
                                                       //     Color(0xFFCB0047),
-                                                    )..show(context);
+                                                    ).show(context);
                                                   } else {
                                                     Navigator.pop(context);
-                                                    Expanded(
-                                                      child: await showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return StatefulBuilder(
-                                                            builder: (context,
-                                                                StateSetter
-                                                                    setState) {
-                                                              return Center(
-                                                                child:
-                                                                    SingleChildScrollView(
-                                                                  physics:
-                                                                      BouncingScrollPhysics(),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        flex: 0,
-                                                                        child:
-                                                                            Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                          ),
-                                                                          alignment:
-                                                                              Alignment.center,
-                                                                          width: widget.car
-                                                                              ? widget.heightOfDevice / 2
-                                                                              : widget.widthOfDevice / 1.2,
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                            child:
-                                                                                BackdropFilter(
-                                                                              filter: glassBlur,
-                                                                              child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                decoration: BoxDecoration(
-                                                                                  borderRadius: BorderRadius.circular(kRounded),
-                                                                                  border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                  color: glassOpacity,
-                                                                                ),
-                                                                                child: Column(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    ListView(
-                                                                                      physics: BouncingScrollPhysics(),
-                                                                                      shrinkWrap: true,
-                                                                                      children: [
-                                                                                        Padding(
-                                                                                          padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 12 : widget.heightOfDevice / 25),
-                                                                                        ),
-                                                                                        for (int o = 0; o < check.keys.toList().length; o++)
-                                                                                          Material(
-                                                                                            color: Colors.transparent,
-                                                                                            child: Center(
-                                                                                              child: SizedBox(
-                                                                                                width: widget.car ? widget.heightOfDevice : widget.widthOfDevice,
-                                                                                                height: widget.car ? widget.widthOfDevice / 6 : widget.heightOfDevice / 12.5,
-                                                                                                child: Material(
-                                                                                                  color: Colors.transparent,
-                                                                                                  child: InkWell(
-                                                                                                    onTap: () {
-                                                                                                      Navigator.pop(context);
-                                                                                                      if (check[check.keys.toList()[o]].contains(widget.listOfSong[widget.index].data)) {
-                                                                                                        Flushbar(
-                                                                                                          messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-                                                                                                          icon: Icon(
-                                                                                                            Icons.error_outline_rounded,
-                                                                                                            size: 28.0,
-                                                                                                            color: Color(0xFFCB0447),
-                                                                                                          ),
-                                                                                                          shouldIconPulse: true,
-                                                                                                          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-                                                                                                          duration: Duration(seconds: 5),
-                                                                                                          borderColor: Colors.white.withOpacity(0.04),
-                                                                                                          borderWidth: 1,
-                                                                                                          backgroundColor: glassOpacity,
-                                                                                                          flushbarStyle: FlushbarStyle.FLOATING,
-                                                                                                          isDismissible: true,
-                                                                                                          barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                                                                          margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-                                                                                                          borderRadius: BorderRadius.circular(15),
-                                                                                                        )..show(context);
-                                                                                                      } else {
-                                                                                                        check[check.keys.toList()[o]].add(widget.listOfSong[widget.index].data);
-                                                                                                        musicBox.put("playlists", check);
-                                                                                                        Flushbar(
-                                                                                                          messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-                                                                                                          icon: Icon(
-                                                                                                            Icons.add,
-                                                                                                            size: 28.0,
-                                                                                                            color: kCorrect,
-                                                                                                          ),
-                                                                                                          shouldIconPulse: true,
-                                                                                                          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-                                                                                                          duration: Duration(seconds: 5),
-                                                                                                          borderColor: Colors.white.withOpacity(0.04),
-                                                                                                          borderWidth: 1,
-                                                                                                          backgroundColor: glassOpacity,
-                                                                                                          flushbarStyle: FlushbarStyle.FLOATING,
-                                                                                                          isDismissible: true,
-                                                                                                          barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                                                                          margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-                                                                                                          borderRadius: BorderRadius.circular(15),
-                                                                                                        )..show(context);
-                                                                                                      }
-                                                                                                    },
-                                                                                                    child: Center(
-                                                                                                      child: Padding(
-                                                                                                        padding: EdgeInsets.only(left: 12),
-                                                                                                        child: Text(
-                                                                                                          check.keys.toList()[o],
-                                                                                                          maxLines: 2,
-                                                                                                          style: TextStyle(
-                                                                                                            color: musicBox.get("dynamicArtDB") ?? true ? Colors.white70 : Colors.white70,
-                                                                                                            fontSize: widget.car ? widget.widthOfDevice / 26 : widget.heightOfDevice / 56,
-                                                                                                            shadows: [
-                                                                                                              Shadow(
-                                                                                                                offset: musicBox.get("dynamicArtDB") ?? true ? Offset(0, 1.0) : Offset(0, 1.0),
-                                                                                                                blurRadius: musicBox.get("dynamicArtDB") ?? true ? 3.0 : 3.0,
-                                                                                                                color: Colors.black54,
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        Padding(
-                                                                                          padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 12 : widget.heightOfDevice / 25),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
+                                                    Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .size,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        duration:
+                                                            dialogueAnimationDuration,
+                                                        reverseDuration:
+                                                            dialogueAnimationDuration,
+                                                        child: AddToPlaylist(
+                                                            widthOfDevice:
+                                                                deviceWidth,
+                                                            heightOfDevice:
+                                                                deviceHeight,
+                                                            songFile: widget
+                                                                .listOfSong![
+                                                                    widget
+                                                                        .index]
+                                                                .data,
+                                                            car: orientedCar,
+                                                            data: check),
                                                       ),
                                                     );
                                                   }
@@ -409,7 +271,7 @@ class _OnHoldState extends State<OnHold> {
                                                   await Share.shareFiles(
                                                     [
                                                       widget
-                                                          .listOfSong[
+                                                          .listOfSong![
                                                               widget.index]
                                                           .data
                                                     ],
@@ -421,26 +283,26 @@ class _OnHoldState extends State<OnHold> {
                                                     MaterialPageRoute(
                                                       builder: (context) => Ringtone(
                                                           artworkId: widget
-                                                              .listOfSong[
+                                                              .listOfSong![
                                                                   widget.index]
                                                               .id,
                                                           filePath: widget
-                                                              .listOfSong[
+                                                              .listOfSong![
                                                                   widget.index]
                                                               .data,
                                                           artist: widget
-                                                              .listOfSong[
+                                                              .listOfSong![
                                                                   widget.index]
                                                               .artist,
                                                           title: widget
-                                                              .listOfSong[
+                                                              .listOfSong![
                                                                   widget.index]
                                                               .title,
                                                           songDuration: widget
-                                                                  .listOfSong[
+                                                                  .listOfSong![
                                                                       widget
                                                                           .index]
-                                                                  .duration *
+                                                                  .duration! *
                                                               1.0),
                                                     ),
                                                   );
@@ -453,45 +315,47 @@ class _OnHoldState extends State<OnHold> {
                                                     AudioModel songInfo =
                                                         await OnAudioEdit()
                                                             .readAudio(widget
-                                                                .listOfSong[
+                                                                .listOfSong![
                                                                     widget
                                                                         .index]
                                                                 .data);
                                                     await Navigator.push(
                                                       context,
                                                       PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .size,
-                                                          alignment:
-                                                              Alignment.center,
-                                                          duration:
-                                                              dialogueAnimationDuration,
-                                                          reverseDuration:
-                                                              dialogueAnimationDuration,
-                                                          child: SongEdit(
-                                                            title:
-                                                                songInfo.title,
-                                                            album:
-                                                                songInfo.album,
-                                                            artist:
-                                                                songInfo.artist,
-                                                            genre:
-                                                                songInfo.genre,
-                                                            car: orientedCar,
-                                                            heightOfDevice:
-                                                                deviceHeight,
-                                                            widthOfDevice:
-                                                                deviceWidth,
-                                                            filePath: widget
-                                                                .listOfSong[
-                                                                    widget
-                                                                        .index]
-                                                                .data,
-                                                            artwork: songInfo
-                                                                .firstArtwork,
-                                                          )),
-                                                    );                                             
+                                                        type: PageTransitionType
+                                                            .size,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        duration:
+                                                            dialogueAnimationDuration,
+                                                        reverseDuration:
+                                                            dialogueAnimationDuration,
+                                                        child: SongEdit(
+                                                          title: songInfo.title,
+                                                          album:
+                                                              songInfo.album ??
+                                                                  "",
+                                                          artist:
+                                                              songInfo.artist ??
+                                                                  "",
+                                                          genre:
+                                                              songInfo.genre ??
+                                                                  "",
+                                                          car: orientedCar,
+                                                          heightOfDevice:
+                                                              deviceHeight,
+                                                          widthOfDevice:
+                                                              deviceWidth,
+                                                          filePath: widget
+                                                              .listOfSong![
+                                                                  widget.index]
+                                                              .data,
+                                                          artwork: songInfo
+                                                                  .firstArtwork ??
+                                                              defaultNone,
+                                                        ),
+                                                      ),
+                                                    );
                                                   } catch (e) {
                                                     Flushbar(
                                                       message:
@@ -507,7 +371,7 @@ class _OnHoldState extends State<OnHold> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -532,21 +396,22 @@ class _OnHoldState extends State<OnHold> {
                                                               15),
                                                     ).show(context);
                                                   }
-                                                  // }
                                                 } else if (i == 6) {
-                                                  if (await Permission.storage
-                                                      .request()
-                                                      .isGranted) {
-                                                    await deleteAFile(widget
-                                                        .listOfSong[
-                                                            widget.index]
-                                                        .data);
+                                                  if (isAndroid11) {
                                                     Navigator.pop(context);
-                                                    await Future.delayed(
-                                                        Duration(seconds: 2));
-
-                                                    refresh = true;
-                                                    rootState.provideman();
+                                                    androidRSupport(context);
+                                                  } else {
+                                                    if (await Permission.storage
+                                                        .request()
+                                                        .isGranted) {
+                                                      await deleteAFile(widget
+                                                          .listOfSong![
+                                                              widget.index]
+                                                          .data);
+                                                      Navigator.pop(context);
+                                                      refresh = true;
+                                                      rootState.provideman();
+                                                    }
                                                   }
                                                 }
                                               },
@@ -564,9 +429,9 @@ class _OnHoldState extends State<OnHold> {
                                                           ? Colors.white70
                                                           : Colors.white70,
                                                       fontSize: widget.car
-                                                          ? widget.widthOfDevice /
+                                                          ? widget.widthOfDevice! /
                                                               26
-                                                          : widget.heightOfDevice /
+                                                          : widget.heightOfDevice! /
                                                               56,
                                                       shadows: [
                                                         Shadow(
@@ -593,8 +458,8 @@ class _OnHoldState extends State<OnHold> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     bottom: widget.car
-                                        ? widget.widthOfDevice / 12
-                                        : widget.heightOfDevice / 25),
+                                        ? widget.widthOfDevice! / 12
+                                        : widget.heightOfDevice! / 25),
                               ),
                             ],
                           ),
@@ -615,14 +480,14 @@ class _OnHoldState extends State<OnHold> {
 class OnHoldExtended extends StatefulWidget {
   final BuildContext context;
   final bool car;
-  final double heightOfDevice;
-  final double widthOfDevice;
+  final double? heightOfDevice;
+  final double? widthOfDevice;
   const OnHoldExtended({
-    Key key,
-    @required this.context,
-    @required this.car,
-    @required this.heightOfDevice,
-    @required this.widthOfDevice,
+    Key? key,
+    required this.context,
+    required this.car,
+    required this.heightOfDevice,
+    required this.widthOfDevice,
   }) : super(key: key);
 
   @override
@@ -669,8 +534,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                     ),
                     alignment: Alignment.center,
                     width: widget.car
-                        ? widget.heightOfDevice / 2
-                        : widget.widthOfDevice / 1.2,
+                        ? widget.heightOfDevice! / 2
+                        : widget.widthOfDevice! / 1.2,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(kRounded),
                       child: BackdropFilter(
@@ -690,12 +555,6 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                 physics: BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: widget.car
-                                            ? widget.widthOfDevice / 12
-                                            : widget.heightOfDevice / 25),
-                                  ),
                                   for (int i = 0;
                                       i < songMoreInfoNP.length;
                                       i++)
@@ -707,8 +566,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                               ? widget.heightOfDevice
                                               : widget.widthOfDevice,
                                           height: widget.car
-                                              ? widget.widthOfDevice / 6
-                                              : widget.heightOfDevice / 12.5,
+                                              ? widget.widthOfDevice! / 6
+                                              : widget.heightOfDevice! / 12.5,
                                           child: Material(
                                             color: Colors.transparent,
                                             child: InkWell(
@@ -717,7 +576,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                   // Share Now Playing
                                                   await screenShotUI(false);
                                                   Directory appDocDir =
-                                                      await getExternalStorageDirectory();
+                                                      (await getExternalStorageDirectory())!;
                                                   String appDocPath =
                                                       appDocDir.path;
                                                   await Share.shareFiles(
@@ -757,7 +616,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -804,7 +663,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -857,7 +716,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -878,163 +737,26 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                     ).show(context);
                                                   } else {
                                                     Navigator.pop(context);
-                                                    Expanded(
-                                                      child: await showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return StatefulBuilder(
-                                                            builder: (context,
-                                                                StateSetter
-                                                                    setState) {
-                                                              return Center(
-                                                                child:
-                                                                    SingleChildScrollView(
-                                                                  physics:
-                                                                      BouncingScrollPhysics(),
-                                                                  child: Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        flex: 0,
-                                                                        child:
-                                                                            Container(
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                          ),
-                                                                          alignment:
-                                                                              Alignment.center,
-                                                                          width: widget.car
-                                                                              ? widget.heightOfDevice / 2
-                                                                              : widget.widthOfDevice / 1.2,
-                                                                          child:
-                                                                              ClipRRect(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(kRounded),
-                                                                            child:
-                                                                                BackdropFilter(
-                                                                              filter: glassBlur,
-                                                                              child: Container(
-                                                                                alignment: Alignment.center,
-                                                                                decoration: BoxDecoration(
-                                                                                  borderRadius: BorderRadius.circular(kRounded),
-                                                                                  border: Border.all(color: Colors.white.withOpacity(0.04)),
-                                                                                  color: glassOpacity,
-                                                                                ),
-                                                                                child: Column(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  children: [
-                                                                                    ListView(
-                                                                                      physics: BouncingScrollPhysics(),
-                                                                                      shrinkWrap: true,
-                                                                                      children: [
-                                                                                        Padding(
-                                                                                          padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 12 : widget.heightOfDevice / 25),
-                                                                                        ),
-                                                                                        for (int o = 0; o < check.keys.toList().length; o++)
-                                                                                          Material(
-                                                                                            color: Colors.transparent,
-                                                                                            child: Center(
-                                                                                              child: SizedBox(
-                                                                                                width: widget.car ? widget.heightOfDevice : widget.widthOfDevice,
-                                                                                                height: widget.car ? widget.widthOfDevice / 6 : widget.heightOfDevice / 12.5,
-                                                                                                child: Material(
-                                                                                                  color: Colors.transparent,
-                                                                                                  child: InkWell(
-                                                                                                    onTap: () {
-                                                                                                      Navigator.pop(context);
-                                                                                                      if (check[check.keys.toList()[o]].contains(nowMediaItem.id)) {
-                                                                                                        Flushbar(
-                                                                                                          messageText: Text("Song Already In Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-                                                                                                          icon: Icon(
-                                                                                                            Icons.error_outline_rounded,
-                                                                                                            size: 28.0,
-                                                                                                            color: Color(0xFFCB0447),
-                                                                                                          ),
-                                                                                                          shouldIconPulse: true,
-                                                                                                          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-                                                                                                          duration: Duration(seconds: 5),
-                                                                                                          borderColor: Colors.white.withOpacity(0.04),
-                                                                                                          borderWidth: 1,
-                                                                                                          backgroundColor: glassOpacity,
-                                                                                                          flushbarStyle: FlushbarStyle.FLOATING,
-                                                                                                          isDismissible: true,
-                                                                                                          barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                                                                          margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-                                                                                                          borderRadius: BorderRadius.circular(15),
-                                                                                                        )..show(context);
-                                                                                                      } else {
-                                                                                                        check[check.keys.toList()[o]].add(nowMediaItem.id);
-                                                                                                        musicBox.put("playlists", check);
-                                                                                                        Flushbar(
-                                                                                                          messageText: Text("Song Added To Playlist", style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-                                                                                                          icon: Icon(
-                                                                                                            Icons.add,
-                                                                                                            size: 28.0,
-                                                                                                            color: kCorrect,
-                                                                                                          ),
-                                                                                                          shouldIconPulse: true,
-                                                                                                          dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-                                                                                                          duration: Duration(seconds: 5),
-                                                                                                          borderColor: Colors.white.withOpacity(0.04),
-                                                                                                          borderWidth: 1,
-                                                                                                          backgroundColor: glassOpacity,
-                                                                                                          flushbarStyle: FlushbarStyle.FLOATING,
-                                                                                                          isDismissible: true,
-                                                                                                          barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-                                                                                                          margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
-                                                                                                          borderRadius: BorderRadius.circular(15),
-                                                                                                        )..show(context);
-                                                                                                      }
-                                                                                                    },
-                                                                                                    child: Center(
-                                                                                                      child: Padding(
-                                                                                                        padding: EdgeInsets.only(left: 12),
-                                                                                                        child: Text(
-                                                                                                          check.keys.toList()[o],
-                                                                                                          maxLines: 2,
-                                                                                                          style: TextStyle(
-                                                                                                            color: musicBox.get("dynamicArtDB") ?? true ? Colors.white70 : Colors.white70,
-                                                                                                            fontSize: widget.car ? widget.widthOfDevice / 26 : widget.heightOfDevice / 56,
-                                                                                                            shadows: [
-                                                                                                              Shadow(
-                                                                                                                offset: musicBox.get("dynamicArtDB") ?? true ? Offset(0, 1.0) : Offset(0, 1.0),
-                                                                                                                blurRadius: musicBox.get("dynamicArtDB") ?? true ? 3.0 : 3.0,
-                                                                                                                color: Colors.black54,
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
-                                                                                                        ),
-                                                                                                      ),
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            ),
-                                                                                          ),
-                                                                                        Padding(
-                                                                                          padding: EdgeInsets.only(top: widget.car ? widget.widthOfDevice / 12 : widget.heightOfDevice / 25),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
+                                                    Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .size,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        duration:
+                                                            dialogueAnimationDuration,
+                                                        reverseDuration:
+                                                            dialogueAnimationDuration,
+                                                        child: AddToPlaylist(
+                                                            widthOfDevice:
+                                                                deviceWidth,
+                                                            heightOfDevice:
+                                                                deviceHeight,
+                                                            songFile:
+                                                                nowMediaItem.id,
+                                                            car: orientedCar,
+                                                            data: check),
                                                       ),
                                                     );
                                                   }
@@ -1066,10 +788,15 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                             dialogueAnimationDuration,
                                                         child: SongEdit(
                                                           title: songInfo.title,
-                                                          album: songInfo.album,
+                                                          album:
+                                                              songInfo.album ??
+                                                                  "",
                                                           artist:
-                                                              songInfo.artist,
-                                                          genre: songInfo.genre,
+                                                              songInfo.artist ??
+                                                                  "",
+                                                          genre:
+                                                              songInfo.genre ??
+                                                                  "",
                                                           car: orientedCar,
                                                           heightOfDevice:
                                                               deviceHeight,
@@ -1078,7 +805,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           filePath:
                                                               nowMediaItem.id,
                                                           artwork: songInfo
-                                                              .firstArtwork,
+                                                                  .firstArtwork ??
+                                                              defaultNone,
                                                         ),
                                                       ),
                                                     );
@@ -1097,7 +825,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
                                                       backgroundColor:
-                                                          glassOpacity,
+                                                          glassOpacity!,
                                                       flushbarStyle:
                                                           FlushbarStyle
                                                               .FLOATING,
@@ -1131,7 +859,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       builder: (context) => Ringtone(
                                                           artworkId:
                                                               nowMediaItem
-                                                                  .extras['id'],
+                                                                      .extras![
+                                                                  'id'],
                                                           filePath:
                                                               nowMediaItem.id,
                                                           artist: nowMediaItem
@@ -1139,7 +868,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           title: nowMediaItem
                                                               .title,
                                                           songDuration: nowMediaItem
-                                                                  .duration
+                                                                  .duration!
                                                                   .inMilliseconds *
                                                               1.0),
                                                     ),
@@ -1170,7 +899,6 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                         size: 28.0,
                                                         color: kCorrect,
                                                       ),
-
                                                       shouldIconPulse: true,
                                                       dismissDirection:
                                                           FlushbarDismissDirection
@@ -1208,18 +936,20 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                   await screenShotUI(false);
                                                   await setHomeScreenWallpaper();
                                                 } else if (i == 8) {
-                                                  if (await Permission.storage
-                                                      .request()
-                                                      .isGranted) {
-                                                    await deleteAFile(
-                                                        songList[indexOfList]
-                                                            .data);
+                                                  if (isAndroid11) {
                                                     Navigator.pop(context);
-                                                    await Future.delayed(
-                                                        Duration(seconds: 2));
-
-                                                    refresh = true;
-                                                    rootState.provideman();
+                                                    androidRSupport(context);
+                                                  } else {
+                                                    if (await Permission.storage
+                                                        .request()
+                                                        .isGranted) {
+                                                      await deleteAFile(
+                                                          songList[indexOfList]
+                                                              .data);
+                                                      Navigator.pop(context);
+                                                      refresh = true;
+                                                      rootState.provideman();
+                                                    }
                                                   }
                                                 }
                                               },
@@ -1242,9 +972,9 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           ? Colors.white70
                                                           : Colors.white70,
                                                       fontSize: widget.car
-                                                          ? widget.widthOfDevice /
+                                                          ? widget.widthOfDevice! /
                                                               26
-                                                          : widget.heightOfDevice /
+                                                          : widget.heightOfDevice! /
                                                               56,
                                                       shadows: [
                                                         Shadow(
@@ -1275,8 +1005,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     bottom: widget.car
-                                        ? widget.widthOfDevice / 12
-                                        : widget.heightOfDevice / 25),
+                                        ? widget.widthOfDevice! / 12
+                                        : widget.heightOfDevice! / 25),
                               ),
                             ],
                           ),

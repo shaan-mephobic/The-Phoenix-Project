@@ -13,9 +13,9 @@ import '../page_backend/mansion_back.dart';
 import 'package:phoenix/src/beginning/utilities/scraping/lyrics_scrape.dart';
 import '../filters.dart';
 
-int indexofcurrent;
-String lyricsDat = " ";
-String rnAccessing;
+int? indexofcurrent;
+String? lyricsDat = " ";
+String? rnAccessing;
 bool onGoingProcess = false;
 bool isPlaying = false;
 
@@ -70,13 +70,13 @@ playThis(int indexOfSong, rnAccess) async {
     await goToAudioService(indexOfSong, songList, songListMediaItems);
   } else if (rnAccess == "album") {
     rnAccessing = "album";
-    await goToAudioService(indexOfSong, insideInAlbumSongs, albumMediaItems);
+    await goToAudioService(indexOfSong, insideInAlbumSongs as List<SongModel>?, albumMediaItems);
   } else if (rnAccess == "artist") {
     rnAccessing = "artist";
     await goToAudioService(indexOfSong, insideInArtistsSongs, artistMediaItems);
   } else if (rnAccess == "genre") {
     rnAccessing = "genre";
-    await goToAudioService(indexOfSong, insidegenreSongs, genreMediaItems);
+    await goToAudioService(indexOfSong, insidegenreSongs as List<SongModel>?, genreMediaItems);
   } else if (rnAccess == "recent") {
     rnAccessing = "recent";
     await goToAudioService(indexOfSong, recentPlayed, recentPlayedMediaItems);
@@ -132,7 +132,7 @@ void pauseResume() async {
     audioHandler.play();
 }
 
-Future<void> goToAudioService(int indexOfSong, List<SongModel> allSong,
+Future<void> goToAudioService(int indexOfSong, List<SongModel>? allSong,
     List<MediaItem> listOfMediaItems) async {
   nowQueue = listOfMediaItems.sublist(indexOfSong) +
       listOfMediaItems.sublist(0, indexOfSong);
@@ -192,7 +192,7 @@ void saveLyrics(songPath, lyric) async {
   await musicBox.put('offlineLyrics', allData);
 }
 
-int getDuration(SongModel data) {
+int? getDuration(SongModel data) {
   try {
     return data.duration;
   } catch (e) {

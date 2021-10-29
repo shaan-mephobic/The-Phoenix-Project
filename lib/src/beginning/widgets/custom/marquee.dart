@@ -5,8 +5,8 @@ import 'package:flutter/rendering.dart';
 /// Credits to zhcode-fun https://github.com/zhcode-fun/flutter-marquee-text
 
 class MarqueeText extends StatelessWidget {
-  final String text;
-  final TextStyle style;
+  final String? text;
+  final TextStyle? style;
 
   /// default 50
   /// Must be greater than 0.
@@ -21,7 +21,7 @@ class MarqueeText extends StatelessWidget {
   final MarqueeDirection marqueeDirection;
 
   const MarqueeText({
-    Key key,
+    Key? key,
     this.text,
     this.style,
     this.speed = 50,
@@ -52,16 +52,16 @@ class MarqueeText extends StatelessWidget {
 }
 
 class MarqueeContainer extends StatefulWidget {
-  final String text;
-  final TextStyle textStyle;
-  final double speed;
-  final BoxConstraints constraints;
-  final bool alwaysScroll;
-  final TextDirection textDirection;
-  final MarqueeDirection marqueeDirection;
+  final String? text;
+  final TextStyle? textStyle;
+  final double? speed;
+  final BoxConstraints? constraints;
+  final bool? alwaysScroll;
+  final TextDirection? textDirection;
+  final MarqueeDirection? marqueeDirection;
 
   MarqueeContainer({
-    Key key,
+    Key? key,
     this.text,
     this.textStyle,
     this.constraints,
@@ -77,9 +77,9 @@ class MarqueeContainer extends StatefulWidget {
 class MarqueeContainerState extends State<MarqueeContainer>
     with SingleTickerProviderStateMixin {
   bool isListening = false;
-  AnimationController marqueeController;
+  late AnimationController marqueeController;
   bool isMarqueeDead = false;
-  Animation<double> _animation;
+  late Animation<double> _animation;
   bool _showMarquee = false;
 
   @override
@@ -117,28 +117,28 @@ class MarqueeContainerState extends State<MarqueeContainer>
       ),
       softWrap: false,
       maxLines: 1,
-      textDirection: widget.textDirection,
+      textDirection: widget.textDirection!,
       overflow: TextOverflow.visible,
     );
-    renderParagraph.layout(widget.constraints);
+    renderParagraph.layout(widget.constraints!);
     var textWidth = renderParagraph.textSize.width;
     var constraintsWidth = renderParagraph.constraints.maxWidth;
-    _showMarquee = textWidth > constraintsWidth || widget.alwaysScroll;
+    _showMarquee = textWidth > constraintsWidth || widget.alwaysScroll!;
     if (marqueeController.isAnimating && !_showMarquee) {
       marqueeController.stop();
       marqueeController.reset();
     }
     var tweenList = [constraintsWidth, -textWidth];
     if (_showMarquee && !isMarqueeDead) {
-      if (widget.speed <= 0) {
+      if (widget.speed! <= 0) {
         throw Exception('marquee_text speed value must be greater than 0');
       }
-      var duration = ((textWidth / (widget.speed * 1.72)) * 1000).floor();
+      var duration = ((textWidth / (widget.speed! * 1.72)) * 1000).floor();
       _showMarquee = true;
       marqueeController.duration = Duration(milliseconds: duration);
       _animation = Tween(
-        begin: tweenList[widget.marqueeDirection.index],
-        end: tweenList[1 - widget.marqueeDirection.index],
+        begin: tweenList[widget.marqueeDirection!.index],
+        end: tweenList[1 - widget.marqueeDirection!.index],
       ).animate(marqueeController)
         ..addStatusListener((status) {
           if (status == AnimationStatus.completed) {
@@ -150,7 +150,7 @@ class MarqueeContainerState extends State<MarqueeContainer>
 
     final textWidget = Container(
         child: Text(
-      widget.text,
+      widget.text!,
       style: widget.textStyle,
       overflow: TextOverflow.visible,
       softWrap: false,

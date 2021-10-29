@@ -18,7 +18,7 @@ class Allofem extends StatefulWidget {
 
 class _AllofemState extends State<Allofem>
     with AutomaticKeepAliveClientMixin<Allofem> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     _scrollBarController = ScrollController();
@@ -114,7 +114,7 @@ class _AllofemState extends State<Allofem>
                 subtitle: Opacity(
                   opacity: 0.5,
                   child: Text(
-                    songList[index - 1].artist,
+                    songList[index - 1].artist!,
                     maxLines: 1,
                     style: TextStyle(
                       color: Colors.white70,
@@ -142,8 +142,8 @@ class _AllofemState extends State<Allofem>
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: MemoryImage(
-                              albumsArts[songList[index - 1].album] ??
-                                  defaultNone),
+                              albumsArts[songList[index - 1].album!] ??
+                                  defaultNone!),
                         ),
                       ),
                     ),

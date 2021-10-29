@@ -11,8 +11,8 @@ import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 import '../../utilities/page_backend/genres_back.dart';
 
-int genreSelected;
-List<SongModel> genreSongs;
+late int genreSelected;
+List<SongModel>? genreSongs;
 List<MediaItem> genreMediaItems = [];
 
 class Genres extends StatefulWidget {
@@ -21,7 +21,7 @@ class Genres extends StatefulWidget {
 }
 
 class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     _scrollBarController = ScrollController();
@@ -47,7 +47,7 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
             controller: _scrollBarController,
             padding: EdgeInsets.only(top: 5, bottom: 8),
             addAutomaticKeepAlives: true,
-            itemExtent: orientedCar ? deviceWidth / 1.4 : deviceWidth / 2,
+            itemExtent: orientedCar ? deviceWidth! / 1.4 : deviceWidth! / 2,
             physics: musicBox.get("fluidAnimation") ?? true
                 ? BouncingScrollPhysics()
                 : ClampingScrollPhysics(),
@@ -56,24 +56,24 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                 : allgenres.length,
             itemBuilder: (context, index) {
               return Container(
-                height: orientedCar ? deviceHeight / 3 : deviceWidth / 2,
+                height: orientedCar ? deviceHeight! / 3 : deviceWidth! / 2,
                 width: orientedCar ? deviceHeight : deviceWidth,
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: deviceWidth / 25),
+                      padding: EdgeInsets.only(top: deviceWidth! / 25),
                     ),
                     Container(
                       width:
-                          orientedCar ? deviceHeight / 1.4 : deviceWidth / 1.05,
+                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! / 1.05,
                       height:
-                          orientedCar ? deviceHeight / 3.3 : deviceWidth / 2.2,
+                          orientedCar ? deviceHeight! / 3.3 : deviceWidth! / 2.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black
-                                .withOpacity(glassShadowOpacity / 100),
+                                .withOpacity(glassShadowOpacity! / 100),
                             blurRadius: glassShadowBlur,
                             offset: kShadowOffset,
                           ),
@@ -129,7 +129,7 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                     maxLines: 2,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: deviceWidth / 20,
+                                      fontSize: deviceWidth! / 20,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),

@@ -16,7 +16,6 @@ import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/on_hold.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
 
 class Searchin extends StatefulWidget {
@@ -25,10 +24,11 @@ class Searchin extends StatefulWidget {
 }
 
 class _SearchinState extends State<Searchin> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   List searchedAlbums = [];
   List searchedArtists = [];
   List searchedTracks = [];
+  List customLocations = musicBox.get("customLocations") ?? [];
 
   @override
   void initState() {
@@ -48,10 +48,30 @@ class _SearchinState extends State<Searchin> {
 
   theSearch(String name) async {
     if (name != "") {
-      searchedTracks =
-          await OnAudioQuery().queryWithFilters(name, WithFiltersType.AUDIOS);
-      searchedAlbums =
-          await OnAudioQuery().queryWithFilters(name, WithFiltersType.ALBUMS);
+      searchedTracks = [];
+      if (musicBox.get("customScan") ?? false) {
+        for (int i = 0; i < songList.length; i++) {
+          for (int a = 0; a < customLocations.length; a++) {
+            if (songList[i].data.contains(customLocations[a]) &&
+                songList[i].title.toUpperCase().contains(name.toUpperCase())) {
+              searchedTracks.add(songList[i]);
+              break;
+            }
+          }
+        }
+      } else {
+        for (int i = 0; i < songList.length; i++) {
+          if (songList[i].title.toUpperCase().contains(name.toUpperCase())) {
+            searchedTracks.add(songList[i]);
+          }
+        }
+      }
+      searchedAlbums = [];
+      for (int i = 0; i < allAlbums.length; i++) {
+        if (allAlbums[i].album.contains(name)) {
+          searchedAlbums.add(allAlbums[i]);
+        }
+      }
       searchedArtists = [];
       for (int i = 0; i < allArtists.length; i++) {
         if (allArtists[i].toUpperCase().contains(name.toUpperCase())) {
@@ -112,7 +132,7 @@ class _SearchinState extends State<Searchin> {
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black
-                                    .withOpacity(glassShadowOpacity / 100),
+                                    .withOpacity(glassShadowOpacity! / 100),
                                 blurRadius: glassShadowBlur,
                                 offset: kShadowOffset,
                               ),
@@ -204,12 +224,12 @@ class _SearchinState extends State<Searchin> {
                                               padding: const EdgeInsets.only(
                                                   left: 25.0),
                                               child: SizedBox(
-                                                height: deviceWidth / 9,
+                                                height: deviceWidth! / 9,
                                                 child: Text(
                                                   "Albums",
                                                   style: TextStyle(
                                                       fontSize:
-                                                          deviceWidth / 15,
+                                                          deviceWidth! / 15,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Colors.white),
@@ -219,7 +239,7 @@ class _SearchinState extends State<Searchin> {
                                           ],
                                         ),
                                         SizedBox(
-                                          height: deviceWidth / 1.9,
+                                          height: deviceWidth! / 1.9,
                                           width: orientedCar
                                               ? deviceHeight
                                               : deviceWidth,
@@ -245,7 +265,7 @@ class _SearchinState extends State<Searchin> {
                                                           allAlbumsName.indexOf(
                                                               searchedAlbums[
                                                                       index]
-                                                                  ['album']);
+                                                                  .album);
 
                                                       if (musicBox.get(
                                                                   "colorsOfAlbums") ==
@@ -254,23 +274,23 @@ class _SearchinState extends State<Searchin> {
                                                           : musicBox.get(
                                                                       "colorsOfAlbums")[
                                                                   allAlbums[
-                                                                          passedIndexAlbum]
+                                                                          passedIndexAlbum!]
                                                                       .album] ==
                                                               null) {
                                                         await albumColor(MemoryImage(
                                                             albumsArts[allAlbums[
-                                                                        passedIndexAlbum]
+                                                                        passedIndexAlbum!]
                                                                     .album] ??
-                                                                defaultNone));
+                                                                defaultNone!));
                                                         Map albumColors =
                                                             musicBox.get(
                                                                     "colorsOfAlbums") ??
                                                                 {};
                                                         albumColors[allAlbums[
-                                                                passedIndexAlbum]
+                                                                passedIndexAlbum!]
                                                             .album] = [
-                                                          dominantAlbum.value,
-                                                          contrastAlbum.value
+                                                          dominantAlbum!.value,
+                                                          contrastAlbum!.value
                                                         ];
                                                         musicBox.put(
                                                             "colorsOfAlbums",
@@ -280,13 +300,13 @@ class _SearchinState extends State<Searchin> {
                                                             musicBox.get(
                                                                     "colorsOfAlbums")[
                                                                 allAlbums[
-                                                                        passedIndexAlbum]
+                                                                        passedIndexAlbum!]
                                                                     .album][0]);
                                                         contrastAlbum = Color(
                                                             musicBox.get(
                                                                     "colorsOfAlbums")[
                                                                 allAlbums[
-                                                                        passedIndexAlbum]
+                                                                        passedIndexAlbum!]
                                                                     .album][1]);
                                                       }
                                                       inAlbumSongs = [];
@@ -301,14 +321,14 @@ class _SearchinState extends State<Searchin> {
                                                       );
                                                     },
                                                     child: SizedBox(
-                                                      height: deviceWidth / 2,
-                                                      width: deviceWidth / 2.5,
+                                                      height: deviceWidth! / 2,
+                                                      width: deviceWidth! / 2.5,
                                                       child: Column(
                                                         children: [
                                                           Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      top: deviceWidth /
+                                                                      top: deviceWidth! /
                                                                           30)),
                                                           PhysicalModel(
                                                             color: Colors
@@ -318,14 +338,14 @@ class _SearchinState extends State<Searchin> {
                                                                     .circular(
                                                                         kRounded),
                                                             elevation:
-                                                                deviceWidth /
+                                                                deviceWidth! /
                                                                     140,
                                                             child: Container(
                                                               height:
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       3,
                                                               width:
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       3,
                                                               decoration:
                                                                   BoxDecoration(
@@ -337,11 +357,10 @@ class _SearchinState extends State<Searchin> {
                                                                     DecorationImage(
                                                                   fit: BoxFit
                                                                       .cover,
-                                                                  image: MemoryImage(albumsArts[
-                                                                          searchedAlbums[index]
-                                                                              [
-                                                                              'album']] ??
-                                                                      defaultNone),
+                                                                  image: MemoryImage(
+                                                                      albumsArts[
+                                                                              searchedAlbums[index].album] ??
+                                                                          defaultNone!),
                                                                 ),
                                                               ),
                                                             ),
@@ -349,12 +368,12 @@ class _SearchinState extends State<Searchin> {
                                                           Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      top: deviceWidth /
+                                                                      top: deviceWidth! /
                                                                           40)),
                                                           Text(
                                                             searchedAlbums[
-                                                                        index]
-                                                                    ['album']
+                                                                    index]
+                                                                .album
                                                                 .toUpperCase(),
                                                             maxLines: 2,
                                                             textAlign: TextAlign
@@ -363,9 +382,9 @@ class _SearchinState extends State<Searchin> {
                                                               color:
                                                                   Colors.white,
                                                               fontSize: orientedCar
-                                                                  ? deviceHeight /
+                                                                  ? deviceHeight! /
                                                                       54
-                                                                  : deviceWidth /
+                                                                  : deviceWidth! /
                                                                       30,
                                                               fontWeight:
                                                                   FontWeight
@@ -414,12 +433,12 @@ class _SearchinState extends State<Searchin> {
                                               padding: const EdgeInsets.only(
                                                   left: 25.0),
                                               child: SizedBox(
-                                                height: deviceWidth / 9,
+                                                height: deviceWidth! / 9,
                                                 child: Text(
                                                   "Artists",
                                                   style: TextStyle(
                                                       fontSize:
-                                                          deviceWidth / 15,
+                                                          deviceWidth! / 15,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Colors.white),
@@ -429,7 +448,7 @@ class _SearchinState extends State<Searchin> {
                                           ],
                                         ),
                                         SizedBox(
-                                          height: deviceWidth / 1.9,
+                                          height: deviceWidth! / 1.9,
                                           width: deviceWidth,
                                           child: ListView.builder(
                                               shrinkWrap: true,
@@ -485,9 +504,9 @@ class _SearchinState extends State<Searchin> {
                                                             colorMap[
                                                                 searchedArtists[
                                                                     index]] = [
-                                                              dominantAlbum
+                                                              dominantAlbum!
                                                                   .value,
-                                                              contrastAlbum
+                                                              contrastAlbum!
                                                                   .value
                                                             ];
                                                             musicBox.put(
@@ -526,14 +545,14 @@ class _SearchinState extends State<Searchin> {
                                                       );
                                                     },
                                                     child: SizedBox(
-                                                      height: deviceWidth / 2,
-                                                      width: deviceWidth / 2.5,
+                                                      height: deviceWidth! / 2,
+                                                      width: deviceWidth! / 2.5,
                                                       child: Column(
                                                         children: [
                                                           Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      top: deviceWidth /
+                                                                      top: deviceWidth! /
                                                                           30)),
                                                           PhysicalModel(
                                                             color: Colors
@@ -541,14 +560,14 @@ class _SearchinState extends State<Searchin> {
                                                             shape:
                                                                 BoxShape.circle,
                                                             elevation:
-                                                                deviceWidth /
+                                                                deviceWidth! /
                                                                     140,
                                                             child: Container(
                                                               height:
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       3,
                                                               width:
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       3,
                                                               decoration:
                                                                   BoxDecoration(
@@ -558,16 +577,16 @@ class _SearchinState extends State<Searchin> {
                                                               child: artistCollage(
                                                                   index,
                                                                   searchedArtists,
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       1.5,
-                                                                  deviceWidth /
+                                                                  deviceWidth! /
                                                                       3),
                                                             ),
                                                           ),
                                                           Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      top: deviceWidth /
+                                                                      top: deviceWidth! /
                                                                           40)),
                                                           Text(
                                                             searchedArtists[
@@ -583,9 +602,9 @@ class _SearchinState extends State<Searchin> {
                                                                   : Colors
                                                                       .white,
                                                               fontSize: orientedCar
-                                                                  ? deviceHeight /
+                                                                  ? deviceHeight! /
                                                                       54
-                                                                  : deviceWidth /
+                                                                  : deviceWidth! /
                                                                       30,
                                                               fontWeight:
                                                                   FontWeight
@@ -629,11 +648,11 @@ class _SearchinState extends State<Searchin> {
                                         padding:
                                             const EdgeInsets.only(left: 25.0),
                                         child: SizedBox(
-                                          height: deviceWidth / 9,
+                                          height: deviceWidth! / 9,
                                           child: Text(
                                             "Tracks",
                                             style: TextStyle(
-                                                fontSize: deviceWidth / 15,
+                                                fontSize: deviceWidth! / 15,
                                                 fontWeight: FontWeight.w600,
                                                 color: Colors.white),
                                           ),
@@ -650,7 +669,7 @@ class _SearchinState extends State<Searchin> {
                                       for (int i = 0;
                                           i < songList.length;
                                           i++) {
-                                        if (searchedTracks[index - 3]['_id'] ==
+                                        if (searchedTracks[index - 3].id ==
                                             songList[i].id) {
                                           if (songListMediaItems[i].duration ==
                                               Duration(milliseconds: 0)) {
@@ -666,7 +685,7 @@ class _SearchinState extends State<Searchin> {
                                       for (int i = 0;
                                           i < songList.length;
                                           i++) {
-                                        if (searchedTracks[index - 3]['_id'] ==
+                                        if (searchedTracks[index - 3].id ==
                                             songList[i].id) {
                                           Navigator.push(
                                             context,
@@ -693,7 +712,7 @@ class _SearchinState extends State<Searchin> {
                                     },
                                     dense: false,
                                     title: Text(
-                                      searchedTracks[index - 3]['title'],
+                                      searchedTracks[index - 3].title,
                                       maxLines: 2,
                                       style: TextStyle(
                                         color: Colors.white70,
@@ -710,7 +729,7 @@ class _SearchinState extends State<Searchin> {
                                     subtitle: Opacity(
                                       opacity: 0.5,
                                       child: Text(
-                                        searchedTracks[index - 3]['artist'],
+                                        searchedTracks[index - 3].artist,
                                         maxLines: 1,
                                         style: TextStyle(
                                           color: Colors.white70,
@@ -741,8 +760,8 @@ class _SearchinState extends State<Searchin> {
                                               fit: BoxFit.cover,
                                               image: MemoryImage(albumsArts[
                                                       searchedTracks[index - 3]
-                                                          ['album']] ??
-                                                  defaultNone),
+                                                          .album] ??
+                                                  defaultNone!),
                                             ),
                                           ),
                                         ),

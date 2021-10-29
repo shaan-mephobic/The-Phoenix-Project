@@ -12,7 +12,7 @@ class Graviticons {
   Graviticons._();
 
   static const _kFontFam = 'Graviticons';
-  static const String _kFontPkg = null;
+  static const String? _kFontPkg = null;
 
   static const IconData phoenix = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData lyrics = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);

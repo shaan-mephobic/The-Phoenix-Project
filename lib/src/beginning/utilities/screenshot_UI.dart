@@ -14,21 +14,21 @@ screenShotUI(save) async {
   await screenshotController
       .captureFromWidget(
     SizedBox(
-      height: deviceHeight / 1.3,
-      width: deviceWidth / 1.3,
+      height: deviceHeight! / 1.3,
+      width: deviceWidth! / 1.3,
       child: Stack(
         children: [
           SizedBox(
-            height: deviceHeight / 1.3,
-            width: deviceWidth / 1.3,
+            height: deviceHeight! / 1.3,
+            width: deviceWidth! / 1.3,
             child: Image.memory(
-              first ? art ?? defaultNone : art2 ?? defaultNone,
+              first ? art ?? defaultNone! : art2 ?? defaultNone!,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(
-            height: deviceHeight / 1.3,
-            width: deviceWidth / 1.3,
+            height: deviceHeight! / 1.3,
+            width: deviceWidth! / 1.3,
             child: ClipRRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
@@ -37,7 +37,7 @@ screenShotUI(save) async {
                   color: Colors.black.withOpacity(0.2),
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: deviceWidth / 12, right: deviceWidth / 12),
+                        left: deviceWidth! / 12, right: deviceWidth! / 12),
                     child: Center(
                       child: Text(
                         aestheticText(nowMediaItem.title),
@@ -46,7 +46,7 @@ screenShotUI(save) async {
                             fontFamily: "Raleway",
                             fontWeight: FontWeight.w100,
                             color: Colors.white,
-                            fontSize: deviceWidth / 12),
+                            fontSize: deviceWidth! / 12),
                       ),
                     ),
                   ),
@@ -61,7 +61,7 @@ screenShotUI(save) async {
       .then(
     (capturedImage) async {
       if (!save) {
-        Directory appDocDir = await getExternalStorageDirectory();
+        Directory appDocDir = (await getExternalStorageDirectory())!;
         String appDocPath = appDocDir.path;
         if (File("$appDocPath/legendary-er.png").existsSync()) {
           File("$appDocPath/legendary-er.png").delete();
@@ -93,7 +93,7 @@ class WallpaperArt extends StatelessWidget {
       width: deviceWidth,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: MemoryImage(first ? art : art2),
+          image: MemoryImage(first ? art! : art2!),
           fit: BoxFit.cover,
         ),
       ),
@@ -111,7 +111,7 @@ class WallpaperArt extends StatelessWidget {
                   fontFamily: "Raleway",
                   fontWeight: FontWeight.w100,
                   color: Colors.white,
-                  fontSize: deviceWidth / 10),
+                  fontSize: deviceWidth! / 10),
             )),
           ),
         ),

@@ -14,18 +14,18 @@ import 'package:provider/provider.dart';
 import '../../utilities/page_backend/playlist_back.dart';
 
 List<SongModel> playlistSongsInside = [];
-List<SongModel> insideplaylistSongsInside = [];
+List<SongModel>? insideplaylistSongsInside = [];
 List<MediaItem> playlistMediaItems = [];
 
 class PlaylistInside extends StatefulWidget {
-  final String playlistName;
-  PlaylistInside({@required this.playlistName});
+  final String? playlistName;
+  PlaylistInside({required this.playlistName});
   @override
   _PlaylistInsideState createState() => _PlaylistInsideState();
 }
 
 class _PlaylistInsideState extends State<PlaylistInside> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     crossfadeStateChange = true;
@@ -50,10 +50,10 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           shadowColor: Colors.transparent,
           backgroundColor: Colors.transparent,
           title: Text(
-            widget.playlistName,
+            widget.playlistName!,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: deviceWidth / 18,
+                fontSize: deviceWidth! / 18,
                 fontWeight: FontWeight.w600),
           ),
         ),
@@ -63,7 +63,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
             children: [
               BackArt(),
               Padding(
-                padding: EdgeInsets.only(top: deviceWidth / 5),
+                padding: EdgeInsets.only(top: deviceWidth! / 5),
                 child: MediaQuery.removePadding(
                   context: context,
                   removeTop: true,
@@ -114,7 +114,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                               subtitle: Opacity(
                                 opacity: 0.5,
                                 child: Text(
-                                  playlistSongsInside[index].artist,
+                                  playlistSongsInside[index].artist!,
                                   maxLines: 1,
                                   style: TextStyle(
                                     color: Colors.white70,
@@ -150,8 +150,8 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                         fit: BoxFit.cover,
                                         image: MemoryImage(albumsArts[
                                                 playlistSongsInside[index]
-                                                    .album] ??
-                                            defaultNone),
+                                                    .album!] ??
+                                            defaultNone!),
                                       ),
                                     ),
                                   ),

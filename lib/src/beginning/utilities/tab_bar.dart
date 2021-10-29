@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
-List<Tab> tabsData(double width, double height) {
+List<Tab> tabsData(double width, double? height) {
   double letterspace = width / 250;
-  double tabBarFontSize = orientedCar ? width / 18 : height / 35.5;
+  double tabBarFontSize = orientedCar ? width / 18 : height! / 35.5;
 
   return [
     Tab(

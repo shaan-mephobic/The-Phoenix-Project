@@ -6,37 +6,37 @@ import 'package:phoenix/src/beginning/utilities/edit_song.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 class SongEdit extends StatefulWidget {
-  final double heightOfDevice;
-  final double widthOfDevice;
+  final double? heightOfDevice;
+  final double? widthOfDevice;
   final bool car;
   final String title;
-  final String artist;
-  final String album;
-  final String genre;
+  final String? artist;
+  final String? album;
+  final String? genre;
   final String filePath;
-  final Uint8List artwork;
+  final Uint8List? artwork;
   const SongEdit(
-      {Key key,
-      @required this.heightOfDevice,
-      @required this.widthOfDevice,
-      @required this.car,
-      @required this.title,
-      @required this.artist,
-      @required this.album,
-      @required this.genre,
-      @required this.filePath,
-      @required this.artwork})
+      {Key? key,
+      required this.heightOfDevice,
+      required this.widthOfDevice,
+      required this.car,
+      required this.title,
+      required this.artist,
+      required this.album,
+      required this.genre,
+      required this.filePath,
+      required this.artwork})
       : super(key: key);
   @override
   _SongEditState createState() => _SongEditState();
 }
 
 class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
-  String title;
-  String album;
-  String artist;
-  String genre;
-  Uint8List artwork;
+  String? title;
+  String? album;
+  String? artist;
+  String? genre;
+  Uint8List? artwork;
   bool shouldEdit = false;
 
   @override
@@ -76,8 +76,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                   ),
                   alignment: Alignment.center,
                   width: widget.car
-                      ? widget.heightOfDevice / 2
-                      : widget.widthOfDevice / 1.2,
+                      ? widget.heightOfDevice! / 2
+                      : widget.widthOfDevice! / 1.2,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(kRounded),
                     child: BackdropFilter(
@@ -93,11 +93,6 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    top: orientedCar
-                                        ? widget.widthOfDevice / 16
-                                        : widget.heightOfDevice / 40)),
                             Material(
                               color: Colors.transparent,
                               child: Padding(
@@ -107,10 +102,10 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   cursorColor: Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
-                                    ..text = title,
+                                    ..text = title!,
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: "Futura"),
+                                    color: Colors.white,
+                                  ),
                                   onChanged: (text) {
                                     shouldEdit = true;
                                     title = text;
@@ -139,8 +134,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                       labelText: "TITLE",
                                       hintText: "",
                                       labelStyle: TextStyle(
-                                          color: Colors.grey[350],
-                                          fontFamily: "Futura"),
+                                        color: Colors.grey[350],
+                                      ),
                                       fillColor: Colors.transparent),
                                 ),
                               ),
@@ -148,8 +143,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 8
-                                        : widget.heightOfDevice / 20)),
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20)),
 
                             ///ALBUM
                             Material(
@@ -161,10 +156,10 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   cursorColor: Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
-                                    ..text = album,
+                                    ..text = album!,
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: "Futura"),
+                                    color: Colors.white,
+                                  ),
                                   onChanged: (text) {
                                     shouldEdit = true;
                                     album = text;
@@ -192,8 +187,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                           TextStyle(color: Colors.grey[350]),
                                       labelText: "ALBUM",
                                       labelStyle: TextStyle(
-                                          color: Colors.grey[350],
-                                          fontFamily: "Futura"),
+                                        color: Colors.grey[350],
+                                      ),
                                       hintText: "",
                                       fillColor: Colors.transparent),
                                 ),
@@ -202,8 +197,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 8
-                                        : widget.heightOfDevice / 20)),
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20)),
 
                             ///Artist
                             Material(
@@ -215,10 +210,10 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   cursorColor: Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
-                                    ..text = artist,
+                                    ..text = artist!,
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: "Futura"),
+                                    color: Colors.white,
+                                  ),
                                   onChanged: (text) {
                                     shouldEdit = true;
                                     artist = text;
@@ -246,8 +241,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                           TextStyle(color: Colors.grey[350]),
                                       labelText: "ARTIST",
                                       labelStyle: TextStyle(
-                                          color: Colors.grey[350],
-                                          fontFamily: "Futura"),
+                                        color: Colors.grey[350],
+                                      ),
                                       hintText: "",
                                       fillColor: Colors.transparent),
                                 ),
@@ -256,8 +251,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 8
-                                        : widget.heightOfDevice / 20)),
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20)),
 
                             ///Genre
                             Material(
@@ -269,10 +264,10 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   cursorColor: Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
-                                    ..text = widget.genre,
+                                    ..text = genre!,
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: "Futura"),
+                                    color: Colors.white,
+                                  ),
                                   onChanged: (text) {
                                     shouldEdit = true;
                                     genre = text;
@@ -300,8 +295,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                           TextStyle(color: Colors.grey[350]),
                                       labelText: "GENRE",
                                       labelStyle: TextStyle(
-                                          color: Colors.grey[350],
-                                          fontFamily: "Futura"),
+                                        color: Colors.grey[350],
+                                      ),
                                       hintText: "",
                                       fillColor: Colors.transparent),
                                 ),
@@ -310,14 +305,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 8
-                                        : widget.heightOfDevice / 20)),
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20)),
 
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 8
-                                        : widget.heightOfDevice / 20)),
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20)),
                             Material(
                               borderRadius: BorderRadius.circular(kRounded),
                               color: Colors.transparent,
@@ -338,14 +333,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   }
                                 },
                                 child: Container(
-                                  height: deviceWidth / 12,
-                                  width: deviceWidth / 4,
+                                  height: deviceWidth! / 12,
+                                  width: deviceWidth! / 4,
                                   decoration: BoxDecoration(
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black12,
                                         blurRadius: 1.0,
-                                        spreadRadius: deviceWidth / 220,
+                                        spreadRadius: deviceWidth! / 220,
                                       ),
                                     ],
                                     color: Color(0xFF1DB954),
@@ -357,7 +352,7 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: deviceWidth / 25,
+                                            fontSize: deviceWidth! / 25,
                                             fontWeight: FontWeight.w600)),
                                   ),
                                 ),
@@ -366,8 +361,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Padding(
                                 padding: EdgeInsets.only(
                                     top: orientedCar
-                                        ? widget.widthOfDevice / 16
-                                        : widget.heightOfDevice / 40)),
+                                        ? widget.widthOfDevice! / 16
+                                        : widget.heightOfDevice! / 40)),
                           ],
                         ),
                       ),

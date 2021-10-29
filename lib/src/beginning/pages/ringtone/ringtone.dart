@@ -13,24 +13,24 @@ import 'package:phoenix/src/beginning/widgets/seek_bar.dart';
 final ringtonePlayer = AudioPlayer();
 
 class Ringtone extends StatefulWidget {
-  final int artworkId;
-  final String artist;
+  final int? artworkId;
+  final String? artist;
   final String title;
   final double songDuration;
   final String filePath;
 
   Ringtone(
-      {@required this.artworkId,
-      @required this.filePath,
-      @required this.artist,
-      @required this.title,
-      @required this.songDuration});
+      {required this.artworkId,
+      required this.filePath,
+      required this.artist,
+      required this.title,
+      required this.songDuration});
   @override
   _RingtoneState createState() => _RingtoneState();
 }
 
 class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
-  var animatedIcon;
+  late var animatedIcon;
   List<double> ranges = [];
   bool isCompleted = false;
   bool isStartChanged = false;
@@ -89,8 +89,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
         label: isProcessing
             ? Center(
                 child: Container(
-                  height: deviceWidth / 25,
-                  width: deviceWidth / 25,
+                  height: deviceWidth! / 25,
+                  width: deviceWidth! / 25,
                   child: CircularProgressIndicator(
                     backgroundColor: Colors.transparent,
                     color: Colors.black,
@@ -100,7 +100,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
             : Text("Set Ringtone",
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: deviceWidth / 25,
+                    fontSize: deviceWidth! / 25,
                     fontWeight: FontWeight.w600)),
         backgroundColor: Color(0xFF1DB954),
         elevation: 8.0,
@@ -135,7 +135,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
           "RINGTONE",
           style: TextStyle(
             color: Colors.white,
-            fontSize: deviceWidth / 18,
+            fontSize: deviceWidth! / 18,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -148,7 +148,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
               width: double.infinity,
               height: double.infinity,
               child: QueryArtworkWidget(
-                id: widget.artworkId,
+                id: widget.artworkId!,
                 type: ArtworkType.AUDIO,
                 format: ArtworkFormat.JPEG,
                 size: 400,
@@ -159,7 +159,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(kRounded),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: MemoryImage(defaultNone),
+                      image: MemoryImage(defaultNone!),
                     ),
                   ),
                 ),
@@ -193,8 +193,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                       Padding(
                                         padding: EdgeInsets.only(
                                           bottom: orientedCar
-                                              ? deviceWidth / 12
-                                              : deviceHeight / 12,
+                                              ? deviceWidth! / 12
+                                              : deviceHeight! / 12,
                                         ),
                                       ),
                                       Container(
@@ -206,7 +206,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w600,
-                                            fontSize: deviceWidth / 18,
+                                            fontSize: deviceWidth! / 18,
                                           ),
                                         ),
                                       ),
@@ -220,7 +220,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           icon: AnimatedIcons.pause_play,
                                           color: Colors.white,
                                         ),
-                                        iconSize: deviceWidth / 9,
+                                        iconSize: deviceWidth! / 9,
                                         alignment: Alignment.center,
                                         onPressed: () async {
                                           if (isCompleted) {
@@ -243,8 +243,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                   Padding(
                                     padding: EdgeInsets.only(
                                       bottom: orientedCar
-                                          ? deviceWidth / 9
-                                          : deviceHeight / 9,
+                                          ? deviceWidth! / 9
+                                          : deviceHeight! / 9,
                                     ),
                                   ),
                                   Column(
@@ -253,7 +253,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         "Select range",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: deviceWidth / 18,
+                                          fontSize: deviceWidth! / 18,
                                         ),
                                       ),
                                       Padding(
@@ -285,7 +285,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                           Duration(
                                                                   milliseconds:
                                                                       nowMediaItem
-                                                                          .duration
+                                                                          .duration!
                                                                           .inMilliseconds)
                                                               .toString()
                                                               .replaceRange(
@@ -321,7 +321,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                           Duration(
                                                                   milliseconds:
                                                                       nowMediaItem
-                                                                          .duration
+                                                                          .duration!
                                                                           .inMilliseconds)
                                                               .toString()
                                                               .replaceRange(
@@ -343,8 +343,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                   EdgeInsets.only(top: 20)),
                                           SizedBox(
                                             width: orientedCar
-                                                ? deviceHeight / 1.1
-                                                : deviceWidth / 1.1,
+                                                ? deviceHeight! / 1.1
+                                                : deviceWidth! / 1.1,
                                             height: 50,
                                             child: FlutterSlider(
                                               trackBar: FlutterSliderTrackBar(
@@ -397,8 +397,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           Padding(
                                             padding: EdgeInsets.only(
                                               bottom: orientedCar
-                                                  ? deviceWidth / 9
-                                                  : deviceHeight / 9,
+                                                  ? deviceWidth! / 9
+                                                  : deviceHeight! / 9,
                                             ),
                                           ),
                                         ],
@@ -409,7 +409,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             "Fade in",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: deviceWidth / 18,
+                                              fontSize: deviceWidth! / 18,
                                             ),
                                           ),
                                           Padding(
@@ -418,8 +418,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             ),
                                             child: SizedBox(
                                               width: orientedCar
-                                                  ? deviceHeight / 1.1
-                                                  : deviceWidth / 1.1,
+                                                  ? deviceHeight! / 1.1
+                                                  : deviceWidth! / 1.1,
                                               height: 50,
                                               child: FlutterSlider(
                                                 tooltip: FlutterSliderTooltip(
@@ -471,8 +471,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                       Padding(
                                         padding: EdgeInsets.only(
                                           bottom: orientedCar
-                                              ? deviceWidth / 9
-                                              : deviceHeight / 9,
+                                              ? deviceWidth! / 9
+                                              : deviceHeight! / 9,
                                         ),
                                       ),
                                     ],
@@ -508,7 +508,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: glassOpacity,
+      backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:
@@ -532,7 +532,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: glassOpacity,
+      backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:
@@ -542,16 +542,16 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
     )..show(context);
   }
 
-  Future<Widget> ringtoneRange(
-      {@required BuildContext context,
-      @required String startend,
-      @required double ms}) async {
+  Future<Widget?> ringtoneRange(
+      {required BuildContext context,
+      required String startend,
+      required double ms}) async {
     String duration = Duration(milliseconds: ms ~/ 1)
         .toString()
         .replaceRange(0, 2, "")
         .replaceRange(
           7,
-          Duration(milliseconds: nowMediaItem.duration.inMilliseconds)
+          Duration(milliseconds: nowMediaItem.duration!.inMilliseconds)
               .toString()
               .replaceRange(0, 2, "")
               .length,
@@ -800,7 +800,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             borderColor:
                                                 Colors.white.withOpacity(0.04),
                                             borderWidth: 1,
-                                            backgroundColor: glassOpacity,
+                                            backgroundColor: glassOpacity!,
                                             flushbarStyle:
                                                 FlushbarStyle.FLOATING,
                                             isDismissible: true,

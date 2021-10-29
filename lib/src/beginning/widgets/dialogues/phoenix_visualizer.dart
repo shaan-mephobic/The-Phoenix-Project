@@ -6,7 +6,7 @@ import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class PhoenixVisualizer extends StatefulWidget {
-  const PhoenixVisualizer({Key key}) : super(key: key);
+  const PhoenixVisualizer({Key? key}) : super(key: key);
 
   @override
   _PhoenixVisualizerState createState() => _PhoenixVisualizerState();
@@ -38,9 +38,9 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                     flex: 0,
                     child: Container(
                       height:
-                          orientedCar ? deviceHeight / 1.4 : deviceWidth * 1.3,
+                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
                       width:
-                          orientedCar ? deviceHeight / 1.5 : deviceWidth / 1.2,
+                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),
@@ -63,7 +63,7 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: deviceWidth / 14,
+                                    fontSize: deviceWidth! / 14,
                                   ),
                                 ),
                                 Center(
@@ -72,21 +72,21 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                                       infoProperties: InfoProperties(
                                         bottomLabelStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: deviceHeight / 60,
+                                          fontSize: deviceHeight! / 60,
                                         ),
                                         bottomLabelText: 'SENSITIVITY',
                                         mainLabelStyle: TextStyle(
                                             color: Colors.white,
-                                            fontSize: deviceHeight / 40,
+                                            fontSize: deviceHeight! / 40,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      size: deviceHeight / 6,
+                                      size: deviceHeight! / 6,
                                       customColors: CustomSliderColors(
                                         progressBarColor: kPhoenixColor,
                                         trackColor: Colors.black26,
                                       ),
                                       customWidths: CustomSliderWidths(
-                                          progressBarWidth: deviceWidth / 65),
+                                          progressBarWidth: deviceWidth! / 65),
                                     ),
                                     min: 0,
                                     max: 100,
@@ -118,8 +118,8 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                                       Navigator.pop(context);
                                     },
                                     child: Container(
-                                      height: deviceWidth / 12,
-                                      width: deviceWidth / 4,
+                                      height: deviceWidth! / 12,
+                                      width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF1DB954),
                                         borderRadius:
@@ -130,7 +130,7 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: deviceWidth / 25,
+                                                fontSize: deviceWidth! / 25,
                                                 fontWeight: FontWeight.w600)),
                                       ),
                                     ),
@@ -170,7 +170,7 @@ stopPhoenixVisualizer() {
 }
 
 class PhoenixVisualizerCustomize extends StatefulWidget {
-  const PhoenixVisualizerCustomize({Key key}) : super(key: key);
+  const PhoenixVisualizerCustomize({Key? key}) : super(key: key);
 
   @override
   _PhoenixVisualizerCustomizeState createState() =>
@@ -204,9 +204,9 @@ class _PhoenixVisualizerCustomizeState
                     color: Colors.transparent,
                     child: Container(
                       height:
-                          orientedCar ? deviceHeight / 1.4 : deviceWidth * 1.3,
+                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
                       width:
-                          orientedCar ? deviceHeight / 1.5 : deviceWidth / 1.2,
+                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),
@@ -230,7 +230,7 @@ class _PhoenixVisualizerCustomizeState
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: deviceWidth / 14,
+                                    fontSize: deviceWidth! / 14,
                                   ),
                                 ),
                                 Center(
@@ -239,21 +239,21 @@ class _PhoenixVisualizerCustomizeState
                                       infoProperties: InfoProperties(
                                         bottomLabelStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: deviceHeight / 60,
+                                          fontSize: deviceHeight! / 60,
                                         ),
                                         bottomLabelText: 'SENSITIVITY',
                                         mainLabelStyle: TextStyle(
                                             color: Colors.white,
-                                            fontSize: deviceHeight / 40,
+                                            fontSize: deviceHeight! / 40,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      size: deviceHeight / 6,
+                                      size: deviceHeight! / 6,
                                       customColors: CustomSliderColors(
                                         progressBarColor: kPhoenixColor,
                                         trackColor: Colors.black26,
                                       ),
                                       customWidths: CustomSliderWidths(
-                                          progressBarWidth: deviceWidth / 65),
+                                          progressBarWidth: deviceWidth! / 65),
                                     ),
                                     min: 0,
                                     max: 100,
@@ -274,8 +274,8 @@ class _PhoenixVisualizerCustomizeState
                                       Navigator.pop(context);
                                     },
                                     child: Container(
-                                      height: deviceWidth / 12,
-                                      width: deviceWidth / 4,
+                                      height: deviceWidth! / 12,
+                                      width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF1DB954),
                                         borderRadius:
@@ -286,7 +286,7 @@ class _PhoenixVisualizerCustomizeState
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: Colors.black,
-                                                fontSize: deviceWidth / 25,
+                                                fontSize: deviceWidth! / 25,
                                                 fontWeight: FontWeight.w600)),
                                       ),
                                     ),
@@ -310,7 +310,7 @@ class _PhoenixVisualizerCustomizeState
 }
 
 class PhoenixVisualizerGlobal extends StatefulWidget {
-  const PhoenixVisualizerGlobal({Key key}) : super(key: key);
+  const PhoenixVisualizerGlobal({Key? key}) : super(key: key);
 
   @override
   _PhoenixVisualizerGlobalState createState() =>
@@ -343,9 +343,9 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                     flex: 0,
                     child: Container(
                       height:
-                          orientedCar ? deviceHeight / 1.4 : deviceWidth * 1.3,
+                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
                       width:
-                          orientedCar ? deviceHeight / 1.5 : deviceWidth / 1.2,
+                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),
@@ -368,7 +368,7 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
-                                    fontSize: deviceWidth / 14,
+                                    fontSize: deviceWidth! / 14,
                                   ),
                                 ),
                                 Center(
@@ -377,21 +377,21 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                       infoProperties: InfoProperties(
                                         bottomLabelStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: deviceHeight / 60,
+                                          fontSize: deviceHeight! / 60,
                                         ),
                                         bottomLabelText: 'SENSITIVITY',
                                         mainLabelStyle: TextStyle(
                                             color: Colors.white,
-                                            fontSize: deviceHeight / 40,
+                                            fontSize: deviceHeight! / 40,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      size: deviceHeight / 6,
+                                      size: deviceHeight! / 6,
                                       customColors: CustomSliderColors(
                                         progressBarColor: kPhoenixColor,
                                         trackColor: Colors.black26,
                                       ),
                                       customWidths: CustomSliderWidths(
-                                          progressBarWidth: deviceWidth / 65),
+                                          progressBarWidth: deviceWidth! / 65),
                                     ),
                                     min: 0,
                                     max: 100,
@@ -418,8 +418,8 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                       Navigator.pop(context);
                                     },
                                     child: Container(
-                                      height: deviceWidth / 12,
-                                      width: deviceWidth / 4,
+                                      height: deviceWidth! / 12,
+                                      width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
                                         color: Color(0xFF1DB954),
                                         borderRadius:
@@ -430,7 +430,7 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: deviceWidth / 25,
+                                              fontSize: deviceWidth! / 25,
                                               fontWeight: FontWeight.w600,
                                             )),
                                       ),
@@ -439,15 +439,15 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.only(
-                                      left: deviceWidth / 10,
-                                      right: deviceWidth / 10),
+                                      left: deviceWidth! / 10,
+                                      right: deviceWidth! / 10),
                                   child: Text(
                                     "NOTE: This will run in the background until stopped, causing battery drain",
                                     textAlign: TextAlign.center,
                                     maxLines: 2,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: deviceWidth / 30,
+                                      fontSize: deviceWidth! / 30,
                                     ),
                                   ),
                                 )

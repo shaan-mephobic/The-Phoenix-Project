@@ -15,7 +15,7 @@ class Artists extends StatefulWidget {
 }
 
 class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     _scrollBarController = ScrollController();
@@ -25,8 +25,6 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    bool darkModeOn = true;
     if (ascend) {
       return Scrollbar(
         controller: _scrollBarController,
@@ -49,9 +47,9 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
             itemCount: allArtists.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: orientedCar
-                    ? (deviceHeight / 4) /
-                        (deviceHeight / 4 + deviceHeight / 16)
-                    : (deviceWidth / 3) / (deviceWidth / 3 + deviceWidth / 12),
+                    ? (deviceHeight! / 4) /
+                        (deviceHeight! / 4 + deviceHeight! / 16)
+                    : (deviceWidth! / 3) / (deviceWidth! / 3 + deviceWidth! / 12),
                 crossAxisCount: orientedCar ? 4 : 3),
             itemBuilder: (BuildContext context, int index) {
               return Material(
@@ -75,8 +73,8 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                               "${applicationFileDirectory.path}/artists/${allArtists[index]}.jpg")));
                           Map colorMap = musicBox.get("colorsOfArtists") ?? {};
                           colorMap[allArtists[index]] = [
-                            dominantAlbum.value,
-                            contrastAlbum.value
+                            dominantAlbum!.value,
+                            contrastAlbum!.value
                           ];
                           musicBox.put("colorsOfArtists", colorMap);
                         } catch (e) {
@@ -107,28 +105,28 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                       PhysicalModel(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(kRounded),
-                        elevation: deviceWidth / 140,
+                        elevation: deviceWidth! / 140,
                         child: SizedBox(
                             width: orientedCar
-                                ? deviceHeight / 4 - 17
-                                : deviceWidth / 3 - 17,
+                                ? deviceHeight! / 4 - 17
+                                : deviceWidth! / 3 - 17,
                             height: orientedCar
-                                ? deviceHeight / 4 - 17
-                                : deviceWidth / 3 - 17,
+                                ? deviceHeight! / 4 - 17
+                                : deviceWidth! / 3 - 17,
                             child: artistCollage(
                               index,
                               allArtists,
                               kRounded,
                               orientedCar
-                                  ? deviceHeight / 4 - 17
-                                  : deviceWidth / 3 - 17,
+                                  ? deviceHeight! / 4 - 17
+                                  : deviceWidth! / 3 - 17,
                             )),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceHeight / 100
-                                : deviceWidth / 70),
+                                ? deviceHeight! / 100
+                                : deviceWidth! / 70),
                       ),
                       Container(
                         padding: EdgeInsets.only(left: 9, right: 9),
@@ -169,21 +167,19 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: orientedCar
-                                ? deviceHeight / 58
-                                : deviceWidth / 32,
+                                ? deviceHeight! / 58
+                                : deviceWidth! / 32,
                             fontWeight: FontWeight.w600,
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? Colors.white
-                                : darkModeOn
-                                    ? Colors.white
-                                    : Colors.black,
+                                : Colors.white
+                                    ,
                             shadows: [
                               Shadow(
                                 offset: musicBox.get("dynamicArtDB") ?? true
                                     ? Offset(1.0, 1.0)
-                                    : darkModeOn
-                                        ? Offset(0, 1.0)
-                                        : Offset(0, 0.5),
+                                    : Offset(0, 1.0)
+                                        ,
                                 blurRadius: 2.0,
                                 color: Colors.black45,
                               ),

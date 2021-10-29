@@ -86,7 +86,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                 onNotification: (OverscrollIndicatorNotification overscroll) {
                   overscroll.disallowGlow();
                   return;
-                },
+                } as bool Function(OverscrollIndicatorNotification)?,
                 child: SingleChildScrollView(
                   controller: stupidController,
                   physics: swapController
@@ -100,7 +100,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(top: deviceHeight / 18),
+                              padding: EdgeInsets.only(top: deviceHeight! / 18),
                             ),
                             Row(
                                 mainAxisAlignment:
@@ -117,21 +117,21 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.only(
-                                          left: deviceWidth / 20),
+                                          left: deviceWidth! / 20),
                                       child: Icon(
                                         Ionicons.chevron_down_outline,
-                                        size: deviceWidth / 20,
+                                        size: deviceWidth! / 20,
                                         color: nowContrast,
                                       ),
                                     ),
                                   ),
                                 ]),
                             Padding(
-                              padding: EdgeInsets.only(top: deviceHeight / 18),
+                              padding: EdgeInsets.only(top: deviceHeight! / 18),
                             ),
                             Container(
                               alignment: Alignment.center,
-                              height: deviceHeight / 2.32,
+                              height: deviceHeight! / 2.32,
                               width: deviceWidth,
                               child: GestureDetector(
                                 child: NowArt(orientedCar),
@@ -182,12 +182,12 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 40)),
+                                    EdgeInsets.only(top: deviceHeight! / 40)),
                             Column(
                               children: [
                                 Center(
                                   child: SizedBox(
-                                    width: deviceWidth / 1.3,
+                                    width: deviceWidth! / 1.3,
                                     child: Center(
                                       child: MarqueeText(
                                         text: nowMediaItem.title,
@@ -198,7 +198,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               ? nowContrast
                                               : Colors.white,
                                           fontWeight: FontWeight.w600,
-                                          fontSize: deviceHeight / 35,
+                                          fontSize: deviceHeight! / 35,
                                           height: 1.3,
                                           shadows: [
                                             Shadow(
@@ -218,9 +218,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               opacity: 0.7,
                               child: Center(
                                 child: SizedBox(
-                                  width: deviceWidth / 1.4,
+                                  width: deviceWidth! / 1.4,
                                   child: Text(
-                                    nowMediaItem.album,
+                                    nowMediaItem.album!,
                                     textAlign: TextAlign.center,
                                     maxLines: 1,
                                     style: TextStyle(
@@ -229,7 +229,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               ? nowContrast
                                               : Colors.white,
                                       height: 1,
-                                      fontSize: deviceHeight / 60,
+                                      fontSize: deviceHeight! / 60,
                                       shadows: [
                                         Shadow(
                                           offset: Offset(0.7, 0.7),
@@ -246,16 +246,16 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               opacity: 0.7,
                               child: Center(
                                 child: SizedBox(
-                                  width: deviceWidth / 1.4,
+                                  width: deviceWidth! / 1.4,
                                   child: Text(
-                                    nowMediaItem.artist,
+                                    nowMediaItem.artist!,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
                                               ? nowContrast
                                               : Colors.white,
-                                      fontSize: deviceHeight / 60,
+                                      fontSize: deviceHeight! / 60,
                                       shadows: [
                                         Shadow(
                                           offset: Offset(0.7, 0.7),
@@ -269,17 +269,17 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: deviceHeight / 90),
+                              padding: EdgeInsets.only(top: deviceHeight! / 90),
                             ),
                             Center(
                                 child: SizedBox(
-                                    width: deviceWidth / 1.1,
+                                    width: deviceWidth! / 1.1,
                                     child: SeekBar())),
                             Padding(
-                              padding: EdgeInsets.only(top: deviceHeight / 100),
+                              padding: EdgeInsets.only(top: deviceHeight! / 100),
                             ),
                             SizedBox(
-                              width: deviceWidth / 1.2,
+                              width: deviceWidth! / 1.2,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -296,7 +296,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               : shuffleSelected
                                                   ? Colors.white
                                                   : Colors.white38),
-                                      iconSize: deviceWidth / 16,
+                                      iconSize: deviceWidth! / 16,
                                       onPressed: () async {
                                         if (shuffleSelected) {
                                           shuf.changeShuffle(false);
@@ -315,7 +315,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 ? nowContrast
                                                 : Colors.white,
                                       ),
-                                      iconSize: deviceWidth / 12,
+                                      iconSize: deviceWidth! / 12,
                                       onPressed: () async {
                                         audioHandler.skipToPrevious();
                                       }),
@@ -328,7 +328,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 ? nowContrast
                                                 : Colors.white,
                                       ),
-                                      iconSize: deviceWidth / 9,
+                                      iconSize: deviceWidth! / 9,
                                       alignment: Alignment.center,
                                       onPressed: () async {
                                         pauseResume();
@@ -341,7 +341,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               ? nowContrast
                                               : Colors.white,
                                     ),
-                                    iconSize: deviceWidth / 12,
+                                    iconSize: deviceWidth! / 12,
                                     onPressed: () async {
                                       audioHandler.skipToNext();
                                     },
@@ -360,7 +360,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 ? Colors.white
                                                 : Colors.white38,
                                       ),
-                                      iconSize: deviceWidth / 15,
+                                      iconSize: deviceWidth! / 15,
                                       onPressed: () async {
                                         if (loopSelected) {
                                           loo.changeLoop(false);
@@ -376,12 +376,12 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 38)),
+                                    EdgeInsets.only(top: deviceHeight! / 38)),
                             Consumer<Leprovider>(
                               builder: (context, haunt, _) {
                                 return Center(
                                   child: SizedBox(
-                                    width: deviceWidth / 1.1,
+                                    width: deviceWidth! / 1.1,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -392,8 +392,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             child: InkWell(
                                               splashColor: Colors.transparent,
                                               child: SizedBox(
-                                                height: deviceWidth / 8,
-                                                width: deviceWidth / 8,
+                                                height: deviceWidth! / 8,
+                                                width: deviceWidth! / 8,
                                                 child: Icon(
                                                   Graviticons.phoenix,
                                                   color: musicBox.get(
@@ -406,7 +406,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                       : isFlashin
                                                           ? Colors.white
                                                           : Colors.white38,
-                                                  size: deviceWidth / 13,
+                                                  size: deviceWidth! / 13,
                                                 ),
                                               ),
                                               onTap: () async {
@@ -470,9 +470,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   child: Text(
                                       (advanceAudioData == null
                                           ? ""
-                                          : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
+                                          : "${advanceAudioData!.bitrate}Kbps ${advanceAudioData!.sampleRate}KHz ${advanceAudioData!.format}"),
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 37,
+                                          fontSize: deviceWidth! / 37,
                                           fontFamily: "Futura",
                                           shadows: [
                                             Shadow(
@@ -490,21 +490,21 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 38)),
+                                    EdgeInsets.only(top: deviceHeight! / 38)),
                             Visibility(
                               visible: !(musicBox.get("isolation") == null
                                   ? false
                                   : musicBox.get('isolation')),
                               child: Padding(
                                   padding:
-                                      EdgeInsets.only(top: deviceHeight / 28)),
+                                      EdgeInsets.only(top: deviceHeight! / 28)),
                             ),
                             Visibility(
                               visible: !(musicBox.get("isolation") == null
                                   ? false
                                   : musicBox.get('isolation')),
                               child: SizedBox(
-                                width: deviceWidth / 1.1,
+                                width: deviceWidth! / 1.1,
                                 child: AspectRatio(
                                   aspectRatio: 4 / 5,
                                   child: AnimatedContainer(
@@ -531,17 +531,17 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             "Couldn't find any matching lyrics."
                                         ? Center(
                                             child: Container(
-                                              width: deviceWidth / 1.05,
+                                              width: deviceWidth! / 1.05,
                                               padding: EdgeInsets.only(
-                                                  top: deviceWidth / 18.5,
-                                                  left: deviceWidth / 20,
-                                                  right: deviceWidth / 20,
-                                                  bottom: deviceWidth / 12),
+                                                  top: deviceWidth! / 18.5,
+                                                  left: deviceWidth! / 20,
+                                                  right: deviceWidth! / 20,
+                                                  bottom: deviceWidth! / 12),
                                               child: Text(lyricsDat ?? "",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     wordSpacing: 2,
-                                                    fontSize: deviceWidth / 18,
+                                                    fontSize: deviceWidth! / 18,
                                                     fontFamily: "Raleway",
                                                     fontWeight: FontWeight.w600,
                                                     color: musicBox.get(
@@ -556,18 +556,18 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             physics: BouncingScrollPhysics(),
                                             scrollDirection: Axis.vertical,
                                             child: Container(
-                                              width: deviceWidth / 1.05,
+                                              width: deviceWidth! / 1.05,
                                               padding: EdgeInsets.only(
-                                                  top: deviceWidth / 18.5,
-                                                  left: deviceWidth / 20,
-                                                  right: deviceWidth / 20,
-                                                  bottom: deviceWidth / 12),
+                                                  top: deviceWidth! / 18.5,
+                                                  left: deviceWidth! / 20,
+                                                  right: deviceWidth! / 20,
+                                                  bottom: deviceWidth! / 12),
                                               child: Text(
                                                 lyricsDat ?? "",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   wordSpacing: 2,
-                                                  fontSize: deviceWidth / 18,
+                                                  fontSize: deviceWidth! / 18,
                                                   fontFamily: "Raleway",
                                                   fontWeight: FontWeight.w600,
                                                   color: musicBox.get(
@@ -585,7 +585,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             ),
                             Padding(
                                 padding:
-                                    EdgeInsets.only(top: deviceHeight / 30)),
+                                    EdgeInsets.only(top: deviceHeight! / 30)),
                           ],
                         ),
                       ),
@@ -612,7 +612,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                   onNotification: (OverscrollIndicatorNotification overscroll) {
                     overscroll.disallowGlow();
                     return;
-                  },
+                  } as bool Function(OverscrollIndicatorNotification)?,
                   child: SingleChildScrollView(
                     controller: stupidController,
                     physics: swapController
@@ -629,7 +629,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   ? false
                                   : !musicBox.get("androidAutoLefty"),
                               child: SizedBox(
-                                width: deviceHeight / 2,
+                                width: deviceHeight! / 2,
                                 child: GestureDetector(
                                   child: Padding(
                                     padding: EdgeInsets.all(30),
@@ -680,7 +680,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               ),
                             ),
                             SizedBox(
-                              width: deviceHeight / 2,
+                              width: deviceHeight! / 2,
                               height: deviceWidth,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -689,7 +689,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     children: [
                                       Center(
                                         child: SizedBox(
-                                          width: deviceWidth / 1.3,
+                                          width: deviceWidth! / 1.3,
                                           child: Center(
                                             child: MarqueeText(
                                               text: nowMediaItem.title,
@@ -701,7 +701,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     ? nowContrast
                                                     : Colors.white,
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: deviceHeight / 35,
+                                                fontSize: deviceHeight! / 35,
                                                 height: 1.3,
                                                 shadows: [
                                                   Shadow(
@@ -721,9 +721,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     opacity: 0.7,
                                     child: Center(
                                       child: SizedBox(
-                                        width: deviceWidth / 1.4,
+                                        width: deviceWidth! / 1.4,
                                         child: Text(
-                                          nowMediaItem.album,
+                                          nowMediaItem.album!,
                                           textAlign: TextAlign.center,
                                           maxLines: 1,
                                           style: TextStyle(
@@ -733,7 +733,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     ? nowContrast
                                                     : Colors.white,
                                             height: 1,
-                                            fontSize: deviceHeight / 60,
+                                            fontSize: deviceHeight! / 60,
                                             shadows: [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
@@ -750,9 +750,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     opacity: 0.7,
                                     child: Center(
                                       child: SizedBox(
-                                        width: deviceWidth / 1.4,
+                                        width: deviceWidth! / 1.4,
                                         child: Text(
-                                          nowMediaItem.artist,
+                                          nowMediaItem.artist!,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color:
@@ -760,7 +760,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                         true
                                                     ? nowContrast
                                                     : Colors.white,
-                                            fontSize: deviceHeight / 60,
+                                            fontSize: deviceHeight! / 60,
                                             shadows: [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
@@ -775,18 +775,18 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   ),
                                   Padding(
                                     padding:
-                                        EdgeInsets.only(top: deviceHeight / 90),
+                                        EdgeInsets.only(top: deviceHeight! / 90),
                                   ),
                                   Center(
                                       child: SizedBox(
-                                          width: deviceHeight / 2 / 1.1,
+                                          width: deviceHeight! / 2 / 1.1,
                                           child: SeekBar())),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        top: deviceHeight / 100),
+                                        top: deviceHeight! / 100),
                                   ),
                                   SizedBox(
-                                    width: deviceHeight / 2,
+                                    width: deviceHeight! / 2,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -807,7 +807,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     : shuffleSelected
                                                         ? Colors.white
                                                         : Colors.white38),
-                                            iconSize: deviceHeight / 34,
+                                            iconSize: deviceHeight! / 34,
                                             onPressed: () async {
                                               if (shuffleSelected) {
                                                 shuf.changeShuffle(false);
@@ -827,7 +827,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   ? nowContrast
                                                   : Colors.white,
                                             ),
-                                            iconSize: deviceHeight / 23,
+                                            iconSize: deviceHeight! / 23,
                                             onPressed: () async {
                                               audioHandler.skipToPrevious();
                                             }),
@@ -841,7 +841,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                   ? nowContrast
                                                   : Colors.white,
                                             ),
-                                            iconSize: deviceHeight / 18,
+                                            iconSize: deviceHeight! / 18,
                                             alignment: Alignment.center,
                                             onPressed: () async {
                                               pauseResume();
@@ -855,7 +855,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     ? nowContrast
                                                     : Colors.white,
                                           ),
-                                          iconSize: deviceHeight / 23,
+                                          iconSize: deviceHeight! / 23,
                                           onPressed: () async {
                                             audioHandler.skipToNext();
                                           },
@@ -876,7 +876,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                       ? Colors.white
                                                       : Colors.white38,
                                             ),
-                                            iconSize: deviceHeight / 29,
+                                            iconSize: deviceHeight! / 29,
                                             onPressed: () async {
                                               if (loopSelected) {
                                                 loo.changeLoop(false);
@@ -892,12 +892,12 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   ),
                                   Padding(
                                       padding: EdgeInsets.only(
-                                          top: deviceHeight / 38)),
+                                          top: deviceHeight! / 38)),
                                   Consumer<Leprovider>(
                                     builder: (context, haunt, _) {
                                       return Center(
                                         child: SizedBox(
-                                          width: deviceWidth / 1.1,
+                                          width: deviceWidth! / 1.1,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -909,8 +909,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     splashColor:
                                                         Colors.transparent,
                                                     child: SizedBox(
-                                                      height: deviceWidth / 8,
-                                                      width: deviceWidth / 8,
+                                                      height: deviceWidth! / 8,
+                                                      width: deviceWidth! / 8,
                                                       child: Icon(
                                                         Graviticons.phoenix,
                                                         color: musicBox.get(
@@ -925,7 +925,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                                 ? Colors.white
                                                                 : Colors
                                                                     .white38,
-                                                        size: deviceWidth / 13,
+                                                        size: deviceWidth! / 13,
                                                       ),
                                                     ),
                                                     onTap: () async {
@@ -998,9 +998,9 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                         child: Text(
                                             (advanceAudioData == null
                                                 ? ""
-                                                : "${advanceAudioData.bitrate}Kbps ${advanceAudioData.sampleRate}KHz ${advanceAudioData.format}"),
+                                                : "${advanceAudioData!.bitrate}Kbps ${advanceAudioData!.sampleRate}KHz ${advanceAudioData!.format}"),
                                             style: TextStyle(
-                                                fontSize: deviceWidth / 37,
+                                                fontSize: deviceWidth! / 37,
                                                 fontFamily: "Futura",
                                                 shadows: [
                                                   Shadow(
@@ -1025,7 +1025,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                   ? true
                                   : false,
                               child: SizedBox(
-                                width: deviceHeight / 2,
+                                width: deviceHeight! / 2,
                                 child: GestureDetector(
                                   child: Padding(
                                     padding: EdgeInsets.all(30),
@@ -1058,13 +1058,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                           ],
                         ),
                         Padding(
-                            padding: EdgeInsets.only(top: deviceHeight / 38)),
+                            padding: EdgeInsets.only(top: deviceHeight! / 38)),
                         Visibility(
                           visible: !(musicBox.get("isolation") == null
                               ? false
                               : musicBox.get('isolation')),
                           child: Padding(
-                              padding: EdgeInsets.only(top: deviceHeight / 28)),
+                              padding: EdgeInsets.only(top: deviceHeight! / 28)),
                         ),
                         Visibility(
                           visible: !(musicBox.get("isolation") == null
@@ -1072,7 +1072,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               : musicBox.get('isolation')),
                           child: SizedBox(
                             height: deviceWidth,
-                            width: deviceHeight / 2,
+                            width: deviceHeight! / 2,
                             child: AnimatedContainer(
                               duration: Duration(milliseconds: 700),
                               decoration: BoxDecoration(
@@ -1094,17 +1094,17 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       "Couldn't find any matching lyrics."
                                   ? Center(
                                       child: Container(
-                                        width: deviceWidth / 1.05,
+                                        width: deviceWidth! / 1.05,
                                         padding: EdgeInsets.only(
-                                            top: deviceWidth / 18.5,
-                                            left: deviceWidth / 20,
-                                            right: deviceWidth / 20,
-                                            bottom: deviceWidth / 12),
+                                            top: deviceWidth! / 18.5,
+                                            left: deviceWidth! / 20,
+                                            right: deviceWidth! / 20,
+                                            bottom: deviceWidth! / 12),
                                         child: Text(lyricsDat ?? "",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               wordSpacing: 2,
-                                              fontSize: deviceWidth / 18,
+                                              fontSize: deviceWidth! / 18,
                                               fontFamily: "Raleway",
                                               fontWeight: FontWeight.w600,
                                               color: musicBox.get(
@@ -1119,17 +1119,17 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       physics: BouncingScrollPhysics(),
                                       scrollDirection: Axis.vertical,
                                       child: Container(
-                                        width: deviceWidth / 1.05,
+                                        width: deviceWidth! / 1.05,
                                         padding: EdgeInsets.only(
-                                            top: deviceWidth / 18.5,
-                                            left: deviceWidth / 20,
-                                            right: deviceWidth / 20,
-                                            bottom: deviceWidth / 12),
+                                            top: deviceWidth! / 18.5,
+                                            left: deviceWidth! / 20,
+                                            right: deviceWidth! / 20,
+                                            bottom: deviceWidth! / 12),
                                         child: Text(lyricsDat ?? "",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               wordSpacing: 2,
-                                              fontSize: deviceWidth / 18,
+                                              fontSize: deviceWidth! / 18,
                                               fontFamily: "Raleway",
                                               fontWeight: FontWeight.w600,
                                               color: musicBox.get(
@@ -1149,7 +1149,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               : musicBox.get('isolation')),
                           child: Padding(
                             padding: EdgeInsets.only(
-                              bottom: deviceWidth * 1.03,
+                              bottom: deviceWidth! * 1.03,
                             ),
                           ),
                         ),

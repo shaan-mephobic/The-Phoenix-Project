@@ -8,7 +8,7 @@ import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_ski
 List<String> allArtists = [];
 Map<String, List<dynamic>> artistData = {};
 List<SongModel> inArtistsSongs = [];
-List<SongModel> insideInArtistsSongs = [];
+List<SongModel>? insideInArtistsSongs = [];
 Map artistsAlbums = {};
 List<MediaItem> artistMediaItems = [];
 int numberOfSongsOfArtist = 0;
@@ -23,7 +23,7 @@ gettinArtists() async {
   List<String> mainList = [];
 
   for (int i = 0; i < allAlbums.length; i++) {
-    mainList.add(allAlbums[i].artist.toUpperCase());
+    mainList.add(allAlbums[i].artist!.toUpperCase());
   }
   var result = mainList.toSet().toList();
   result.sort();
@@ -39,7 +39,7 @@ gettinArtistsAlbums() async {
     String artistRN = allArtists[a].toLowerCase();
     List emall = [];
     for (int i = 0; i < allAlbums.length; i++) {
-      if (allAlbums[i].artist.toLowerCase() == artistRN) {
+      if (allAlbums[i].artist!.toLowerCase() == artistRN) {
         emall.add(allAlbums[i]);
       }
     }
@@ -52,19 +52,19 @@ artistsAllSongs(String who) async {
   artistMediaItems = [];
 
   for (int i = 0; i < songList.length; i++) {
-    if (songList[i].artist.toLowerCase() == who.toLowerCase()) {
+    if (songList[i].artist!.toLowerCase() == who.toLowerCase()) {
       inArtistsSongs.add(songList[i]);
       MediaItem item = MediaItem(
           id: songList[i].data,
           album: songList[i].album,
           artist: songList[i].artist,
-          duration: Duration(milliseconds: getDuration(songList[i])),
+          duration: Duration(milliseconds: getDuration(songList[i])!),
           artUri: Uri.file(allAlbumsName.contains(songList[i].album)
               ? musicBox.get("AlbumsWithoutArt") == null
-                  ? "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                  ? "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
                   : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
                       ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                      : "${applicationFileDirectory.path}/artworks/${songList[i].album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
+                      : "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
               : "${applicationFileDirectory.path}/artworks/null.jpeg"),
           title: songList[i].title,
           extras: {"id": songList[i].id});

@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import '../../utilities/page_backend/albums_back.dart';
 import 'albums_inside.dart';
 
-int passedIndexAlbum;
-String selectedAlbumName;
+int? passedIndexAlbum;
+String? selectedAlbumName;
 
 class Albums extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class Albums extends StatefulWidget {
 }
 
 class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     _scrollBarController = ScrollController();
@@ -25,7 +25,6 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    bool darkModeOn = true;
     if (ascend) {
       return Scrollbar(
         controller: _scrollBarController,
@@ -48,9 +47,9 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
             itemCount: allAlbums.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: orientedCar
-                    ? (deviceHeight / 4) /
-                        (deviceHeight / 4 + deviceHeight / 16)
-                    : (deviceWidth / 3) / (deviceWidth / 3 + deviceWidth / 12),
+                    ? (deviceHeight! / 4) /
+                        (deviceHeight! / 4 + deviceHeight! / 16)
+                    : (deviceWidth! / 3) / (deviceWidth! / 3 + deviceWidth! / 12),
                 crossAxisCount: orientedCar ? 4 : 3),
             itemBuilder: (BuildContext context, int index) {
               return Material(
@@ -66,12 +65,12 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                                 "colorsOfAlbums")[allAlbums[index].album] ==
                             null) {
                       await albumColor(MemoryImage(
-                          albumsArts[allAlbums[index].album] ?? defaultNone));
+                          albumsArts[allAlbums[index].album] ?? defaultNone!));
 
                       Map albumColors = musicBox.get("colorsOfAlbums") ?? {};
                       albumColors[allAlbums[index].album] = [
-                        dominantAlbum.value,
-                        contrastAlbum.value
+                        dominantAlbum!.value,
+                        contrastAlbum!.value
                       ];
                       musicBox.put("colorsOfAlbums", albumColors);
                     } else {
@@ -98,21 +97,21 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                         child: PhysicalModel(
                           color: Colors.transparent,
                           borderRadius: BorderRadius.circular(kRounded),
-                          elevation: deviceWidth / 140,
+                          elevation: deviceWidth! / 140,
                           child: Container(
                             width: orientedCar
-                                ? deviceHeight / 4 - 17
-                                : deviceWidth / 3 - 17,
+                                ? deviceHeight! / 4 - 17
+                                : deviceWidth! / 3 - 17,
                             height: orientedCar
-                                ? deviceHeight / 4 - 17
-                                : deviceWidth / 3 - 17,
+                                ? deviceHeight! / 4 - 17
+                                : deviceWidth! / 3 - 17,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(kRounded),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: MemoryImage(
                                   albumsArts[allAlbums[index].album] ??
-                                      defaultNone,
+                                      defaultNone!,
                                 ),
                               ),
                             ),
@@ -122,34 +121,31 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                       Padding(
                         padding: EdgeInsets.only(
                             top: orientedCar
-                                ? deviceHeight / 100
-                                : deviceWidth / 70),
+                                ? deviceHeight! / 100
+                                : deviceWidth! / 70),
                       ),
                       SizedBox(
                         width: orientedCar
-                            ? deviceHeight / 4 - 17
-                            : deviceWidth / 3 - 17,
+                            ? deviceHeight! / 4 - 17
+                            : deviceWidth! / 3 - 17,
                         child: Text(
                           allAlbums[index].album.toString().toUpperCase(),
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: orientedCar
-                                ? deviceHeight / 58
-                                : deviceWidth / 32,
+                                ? deviceHeight! / 58
+                                : deviceWidth! / 32,
                             fontWeight: FontWeight.w600,
-                            color: musicBox.get("dynamicArtDB") ?? true
-                                ? Colors.white
-                                : darkModeOn
-                                    ? Colors.white
-                                    : Colors.black,
+                            color: 
+                                  Colors.white
+                                   ,
                             shadows: [
                               Shadow(
                                 offset: musicBox.get("dynamicArtDB") ?? true
                                     ? Offset(1.0, 1.0)
-                                    : darkModeOn
-                                        ? Offset(0, 1.0)
-                                        : Offset(0, 0.5),
+                                    : Offset(0, 1.0)
+                                        ,
                                 blurRadius: 2.0,
                                 color: Colors.black45,
                               ),

@@ -2,9 +2,10 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
-corruptedFile(BuildContext context) async {
+androidRSupport(BuildContext context) async {
   Flushbar(
-    messageText: Text("Can't play a corrupted file!",
+    messageText: Text(
+        "Feature not available for this android version yet.\nComing soon!",
         style: TextStyle(fontFamily: "Futura", color: Colors.white)),
     icon: Icon(
       Icons.error_outline,
@@ -19,8 +20,8 @@ corruptedFile(BuildContext context) async {
     backgroundColor: glassOpacity!,
     flushbarStyle: FlushbarStyle.FLOATING,
     isDismissible: true,
-    barBlur: musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
+    barBlur: musicBox.get("glassBlur") ?? 18,
     margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
     borderRadius: BorderRadius.circular(15),
-  )..show(context);
+  ).show(context);
 }

@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'genres.dart';
 
-List insidegenreSongs = [];
+List? insidegenreSongs = [];
 
 class GenresInside extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class GenresInside extends StatefulWidget {
 }
 
 class _GenresInsideState extends State<GenresInside> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _GenresInsideState extends State<GenresInside> {
                   ? insideAllGenreData.keys.toList()[genreSelected]
                   : allgenres[genreSelected].genre,
               style: TextStyle(
-                fontSize: deviceWidth / 18,
+                fontSize: deviceWidth! / 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -64,7 +64,7 @@ class _GenresInsideState extends State<GenresInside> {
               children: [
                 BackArt(),
                 Container(
-                  padding: EdgeInsets.only(top: deviceWidth / 4.3),
+                  padding: EdgeInsets.only(top: deviceWidth! / 4.3),
                   child: MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -76,7 +76,7 @@ class _GenresInsideState extends State<GenresInside> {
                         physics: musicBox.get("fluidAnimation") ?? true
                             ? BouncingScrollPhysics()
                             : ClampingScrollPhysics(),
-                        itemCount: genreSongs.length + 1,
+                        itemCount: genreSongs!.length + 1,
                         itemBuilder: (context, index) {
                           if (index == 0) {
                             return ListHeader(deviceWidth, genreSongs, "genre");
@@ -104,7 +104,7 @@ class _GenresInsideState extends State<GenresInside> {
                                     reverseDuration: dialogueAnimationDuration,
                                     child: OnHold(
                                         classContext: context,
-                                        listOfSong: genreSongs,
+                                        listOfSong: genreSongs!,
                                         index: index - 1,
                                         car: orientedCar,
                                         heightOfDevice: deviceHeight,
@@ -115,7 +115,7 @@ class _GenresInsideState extends State<GenresInside> {
                               },
                               dense: false,
                               title: Text(
-                                genreSongs[index - 1].title,
+                                genreSongs![index - 1].title,
                                 maxLines: 2,
                                 style: TextStyle(
                                   color: Colors.white70,
@@ -132,7 +132,7 @@ class _GenresInsideState extends State<GenresInside> {
                               subtitle: Opacity(
                                 opacity: 0.5,
                                 child: Text(
-                                  genreSongs[index - 1].artist,
+                                  genreSongs![index - 1].artist!,
                                   maxLines: 1,
                                   style: TextStyle(
                                     color: Colors.white70,
@@ -160,8 +160,8 @@ class _GenresInsideState extends State<GenresInside> {
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: MemoryImage(albumsArts[
-                                                genreSongs[index - 1].album] ??
-                                            defaultNone),
+                                                genreSongs![index - 1].album!] ??
+                                            defaultNone!),
                                       ),
                                     ),
                                   ),

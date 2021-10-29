@@ -43,24 +43,24 @@ class _BeginState extends State<Begin>
   bool isonexit = false;
   bool isEditing = false;
   bool stackedPhoenix = false;
-  TabController tabController;
+  TabController? tabController;
 
   @override
   void initState() {
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
-    SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
       Begin.refreshIndicatorKey.currentState?.show();
     });
     visualizerNotificationInit();
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     super.initState();
   }
 
   @override
   void dispose() {
     animatedPlayPause.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
@@ -101,14 +101,13 @@ class _BeginState extends State<Begin>
     if (refresh) {
       debugPrint("Refreshing...");
       refresh = false;
-      SchedulerBinding.instance.addPostFrameCallback((_) {
+      SchedulerBinding.instance!.addPostFrameCallback((_) {
         Begin.refreshIndicatorKey.currentState?.show();
       });
     }
     orientedCar = false;
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
-    bool darkModeOn = true;
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
       orientedCar = true;
       deviceHeight = MediaQuery.of(context).size.width;
@@ -134,8 +133,8 @@ class _BeginState extends State<Begin>
           borderRadius: musicBox.get("classix") ?? true
               ? null
               : BorderRadius.only(
-                  topLeft: Radius.circular(deviceWidth / 40),
-                  topRight: Radius.circular(deviceWidth / 40)),
+                  topLeft: Radius.circular(deviceWidth! / 40),
+                  topRight: Radius.circular(deviceWidth! / 40)),
           backdropEnabled: true,
           onPanelOpened: () {
             if (musicBox.get("quickTip") == null) {
@@ -149,7 +148,7 @@ class _BeginState extends State<Begin>
             }
           },
           collapsed: musicBox.get("classix") ?? true ? Classix() : Moderna(),
-          maxHeight: deviceHeight,
+          maxHeight: deviceHeight!,
           backdropTapClosesPanel: true,
           renderPanelSheet: true,
           color: Colors.transparent,
@@ -168,7 +167,7 @@ class _BeginState extends State<Begin>
                         children: [
                           Padding(
                               padding:
-                                  EdgeInsets.only(top: deviceHeight / 100)),
+                                  EdgeInsets.only(top: deviceHeight! / 100)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -182,8 +181,8 @@ class _BeginState extends State<Begin>
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: orientedCar
-                                                ? deviceWidth / 16
-                                                : deviceHeight / 32,
+                                                ? deviceWidth! / 16
+                                                : deviceHeight! / 32,
                                             fontFamily: "NightMachine"),
                                         textAlign: TextAlign.start,
                                       ),
@@ -199,8 +198,8 @@ class _BeginState extends State<Begin>
                                             textStyle: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: orientedCar
-                                                    ? deviceWidth / 16
-                                                    : deviceHeight / 32,
+                                                    ? deviceWidth! / 16
+                                                    : deviceHeight! / 32,
                                                 fontFamily: "NightMachine"),
                                             textAlign: TextAlign.start,
                                           ),
@@ -220,30 +219,26 @@ class _BeginState extends State<Begin>
                           Padding(
                               padding: EdgeInsets.only(
                                   top: orientedCar
-                                      ? deviceWidth > 400
+                                      ? deviceWidth! > 400
                                           ? 5
                                           : 0
-                                      : deviceHeight > 900
+                                      : deviceHeight! > 900
                                           ? 5
                                           : 0)),
                           TabBar(
                             unselectedLabelColor:
                                 musicBox.get("dynamicArtDB") ?? true
                                     ? Colors.white24
-                                    : darkModeOn
-                                        ? Colors.white24
-                                        : Colors.black12,
+                                    : Colors.white24,
                             labelColor: musicBox.get("dynamicArtDB") ?? true
                                 ? Colors.white
-                                : darkModeOn
-                                    ? Colors.white
-                                    : Colors.black,
+                                : Colors.white,
                             indicatorWeight: 0.000001,
                             isScrollable: true,
                             enableFeedback: false,
                             physics: ScrollPhysics(),
                             controller: tabController,
-                            tabs: tabsData(deviceWidth, deviceHeight),
+                            tabs: tabsData(deviceWidth!, deviceHeight),
                             indicatorColor: Colors.transparent,
                           ),
                         ],
@@ -276,7 +271,7 @@ class _BeginState extends State<Begin>
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        top: deviceHeight / 100,
+                        top: deviceHeight! / 100,
                       ),
                     ),
                     Row(
@@ -287,24 +282,20 @@ class _BeginState extends State<Begin>
                           child: InkWell(
                             borderRadius: BorderRadius.all(Radius.circular(
                                 orientedCar
-                                    ? deviceWidth / 16 / 2
-                                    : deviceHeight / 36 / 2)),
+                                    ? deviceWidth! / 16 / 2
+                                    : deviceHeight! / 36 / 2)),
                             child: Icon(
                               Graviticons.phoenix,
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? bgPhoenixVisualizer
                                       ? Colors.white
                                       : Colors.white.withOpacity(0.4)
-                                  : darkModeOn
-                                      ? bgPhoenixVisualizer
-                                          ? Colors.white
-                                          : Colors.white38
-                                      : bgPhoenixVisualizer
-                                          ? Colors.black
-                                          : Colors.black38,
+                                  : bgPhoenixVisualizer
+                                      ? Colors.white
+                                      : Colors.white38,
                               size: orientedCar
-                                  ? deviceWidth / 16
-                                  : deviceHeight / 36,
+                                  ? deviceWidth! / 16
+                                  : deviceHeight! / 36,
                             ),
                             onTap: () async {
                               if (bgPhoenixVisualizer) {
@@ -349,15 +340,15 @@ class _BeginState extends State<Begin>
                           child: Container(
                             padding: EdgeInsets.only(
                                 left: orientedCar
-                                    ? deviceHeight / 32
-                                    : deviceWidth / 16),
+                                    ? deviceHeight! / 32
+                                    : deviceWidth! / 16),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     orientedCar
-                                        ? deviceWidth / 16 / 2
-                                        : deviceHeight / 36 / 2)),
+                                        ? deviceWidth! / 16 / 2
+                                        : deviceHeight! / 36 / 2)),
                                 child: Icon(
                                   musicBox.get("timeBasedDark") == null
                                       ? MIcon.riMoonLine
@@ -366,8 +357,8 @@ class _BeginState extends State<Begin>
                                           : MIcon.riMoonLine,
                                   color: Colors.white,
                                   size: orientedCar
-                                      ? deviceWidth / 16
-                                      : deviceHeight / 36,
+                                      ? deviceWidth! / 16
+                                      : deviceHeight! / 36,
                                 ),
                                 onTap: () async {
                                   if (!(musicBox.get("timeBasedDark") == null
@@ -392,8 +383,8 @@ class _BeginState extends State<Begin>
                         Container(
                           padding: EdgeInsets.only(
                               left: orientedCar
-                                  ? deviceHeight / 32
-                                  : deviceWidth / 16),
+                                  ? deviceHeight! / 32
+                                  : deviceWidth! / 16),
                           child: Hero(
                             tag: "aslongasiwakeup",
                             child: Material(
@@ -401,18 +392,16 @@ class _BeginState extends State<Begin>
                               child: InkWell(
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     orientedCar
-                                        ? deviceWidth / 16 / 2
-                                        : deviceHeight / 36 / 2)),
+                                        ? deviceWidth! / 16 / 2
+                                        : deviceHeight! / 36 / 2)),
                                 child: Icon(
                                   MIcon.riSearchLine,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? Colors.white
-                                      : darkModeOn
-                                          ? Colors.white
-                                          : Colors.black,
+                                      : Colors.white,
                                   size: orientedCar
-                                      ? deviceWidth / 17
-                                      : deviceHeight / 36,
+                                      ? deviceWidth! / 17
+                                      : deviceHeight! / 36,
                                 ),
                                 onTap: () {
                                   Navigator.push(
@@ -441,11 +430,11 @@ class _BeginState extends State<Begin>
                         Container(
                           padding: EdgeInsets.only(
                               left: orientedCar
-                                  ? deviceHeight / 32
-                                  : deviceWidth / 16,
+                                  ? deviceHeight! / 32
+                                  : deviceWidth! / 16,
                               right: orientedCar
-                                  ? deviceHeight / 80
-                                  : deviceWidth / 40),
+                                  ? deviceHeight! / 80
+                                  : deviceWidth! / 40),
                           child: Hero(
                             tag: "fortress",
                             child: Material(
@@ -453,18 +442,16 @@ class _BeginState extends State<Begin>
                               child: InkWell(
                                 borderRadius: BorderRadius.all(Radius.circular(
                                     orientedCar
-                                        ? deviceWidth / 16 / 2
-                                        : deviceHeight / 36 / 2)),
+                                        ? deviceWidth! / 16 / 2
+                                        : deviceHeight! / 36 / 2)),
                                 child: Icon(
                                   Ionicons.settings_outline,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? Colors.white
-                                      : darkModeOn
-                                          ? Colors.white
-                                          : Colors.black,
+                                      : Colors.white,
                                   size: orientedCar
-                                      ? deviceWidth / 17
-                                      : deviceHeight / 36,
+                                      ? deviceWidth! / 17
+                                      : deviceHeight! / 36,
                                 ),
                                 onTap: () {
                                   Navigator.push(
@@ -523,8 +510,8 @@ class _BeginState extends State<Begin>
       isAutoDismiss = true;
     });
     await Flushbar(
-      onStatusChanged: (FlushbarStatus status) {
-        switch (status) {
+      onStatusChanged: (FlushbarStatus? status) {
+        switch (status!) {
           case FlushbarStatus.DISMISSED:
             break;
           case FlushbarStatus.SHOWING:
@@ -548,7 +535,7 @@ class _BeginState extends State<Begin>
       duration: const Duration(milliseconds: 5000),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: glassOpacity,
+      backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:

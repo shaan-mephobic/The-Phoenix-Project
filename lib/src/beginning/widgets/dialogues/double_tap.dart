@@ -22,7 +22,7 @@ onDoubleTap(BuildContext context) async {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: glassOpacity,
+      backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:
@@ -46,7 +46,7 @@ onDoubleTap(BuildContext context) async {
       duration: Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
-      backgroundColor: glassOpacity,
+      backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:

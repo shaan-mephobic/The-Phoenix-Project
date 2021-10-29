@@ -20,12 +20,12 @@ class Lyrics {
     this.setDelimiters(delimiter1: delimiter1, delimiter2: delimiter2);
   }
 
-  void setDelimiters({String delimiter1, String delimiter2}) {
+  void setDelimiters({String? delimiter1, String? delimiter2}) {
     _delimiter1 = delimiter1 ?? _delimiter1;
     _delimiter2 = delimiter2 ?? _delimiter2;
   }
 
-  getLyrics({String track, String artist, String path}) async {
+  getLyrics({String? track, String? artist, String? path}) async {
     String lyrics;
     onGoingProcess = true;
     if (track == null) throw Exception("track must not be null");
@@ -36,7 +36,7 @@ class Lyrics {
 
     // Scraping lyrics from https://api.lyrics.ovh
     if (artist != " ") {
-      String firstLyric;
+      String? firstLyric;
       try {
         firstLyric = jsonDecode(
             (await http.get(Uri.parse(Uri.encodeFull('$_url2/$artist/$track'))))

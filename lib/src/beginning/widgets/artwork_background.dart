@@ -3,7 +3,7 @@ import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:flutter/material.dart';
 
-var globaltaste;
+late var globaltaste;
 
 class BackArt extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class BackArt extends StatelessWidget {
         firstChild: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: MemoryImage(art),
+              image: MemoryImage(art!),
               fit: BoxFit.cover,
             ),
           ),
@@ -38,7 +38,7 @@ class BackArt extends StatelessWidget {
         secondChild: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: MemoryImage(art2),
+              image: MemoryImage(art2!),
               fit: BoxFit.cover,
             ),
           ),

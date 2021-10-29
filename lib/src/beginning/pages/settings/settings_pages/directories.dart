@@ -10,7 +10,7 @@ class Directories extends StatefulWidget {
 }
 
 class _DirectoriesState extends State<Directories> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
 
   @override
   void dispose() {
@@ -39,7 +39,6 @@ class _DirectoriesState extends State<Directories> {
       deviceHeight = MediaQuery.of(context).size.height;
       deviceWidth = MediaQuery.of(context).size.width;
     }
-    bool darkModeOn = true;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
@@ -49,7 +48,7 @@ class _DirectoriesState extends State<Directories> {
             "DONE",
             style: TextStyle(
               color: Colors.black,
-              fontSize: deviceWidth / 25,
+              fontSize: deviceWidth! / 25,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -62,7 +61,7 @@ class _DirectoriesState extends State<Directories> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: darkModeOn ? Colors.white : kMaterialBlack,
+          color: Colors.white70,
         ),
         titleSpacing: 0,
         shadowColor: Colors.transparent,
@@ -71,8 +70,8 @@ class _DirectoriesState extends State<Directories> {
         title: Text(
           "PICK YOUR FOLDERS",
           style: TextStyle(
-            color: darkModeOn ? Colors.white : Colors.black,
-            fontSize: deviceWidth / 18,
+            color: Colors.white,
+            fontSize: deviceWidth! / 18,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -90,7 +89,7 @@ class _DirectoriesState extends State<Directories> {
                     children: [
                       IconButton(
                           icon: Icon(Icons.arrow_upward_rounded),
-                          color: darkModeOn ? Colors.white60 : Colors.black87,
+                          color: Colors.white60,
                           splashColor: Color(0xFF05464f),
                           onPressed: () async {
                             HapticFeedback.lightImpact();
@@ -103,8 +102,8 @@ class _DirectoriesState extends State<Directories> {
                           }),
                       Container(
                         width: orientedCar
-                            ? deviceHeight / 1.5
-                            : deviceWidth / 1.5,
+                            ? deviceHeight! / 1.5
+                            : deviceWidth! / 1.5,
                         alignment: Alignment.center,
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
@@ -144,15 +143,14 @@ class _DirectoriesState extends State<Directories> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
-                              color:
-                                  darkModeOn ? Colors.white70 : Colors.black87,
+                              color: Colors.white70,
                             ),
                           ),
                         ),
                       ),
                       IconButton(
                           icon: Icon(Icons.more_vert_rounded),
-                          color: darkModeOn ? Colors.white60 : Colors.black87,
+                          color: Colors.white60,
                           splashColor: Color(0xFF05464f),
                           onPressed: () {}),
                     ]),
@@ -166,7 +164,7 @@ class _DirectoriesState extends State<Directories> {
         child: WillPopScope(
           onWillPop: _onWillPop,
           child: Container(
-            color: darkModeOn ? kMaterialBlack : Colors.white,
+            color: kMaterialBlack,
             padding: EdgeInsets.only(top: kToolbarHeight + kToolbarHeight + 50),
             height: deviceHeight,
             child: MediaQuery.removePadding(
@@ -188,7 +186,7 @@ class _DirectoriesState extends State<Directories> {
                       color: Colors.transparent,
                       child: CheckboxListTile(
                         activeColor: kCorrect,
-                        checkColor: darkModeOn ? kMaterialBlack : Colors.white,
+                        checkColor: kMaterialBlack,
                         title: Text(
                           fileExplorer.keys
                                       .toList()[index]
@@ -207,7 +205,7 @@ class _DirectoriesState extends State<Directories> {
                                       .toString()
                                       .replaceAll(currentTopDir, ""),
                           style: TextStyle(
-                            color: darkModeOn ? Colors.white : Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         secondary: Material(
@@ -215,7 +213,7 @@ class _DirectoriesState extends State<Directories> {
                           child: IconButton(
                               icon: Icon(Icons.arrow_forward_ios_rounded),
                               color:
-                                  darkModeOn ? Colors.white : Colors.grey[700],
+                                  Colors.white,
                               onPressed: () async {
                                 HapticFeedback.lightImpact();
                                 await iterationManager(
@@ -226,7 +224,7 @@ class _DirectoriesState extends State<Directories> {
                         value: isTicked(fileExplorer.keys.toList()[index]),
                         onChanged: (newValue) {
                           fileExplorer.values.toList()[index][0] = newValue;
-                          if (newValue) {
+                          if (newValue!) {
                             selectedFolders
                                 .add(fileExplorer.keys.toList()[index]);
                           } else {

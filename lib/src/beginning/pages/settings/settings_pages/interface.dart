@@ -36,8 +36,6 @@ class _InterfaceState extends State<Interface> {
       deviceHeight = MediaQuery.of(context).size.height;
       deviceWidth = MediaQuery.of(context).size.width;
     }
-
-    bool darkModeOn = true;
     return Consumer<Leprovider>(
       builder: (context, taste, _) {
         globaltaste = taste;
@@ -54,7 +52,7 @@ class _InterfaceState extends State<Interface> {
               "Interface",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: deviceWidth / 18,
+                fontSize: deviceWidth! / 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -76,14 +74,13 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Glass Effect",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           subtitle: Text(
                             "Adjust blur and color of glass theme.",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           trailing: Icon(
@@ -110,14 +107,13 @@ class _InterfaceState extends State<Interface> {
                           title: Text(
                             "Default Artwork",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           subtitle: Text(
                             "Set custom image as default artwork.",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           leading: Card(
@@ -133,7 +129,7 @@ class _InterfaceState extends State<Interface> {
                                   borderRadius: BorderRadius.circular(3),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: MemoryImage(defaultNone),
+                                    image: MemoryImage(defaultNone!),
                                   ),
                                 ),
                               ),
@@ -151,7 +147,7 @@ class _InterfaceState extends State<Interface> {
                             });
                             await File(
                                     "${applicationFileDirectory.path}/artworks/null.jpeg")
-                                .writeAsBytes(defaultNone,
+                                .writeAsBytes(defaultNone!,
                                     mode: FileMode.write);
                             Flushbar(
                               messageText: Text(
@@ -170,7 +166,7 @@ class _InterfaceState extends State<Interface> {
                               duration: Duration(seconds: 3),
                               borderColor: Colors.white.withOpacity(0.04),
                               borderWidth: 1,
-                              backgroundColor: glassOpacity,
+                              backgroundColor: glassOpacity!,
                               flushbarStyle: FlushbarStyle.FLOATING,
                               isDismissible: true,
                               barBlur: musicBox.get("glassBlur") == null
@@ -184,8 +180,8 @@ class _InterfaceState extends State<Interface> {
                           },
                           onTap: () async {
                             final ImagePicker _picker = ImagePicker();
-                            final XFile image = await _picker.pickImage(
-                                source: ImageSource.gallery);
+                            final XFile image = (await _picker.pickImage(
+                                source: ImageSource.gallery))!;
                             Uint8List bytes = await image.readAsBytes();
                             setState(() {
                               defaultNone = bytes;
@@ -201,19 +197,17 @@ class _InterfaceState extends State<Interface> {
                         color: Colors.transparent,
                         child: CheckboxListTile(
                           activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
+                          checkColor: kMaterialBlack,
                           subtitle: Text(
                             "A fluid bouncing animation on scrolling",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           title: Text(
                             "Fluid",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           value: musicBox.get("fluidAnimation") ?? true,
@@ -229,19 +223,17 @@ class _InterfaceState extends State<Interface> {
                         color: Colors.transparent,
                         child: CheckboxListTile(
                           activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
+                          checkColor: kMaterialBlack,
                           subtitle: Text(
                             "Use albumart as background",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           title: Text(
                             "Dynamic Background",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           value: musicBox.get("dynamicArtDB") ?? true,
@@ -257,19 +249,17 @@ class _InterfaceState extends State<Interface> {
                         color: Colors.transparent,
                         child: CheckboxListTile(
                           activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
+                          checkColor: kMaterialBlack,
                           subtitle: Text(
                             "Square shaped artwork in lists",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           title: Text(
                             "Square Art",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           value: musicBox.get("squareArt") ?? true,
@@ -285,19 +275,17 @@ class _InterfaceState extends State<Interface> {
                         color: Colors.transparent,
                         child: CheckboxListTile(
                           activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
+                          checkColor: kMaterialBlack,
                           subtitle: Text(
                             "Position icons for driver's ease",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           title: Text(
                             "Left Steering",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           value: musicBox.get("androidAutoLefty") ?? true,
@@ -313,19 +301,17 @@ class _InterfaceState extends State<Interface> {
                         color: Colors.transparent,
                         child: CheckboxListTile(
                           activeColor: kCorrect,
-                          checkColor:
-                              darkModeOn ? kMaterialBlack : Colors.white,
+                          checkColor: kMaterialBlack,
                           subtitle: Text(
                             "Show additional song data in now playing.",
                             style: TextStyle(
-                              color:
-                                  darkModeOn ? Colors.white38 : Colors.black38,
+                              color: Colors.white38,
                             ),
                           ),
                           title: Text(
                             "Audiophile Data",
                             style: TextStyle(
-                              color: darkModeOn ? Colors.white : Colors.black,
+                              color: Colors.white,
                             ),
                           ),
                           value: musicBox.get("audiophileData") ?? true,
@@ -371,15 +357,13 @@ class _InterfaceState extends State<Interface> {
                             subtitle: Text(
                               "Show progress in mini-player.",
                               style: TextStyle(
-                                color: darkModeOn
-                                    ? Colors.white38
-                                    : Colors.black38,
+                                color: Colors.white38,
                               ),
                             ),
                             title: Text(
                               "Mini-Player Progress",
                               style: TextStyle(
-                                color: darkModeOn ? Colors.white : Colors.black,
+                                color: Colors.white,
                               ),
                             ),
                             trailing: DropdownButton<String>(
@@ -396,7 +380,7 @@ class _InterfaceState extends State<Interface> {
                                 color: kCorrect,
                               ),
                               style: TextStyle(color: Colors.white),
-                              onChanged: (String newValue) async {
+                              onChanged: (String? newValue) async {
                                 await musicBox.put(
                                     "miniPlayerProgress", newValue);
                                 setState(() {});

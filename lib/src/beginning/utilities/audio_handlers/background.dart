@@ -15,9 +15,9 @@ class AudioPlayerTask extends BaseAudioHandler {
   );
   int indexOfQueue = 0;
   int addToQueueIndex = -1;
-  AudioProcessingState _skipState;
-  StreamSubscription<PlaybackEvent> _eventSubscription;
-  ConcatenatingAudioSource source;
+  AudioProcessingState? _skipState;
+  late StreamSubscription<PlaybackEvent> _eventSubscription;
+  late ConcatenatingAudioSource source;
   int clicks = 0;
 
   _init() {
@@ -66,7 +66,7 @@ class AudioPlayerTask extends BaseAudioHandler {
 
   @override
   Future<void> updateQueue(List mediaItems) async {
-    leQueue = mediaItems;
+    leQueue = mediaItems as List<MediaItem>;
     source = ConcatenatingAudioSource(
       children:
           leQueue.map((item) => AudioSource.uri(Uri.parse(item.id))).toList(),
@@ -183,7 +183,7 @@ class AudioPlayerTask extends BaseAudioHandler {
 
   @override
   Future<void> fastForward() async {
-    if (_audioPlayer.position < _audioPlayer.duration - Duration(seconds: 5))
+    if (_audioPlayer.position < _audioPlayer.duration! - Duration(seconds: 5))
       _audioPlayer.seek(_audioPlayer.position + Duration(seconds: 5));
     else
       audioHandler.skipToNext();
@@ -209,7 +209,7 @@ class AudioPlayerTask extends BaseAudioHandler {
           MediaAction.seekBackward,
         },
         androidCompactActionIndices: const [1, 2, 3],
-        processingState: _getProcessingState(),
+        processingState: _getProcessingState()!,
         playing: _audioPlayer.playing,
         updatePosition: _audioPlayer.position,
         bufferedPosition: _audioPlayer.bufferedPosition,
@@ -218,7 +218,7 @@ class AudioPlayerTask extends BaseAudioHandler {
     );
   }
 
-  AudioProcessingState _getProcessingState() {
+  AudioProcessingState? _getProcessingState() {
     if (_skipState != null) return _skipState;
     switch (_audioPlayer.processingState) {
       case ProcessingState.idle:

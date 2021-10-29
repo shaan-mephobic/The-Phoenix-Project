@@ -53,7 +53,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
               "Miscellaneous",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: deviceWidth / 18,
+                fontSize: deviceWidth! / 18,
                 fontWeight: FontWeight.w600,
               ),
             ),

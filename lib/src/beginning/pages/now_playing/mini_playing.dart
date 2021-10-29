@@ -27,7 +27,7 @@ class _ModernaState extends State<Moderna> {
             firstChild: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: MemoryImage(art),
+                  image: MemoryImage(art!),
                   fit: BoxFit.fitWidth,
                 ),
                 color: Colors.black,
@@ -46,7 +46,7 @@ class _ModernaState extends State<Moderna> {
             secondChild: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: MemoryImage(art2),
+                  image: MemoryImage(art2!),
                   fit: BoxFit.fitWidth,
                 ),
                 borderRadius: radiusFullscreen,
@@ -89,7 +89,7 @@ class _ModernaState extends State<Moderna> {
                 child: Center(
                   child: Container(
                     padding: EdgeInsets.only(
-                        left: deviceWidth / 18, right: deviceWidth / 18),
+                        left: deviceWidth! / 18, right: deviceWidth! / 18),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +110,7 @@ class _ModernaState extends State<Moderna> {
                           ),
                         ),
                         Text(
-                          nowMediaItem.artist,
+                          nowMediaItem.artist!,
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -173,7 +173,7 @@ class _ClassixState extends State<Classix> {
                     Row(
                       children: [
                         Padding(
-                            padding: EdgeInsets.only(left: deviceWidth / 20)),
+                            padding: EdgeInsets.only(left: deviceWidth! / 20)),
                         Center(
                           child: AnimatedCrossFade(
                             duration: Duration(milliseconds: crossfadeDuration),
@@ -190,7 +190,7 @@ class _ClassixState extends State<Classix> {
                                   borderRadius: BorderRadius.circular(3),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: MemoryImage(art),
+                                    image: MemoryImage(art!),
                                   ),
                                 ),
                               ),
@@ -208,7 +208,7 @@ class _ClassixState extends State<Classix> {
                                   borderRadius: BorderRadius.circular(3),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: MemoryImage(art2),
+                                    image: MemoryImage(art2!),
                                   ),
                                 ),
                               ),
@@ -237,8 +237,8 @@ class _ClassixState extends State<Classix> {
                               child: Center(
                                 child: Container(
                                   width: orientedCar
-                                      ? deviceHeight / 1.6
-                                      : deviceWidth / 1.6,
+                                      ? deviceHeight! / 1.6
+                                      : deviceWidth! / 1.6,
                                   padding: EdgeInsets.only(left: 25, right: 25),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -264,7 +264,7 @@ class _ClassixState extends State<Classix> {
                                         ),
                                       ),
                                       Text(
-                                        nowMediaItem.artist,
+                                        nowMediaItem.artist!,
                                         maxLines: 1,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(

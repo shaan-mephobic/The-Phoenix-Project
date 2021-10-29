@@ -11,8 +11,8 @@ import 'package:palette_generator/palette_generator.dart';
 import 'albums.dart';
 import '../../utilities/page_backend/albums_back.dart';
 
-Color dominantAlbum;
-Color contrastAlbum;
+Color? dominantAlbum;
+Color? contrastAlbum;
 
 class AlbumsInside extends StatelessWidget {
   @override
@@ -62,8 +62,8 @@ class AlbumsInside extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(kRounded),
                             child: Image.memory(
-                              albumsArts[allAlbums[passedIndexAlbum].album] ??
-                                  defaultNone,
+                              albumsArts[allAlbums[passedIndexAlbum!].album] ??
+                                  defaultNone!,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -71,7 +71,7 @@ class AlbumsInside extends StatelessWidget {
                       ),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
-                        inAlbumSongs[0].album,
+                        inAlbumSongs[0].album!,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
@@ -83,7 +83,7 @@ class AlbumsInside extends StatelessWidget {
                               color: Colors.black26,
                             ),
                           ],
-                          fontSize: deviceHeight / 39,
+                          fontSize: deviceHeight! / 39,
                           color: musicBox.get("dynamicArtDB") ?? true
                               ? contrastAlbum
                               : Colors.white,
@@ -93,7 +93,7 @@ class AlbumsInside extends StatelessWidget {
                       Opacity(
                         opacity: 0.5,
                         child: Text(
-                          inAlbumSongs[0].artist,
+                          inAlbumSongs[0].artist!,
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
@@ -104,7 +104,7 @@ class AlbumsInside extends StatelessWidget {
                                 color: Colors.black26,
                               ),
                             ],
-                            fontSize: deviceHeight / 57,
+                            fontSize: deviceHeight! / 57,
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? contrastAlbum
                                 : Colors.white,
@@ -174,7 +174,7 @@ class AlbumsInside extends StatelessWidget {
                         subtitle: Opacity(
                           opacity: 0.5,
                           child: Text(
-                            inAlbumSongs[index - 1].artist,
+                            inAlbumSongs[index - 1].artist!,
                             maxLines: 1,
                             style: TextStyle(
                               color: musicBox.get("dynamicArtDB") ?? true
@@ -209,11 +209,11 @@ Future albumColor(image) async {
   PaletteGenerator paletteGenerator;
   paletteGenerator = await PaletteGenerator.fromImageProvider(image);
 
-  dominantAlbum = (paletteGenerator.dominantColor.color);
+  dominantAlbum = (paletteGenerator.dominantColor!.color);
   // print(dominant_album);
-  if (dominantAlbum.computeLuminance() <= 0.5) {
+  if (dominantAlbum!.computeLuminance() <= 0.5) {
     try {
-      var pal = paletteGenerator.lightMutedColor.color;
+      var pal = paletteGenerator.lightMutedColor!.color;
       contrastAlbum = pal;
     } catch (e) {
       contrastAlbum = Colors.white;
@@ -221,24 +221,24 @@ Future albumColor(image) async {
 
     if (dominantAlbum == contrastAlbum) {
       // print("damn! thats rare");
-      contrastAlbum = paletteGenerator.darkMutedColor.color;
+      contrastAlbum = paletteGenerator.darkMutedColor!.color;
     }
   } else {
     try {
-      var pal = (paletteGenerator.darkMutedColor.color);
+      var pal = (paletteGenerator.darkMutedColor!.color);
       contrastAlbum = pal;
     } catch (e) {
       contrastAlbum = Colors.black;
     }
     if (dominantAlbum == contrastAlbum) {
       // print("damn! thats rare");
-      contrastAlbum = paletteGenerator.lightMutedColor.color;
+      contrastAlbum = paletteGenerator.lightMutedColor!.color;
     }
   }
-  if ((dominantAlbum.computeLuminance() - contrastAlbum.computeLuminance())
+  if ((dominantAlbum!.computeLuminance() - contrastAlbum!.computeLuminance())
           .abs() <
       0.2) {
-    if (dominantAlbum.computeLuminance() < 0.5) {
+    if (dominantAlbum!.computeLuminance() < 0.5) {
       contrastAlbum = Colors.white;
     } else {
       contrastAlbum = Colors.black;

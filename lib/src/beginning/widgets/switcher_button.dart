@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SwitcherButton extends StatefulWidget {
   /// width and height of widget.
   /// width = size,height = size / 2.
-  double _width, _height;
+  double? _width, _height;
 
   /// size of widget.
   final double size;
@@ -18,14 +18,14 @@ class SwitcherButton extends StatefulWidget {
 
   /// status of widget, if value == true widget will switched on else
   /// switched off
-  final bool value;
+  final bool? value;
 
   /// when change status of widget like switch off or switch on [onChange] will
   /// call and passed new [value]
-  final Function(bool value) onChange;
+  final Function(bool value)? onChange;
 
   SwitcherButton(
-      {Key key,
+      {Key? key,
       this.size = 60.0,
       this.onColor = Colors.white,
       this.offColor = Colors.black87,
@@ -50,7 +50,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
   }
 
   /// sate of widget that can be switched on or switched off.
-  bool value;
+  bool? value;
 
   /// radius of right circle.
   double _rightRadius = 0.0;
@@ -59,10 +59,10 @@ class _SwitcherButtonState extends State<SwitcherButton>
   double _leftRadius = 0.0;
 
   /// right radius animation and left radius animation.
-  Animation<double> _rightRadiusAnimation, _leftRadiusAnimation;
+  late Animation<double> _rightRadiusAnimation, _leftRadiusAnimation;
 
   /// animation controllers.
-  AnimationController _rightController, _leftController;
+  late AnimationController _rightController, _leftController;
 
   @override
   void initState() {
@@ -76,10 +76,10 @@ class _SwitcherButtonState extends State<SwitcherButton>
       vsync: this,
     );
 
-    if (value) {
+    if (value!) {
       // when widget initial with on state.
-      _leftRadius = widget._width * 2;
-      _rightRadiusAnimation = Tween(begin: 0.0, end: widget._height * .18)
+      _leftRadius = widget._width! * 2;
+      _rightRadiusAnimation = Tween(begin: 0.0, end: widget._height! * .18)
           .animate(CurvedAnimation(
               parent: _rightController, curve: Curves.elasticOut))
             ..addListener(() {
@@ -90,8 +90,8 @@ class _SwitcherButtonState extends State<SwitcherButton>
       _rightController.forward();
     } else {
       // when widget initial with off state.
-      _rightRadius = widget._width * 2;
-      _leftRadiusAnimation = Tween(begin: 0.0, end: widget._height * .18)
+      _rightRadius = widget._width! * 2;
+      _leftRadiusAnimation = Tween(begin: 0.0, end: widget._height! * .18)
           .animate(CurvedAnimation(
               parent: _leftController, curve: Curves.elasticOut))
             ..addListener(() {
@@ -138,7 +138,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
     _leftController = AnimationController(
         duration: const Duration(milliseconds: 300), vsync: this);
 
-    if (value) {
+    if (value!) {
       // If value == true right radius will be 18% widget height
       // and left radius will be 2 * widget height
       // switcher is on.
@@ -146,7 +146,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
       _rightController.duration = Duration(milliseconds: 400);
 
       _rightRadiusAnimation =
-          Tween(begin: widget._height * .18, end: widget._width)
+          Tween(begin: widget._height! * .18, end: widget._width)
               .animate(_rightController)
                 ..addStatusListener((status) {
                   if (status == AnimationStatus.completed) {
@@ -159,7 +159,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
                     _leftController.reset();
                     _leftController.duration = Duration(milliseconds: 800);
                     _leftRadiusAnimation =
-                        Tween(begin: 0.0, end: widget._height * .18).animate(
+                        Tween(begin: 0.0, end: widget._height! * .18).animate(
                             CurvedAnimation(
                                 parent: _leftController,
                                 curve: Curves.elasticOut))
@@ -184,7 +184,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
       _leftController.duration = Duration(milliseconds: 400);
 
       _leftRadiusAnimation =
-          Tween(begin: widget._height * .18, end: widget._width)
+          Tween(begin: widget._height! * .18, end: widget._width)
               .animate(_leftController)
                 ..addStatusListener((status) {
                   if (status == AnimationStatus.completed) {
@@ -197,7 +197,7 @@ class _SwitcherButtonState extends State<SwitcherButton>
                     _rightController.reset();
                     _rightController.duration = Duration(milliseconds: 800);
                     _rightRadiusAnimation =
-                        Tween(begin: 0.0, end: widget._height * .18).animate(
+                        Tween(begin: 0.0, end: widget._height! * .18).animate(
                             CurvedAnimation(
                                 parent: _rightController,
                                 curve: Curves.elasticOut))
@@ -218,25 +218,25 @@ class _SwitcherButtonState extends State<SwitcherButton>
     }
 
     // Call onChange
-    if (widget.onChange != null) widget.onChange(!value);
+    if (widget.onChange != null) widget.onChange!(!value!);
   }
 }
 
 class ProfileCardPainter extends CustomPainter {
   /// Left circle radius.
-  double rightRadius;
+  double? rightRadius;
 
   /// Right circle radius.
-  double leftRadius;
+  double? leftRadius;
 
   /// State of widget.
-  bool value;
+  bool? value;
 
   /// Color when widget is on
-  Color onColor;
+  Color? onColor;
 
   /// Color when widget is off
-  Color offColor;
+  Color? offColor;
 
   ProfileCardPainter(
       {this.rightRadius,
@@ -247,29 +247,29 @@ class ProfileCardPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (value) {
+    if (value!) {
       var paint = Paint()
-        ..color = onColor
+        ..color = onColor!
         ..strokeWidth = 18;
       Offset center = Offset((size.width / 2) / 2, size.height / 2);
-      canvas.drawCircle(center, leftRadius, paint);
+      canvas.drawCircle(center, leftRadius!, paint);
 
-      paint.color = offColor;
+      paint.color = offColor!;
       center =
           Offset(((size.width / 2) / 2) + (size.width / 2), size.height / 2);
-      canvas.drawCircle(center, rightRadius, paint);
+      canvas.drawCircle(center, rightRadius!, paint);
     } else {
       var paint = Paint()..strokeWidth = 18;
       Offset center;
 
-      paint.color = offColor;
+      paint.color = offColor!;
       center =
           Offset(((size.width / 2) / 2) + (size.width / 2), size.height / 2);
-      canvas.drawCircle(center, rightRadius, paint);
+      canvas.drawCircle(center, rightRadius!, paint);
 
-      paint.color = onColor;
+      paint.color = onColor!;
       center = Offset((size.width / 2) / 2, size.height / 2);
-      canvas.drawCircle(center, leftRadius, paint);
+      canvas.drawCircle(center, leftRadius!, paint);
     }
   }
 

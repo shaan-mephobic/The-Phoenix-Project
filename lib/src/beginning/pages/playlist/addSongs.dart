@@ -17,16 +17,16 @@ List playListSongsId = [];
 
 class AddSongs extends StatefulWidget {
   final bool modify;
-  final String playlistName;
-  AddSongs({@required this.modify, @required this.playlistName});
+  final String? playlistName;
+  AddSongs({required this.modify, required this.playlistName});
   @override
   _AddSongsState createState() => _AddSongsState();
 }
 
 class _AddSongsState extends State<AddSongs> {
   bool isNameChanged = false;
-  String nameOfPlaylist;
-  ScrollController _scrollBarController;
+  String? nameOfPlaylist;
+  ScrollController? _scrollBarController;
 
   @override
   void initState() {
@@ -56,7 +56,7 @@ class _AddSongsState extends State<AddSongs> {
             label: Text(widget.modify ? "MODIFY" : "CREATE",
                 style: TextStyle(
                     color: Colors.black,
-                    fontSize: deviceWidth / 25,
+                    fontSize: deviceWidth! / 25,
                     fontWeight: FontWeight.w600)),
             backgroundColor: Color(0xFF1DB954),
             elevation: 8.0,
@@ -78,7 +78,7 @@ class _AddSongsState extends State<AddSongs> {
                   duration: Duration(seconds: 5),
                   borderColor: Colors.white.withOpacity(0.04),
                   borderWidth: 1,
-                  backgroundColor: glassOpacity,
+                  backgroundColor: glassOpacity!,
                   flushbarStyle: FlushbarStyle.FLOATING,
                   isDismissible: true,
                   barBlur: musicBox.get("glassBlur") == null
@@ -129,7 +129,7 @@ class _AddSongsState extends State<AddSongs> {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
-                                  .withOpacity(glassShadowOpacity / 100),
+                                  .withOpacity(glassShadowOpacity! / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
@@ -221,7 +221,7 @@ class _AddSongsState extends State<AddSongs> {
                                           .remove(songList[index].data);
                                     } else {
                                       playListCheck[index] = false;
-                                      modifyPlayList
+                                      modifyPlayList!
                                           .remove(songList[index].data);
                                     }
                                   } else {
@@ -230,7 +230,7 @@ class _AddSongsState extends State<AddSongs> {
                                       playListSongsId.add(songList[index].data);
                                     } else {
                                       playListCheck[index] = true;
-                                      modifyPlayList.add(songList[index].data);
+                                      modifyPlayList!.add(songList[index].data);
                                     }
                                   }
                                   setState(() {});
@@ -253,7 +253,7 @@ class _AddSongsState extends State<AddSongs> {
                                 ),
                                 tileColor: Colors.transparent,
                                 subtitle: Text(
-                                  songList[index].artist,
+                                  songList[index].artist!,
                                   maxLines: 1,
                                   style: TextStyle(
                                     color: Colors.white38,
@@ -277,7 +277,7 @@ class _AddSongsState extends State<AddSongs> {
                                             .remove(songList[index].data);
                                       } else {
                                         playListCheck[index] = false;
-                                        modifyPlayList
+                                        modifyPlayList!
                                             .remove(songList[index].data);
                                       }
                                     } else {
@@ -287,7 +287,7 @@ class _AddSongsState extends State<AddSongs> {
                                             .add(songList[index].data);
                                       } else {
                                         playListCheck[index] = true;
-                                        modifyPlayList
+                                        modifyPlayList!
                                             .add(songList[index].data);
                                       }
                                     }
@@ -309,8 +309,8 @@ class _AddSongsState extends State<AddSongs> {
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: MemoryImage(albumsArts[
-                                                  songList[index].album] ??
-                                              defaultNone),
+                                                  songList[index].album!] ??
+                                              defaultNone!),
                                         ),
                                       ),
                                     ),

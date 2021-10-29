@@ -50,18 +50,18 @@ class _PrivacyState extends State<Privacy> {
                       Padding(
                           padding: EdgeInsets.only(
                               top: orientedCar
-                                  ? deviceWidth / 4
-                                  : deviceWidth / 2)),
+                                  ? deviceWidth! / 4
+                                  : deviceWidth! / 2)),
                       Padding(
                           padding: EdgeInsets.only(
                               top: orientedCar
-                                  ? deviceHeight / 5.5
-                                  : deviceHeight / 5.5)),
+                                  ? deviceHeight! / 5.5
+                                  : deviceHeight! / 5.5)),
                       Center(
                         child: Padding(
                           padding: EdgeInsets.only(
-                              left: orientedCar ? deviceHeight / 3 / 2 : 30,
-                              right: orientedCar ? deviceHeight / 3 / 2 : 30),
+                              left: orientedCar ? deviceHeight! / 3 / 2 : 30,
+                              right: orientedCar ? deviceHeight! / 3 / 2 : 30),
                           child: RichText(
                             text: TextSpan(
                               text:
@@ -71,8 +71,8 @@ class _PrivacyState extends State<Privacy> {
                                 fontFamily: "Raleway",
                                 fontWeight: FontWeight.w600,
                                 fontSize: orientedCar
-                                    ? deviceHeight / 26
-                                    : deviceHeight / 26,
+                                    ? deviceHeight! / 26
+                                    : deviceHeight! / 26,
                               ),
                             ),
                           ),
@@ -81,34 +81,34 @@ class _PrivacyState extends State<Privacy> {
                       Padding(
                           padding: EdgeInsets.only(
                               top: orientedCar
-                                  ? deviceWidth / 4
-                                  : deviceWidth / 2)),
+                                  ? deviceWidth! / 4
+                                  : deviceWidth! / 2)),
                       Container(
                         height:
-                            orientedCar ? deviceHeight / 3 : deviceWidth / 1.6,
+                            orientedCar ? deviceHeight! / 3 : deviceWidth! / 1.6,
                         width: orientedCar
-                            ? deviceHeight / 1.5
-                            : deviceWidth / 1.1,
+                            ? deviceHeight! / 1.5
+                            : deviceWidth! / 1.1,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(deviceWidth / 27),
+                          borderRadius: BorderRadius.circular(deviceWidth! / 27),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
-                                  .withOpacity(glassShadowOpacity / 100),
+                                  .withOpacity(glassShadowOpacity! / 100),
                               blurRadius: glassShadowBlur,
                               offset: kShadowOffset,
                             ),
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(deviceWidth / 27),
+                          borderRadius: BorderRadius.circular(deviceWidth! / 27),
                           child: BackdropFilter(
                             filter: glassBlur,
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.circular(deviceWidth / 27),
+                                    BorderRadius.circular(deviceWidth! / 27),
                                 border: Border.all(
                                     color: Colors.white.withOpacity(0.04)),
                                 color: glassOpacity,
@@ -128,7 +128,7 @@ class _PrivacyState extends State<Privacy> {
                                         color: Colors.white,
                                         fontFamily: "Raleway",
                                         fontWeight: FontWeight.w600,
-                                        fontSize: deviceWidth / 19,
+                                        fontSize: deviceWidth! / 19,
                                       ),
                                     ),
                                   ),
@@ -153,15 +153,15 @@ class _PrivacyState extends State<Privacy> {
                       Padding(
                           padding: EdgeInsets.only(
                               top: orientedCar
-                                  ? deviceWidth / 6
-                                  : deviceWidth / 4)),
+                                  ? deviceWidth! / 6
+                                  : deviceWidth! / 4)),
                       Text(
                         "#PRIVACYMATTERS",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize:
-                              orientedCar ? deviceWidth / 25 : deviceWidth / 22,
+                              orientedCar ? deviceWidth! / 25 : deviceWidth! / 22,
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(top: 13)),
@@ -170,19 +170,19 @@ class _PrivacyState extends State<Privacy> {
                 ),
                 SizedBox(
                   height: orientedCar
-                      ? deviceWidth / 4.2
-                      : deviceHeight / 5.5 + MediaQuery.of(context).padding.top,
+                      ? deviceWidth! / 4.2
+                      : deviceHeight! / 5.5 + MediaQuery.of(context).padding.top,
                   child: AppBar(
                     iconTheme: IconThemeData(
                       color: kMaterialBlack,
                     ),
-                    elevation: deviceWidth / 60,
+                    elevation: deviceWidth! / 60,
                     toolbarHeight:
-                        orientedCar ? deviceWidth / 4.2 : deviceHeight / 5.5,
+                        orientedCar ? deviceWidth! / 4.2 : deviceHeight! / 5.5,
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
-                        bottom: Radius.circular(deviceWidth / 14),
+                        bottom: Radius.circular(deviceWidth! / 14),
                       ),
                     ),
                     centerTitle: true,
@@ -191,35 +191,35 @@ class _PrivacyState extends State<Privacy> {
                       style: TextStyle(
                           letterSpacing: 1,
                           fontFamily: "Futura",
-                          fontSize: deviceWidth / 10,
+                          fontSize: deviceWidth! / 10,
                           color: kMaterialBlack),
                     ),
                   ),
                 ),
                 Positioned(
                   left: orientedCar
-                      ? deviceHeight / 2
-                      : deviceWidth / 2 - deviceWidth / 14,
+                      ? deviceHeight! / 2
+                      : deviceWidth! / 2 - deviceWidth! / 14,
                   child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(
                         top: orientedCar
-                            ? deviceWidth / 4.2 -
-                                deviceWidth / 14 +
+                            ? deviceWidth! / 4.2 -
+                                deviceWidth! / 14 +
                                 MediaQuery.of(context).padding.top
-                            : deviceHeight / 5.5 -
-                                deviceWidth / 14 +
+                            : deviceHeight! / 5.5 -
+                                deviceWidth! / 14 +
                                 MediaQuery.of(context).padding.top),
                     child: Container(
-                      height: deviceWidth / 7,
-                      width: deviceWidth / 7,
+                      height: deviceWidth! / 7,
+                      width: deviceWidth! / 7,
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
                             offset: Offset(0, 1),
                             color: Colors.black12,
                             blurRadius: 1.0,
-                            spreadRadius: deviceWidth / 230,
+                            spreadRadius: deviceWidth! / 230,
                           ),
                         ],
                         color: kMaterialBlack,
@@ -228,7 +228,7 @@ class _PrivacyState extends State<Privacy> {
                       child: Icon(
                         MIcon.riLock2Line,
                         color: Color(0xFF02c9d3),
-                        size: deviceWidth / 13,
+                        size: deviceWidth! / 13,
                       ),
                     ),
                   ),

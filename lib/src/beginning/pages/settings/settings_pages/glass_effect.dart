@@ -8,19 +8,19 @@ import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
 import 'package:provider/provider.dart';
 
 class GlassEffect extends StatefulWidget {
-  const GlassEffect({Key key}) : super(key: key);
+  const GlassEffect({Key? key}) : super(key: key);
 
   @override
   _GlassEffectState createState() => _GlassEffectState();
 }
 
 class _GlassEffectState extends State<GlassEffect> {
-  double blur =
+  double? blur =
       musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur");
-  double whiteOpacity = musicBox.get("glassOverlayColor") == null
+  double? whiteOpacity = musicBox.get("glassOverlayColor") == null
       ? 2
       : musicBox.get("glassOverlayColor");
-  double shadow =
+  double? shadow =
       musicBox.get("glassShadow") == null ? 6 : musicBox.get("glassShadow");
   @override
   void initState() {
@@ -33,8 +33,8 @@ class _GlassEffectState extends State<GlassEffect> {
     musicBox.put("glassBlur", blur);
     musicBox.put("glassOverlayColor", whiteOpacity);
     musicBox.put("glassShadow", shadow);
-    glassBlur = ImageFilter.blur(sigmaX: blur, sigmaY: blur);
-    glassOpacity = Colors.white.withOpacity(whiteOpacity / 100);
+    glassBlur = ImageFilter.blur(sigmaX: blur!, sigmaY: blur!);
+    glassOpacity = Colors.white.withOpacity(whiteOpacity! / 100);
     glassShadowOpacity = shadow;
     super.dispose();
   }
@@ -68,7 +68,7 @@ class _GlassEffectState extends State<GlassEffect> {
               "Glass Effect",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: deviceWidth / 18,
+                fontSize: deviceWidth! / 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -94,8 +94,8 @@ class _GlassEffectState extends State<GlassEffect> {
                             Center(
                               child: SizedBox(
                                 width: orientedCar
-                                    ? deviceHeight / 3
-                                    : deviceWidth / 1.15,
+                                    ? deviceHeight! / 3
+                                    : deviceWidth! / 1.15,
                                 child: AspectRatio(
                                   aspectRatio: 16 / 9,
                                   child: Container(
@@ -105,7 +105,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       boxShadow: [
                                         BoxShadow(
                                           color: Colors.black
-                                              .withOpacity(shadow / 100),
+                                              .withOpacity(shadow! / 100),
                                           blurRadius: 13,
                                           offset: kShadowOffset,
                                         ),
@@ -116,7 +116,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                           BorderRadius.circular(kRounded),
                                       child: BackdropFilter(
                                         filter: ImageFilter.blur(
-                                            sigmaX: blur, sigmaY: blur),
+                                            sigmaX: blur!, sigmaY: blur!),
                                         child: Material(
                                           color: Colors.transparent,
                                           borderRadius:
@@ -130,7 +130,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                                   color: Colors.white
                                                       .withOpacity(0.04)),
                                               color: Colors.white.withOpacity(
-                                                  whiteOpacity / 100),
+                                                  whiteOpacity! / 100),
                                             ),
                                             alignment: Alignment.center,
                                           ),
@@ -148,16 +148,16 @@ class _GlassEffectState extends State<GlassEffect> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
-                                    fontSize: deviceWidth / 18 / 1.3,
+                                    fontSize: deviceWidth! / 18 / 1.3,
                                   ),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${blur.toInt()}",
+                                      "${blur!.toInt()}",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -169,8 +169,8 @@ class _GlassEffectState extends State<GlassEffect> {
                                     ),
                                     SizedBox(
                                       width: orientedCar
-                                          ? deviceHeight / 1.5
-                                          : deviceWidth / 1.5,
+                                          ? deviceHeight! / 1.5
+                                          : deviceWidth! / 1.5,
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
@@ -183,7 +183,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                                   : Colors.white10,
                                         ),
                                         child: Slider(
-                                          value: blur,
+                                          value: blur!,
                                           min: 0,
                                           max: 40,
                                           activeColor:
@@ -202,7 +202,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                     Text(
                                       "40",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -218,15 +218,15 @@ class _GlassEffectState extends State<GlassEffect> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.white,
-                                      fontSize: deviceWidth / 18 / 1.3,
+                                      fontSize: deviceWidth! / 18 / 1.3,
                                     )),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${whiteOpacity.toInt()}",
+                                      "${whiteOpacity!.toInt()}",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -238,8 +238,8 @@ class _GlassEffectState extends State<GlassEffect> {
                                     ),
                                     SizedBox(
                                       width: orientedCar
-                                          ? deviceHeight / 1.5
-                                          : deviceWidth / 1.5,
+                                          ? deviceHeight! / 1.5
+                                          : deviceWidth! / 1.5,
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           thumbShape: RoundSliderThumbShape(
@@ -252,7 +252,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                                   : Colors.white10,
                                         ),
                                         child: Slider(
-                                          value: whiteOpacity,
+                                          value: whiteOpacity!,
                                           min: 0,
                                           max: 20,
                                           activeColor:
@@ -271,7 +271,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                     Text(
                                       "20",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -288,16 +288,16 @@ class _GlassEffectState extends State<GlassEffect> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.white,
-                                    fontSize: deviceWidth / 18 / 1.3,
+                                    fontSize: deviceWidth! / 18 / 1.3,
                                   ),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${shadow.toInt()}",
+                                      "${shadow!.toInt()}",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -309,8 +309,8 @@ class _GlassEffectState extends State<GlassEffect> {
                                     ),
                                     SizedBox(
                                       width: orientedCar
-                                          ? deviceHeight / 1.5
-                                          : deviceWidth / 1.5,
+                                          ? deviceHeight! / 1.5
+                                          : deviceWidth! / 1.5,
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
@@ -323,7 +323,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                                   : Colors.white10,
                                         ),
                                         child: Slider(
-                                          value: shadow,
+                                          value: shadow!,
                                           min: 0,
                                           max: 20,
                                           activeColor:
@@ -342,7 +342,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                     Text(
                                       "20",
                                       style: TextStyle(
-                                          fontSize: deviceWidth / 35,
+                                          fontSize: deviceWidth! / 35,
                                           shadows: [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
@@ -370,8 +370,8 @@ class _GlassEffectState extends State<GlassEffect> {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: orientedCar
-                                          ? deviceWidth / 34
-                                          : deviceWidth / 34,
+                                          ? deviceWidth! / 34
+                                          : deviceWidth! / 34,
                                     ),
                                   ),
                                 ),

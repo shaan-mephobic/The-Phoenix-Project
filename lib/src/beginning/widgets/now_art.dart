@@ -21,7 +21,7 @@ class NowArt extends StatelessWidget {
             aspectRatio: 1 / 1,
             child: isPlayerShown
                 ? QueryArtworkWidget(
-                    id: nowMediaItem.extras["id"],
+                    id: nowMediaItem.extras!["id"],
                     type: ArtworkType.AUDIO,
                     format: ArtworkFormat.JPEG,
                     size: 600,
@@ -34,7 +34,7 @@ class NowArt extends StatelessWidget {
                           borderRadius: BorderRadius.circular(kRounded),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: MemoryImage(defaultNone),
+                            image: MemoryImage(defaultNone!),
                           ),
                         ),
                       ),
@@ -48,7 +48,7 @@ class NowArt extends StatelessWidget {
                         borderRadius: BorderRadius.circular(kRounded),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: MemoryImage(defaultNone),
+                          image: MemoryImage(defaultNone!),
                         ),
                       ),
                     ),
@@ -72,7 +72,7 @@ class NowArtLandScape extends StatelessWidget {
             aspectRatio: 1 / 1,
             child: isPlayerShown
                 ? QueryArtworkWidget(
-                    id: nowMediaItem.extras["id"],
+                    id: nowMediaItem.extras!["id"],
                     type: ArtworkType.AUDIO,
                     format: ArtworkFormat.JPEG,
                     size: 600,
@@ -83,7 +83,7 @@ class NowArtLandScape extends StatelessWidget {
                         borderRadius: BorderRadius.circular(kRounded),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: MemoryImage(defaultNone),
+                          image: MemoryImage(defaultNone!),
                         ),
                       ),
                     ),
@@ -94,7 +94,7 @@ class NowArtLandScape extends StatelessWidget {
                       borderRadius: BorderRadius.circular(kRounded),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: MemoryImage(defaultNone),
+                        image: MemoryImage(defaultNone!),
                       ),
                     ),
                   ),

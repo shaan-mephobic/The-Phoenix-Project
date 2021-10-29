@@ -13,7 +13,7 @@ import 'package:phoenix/src/beginning/widgets/dialogues/on_hold.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
 
-int artistPassed;
+int? artistPassed;
 
 class ArtistsInside extends StatelessWidget {
   @override
@@ -74,54 +74,54 @@ class ArtistsInside extends StatelessWidget {
                             borderRadius: BorderRadius.circular(kRounded),
                             child: musicBox.get("mapOfArtists") == null
                                 ? artistCollage(artistPassed, allArtists,
-                                    kRounded, deviceHeight / 4.6)
+                                    kRounded, deviceHeight! / 4.6)
                                 : musicBox.get("mapOfArtists")[
-                                            allArtists[artistPassed]] ==
+                                            allArtists[artistPassed!]] ==
                                         null
                                     ? artistCollage(artistPassed, allArtists,
-                                        kRounded, deviceHeight / 4.6)
+                                        kRounded, deviceHeight! / 4.6)
                                     : Image.file(
                                         File(
-                                            "${applicationFileDirectory.path}/artists/${allArtists[artistPassed]}.jpg"),
+                                            "${applicationFileDirectory.path}/artists/${allArtists[artistPassed!]}.jpg"),
                                       ),
                           ),
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
-                        allArtists[artistPassed].contains(",")
-                            ? allArtists[artistPassed]
+                        allArtists[artistPassed!].contains(",")
+                            ? allArtists[artistPassed!]
                                     .replaceRange(
-                                        allArtists[artistPassed].indexOf(","),
-                                        allArtists[artistPassed].length,
+                                        allArtists[artistPassed!].indexOf(","),
+                                        allArtists[artistPassed!].length,
                                         "")
                                     .contains(" FEAT")
-                                ? allArtists[artistPassed]
+                                ? allArtists[artistPassed!]
                                     .replaceRange(
-                                        allArtists[artistPassed].indexOf(","),
-                                        allArtists[artistPassed].length,
+                                        allArtists[artistPassed!].indexOf(","),
+                                        allArtists[artistPassed!].length,
                                         "")
                                     .replaceRange(
-                                        allArtists[artistPassed]
+                                        allArtists[artistPassed!]
                                             .indexOf(" FEAT"),
-                                        allArtists[artistPassed]
+                                        allArtists[artistPassed!]
                                             .replaceRange(
-                                                allArtists[artistPassed]
+                                                allArtists[artistPassed!]
                                                     .indexOf(","),
-                                                allArtists[artistPassed].length,
+                                                allArtists[artistPassed!].length,
                                                 "")
                                             .length,
                                         "")
-                                : allArtists[artistPassed].replaceRange(
-                                    allArtists[artistPassed].indexOf(","),
-                                    allArtists[artistPassed].length,
+                                : allArtists[artistPassed!].replaceRange(
+                                    allArtists[artistPassed!].indexOf(","),
+                                    allArtists[artistPassed!].length,
                                     "")
-                            : allArtists[artistPassed].contains(" FEAT")
-                                ? allArtists[artistPassed].replaceRange(
-                                    allArtists[artistPassed].indexOf(" FEAT"),
-                                    allArtists[artistPassed].length,
+                            : allArtists[artistPassed!].contains(" FEAT")
+                                ? allArtists[artistPassed!].replaceRange(
+                                    allArtists[artistPassed!].indexOf(" FEAT"),
+                                    allArtists[artistPassed!].length,
                                     "")
-                                : allArtists[artistPassed],
+                                : allArtists[artistPassed!],
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
@@ -133,7 +133,7 @@ class ArtistsInside extends StatelessWidget {
                               color: Colors.black26,
                             ),
                           ],
-                          fontSize: deviceHeight / 39,
+                          fontSize: deviceHeight! / 39,
                           color: musicBox.get("dynamicArtDB") ?? true
                               ? contrastAlbum
                               : Colors.white,
@@ -204,7 +204,7 @@ class ArtistsInside extends StatelessWidget {
                         subtitle: Opacity(
                           opacity: 0.5,
                           child: Text(
-                            inArtistsSongs[index - 1].artist,
+                            inArtistsSongs[index - 1].artist!,
                             maxLines: 1,
                             style: TextStyle(
                               color: musicBox.get("dynamicArtDB") ?? true
@@ -234,8 +234,8 @@ class ArtistsInside extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: MemoryImage(albumsArts[
-                                          inArtistsSongs[index - 1].album] ??
-                                      defaultNone),
+                                          inArtistsSongs[index - 1].album!] ??
+                                      defaultNone!),
                                 ),
                               ),
                             ),
@@ -256,9 +256,9 @@ class ArtistsInside extends StatelessWidget {
   }
 
   artHeroManager(oink) {
-    int toGetIndex;
+    int? toGetIndex;
     for (int woah = 0; woah < allAlbums.length; woah++) {
-      if (artistData[allArtists[artistPassed]][oink].albumName ==
+      if (artistData[allArtists[artistPassed!]]![oink].albumName ==
           allAlbums[woah].album) {
         toGetIndex = woah;
       }

@@ -38,7 +38,7 @@ String previousDir(String dir) {
 }
 
 getAllDir(where) async {
-  if (isHome && externalTopLevelDir != null) {
+  if (isHome) {
     tempData = [topLevelDir, externalTopLevelDir];
     isHome = false;
   } else {

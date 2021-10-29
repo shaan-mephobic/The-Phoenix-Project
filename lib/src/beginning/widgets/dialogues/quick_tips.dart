@@ -14,7 +14,7 @@ quickTip(BuildContext context) {
     duration: Duration(seconds: 5),
     borderColor: Colors.white.withOpacity(0.04),
     borderWidth: 1,
-    backgroundColor: glassOpacity,
+    backgroundColor: glassOpacity!,
     flushbarStyle: FlushbarStyle.FLOATING,
     isDismissible: true,
     barBlur: musicBox.get("glassBlur") ?? 18,

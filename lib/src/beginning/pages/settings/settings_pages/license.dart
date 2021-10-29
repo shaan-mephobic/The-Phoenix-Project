@@ -6,14 +6,14 @@ import "dart:collection";
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 class LicensesPage extends StatefulWidget {
-  const LicensesPage({Key key}) : super(key: key);
+  const LicensesPage({Key? key}) : super(key: key);
 
   @override
   _LicensesPageState createState() => _LicensesPageState();
 }
 
 class _LicensesPageState extends State<LicensesPage> {
-  ScrollController _scrollBarController;
+  ScrollController? _scrollBarController;
   @override
   void initState() {
     backArtStateChange = false;
@@ -98,8 +98,8 @@ class _LicensesPageState extends State<LicensesPage> {
 }
 
 class InsideLicense extends StatelessWidget {
-  final List<String> licenseValue;
-  final String licenseKey;
+  final List<String>? licenseValue;
+  final String? licenseKey;
   InsideLicense(this.licenseKey, this.licenseValue);
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class InsideLicense extends StatelessWidget {
         centerTitle: true,
         backgroundColor: kMaterialBlack,
         title: Text(
-          licenseKey,
+          licenseKey!,
           style: TextStyle(fontFamily: "Futura"),
         ),
       ),
@@ -121,11 +121,11 @@ class InsideLicense extends StatelessWidget {
                 : ClampingScrollPhysics(),
             child: Column(
               children: [
-                for (int i = 0; i < licenseValue.length; i++)
+                for (int i = 0; i < licenseValue!.length; i++)
                   Column(
                     children: [
                       Text(
-                        licenseValue[i],
+                        licenseValue![i],
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -167,7 +167,7 @@ licensesManager() async {
           rawLicense[i].paragraphs.forEach((element) {
             licenseParagraph += "\n \n ${element.text}";
           });
-          licenseData[package].add(licenseParagraph);
+          licenseData[package]!.add(licenseParagraph);
         }
       }
     }
