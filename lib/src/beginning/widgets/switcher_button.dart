@@ -82,11 +82,11 @@ class _SwitcherButtonState extends State<SwitcherButton>
       _rightRadiusAnimation = Tween(begin: 0.0, end: widget._height! * .18)
           .animate(CurvedAnimation(
               parent: _rightController, curve: Curves.elasticOut))
-            ..addListener(() {
-              setState(() {
-                _rightRadius = _rightRadiusAnimation.value;
-              });
-            });
+        ..addListener(() {
+          setState(() {
+            _rightRadius = _rightRadiusAnimation.value;
+          });
+        });
       _rightController.forward();
     } else {
       // when widget initial with off state.
@@ -94,11 +94,11 @@ class _SwitcherButtonState extends State<SwitcherButton>
       _leftRadiusAnimation = Tween(begin: 0.0, end: widget._height! * .18)
           .animate(CurvedAnimation(
               parent: _leftController, curve: Curves.elasticOut))
-            ..addListener(() {
-              setState(() {
-                _leftRadius = _leftRadiusAnimation.value;
-              });
-            });
+        ..addListener(() {
+          setState(() {
+            _leftRadius = _leftRadiusAnimation.value;
+          });
+        });
       _leftController.forward();
     }
 
@@ -109,14 +109,15 @@ class _SwitcherButtonState extends State<SwitcherButton>
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (!_rightController.isAnimating && !_leftController.isAnimating)
+        if (!_rightController.isAnimating && !_leftController.isAnimating) {
           _changeState();
+        }
       },
       child: Container(
         width: widget._width,
         height: widget._height,
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10000.0))),
         child: CustomPaint(
           size: Size.infinite,
@@ -143,77 +144,74 @@ class _SwitcherButtonState extends State<SwitcherButton>
       // and left radius will be 2 * widget height
       // switcher is on.
 
-      _rightController.duration = Duration(milliseconds: 400);
+      _rightController.duration = const Duration(milliseconds: 400);
 
-      _rightRadiusAnimation =
-          Tween(begin: widget._height! * .18, end: widget._width)
-              .animate(_rightController)
-                ..addStatusListener((status) {
-                  if (status == AnimationStatus.completed) {
-                    // when widget switched to new state(on state) and complete
-                    // animation show off circle to user
-                    setState(() {
-                      _leftRadius = 0.0;
-                      value = false;
-                    });
-                    _leftController.reset();
-                    _leftController.duration = Duration(milliseconds: 800);
-                    _leftRadiusAnimation =
-                        Tween(begin: 0.0, end: widget._height! * .18).animate(
-                            CurvedAnimation(
-                                parent: _leftController,
-                                curve: Curves.elasticOut))
-                          ..addListener(() {
-                            setState(() {
-                              _leftRadius = _leftRadiusAnimation.value;
-                            });
-                          });
-                    _leftController.forward();
-                  }
-                })
-                ..addListener(() {
-                  setState(() {
-                    _rightRadius = _rightRadiusAnimation.value;
-                  });
+      _rightRadiusAnimation = Tween(
+              begin: widget._height! * .18, end: widget._width)
+          .animate(_rightController)
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            // when widget switched to new state(on state) and complete
+            // animation show off circle to user
+            setState(() {
+              _leftRadius = 0.0;
+              value = false;
+            });
+            _leftController.reset();
+            _leftController.duration = const Duration(milliseconds: 800);
+            _leftRadiusAnimation = Tween(begin: 0.0, end: widget._height! * .18)
+                .animate(CurvedAnimation(
+                    parent: _leftController, curve: Curves.elasticOut))
+              ..addListener(() {
+                setState(() {
+                  _leftRadius = _leftRadiusAnimation.value;
                 });
+              });
+            _leftController.forward();
+          }
+        })
+        ..addListener(() {
+          setState(() {
+            _rightRadius = _rightRadiusAnimation.value;
+          });
+        });
       _rightController.forward();
     } else {
       // If value == true left radius will be 18% widget height
       // and right radius will be 2 * widget height
       // switcher is off.
-      _leftController.duration = Duration(milliseconds: 400);
+      _leftController.duration = const Duration(milliseconds: 400);
 
       _leftRadiusAnimation =
           Tween(begin: widget._height! * .18, end: widget._width)
               .animate(_leftController)
-                ..addStatusListener((status) {
-                  if (status == AnimationStatus.completed) {
-                    // when widget switched to new state(off state) and complete
-                    // animation show on circle to user
-                    setState(() {
-                      _rightRadius = 0.0;
-                      value = true;
-                    });
-                    _rightController.reset();
-                    _rightController.duration = Duration(milliseconds: 800);
-                    _rightRadiusAnimation =
-                        Tween(begin: 0.0, end: widget._height! * .18).animate(
-                            CurvedAnimation(
-                                parent: _rightController,
-                                curve: Curves.elasticOut))
-                          ..addListener(() {
-                            setState(() {
-                              _rightRadius = _rightRadiusAnimation.value;
-                            });
-                          });
-                    _rightController.forward();
-                  }
-                })
-                ..addListener(() {
-                  setState(() {
-                    _leftRadius = _leftRadiusAnimation.value;
-                  });
+            ..addStatusListener((status) {
+              if (status == AnimationStatus.completed) {
+                // when widget switched to new state(off state) and complete
+                // animation show on circle to user
+                setState(() {
+                  _rightRadius = 0.0;
+                  value = true;
                 });
+                _rightController.reset();
+                _rightController.duration = const Duration(milliseconds: 800);
+                _rightRadiusAnimation =
+                    Tween(begin: 0.0, end: widget._height! * .18).animate(
+                        CurvedAnimation(
+                            parent: _rightController, curve: Curves.elasticOut))
+                      ..addListener(() {
+                        setState(() {
+                          _rightRadius = _rightRadiusAnimation.value;
+                        });
+                      });
+                _rightController.forward();
+              }
+            })
+            ..addListener(() {
+              setState(() {
+                _leftRadius = _leftRadiusAnimation.value;
+              });
+            });
       _leftController.forward();
     }
 

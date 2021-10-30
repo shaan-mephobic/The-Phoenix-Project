@@ -43,15 +43,16 @@ class _ChangelogsState extends State<Changelogs> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Padding(
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: SingleChildScrollView(
                     physics: musicBox.get("fluidAnimation") ?? true
-                        ? BouncingScrollPhysics()
-                        : ClampingScrollPhysics(),
-                    padding: EdgeInsets.only(top: 50),
+                        ? const BouncingScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                    padding: const EdgeInsets.only(top: 50),
                     child: Column(
                       children: [
                         for (int i = changelogs.length - 1; i > -1; i--)
@@ -60,27 +61,28 @@ class _ChangelogsState extends State<Changelogs> {
                               ListTile(
                                 title: Text(
                                   changelogs.keys.toList()[i],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                               ),
-                              Padding(padding: EdgeInsets.only(top: 20)),
+                              const Padding(padding: EdgeInsets.only(top: 20)),
                               Container(
                                 width: double.infinity,
-                                padding: EdgeInsets.only(left: 50, right: 25),
+                                padding:
+                                    const EdgeInsets.only(left: 50, right: 25),
                                 child: Text(
                                   changelogs.values.toList()[i],
                                   textAlign: TextAlign.left,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 17,
                                   ),
                                 ),
                               ),
-                              Divider(
+                              const Divider(
                                 color: Colors.white54,
                                 indent: 50,
                                 thickness: 0.2,

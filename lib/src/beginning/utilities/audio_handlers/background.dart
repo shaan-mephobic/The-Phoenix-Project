@@ -65,8 +65,8 @@ class AudioPlayerTask extends BaseAudioHandler {
   }
 
   @override
-  Future<void> updateQueue(List mediaItems) async {
-    leQueue = mediaItems as List<MediaItem>;
+  Future<void> updateQueue(List<MediaItem> queue) async {
+    leQueue = queue;
     source = ConcatenatingAudioSource(
       children:
           leQueue.map((item) => AudioSource.uri(Uri.parse(item.id))).toList(),
@@ -79,18 +79,20 @@ class AudioPlayerTask extends BaseAudioHandler {
 
   @override
   Future<void> setShuffleMode(AudioServiceShuffleMode shuffleMode) async {
-    if (shuffleMode == AudioServiceShuffleMode.all)
+    if (shuffleMode == AudioServiceShuffleMode.all) {
       _audioPlayer.setShuffleModeEnabled(true);
-    else
+    } else {
       _audioPlayer.setShuffleModeEnabled(false);
+    }
   }
 
   @override
-  Future<void> setRepeatMode(AudioServiceRepeatMode loopMode) async {
-    if (loopMode == AudioServiceRepeatMode.one)
+  Future<void> setRepeatMode(AudioServiceRepeatMode repeatMode) async {
+    if (repeatMode == AudioServiceRepeatMode.one) {
       _audioPlayer.setLoopMode(LoopMode.one);
-    else
+    } else {
       _audioPlayer.setLoopMode(LoopMode.all);
+    }
   }
 
   @override
@@ -110,7 +112,7 @@ class AudioPlayerTask extends BaseAudioHandler {
       case MediaButton.media:
         clicks += 1;
         if (clicks == 1) {
-          Timer(Duration(milliseconds: 500), () async {
+          Timer(const Duration(milliseconds: 500), () async {
             switch (clicks) {
               case 1:
                 if (_audioPlayer.playing) {
@@ -175,20 +177,24 @@ class AudioPlayerTask extends BaseAudioHandler {
 
   @override
   Future<void> rewind() async {
-    if (_audioPlayer.position > Duration(seconds: 5))
-      _audioPlayer.seek(_audioPlayer.position - Duration(seconds: 5));
-    else
-      _audioPlayer.seek(Duration(seconds: 0));
+    if (_audioPlayer.position > const Duration(seconds: 5)) {
+      _audioPlayer.seek(_audioPlayer.position - const Duration(seconds: 5));
+    } else {
+      _audioPlayer.seek(const Duration(seconds: 0));
+    }
   }
 
   @override
   Future<void> fastForward() async {
-    if (_audioPlayer.position < _audioPlayer.duration! - Duration(seconds: 5))
-      _audioPlayer.seek(_audioPlayer.position + Duration(seconds: 5));
-    else
+    if (_audioPlayer.position <
+        _audioPlayer.duration! - const Duration(seconds: 5)) {
+      _audioPlayer.seek(_audioPlayer.position + const Duration(seconds: 5));
+    } else {
       audioHandler.skipToNext();
+    }
   }
 
+  @override
   Future<void> onTaskRemoved() async {
     await stop();
   }

@@ -19,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Searchin extends StatefulWidget {
+  const Searchin({Key? key}) : super(key: key);
+
   @override
   _SearchinState createState() => _SearchinState();
 }
@@ -89,7 +91,7 @@ class _SearchinState extends State<Searchin> {
   }
 
   focusManager() async {
-    await Future.delayed(Duration(milliseconds: 150));
+    await Future.delayed(const Duration(milliseconds: 150));
     focusNode.requestFocus();
   }
 
@@ -113,15 +115,16 @@ class _SearchinState extends State<Searchin> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(top: 50),
                     ),
                     Container(
-                      padding: EdgeInsets.only(left: 10, right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       height: 120,
                       width: double.infinity,
                       color: Colors.transparent,
@@ -153,18 +156,19 @@ class _SearchinState extends State<Searchin> {
                                 ),
                                 child: TextField(
                                   textAlignVertical: TextAlignVertical.center,
-                                  cursorColor: Color(0xFF3cb9cd),
+                                  cursorColor: const Color(0xFF3cb9cd),
                                   focusNode: focusNode,
                                   autofocus: false,
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                   onChanged: (thetext) {
                                     theSearch(thetext);
                                   },
                                   decoration: InputDecoration(
                                     isCollapsed: true,
-                                    suffixIcon: Icon(Icons.music_note_rounded,
+                                    suffixIcon: const Icon(
+                                        Icons.music_note_rounded,
                                         color: Colors.white),
-                                    prefixIcon: Hero(
+                                    prefixIcon: const Hero(
                                       tag: "aslongasiwakeup",
                                       child: Material(
                                         color: Colors.transparent,
@@ -174,12 +178,12 @@ class _SearchinState extends State<Searchin> {
                                         ),
                                       ),
                                     ),
-                                    border: OutlineInputBorder(),
-                                    enabledBorder: OutlineInputBorder(
+                                    border: const OutlineInputBorder(),
+                                    enabledBorder: const OutlineInputBorder(
                                       borderSide:
                                           BorderSide(color: Colors.transparent),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
+                                    focusedBorder: const OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: Colors.transparent)),
                                     hintStyle:
@@ -203,11 +207,11 @@ class _SearchinState extends State<Searchin> {
                           child: ListView.builder(
                             controller: _scrollBarController,
                             shrinkWrap: true,
-                            padding: EdgeInsets.only(top: 0, bottom: 8),
+                            padding: const EdgeInsets.only(top: 0, bottom: 8),
                             addAutomaticKeepAlives: true,
                             physics: musicBox.get("fluidAnimation") ?? true
-                                ? BouncingScrollPhysics()
-                                : ClampingScrollPhysics(),
+                                ? const BouncingScrollPhysics()
+                                : const ClampingScrollPhysics(),
                             itemCount: searchedTracks.length + 3,
                             itemBuilder: (context, index) {
                               if (index == 0) {
@@ -249,8 +253,8 @@ class _SearchinState extends State<Searchin> {
                                               physics: musicBox.get(
                                                           "fluidAnimation") ??
                                                       true
-                                                  ? BouncingScrollPhysics()
-                                                  : ClampingScrollPhysics(),
+                                                  ? const BouncingScrollPhysics()
+                                                  : const ClampingScrollPhysics(),
                                               scrollDirection: Axis.horizontal,
                                               itemBuilder: (context, index) {
                                                 return Material(
@@ -317,7 +321,7 @@ class _SearchinState extends State<Searchin> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                AlbumsInside()),
+                                                                const AlbumsInside()),
                                                       );
                                                     },
                                                     child: SizedBox(
@@ -394,10 +398,10 @@ class _SearchinState extends State<Searchin> {
                                                                   offset: musicBox.get(
                                                                               "dynamicArtDB") ??
                                                                           true
-                                                                      ? Offset(
+                                                                      ? const Offset(
                                                                           1.0,
                                                                           1.0)
-                                                                      : Offset(
+                                                                      : const Offset(
                                                                           0,
                                                                           1.0),
                                                                   blurRadius:
@@ -456,8 +460,8 @@ class _SearchinState extends State<Searchin> {
                                               physics: musicBox.get(
                                                           "fluidAnimation") ??
                                                       true
-                                                  ? BouncingScrollPhysics()
-                                                  : ClampingScrollPhysics(),
+                                                  ? const BouncingScrollPhysics()
+                                                  : const ClampingScrollPhysics(),
                                               scrollDirection: Axis.horizontal,
                                               itemBuilder: (context, index) {
                                                 return Material(
@@ -514,7 +518,7 @@ class _SearchinState extends State<Searchin> {
                                                                 colorMap);
                                                           } catch (e) {
                                                             contrastAlbum =
-                                                                Color(
+                                                                const Color(
                                                                     0xFF3cb9cd);
                                                             dominantAlbum =
                                                                 kMaterialBlack;
@@ -541,7 +545,7 @@ class _SearchinState extends State<Searchin> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                ArtistsInside()),
+                                                                const ArtistsInside()),
                                                       );
                                                     },
                                                     child: SizedBox(
@@ -570,7 +574,7 @@ class _SearchinState extends State<Searchin> {
                                                                   deviceWidth! /
                                                                       3,
                                                               decoration:
-                                                                  BoxDecoration(
+                                                                  const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
                                                               ),
@@ -614,10 +618,10 @@ class _SearchinState extends State<Searchin> {
                                                                   offset: musicBox.get(
                                                                               "dynamicArtDB") ??
                                                                           true
-                                                                      ? Offset(
+                                                                      ? const Offset(
                                                                           1.0,
                                                                           1.0)
-                                                                      : Offset(
+                                                                      : const Offset(
                                                                           0,
                                                                           1.0),
                                                                   blurRadius:
@@ -672,7 +676,7 @@ class _SearchinState extends State<Searchin> {
                                         if (searchedTracks[index - 3].id ==
                                             songList[i].id) {
                                           if (songListMediaItems[i].duration ==
-                                              Duration(milliseconds: 0)) {
+                                              const Duration(milliseconds: 0)) {
                                             corruptedFile(context);
                                           } else {
                                             await playThis(i, "all");
@@ -714,7 +718,7 @@ class _SearchinState extends State<Searchin> {
                                     title: Text(
                                       searchedTracks[index - 3].title,
                                       maxLines: 2,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white70,
                                         shadows: [
                                           Shadow(
@@ -731,7 +735,7 @@ class _SearchinState extends State<Searchin> {
                                       child: Text(
                                         searchedTracks[index - 3].artist,
                                         maxLines: 1,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white70,
                                           shadows: [
                                             Shadow(

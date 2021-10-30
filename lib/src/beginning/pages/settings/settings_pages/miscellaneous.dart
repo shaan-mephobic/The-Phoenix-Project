@@ -11,6 +11,8 @@ import '../../../utilities/page_backend/file_exporer.dart';
 Map folderData = {};
 
 class Miscellaneous extends StatefulWidget {
+  const Miscellaneous({Key? key}) : super(key: key);
+
   @override
   _MiscellaneousState createState() => _MiscellaneousState();
 }
@@ -62,15 +64,16 @@ class _MiscellaneousState extends State<Miscellaneous> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Container(
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: ListView(
                     physics: musicBox.get("fluidAnimation") ?? true
-                        ? BouncingScrollPhysics()
-                        : ClampingScrollPhysics(),
-                    padding: EdgeInsets.all(0),
+                        ? const BouncingScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                    padding: const EdgeInsets.all(0),
                     children: [
                       Material(
                         color: Colors.transparent,
@@ -154,7 +157,7 @@ class _MiscellaneousState extends State<Miscellaneous> {
                             child: Material(
                               color: Colors.transparent,
                               child: IconButton(
-                                  icon: Icon(Icons.edit_rounded),
+                                  icon: const Icon(Icons.edit_rounded),
                                   color: darkModeOn
                                       ? Colors.white
                                       : Colors.grey[700],
@@ -172,7 +175,8 @@ class _MiscellaneousState extends State<Miscellaneous> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Directories(),
+                                        builder: (context) =>
+                                            const Directories(),
                                       ),
                                     );
                                     setState(() {});

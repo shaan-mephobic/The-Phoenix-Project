@@ -22,6 +22,8 @@ import '../../utilities/page_backend/mansion_back.dart';
 var globalMansionConsumer;
 
 class Mansion extends StatefulWidget {
+  const Mansion({Key? key}) : super(key: key);
+
   @override
   _MansionState createState() => _MansionState();
 }
@@ -47,8 +49,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
           child: ListView(
             addAutomaticKeepAlives: true,
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
             children: [
               Padding(padding: EdgeInsets.only(top: deviceWidth! / 14)),
               // Recently Played
@@ -92,9 +94,9 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                             child: ListView.builder(
                               addAutomaticKeepAlives: true,
                               physics: musicBox.get("fluidAnimation") ?? true
-                                  ? BouncingScrollPhysics()
-                                  : ClampingScrollPhysics(),
-                              padding: EdgeInsets.only(bottom: 0, top: 0),
+                                  ? const BouncingScrollPhysics()
+                                  : const ClampingScrollPhysics(),
+                              padding: const EdgeInsets.only(bottom: 0, top: 0),
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
                               itemCount: recentPlayingLengthFoo(),
@@ -110,7 +112,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       onTap: () async {
                                         if (recentPlayedMediaItems[index]
                                                 .duration ==
-                                            Duration(milliseconds: 0)) {
+                                            const Duration(milliseconds: 0)) {
                                           corruptedFile(context);
                                         } else {
                                           await playThis(
@@ -182,8 +184,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                   offset: musicBox.get(
                                                               "dynamicArtDB") ??
                                                           true
-                                                      ? Offset(1.0, 1.0)
-                                                      : Offset(0, 1.0),
+                                                      ? const Offset(1.0, 1.0)
+                                                      : const Offset(0, 1.0),
                                                   blurRadius: 2.0,
                                                   color: Colors.black45,
                                                 ),
@@ -226,8 +228,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                     SingleChildScrollView(
                       physics: musicBox.get("fluidAnimation") ?? true
-                          ? BouncingScrollPhysics()
-                          : ClampingScrollPhysics(),
+                          ? const BouncingScrollPhysics()
+                          : const ClampingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
@@ -247,7 +249,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   onTap: () async {
                                     if (alwaysPlayedMediaItems[index]
                                             .duration ==
-                                        Duration(milliseconds: 0)) {
+                                        const Duration(milliseconds: 0)) {
                                       corruptedFile(context);
                                     } else {
                                       await playThis(index, "mostly");
@@ -320,8 +322,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 offset: musicBox.get(
                                                             "dynamicArtDB") ??
                                                         true
-                                                    ? Offset(1.0, 1.0)
-                                                    : Offset(0, 1.0),
+                                                    ? const Offset(1.0, 1.0)
+                                                    : const Offset(0, 1.0),
                                                 blurRadius: 2.0,
                                                 color: Colors.black45,
                                               ),
@@ -365,8 +367,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                         ),
                         SingleChildScrollView(
                           physics: musicBox.get("fluidAnimation") ?? true
-                              ? BouncingScrollPhysics()
-                              : ClampingScrollPhysics(),
+                              ? const BouncingScrollPhysics()
+                              : const ClampingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
@@ -387,7 +389,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                       onTap: () async {
                                         if (everPlayedLimitedMediaItems[index]
                                                 .duration ==
-                                            Duration(milliseconds: 0)) {
+                                            const Duration(milliseconds: 0)) {
                                           corruptedFile(context);
                                         } else {
                                           await playThis(index, "never");
@@ -457,8 +459,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                   offset: musicBox.get(
                                                               "dynamicArtDB") ??
                                                           true
-                                                      ? Offset(1.0, 1.0)
-                                                      : Offset(0, 1.0),
+                                                      ? const Offset(1.0, 1.0)
+                                                      : const Offset(0, 1.0),
                                                   blurRadius: 2.0,
                                                   color: Colors.black45,
                                                 ),
@@ -500,8 +502,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                     SingleChildScrollView(
                       physics: musicBox.get("fluidAnimation") ?? true
-                          ? BouncingScrollPhysics()
-                          : ClampingScrollPhysics(),
+                          ? const BouncingScrollPhysics()
+                          : const ClampingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
@@ -542,7 +544,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                         musicBox.put(
                                             "colorsOfArtists", colorMap);
                                       } catch (e) {
-                                        contrastAlbum = Color(0xFF3cb9cd);
+                                        contrastAlbum = const Color(0xFF3cb9cd);
                                         dominantAlbum = kMaterialBlack;
                                       }
                                     } else {
@@ -560,7 +562,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ArtistsInside()),
+                                        builder: (context) => const ArtistsInside()),
                                   );
                                 },
                                 child: SizedBox(
@@ -578,7 +580,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                         child: Container(
                                           height: deviceWidth! / 3,
                                           width: deviceWidth! / 3,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: artistCollage(
@@ -606,8 +608,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                               offset: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
-                                                  ? Offset(1.0, 1.0)
-                                                  : Offset(0, 1.0),
+                                                  ?const  Offset(1.0, 1.0)
+                                                  : const Offset(0, 1.0),
                                               blurRadius: 2.0,
                                               color: Colors.black45,
                                             ),
@@ -648,8 +650,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                     ),
                     SingleChildScrollView(
                       physics: musicBox.get("fluidAnimation") ?? true
-                          ? BouncingScrollPhysics()
-                          : ClampingScrollPhysics(),
+                          ? const BouncingScrollPhysics()
+                          : const ClampingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
@@ -700,7 +702,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => AlbumsInside()),
+                                        builder: (context) => const AlbumsInside()),
                                   );
                                 },
                                 child: SizedBox(
@@ -752,8 +754,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                               offset: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
-                                                  ? Offset(1.0, 1.0)
-                                                  : Offset(0, 1.0),
+                                                  ? const Offset(1.0, 1.0)
+                                                  : const Offset(0, 1.0),
                                               blurRadius: 2.0,
                                               color: Colors.black45,
                                             ),
@@ -778,8 +780,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
       });
     } else {
       return orientedCar
-          ? SingleChildScrollView(child: Awakening())
-          : Awakening();
+          ?const SingleChildScrollView(child: Awakening())
+          : const Awakening();
     }
   }
 

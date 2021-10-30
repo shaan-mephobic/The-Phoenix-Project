@@ -39,7 +39,7 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -69,9 +69,9 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ListView(
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
-                                children: [                               
+                                children: [
                                   for (int o = 0;
                                       o < widget.data.keys.toList().length;
                                       o++)
@@ -90,20 +90,21 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                             child: InkWell(
                                               onTap: () {
                                                 Navigator.pop(context);
-                                                print(widget.data);
+                                                debugPrint(
+                                                    widget.data.toString());
                                                 if (widget.data[widget.data.keys
                                                         .toList()[o]]
                                                     .contains(
                                                         widget.songFile)) {
                                                   Flushbar(
-                                                    messageText: Text(
+                                                    messageText: const Text(
                                                         "Song Already In Playlist",
                                                         style: TextStyle(
                                                             fontFamily:
                                                                 "Futura",
                                                             color:
                                                                 Colors.white)),
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                       Icons
                                                           .error_outline_rounded,
                                                       size: 28.0,
@@ -113,8 +114,8 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                     dismissDirection:
                                                         FlushbarDismissDirection
                                                             .HORIZONTAL,
-                                                    duration:
-                                                        Duration(seconds: 5),
+                                                    duration: const Duration(
+                                                        seconds: 5),
                                                     borderColor: Colors.white
                                                         .withOpacity(0.04),
                                                     borderWidth: 1,
@@ -123,20 +124,18 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                     flushbarStyle:
                                                         FlushbarStyle.FLOATING,
                                                     isDismissible: true,
-                                                    barBlur: musicBox.get(
-                                                                "glassBlur") ==
-                                                            null
-                                                        ? 18
-                                                        : musicBox
-                                                            .get("glassBlur"),
-                                                    margin: EdgeInsets.only(
-                                                        bottom: 20,
-                                                        left: 8,
-                                                        right: 8),
+                                                    barBlur: musicBox
+                                                            .get("glassBlur") ??
+                                                        18,
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            bottom: 20,
+                                                            left: 8,
+                                                            right: 8),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             15),
-                                                  )..show(context);
+                                                  ).show(context);
                                                 } else {
                                                   widget.data[widget.data.keys
                                                           .toList()[o]]
@@ -144,7 +143,7 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                   musicBox.put(
                                                       "playlists", widget.data);
                                                   Flushbar(
-                                                    messageText: Text(
+                                                    messageText: const Text(
                                                         "Song Added To Playlist",
                                                         style: TextStyle(
                                                             fontFamily:
@@ -160,8 +159,8 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                     dismissDirection:
                                                         FlushbarDismissDirection
                                                             .HORIZONTAL,
-                                                    duration:
-                                                        Duration(seconds: 5),
+                                                    duration: const Duration(
+                                                        seconds: 5),
                                                     borderColor: Colors.white
                                                         .withOpacity(0.04),
                                                     borderWidth: 1,
@@ -170,16 +169,14 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                     flushbarStyle:
                                                         FlushbarStyle.FLOATING,
                                                     isDismissible: true,
-                                                    barBlur: musicBox.get(
-                                                                "glassBlur") ==
-                                                            null
-                                                        ? 18
-                                                        : musicBox
-                                                            .get("glassBlur"),
-                                                    margin: EdgeInsets.only(
-                                                        bottom: 20,
-                                                        left: 8,
-                                                        right: 8),
+                                                    barBlur: musicBox
+                                                            .get("glassBlur") ??
+                                                        18,
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            bottom: 20,
+                                                            left: 8,
+                                                            right: 8),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             15),
@@ -189,7 +186,8 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                               child: Center(
                                                 child: Padding(
                                                   padding:
-                                                      EdgeInsets.only(left: 12),
+                                                      const EdgeInsets.only(
+                                                          left: 12),
                                                   child: Text(
                                                     widget.data.keys
                                                         .toList()[o],
@@ -210,8 +208,10 @@ class _AddToPlaylistState extends State<AddToPlaylist> {
                                                           offset: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true
-                                                              ? Offset(0, 1.0)
-                                                              : Offset(0, 1.0),
+                                                              ? const Offset(
+                                                                  0, 1.0)
+                                                              : const Offset(
+                                                                  0, 1.0),
                                                           blurRadius: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true

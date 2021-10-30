@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 int? artistPassed;
 
 class ArtistsInside extends StatelessWidget {
+  const ArtistsInside({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
@@ -37,8 +39,8 @@ class ArtistsInside extends StatelessWidget {
               : kMaterialBlack,
           child: CustomScrollView(
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 iconTheme: IconThemeData(
@@ -52,15 +54,15 @@ class ArtistsInside extends StatelessWidget {
                     : kMaterialBlack,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.parallax,
-                  titlePadding: EdgeInsets.all(0),
+                  titlePadding:const  EdgeInsets.all(0),
                   background: Column(
                     children: [
-                      Padding(padding: EdgeInsets.only(top: 80)),
+                     const  Padding(padding: EdgeInsets.only(top: 80)),
                       Container(
                         height: 220,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
-                          boxShadow: [
+                          boxShadow:const  [
                             BoxShadow(
                                 color: Colors.black54,
                                 blurRadius: 6.0,
@@ -87,7 +89,7 @@ class ArtistsInside extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 20)),
+                     const  Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
                         allArtists[artistPassed!].contains(",")
                             ? allArtists[artistPassed!]
@@ -126,7 +128,7 @@ class ArtistsInside extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          shadows: [
+                          shadows:const  [
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 2.2,
@@ -154,7 +156,7 @@ class ArtistsInside extends StatelessWidget {
                       child: ListTile(
                         onTap: () async {
                           if (artistMediaItems[index - 1].duration ==
-                              Duration(milliseconds: 0)) {
+                             const  Duration(milliseconds: 0)) {
                             corruptedFile(context);
                           } else {
                             insideInArtistsSongs = inArtistsSongs;
@@ -191,7 +193,7 @@ class ArtistsInside extends StatelessWidget {
                             // fontSize: orientedCar
                             //     ? deviceWidth / 28
                             //     : deviceHeight / 60,
-                            shadows: [
+                            shadows: const [
                               Shadow(
                                 offset: Offset(0, 1.0),
                                 blurRadius: 2.0,
@@ -210,7 +212,7 @@ class ArtistsInside extends StatelessWidget {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,
-                              shadows: [
+                              shadows:const  [
                                 Shadow(
                                   offset: Offset(0, 1.0),
                                   blurRadius: 1.0,

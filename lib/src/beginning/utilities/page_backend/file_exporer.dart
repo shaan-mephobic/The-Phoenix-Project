@@ -73,7 +73,7 @@ unTick(String path) {
       toRemove.add(selectedFolders[i]);
     }
   }
-  toRemove.forEach((element) {
+  for (var element in toRemove) {
     selectedFolders.remove(element);
-  });
+  }
 }

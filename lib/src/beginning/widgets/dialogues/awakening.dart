@@ -5,6 +5,8 @@ import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 class Awakening extends StatelessWidget {
+  const Awakening({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     bool orientedCar = false;
@@ -83,7 +85,7 @@ class Awakening extends StatelessWidget {
                                       fontSize: orientedCar
                                           ? deviceHeight / 24
                                           : deviceWidth / 16),
-                                  speed: Duration(seconds: 5)),
+                                  speed: const Duration(seconds: 5)),
                             ],
                           ),
                         ),

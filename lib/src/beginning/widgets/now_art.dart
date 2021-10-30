@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 class NowArt extends StatelessWidget {
   final bool car;
-  NowArt(this.car);
+  const NowArt(this.car, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<Leprovider>(
@@ -62,7 +62,7 @@ class NowArt extends StatelessWidget {
 
 class NowArtLandScape extends StatelessWidget {
   final bool car;
-  NowArtLandScape(this.car);
+  const NowArtLandScape(this.car, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<Leprovider>(

@@ -21,6 +21,8 @@ List settingsList = [
 late var globalRotational;
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   _SettingsState createState() => _SettingsState();
 }
@@ -64,6 +66,7 @@ class _SettingsState extends State<Settings> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Column(
                   children: [
@@ -92,7 +95,7 @@ class _SettingsState extends State<Settings> {
                                         top:
                                             orientedCar ? deviceWidth! / 7 : 0),
                                     shrinkWrap: true,
-                                    physics: BouncingScrollPhysics(),
+                                    physics: const BouncingScrollPhysics(),
                                     scrollDirection: Axis.vertical,
                                     children: [
                                       for (int i = 0;
@@ -122,7 +125,7 @@ class _SettingsState extends State<Settings> {
                                                                 Leprovider(),
                                                             builder: (context,
                                                                     child) =>
-                                                                Interface(),
+                                                                const Interface(),
                                                           ),
                                                         ),
                                                       ).then((value) {
@@ -140,7 +143,7 @@ class _SettingsState extends State<Settings> {
                                                                 Leprovider(),
                                                             builder: (context,
                                                                     child) =>
-                                                                Miscellaneous(),
+                                                                const Miscellaneous(),
                                                           ),
                                                         ),
                                                       ).then((value) {
@@ -158,7 +161,7 @@ class _SettingsState extends State<Settings> {
                                                                 Leprovider(),
                                                             builder: (context,
                                                                     child) =>
-                                                                Changelogs(),
+                                                                const Changelogs(),
                                                           ),
                                                         ),
                                                       ).then((value) {
@@ -176,7 +179,7 @@ class _SettingsState extends State<Settings> {
                                                                 Leprovider(),
                                                             builder: (context,
                                                                     child) =>
-                                                                Phoenix(),
+                                                                const Phoenix(),
                                                           ),
                                                         ),
                                                       ).then((value) {
@@ -259,7 +262,7 @@ class _SettingsState extends State<Settings> {
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
-                                  offset: Offset(0, 1),
+                                  offset: const Offset(0, 1),
                                   color: Colors.black12,
                                   blurRadius: 1.0,
                                   spreadRadius: deviceWidth! / 230,
@@ -277,7 +280,7 @@ class _SettingsState extends State<Settings> {
                                     tag: "fortress1",
                                     child: Icon(
                                       Ionicons.settings_sharp,
-                                      color: Color(0xFF02c9d3),
+                                      color: const Color(0xFF02c9d3),
                                       size: deviceWidth! / 9,
                                     ),
                                   ),
@@ -302,7 +305,7 @@ class _SettingsState extends State<Settings> {
 }
 
 yeahRotate() async {
-  await Future.delayed(Duration(milliseconds: 280));
+  await Future.delayed(const Duration(milliseconds: 280));
   int drotate = 0;
   int i = 0;
 
@@ -312,7 +315,7 @@ yeahRotate() async {
       breakRotate = false;
       break high;
     }
-    await Future.delayed(Duration(milliseconds: 60));
+    await Future.delayed(const Duration(milliseconds: 60));
     drotate -= 1;
     globalRotational.rotator(drotate);
   }

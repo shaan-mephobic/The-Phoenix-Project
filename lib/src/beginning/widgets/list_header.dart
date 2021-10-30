@@ -13,7 +13,7 @@ class ListHeader extends StatelessWidget {
   final double? widthOfDevice;
   final List<SongModel>? listOfSong;
   final String rnAccess;
-  ListHeader(this.widthOfDevice, this.listOfSong, this.rnAccess);
+  const ListHeader(this.widthOfDevice, this.listOfSong, this.rnAccess, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +44,7 @@ class ListHeader extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
                     "${listOfSong!.length} Tracks",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 ),
                 Row(
@@ -67,11 +67,11 @@ class ListHeader extends StatelessWidget {
                               random.nextInt(listOfSong!.length), rnAccess);
                         },
                         icon:
-                            Icon(Ionicons.shuffle_outline, color: Colors.white),
+                            const Icon(Ionicons.shuffle_outline, color: Colors.white),
                         style: ButtonStyle(
                             overlayColor:
                                 MaterialStateProperty.all(Colors.white30)),
-                        label: Text(
+                        label: const Text(
                           "Shuffle",
                           style: TextStyle(
                             fontSize: 15,
@@ -95,7 +95,7 @@ class ListHeader extends StatelessWidget {
                           }
                           await playThis(0, rnAccess);
                         },
-                        icon: Icon(Ionicons.play),
+                        icon: const Icon(Ionicons.play),
                         color: Colors.white,
                         iconSize: 20,
                       ),

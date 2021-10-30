@@ -7,11 +7,13 @@ import 'package:phoenix/src/beginning/utilities/init.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/playlist_back.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
-import 'addSongs.dart';
+import 'add_songs.dart';
 
 List? modifyPlayList = [];
 
 class Playlist extends StatefulWidget {
+  const Playlist({Key? key}) : super(key: key);
+
   @override
   _PlaylistState createState() => _PlaylistState();
 }
@@ -67,11 +69,12 @@ class _PlaylistState extends State<Playlist>
                         MaterialPageRoute(
                           builder: (context) =>
                               ChangeNotifierProvider<Leprovider>(
-                                  create: (_) => Leprovider(),
-                                  builder: (context, child) => AddSongs(
-                                        modify: false,
-                                        playlistName: "Enter Playlist Name",
-                                      )),
+                            create: (_) => Leprovider(),
+                            builder: (context, child) => const AddSongs(
+                              modify: false,
+                              playlistName: "Enter Playlist Name",
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -100,8 +103,8 @@ class _PlaylistState extends State<Playlist>
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           splashColor: Colors.transparent,
-          child: Icon(Icons.add_rounded, color: Colors.black),
-          backgroundColor: Color(0xFF1DB954),
+          child: const Icon(Icons.add_rounded, color: Colors.black),
+          backgroundColor: const Color(0xFF1DB954),
           elevation: 8.0,
           onPressed: () {
             playListSongsId = [];
@@ -111,7 +114,7 @@ class _PlaylistState extends State<Playlist>
               MaterialPageRoute(
                 builder: (context) => ChangeNotifierProvider<Leprovider>(
                   create: (_) => Leprovider(),
-                  builder: (context, child) => AddSongs(
+                  builder: (context, child) => const AddSongs(
                     modify: false,
                     playlistName: "Enter Playlist Name",
                   ),
@@ -133,12 +136,12 @@ class _PlaylistState extends State<Playlist>
             },
             child: ListView.builder(
               controller: _scrollBarController,
-              padding: EdgeInsets.only(top: 5, bottom: 8),
+              padding: const EdgeInsets.only(top: 5, bottom: 8),
               addAutomaticKeepAlives: true,
               itemExtent: orientedCar ? deviceWidth! / 1.4 : deviceWidth! / 2,
               physics: musicBox.get("fluidAnimation") ?? true
-                  ? BouncingScrollPhysics()
-                  : ClampingScrollPhysics(),
+                  ? const BouncingScrollPhysics()
+                  : const ClampingScrollPhysics(),
               itemCount: musicBox.get('playlists').length,
               itemBuilder: (context, index) {
                 return SizedBox(

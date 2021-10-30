@@ -16,6 +16,8 @@ List<SongModel>? genreSongs;
 List<MediaItem> genreMediaItems = [];
 
 class Genres extends StatefulWidget {
+  const Genres({Key? key}) : super(key: key);
+
   @override
   _GenresState createState() => _GenresState();
 }
@@ -45,17 +47,17 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
           },
           child: ListView.builder(
             controller: _scrollBarController,
-            padding: EdgeInsets.only(top: 5, bottom: 8),
+            padding: const EdgeInsets.only(top: 5, bottom: 8),
             addAutomaticKeepAlives: true,
             itemExtent: orientedCar ? deviceWidth! / 1.4 : deviceWidth! / 2,
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
             itemCount: musicBox.get('customScan') ?? false
                 ? insideAllGenreData.length
                 : allgenres.length,
             itemBuilder: (context, index) {
-              return Container(
+              return SizedBox(
                 height: orientedCar ? deviceHeight! / 3 : deviceWidth! / 2,
                 width: orientedCar ? deviceHeight : deviceWidth,
                 child: Column(
@@ -114,7 +116,7 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                           ChangeNotifierProvider<Leprovider>(
                                         create: (_) => Leprovider(),
                                         builder: (context, child) =>
-                                            GenresInside(),
+                                            const GenresInside(),
                                       ),
                                     ),
                                   );
@@ -150,8 +152,8 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
     }
     {
       return orientedCar
-          ? SingleChildScrollView(child: Awakening())
-          : Awakening();
+          ? const SingleChildScrollView(child: Awakening())
+          : const Awakening();
     }
   }
 

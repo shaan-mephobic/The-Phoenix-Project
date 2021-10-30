@@ -17,7 +17,7 @@ class Lyrics {
       '</div></div></div></div></div><div><span class="hwc"><div class="BNeawe uEec3 AP7Wnd">';
 
   Lyrics({delimiter1, delimiter2}) {
-    this.setDelimiters(delimiter1: delimiter1, delimiter2: delimiter2);
+    setDelimiters(delimiter1: delimiter1, delimiter2: delimiter2);
   }
 
   void setDelimiters({String? delimiter1, String? delimiter2}) {
@@ -31,8 +31,9 @@ class Lyrics {
     if (track == null) throw Exception("track must not be null");
 
     // Check if device is connected to the internet
-    if (!await hasNetwork())
+    if (!await hasNetwork()) {
       return (["Couldn't find any matching lyrics.", path]);
+    }
 
     // Scraping lyrics from https://api.lyrics.ovh
     if (artist != " ") {
@@ -74,7 +75,7 @@ class Lyrics {
                 .body;
         lyrics = lyrics.split(_delimiter1).last;
         lyrics = lyrics.split(_delimiter2).first;
-        if (lyrics.indexOf('<meta charset="UTF-8">') > -1) throw Error();
+        if (lyrics.contains('<meta charset="UTF-8">')) throw Error();
       } catch (_) {
         return (["Couldn't find any matching lyrics.", path]);
       }
@@ -86,7 +87,7 @@ class Lyrics {
 
         lyrics = lyrics.split(_delimiter1).last;
         lyrics = lyrics.split(_delimiter2).first;
-        if (lyrics.indexOf('<meta charset="UTF-8">') > -1) throw Error();
+        if (lyrics.contains('<meta charset="UTF-8">')) throw Error();
       } catch (_) {
         try {
           lyrics = (await http.get(Uri.parse(
@@ -94,7 +95,7 @@ class Lyrics {
               .body;
           lyrics = lyrics.split(_delimiter1).last;
           lyrics = lyrics.split(_delimiter2).first;
-          if (lyrics.indexOf('<meta charset="UTF-8">') > -1) throw Error();
+          if (lyrics.contains('<meta charset="UTF-8">')) throw Error();
         } catch (_) {
           try {
             lyrics = (await http.get(Uri.parse(Uri.encodeFull(
@@ -102,7 +103,7 @@ class Lyrics {
                 .body;
             lyrics = lyrics.split(_delimiter1).last;
             lyrics = lyrics.split(_delimiter2).first;
-            if (lyrics.indexOf('<meta charset="UTF-8">') > -1) throw Error();
+            if (lyrics.contains('<meta charset="UTF-8">')) throw Error();
           } catch (_) {
             return (["Couldn't find any matching lyrics.", path]);
           }

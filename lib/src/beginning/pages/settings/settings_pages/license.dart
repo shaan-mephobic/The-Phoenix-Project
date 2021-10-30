@@ -37,7 +37,7 @@ class _LicensesPageState extends State<LicensesPage> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: Text("Licenses", style: TextStyle(fontFamily: "Futura")),
+              title: const Text("Licenses", style: TextStyle(fontFamily: "Futura")),
               backgroundColor: kMaterialBlack,
             ),
             body: Theme(
@@ -46,8 +46,8 @@ class _LicensesPageState extends State<LicensesPage> {
                 controller: _scrollBarController,
                 child: ListView.builder(
                   physics: musicBox.get("fluidAnimation") ?? true
-                      ? BouncingScrollPhysics()
-                      : ClampingScrollPhysics(),
+                      ? const BouncingScrollPhysics()
+                      : const ClampingScrollPhysics(),
                   controller: _scrollBarController,
                   itemCount: snapshot.data.length - 1,
                   itemBuilder: (BuildContext context, int index) {
@@ -56,12 +56,12 @@ class _LicensesPageState extends State<LicensesPage> {
                       child: ListTile(
                         title: Text(
                           snapshot.data.keys.toList()[index],
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white, fontFamily: "Futura"),
                         ),
                         subtitle: Text(
                           "${snapshot.data[snapshot.data.keys.toList()[index]].length} Licenses",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white, fontFamily: "Futura"),
                         ),
                         onTap: () {
@@ -71,7 +71,7 @@ class _LicensesPageState extends State<LicensesPage> {
                                   builder: (context) => InsideLicense(
                                       snapshot.data.keys.toList()[index],
                                       snapshot.data[snapshot.data.keys
-                                          .toList()[index]])));
+                                          .toList()[index]],),),);
                         },
                       ),
                     );
@@ -100,7 +100,7 @@ class _LicensesPageState extends State<LicensesPage> {
 class InsideLicense extends StatelessWidget {
   final List<String>? licenseValue;
   final String? licenseKey;
-  InsideLicense(this.licenseKey, this.licenseValue);
+  const InsideLicense(this.licenseKey, this.licenseValue, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +109,7 @@ class InsideLicense extends StatelessWidget {
         backgroundColor: kMaterialBlack,
         title: Text(
           licenseKey!,
-          style: TextStyle(fontFamily: "Futura"),
+          style: const TextStyle(fontFamily: "Futura"),
         ),
       ),
       body: Theme(
@@ -117,8 +117,8 @@ class InsideLicense extends StatelessWidget {
         child: Scrollbar(
           child: SingleChildScrollView(
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
             child: Column(
               children: [
                 for (int i = 0; i < licenseValue!.length; i++)
@@ -126,16 +126,16 @@ class InsideLicense extends StatelessWidget {
                     children: [
                       Text(
                         licenseValue![i],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 16,
                           fontFamily: "Futura",
                         ),
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(top: 32),
                       ),
-                      Divider(
+                      const Divider(
                         color: Colors.white54,
                         indent: 50,
                         thickness: 0.2,
@@ -144,7 +144,7 @@ class InsideLicense extends StatelessWidget {
                       )
                     ],
                   ),
-                Padding(
+               const Padding(
                   padding: EdgeInsets.only(top: 32),
                 )
               ],
@@ -164,9 +164,9 @@ licensesManager() async {
       for (int o = 0; o < rawLicense[i].packages.length; o++) {
         if (package == rawLicense[i].packages.toList()[o]) {
           String licenseParagraph = "";
-          rawLicense[i].paragraphs.forEach((element) {
+          for (var element in rawLicense[i].paragraphs) {
             licenseParagraph += "\n \n ${element.text}";
-          });
+          }
           licenseData[package]!.add(licenseParagraph);
         }
       }

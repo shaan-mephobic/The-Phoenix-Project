@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import '../../widgets/dialogues/on_hold.dart';
 
 class Allofem extends StatefulWidget {
+  const Allofem({Key? key}) : super(key: key);
+
   @override
   _AllofemState createState() => _AllofemState();
 }
@@ -27,6 +29,7 @@ class _AllofemState extends State<Allofem>
 
   @override
   bool get wantKeepAlive => true;
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
@@ -55,11 +58,11 @@ class _AllofemState extends State<Allofem>
         },
         child: ListView.builder(
           controller: _scrollBarController,
-          padding: EdgeInsets.only(top: 3, bottom: 8),
+          padding: const EdgeInsets.only(top: 3, bottom: 8),
           addAutomaticKeepAlives: true,
           physics: musicBox.get("fluidAnimation") ?? true
-              ? BouncingScrollPhysics()
-              : ClampingScrollPhysics(),
+              ? const BouncingScrollPhysics()
+              : const ClampingScrollPhysics(),
           itemCount: songList.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -70,7 +73,7 @@ class _AllofemState extends State<Allofem>
               child: ListTile(
                 onTap: () async {
                   if (songListMediaItems[index - 1].duration ==
-                      Duration(milliseconds: 0)) {
+                      const Duration(milliseconds: 0)) {
                     corruptedFile(context);
                   } else {
                     await playThis(index - 1, "all");
@@ -95,11 +98,10 @@ class _AllofemState extends State<Allofem>
                     ),
                   );
                 },
-                dense: false,
                 title: Text(
                   songList[index - 1].title,
                   maxLines: 2,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white70,
                     shadows: [
                       Shadow(
@@ -116,7 +118,7 @@ class _AllofemState extends State<Allofem>
                   child: Text(
                     songList[index - 1].artist!,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white70,
                       shadows: [
                         Shadow(

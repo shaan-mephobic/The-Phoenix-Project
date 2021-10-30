@@ -1,5 +1,5 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:phoenix/src/beginning/pages/playlist/addSongs.dart';
+import 'package:phoenix/src/beginning/pages/playlist/add_songs.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';

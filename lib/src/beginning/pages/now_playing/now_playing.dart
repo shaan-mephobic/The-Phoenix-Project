@@ -18,6 +18,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class NowPlaying extends StatefulWidget {
+  const NowPlaying({Key? key}) : super(key: key);
+
   @override
   _NowPlayingState createState() => _NowPlayingState();
 }
@@ -25,7 +27,7 @@ class NowPlaying extends StatefulWidget {
 class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
   ScrollController stupidController = ScrollController();
   swapControllerTimeOut() async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     swapController = false;
     globalBigNow.rawNotify();
   }
@@ -90,8 +92,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                 child: SingleChildScrollView(
                   controller: stupidController,
                   physics: swapController
-                      ? NeverScrollableScrollPhysics()
-                      : ClampingScrollPhysics(),
+                      ? const NeverScrollableScrollPhysics()
+                      : const ClampingScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   child: Stack(
                     children: [
@@ -200,7 +202,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                           fontWeight: FontWeight.w600,
                                           fontSize: deviceHeight! / 35,
                                           height: 1.3,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(1.0, 0.8),
                                               blurRadius: 0.8,
@@ -230,7 +232,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               : Colors.white,
                                       height: 1,
                                       fontSize: deviceHeight! / 60,
-                                      shadows: [
+                                      shadows: const [
                                         Shadow(
                                           offset: Offset(0.7, 0.7),
                                           blurRadius: 1,
@@ -256,7 +258,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                               ? nowContrast
                                               : Colors.white,
                                       fontSize: deviceHeight! / 60,
-                                      shadows: [
+                                      shadows: const [
                                         Shadow(
                                           offset: Offset(0.7, 0.7),
                                           blurRadius: 1,
@@ -274,9 +276,10 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             Center(
                                 child: SizedBox(
                                     width: deviceWidth! / 1.1,
-                                    child: SeekBar())),
+                                    child:const SeekBar())),
                             Padding(
-                              padding: EdgeInsets.only(top: deviceHeight! / 100),
+                              padding:
+                                  EdgeInsets.only(top: deviceHeight! / 100),
                             ),
                             SizedBox(
                               width: deviceWidth! / 1.2,
@@ -474,7 +477,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 37,
                                           fontFamily: "Futura",
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 1,
@@ -508,7 +511,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 child: AspectRatio(
                                   aspectRatio: 4 / 5,
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 700),
+                                    duration: const Duration(milliseconds: 700),
                                     decoration: BoxDecoration(
                                       color:
                                           musicBox.get("dynamicArtDB") ?? true
@@ -553,7 +556,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             ),
                                           )
                                         : SingleChildScrollView(
-                                            physics: BouncingScrollPhysics(),
+                                            physics:
+                                                const BouncingScrollPhysics(),
                                             scrollDirection: Axis.vertical,
                                             child: Container(
                                               width: deviceWidth! / 1.05,
@@ -616,8 +620,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                   child: SingleChildScrollView(
                     controller: stupidController,
                     physics: swapController
-                        ? NeverScrollableScrollPhysics()
-                        : ClampingScrollPhysics(),
+                        ? const NeverScrollableScrollPhysics()
+                        : const ClampingScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
@@ -632,7 +636,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 width: deviceHeight! / 2,
                                 child: GestureDetector(
                                   child: Padding(
-                                    padding: EdgeInsets.all(30),
+                                    padding: const EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
                                   onTap: () {
@@ -703,7 +707,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: deviceHeight! / 35,
                                                 height: 1.3,
-                                                shadows: [
+                                                shadows: const [
                                                   Shadow(
                                                     offset: Offset(1.0, 0.8),
                                                     blurRadius: 0.8,
@@ -734,7 +738,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     : Colors.white,
                                             height: 1,
                                             fontSize: deviceHeight! / 60,
-                                            shadows: [
+                                            shadows: const [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
                                                 blurRadius: 1,
@@ -761,7 +765,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                                     ? nowContrast
                                                     : Colors.white,
                                             fontSize: deviceHeight! / 60,
-                                            shadows: [
+                                            shadows: const [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
                                                 blurRadius: 1,
@@ -774,13 +778,13 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: deviceHeight! / 90),
+                                    padding: EdgeInsets.only(
+                                        top: deviceHeight! / 90),
                                   ),
                                   Center(
                                       child: SizedBox(
                                           width: deviceHeight! / 2 / 1.1,
-                                          child: SeekBar())),
+                                          child: const SeekBar())),
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: deviceHeight! / 100),
@@ -1002,7 +1006,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                             style: TextStyle(
                                                 fontSize: deviceWidth! / 37,
                                                 fontFamily: "Futura",
-                                                shadows: [
+                                                shadows: const [
                                                   Shadow(
                                                     offset: Offset(0.5, 0.5),
                                                     blurRadius: 1,
@@ -1028,7 +1032,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                 width: deviceHeight! / 2,
                                 child: GestureDetector(
                                   child: Padding(
-                                    padding: EdgeInsets.all(30),
+                                    padding: const EdgeInsets.all(30),
                                     child: NowArtLandScape(orientedCar),
                                   ),
                                   onDoubleTap: () {
@@ -1064,7 +1068,8 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                               ? false
                               : musicBox.get('isolation')),
                           child: Padding(
-                              padding: EdgeInsets.only(top: deviceHeight! / 28)),
+                              padding:
+                                  EdgeInsets.only(top: deviceHeight! / 28)),
                         ),
                         Visibility(
                           visible: !(musicBox.get("isolation") == null
@@ -1074,7 +1079,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             height: deviceWidth,
                             width: deviceHeight! / 2,
                             child: AnimatedContainer(
-                              duration: Duration(milliseconds: 700),
+                              duration: const Duration(milliseconds: 700),
                               decoration: BoxDecoration(
                                 color: musicBox.get("dynamicArtDB") ?? true
                                     ? nowContrast
@@ -1116,7 +1121,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                                       ),
                                     )
                                   : SingleChildScrollView(
-                                      physics: BouncingScrollPhysics(),
+                                      physics: const BouncingScrollPhysics(),
                                       scrollDirection: Axis.vertical,
                                       child: Container(
                                         width: deviceWidth! / 1.05,

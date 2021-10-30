@@ -19,12 +19,14 @@ class Ringtone extends StatefulWidget {
   final double songDuration;
   final String filePath;
 
-  Ringtone(
-      {required this.artworkId,
+  const Ringtone(
+      {Key? key,
+      required this.artworkId,
       required this.filePath,
       required this.artist,
       required this.title,
-      required this.songDuration});
+      required this.songDuration})
+      : super(key: key);
   @override
   _RingtoneState createState() => _RingtoneState();
 }
@@ -85,13 +87,13 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
         splashColor: Colors.transparent,
         icon: isProcessing
             ? null
-            : Icon(Icons.check_rounded, color: Colors.black),
+            : const Icon(Icons.check_rounded, color: Colors.black),
         label: isProcessing
             ? Center(
-                child: Container(
+                child: SizedBox(
                   height: deviceWidth! / 25,
                   width: deviceWidth! / 25,
-                  child: CircularProgressIndicator(
+                  child: const CircularProgressIndicator(
                     backgroundColor: Colors.transparent,
                     color: Colors.black,
                   ),
@@ -102,7 +104,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                     color: Colors.black,
                     fontSize: deviceWidth! / 25,
                     fontWeight: FontWeight.w600)),
-        backgroundColor: Color(0xFF1DB954),
+        backgroundColor: const Color(0xFF1DB954),
         elevation: 8.0,
         onPressed: () async {
           setState(() {
@@ -125,7 +127,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
         },
       ),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white,
         ),
         shadowColor: Colors.transparent,
@@ -198,7 +200,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         ),
                                       ),
                                       Container(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 50, right: 50, bottom: 15),
                                         child: Text(
                                           widget.title,
@@ -256,7 +258,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           fontSize: deviceWidth! / 18,
                                         ),
                                       ),
-                                      Padding(
+                                      const Padding(
                                           padding: EdgeInsets.only(top: 30)),
                                       Column(
                                         children: [
@@ -273,7 +275,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                 },
                                                 child: Padding(
                                                   padding:
-                                                      EdgeInsets.only(left: 10),
+                                                      const EdgeInsets.only(
+                                                          left: 10),
                                                   child: Text(
                                                     Duration(
                                                             milliseconds:
@@ -293,7 +296,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                               .length,
                                                           "",
                                                         ),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontFamily: "Futura",
                                                       color: Colors.white,
                                                     ),
@@ -308,8 +311,9 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                       startend: 'End point');
                                                 },
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
                                                   child: Text(
                                                     Duration(
                                                             milliseconds:
@@ -329,7 +333,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                               .length,
                                                           "",
                                                         ),
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                       fontFamily: "Futura",
                                                       color: Colors.white,
                                                     ),
@@ -338,7 +342,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                               ),
                                             ],
                                           ),
-                                          Padding(
+                                          const Padding(
                                               padding:
                                                   EdgeInsets.only(top: 20)),
                                           SizedBox(
@@ -423,18 +427,18 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                               height: 50,
                                               child: FlutterSlider(
                                                 tooltip: FlutterSliderTooltip(
-                                                    format: (String value) {
-                                                      return value + "s";
-                                                    },
-                                                    textStyle: TextStyle(
-                                                        color: Colors.white),
-                                                    boxStyle:
-                                                        FlutterSliderTooltipBox(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    color: Colors
-                                                                        .black26))),
-                                                step: FlutterSliderStep(
+                                                  format: (String value) {
+                                                    return value + "s";
+                                                  },
+                                                  textStyle: const TextStyle(
+                                                      color: Colors.white),
+                                                  boxStyle:
+                                                      const FlutterSliderTooltipBox(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.black26),
+                                                  ),
+                                                ),
+                                                step: const FlutterSliderStep(
                                                   step: 0.5,
                                                 ),
                                                 trackBar: FlutterSliderTrackBar(
@@ -496,7 +500,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
 
   ringtoneSuccess(BuildContext context) async {
     Flushbar(
-      messageText: Text("Ringtone updated!",
+      messageText: const Text("Ringtone updated!",
           style: TextStyle(fontFamily: "Futura", color: Colors.white)),
       icon: Icon(
         Icons.music_note,
@@ -505,41 +509,39 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
       ),
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
       backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
-      barBlur:
-          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      barBlur: musicBox.get("glassBlur") ?? 18,
+      margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    )..show(context);
+    ).show(context);
   }
 
   ringtoneFailed(BuildContext context) async {
     Flushbar(
-      messageText: Text("Failed to set ringtone",
+      messageText: const Text("Failed to set ringtone",
           style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-      icon: Icon(
+      icon: const Icon(
         Icons.error_outline,
         size: 28.0,
         color: Color(0xFFCB0447),
       ),
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
       backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
-      barBlur:
-          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      barBlur: musicBox.get("glassBlur") ?? 18,
+      margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    )..show(context);
+    ).show(context);
   }
 
   Future<Widget?> ringtoneRange(
@@ -594,10 +596,11 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                             Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 20, top: 30),
+                                  padding:
+                                      const EdgeInsets.only(left: 20, top: 30),
                                   child: Text(
                                     startend,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 26,
                                       color: Colors.white,
                                     ),
@@ -615,7 +618,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     height: 70,
                                     child: TextField(
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                       ),
                                       controller: TextEditingController()
@@ -623,7 +626,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         ..selection = TextSelection.collapsed(
                                             offset: minutes.length),
                                       cursorColor: kPhoenixColor,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: "min",
                                         labelStyle: TextStyle(
                                           color: Colors.white38,
@@ -650,7 +653,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                       keyboardType: TextInputType.number,
                                     ),
                                   ),
-                                  Padding(padding: EdgeInsets.only(left: 10)),
+                                  const Padding(
+                                      padding: EdgeInsets.only(left: 10)),
                                   SizedBox(
                                     width: 40,
                                     height: 70,
@@ -661,10 +665,10 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         ..text = seconds
                                         ..selection = TextSelection.collapsed(
                                             offset: seconds.length),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                       ),
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         labelText: "sec",
                                         labelStyle: TextStyle(
                                           color: Colors.white38,
@@ -691,7 +695,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                       keyboardType: TextInputType.number,
                                     ),
                                   ),
-                                  Padding(padding: EdgeInsets.only(left: 10)),
+                                  const Padding(
+                                      padding: EdgeInsets.only(left: 10)),
                                   SizedBox(
                                     width: 40,
                                     height: 70,
@@ -702,10 +707,10 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           ..text = milliseconds
                                           ..selection = TextSelection.collapsed(
                                               offset: milliseconds.length),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
                                         ),
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           labelText: "ms",
                                           labelStyle: TextStyle(
                                             color: Colors.white38,
@@ -746,7 +751,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                     style: ButtonStyle(
                                         overlayColor: MaterialStateProperty.all(
                                             Colors.white30)),
-                                    child: Text(
+                                    child: const Text(
                                       "CANCEL",
                                       style: TextStyle(
                                         color: Colors.white,
@@ -782,12 +787,12 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                           Navigator.pop(context);
                                         } else {
                                           Flushbar(
-                                            messageText: Text(
+                                            messageText: const Text(
                                                 "Values out of range.",
                                                 style: TextStyle(
                                                     fontFamily: "Futura",
                                                     color: Colors.white)),
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.error_outline,
                                               size: 28.0,
                                               color: Color(0xFFCB0447),
@@ -796,7 +801,8 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                             dismissDirection:
                                                 FlushbarDismissDirection
                                                     .HORIZONTAL,
-                                            duration: Duration(seconds: 3),
+                                            duration:
+                                                const Duration(seconds: 3),
                                             borderColor:
                                                 Colors.white.withOpacity(0.04),
                                             borderWidth: 1,
@@ -805,15 +811,12 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                                 FlushbarStyle.FLOATING,
                                             isDismissible: true,
                                             barBlur:
-                                                musicBox.get("glassBlur") ==
-                                                        null
-                                                    ? 18
-                                                    : musicBox.get("glassBlur"),
-                                            margin: EdgeInsets.only(
+                                                musicBox.get("glassBlur") ?? 18,
+                                            margin: const EdgeInsets.only(
                                                 bottom: 20, left: 8, right: 8),
                                             borderRadius:
                                                 BorderRadius.circular(15),
-                                          )..show(context);
+                                          ).show(context);
                                         }
                                       }
                                     },
@@ -824,14 +827,14 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                         Colors.white30,
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       "APPLY",
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                   ),
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(right: 10),
                                   ),
                                 ],

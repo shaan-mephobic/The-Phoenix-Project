@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 import '../page_backend/artists_back.dart';
@@ -26,7 +27,7 @@ isolatedArtistScrapeInit() async {
               .exists() &&
           musicBox.get("mapOfArtists")[allArtists[i]] != null &&
           musicBox.get("mapOfArtists")[allArtists[i]].startsWith("https")) {
-        print("not found ${allArtists[i]}");
+        debugPrint("not found ${allArtists[i]}");
         var response = await http
             .get(Uri.parse(musicBox.get("mapOfArtists")[allArtists[i]]));
         File file = File(
@@ -36,13 +37,13 @@ isolatedArtistScrapeInit() async {
       }
     }
   }
-  if (neverDone.length > 0) {
-    print("isolate##");
+  if (neverDone.isNotEmpty) {
+    debugPrint("isolate##");
     try {
       if (!isIsolated) IsolatedArtistScrape().start();
     } catch (e) {
-      print("weird! IsolatedArtistScape Crashed");
-      print(e);
+      debugPrint("weird! IsolatedArtistScape Crashed");
+      debugPrint(e.toString());
     }
   }
 }
@@ -70,7 +71,7 @@ class IsolatedArtistScrape {
     };
     _isolate = await Isolate.spawn(_entryPoint, map);
     receivePort.listen(_handleMessage, onDone: () {
-      print("done!");
+      debugPrint("done!");
     });
   }
 

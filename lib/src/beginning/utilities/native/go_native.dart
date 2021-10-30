@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:phoenix/src/beginning/utilities/visualizer_notification.dart';
 
 bool activeSession = false;
-const platform = const MethodChannel("com.Phoenix.project/kotlin");
+var platform = const MethodChannel("com.Phoenix.project/kotlin");
 
 kotlinVisualizer() async {
   try {

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -171,7 +173,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           LinearGradient(
                                               begin: Alignment.topCenter,
                                               end: Alignment.bottomCenter,
-                                              stops: [
+                                              stops: const [
                                             0.0,
                                             0.1,
                                             0.9,
@@ -193,7 +195,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                         padding: EdgeInsets.only(
                                             bottom: deviceHeight! / 18,
                                             top: deviceHeight! / 18),
-                                        physics: BouncingScrollPhysics(),
+                                        physics: const BouncingScrollPhysics(),
                                         child: Text(
                                           lyricsDat ?? "",
                                           textAlign: TextAlign.center,
@@ -272,7 +274,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                           ),
                         ],
                       ),
-                      CyberSkySeekBar(),
+                      const CyberSkySeekBar(),
                       SizedBox(
                         width: deviceWidth! - 100,
                         child: Row(
@@ -328,7 +330,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                     BoxShadow(
                                         color: Colors.black.withOpacity(0.2),
                                         blurRadius: 8,
-                                        offset: Offset(0, 2)),
+                                        offset: const Offset(0, 2)),
                                   ],
                                 ),
                                 child: ClipRRect(
@@ -424,7 +426,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               child: Padding(
                                 padding: const EdgeInsets.all(17.0),
                                 child: Icon(
-                                  Graviticons.lyrics_awesome,
+                                  Graviticons.lyricsAwesome,
                                   color: musicBox.get("dynamicArtDB") ?? true
                                       ? onLyrics
                                           ? isArtworkDark!
@@ -452,7 +454,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   style: TextStyle(
                                       overflow: TextOverflow.ellipsis,
                                       fontSize: deviceWidth! / 37,
-                                      shadows: [
+                                      shadows: const [
                                         Shadow(
                                           offset: Offset(0.5, 0.5),
                                           blurRadius: 1,
@@ -616,7 +618,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             child: InkWell(
                               enableFeedback: false,
                               child: Padding(
-                                padding: EdgeInsets.all(30),
+                                padding: const EdgeInsets.all(30),
                                 child: Stack(
                                   children: [
                                     Visibility(
@@ -632,7 +634,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               LinearGradient(
                                                   begin: Alignment.topCenter,
                                                   end: Alignment.bottomCenter,
-                                                  stops: [
+                                                  stops: const [
                                                 0.0,
                                                 0.1,
                                                 0.9,
@@ -657,7 +659,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             padding: EdgeInsets.only(
                                                 bottom: deviceHeight! / 18,
                                                 top: deviceHeight! / 18),
-                                            physics: BouncingScrollPhysics(),
+                                            physics:
+                                                const BouncingScrollPhysics(),
                                             child: Text(
                                               lyricsDat ?? "",
                                               textAlign: TextAlign.center,
@@ -720,8 +723,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                   SizedBox(
                                     width: deviceHeight! / 2,
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 50, right: 50),
+                                      padding: const EdgeInsets.only(
+                                          left: 50, right: 50),
                                       child: MarqueeText(
                                         text: nowMediaItem.title,
                                         speed: 20,
@@ -735,7 +738,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           fontWeight: FontWeight.w600,
                                           fontSize: deviceHeight! / 35,
                                           height: 1.3,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(1.0, 0.8),
                                               blurRadius: 0.8,
@@ -755,7 +758,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                     SizedBox(
                                       width: deviceHeight! / 2,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 50, right: 50),
                                         child: Text(
                                           "${nowMediaItem.artist} - ${nowMediaItem.album}",
@@ -771,7 +774,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     : Colors.white,
                                             height: 1,
                                             fontSize: deviceHeight! / 60,
-                                            shadows: [
+                                            shadows: const [
                                               Shadow(
                                                 offset: Offset(0.7, 0.7),
                                                 blurRadius: 1,
@@ -792,8 +795,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                               Center(
                                 child: SizedBox(
                                   width: deviceHeight! / 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
+                                  child: const Padding(
+                                    padding: EdgeInsets.only(
                                         left: 50.0, right: 50),
                                     child: CyberSkySeekBar(),
                                   ),
@@ -863,7 +866,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               color:
                                                   Colors.black.withOpacity(0.2),
                                               blurRadius: 8,
-                                              offset: Offset(0, 2)),
+                                              offset: const Offset(0, 2)),
                                         ],
                                       ),
                                       child: ClipRRect(
@@ -976,7 +979,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               padding:
                                                   const EdgeInsets.all(17.0),
                                               child: Icon(
-                                                Graviticons.lyrics_awesome,
+                                                Graviticons.lyricsAwesome,
                                                 color: musicBox.get(
                                                             "dynamicArtDB") ??
                                                         true
@@ -1013,7 +1016,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     fontSize: deviceWidth! / 37,
-                                                    shadows: [
+                                                    shadows: const [
                                                       Shadow(
                                                         offset:
                                                             Offset(0.5, 0.5),
@@ -1123,7 +1126,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             child: InkWell(
                               enableFeedback: false,
                               child: Padding(
-                                padding: EdgeInsets.all(30),
+                                padding: const EdgeInsets.all(30),
                                 child: Stack(
                                   children: [
                                     Visibility(
@@ -1139,7 +1142,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               LinearGradient(
                                                   begin: Alignment.topCenter,
                                                   end: Alignment.bottomCenter,
-                                                  stops: [
+                                                  stops: const [
                                                 0.0,
                                                 0.1,
                                                 0.9,
@@ -1164,7 +1167,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             padding: EdgeInsets.only(
                                                 bottom: deviceHeight! / 18,
                                                 top: deviceHeight! / 18),
-                                            physics: BouncingScrollPhysics(),
+                                            physics:
+                                                const BouncingScrollPhysics(),
                                             child: Text(
                                               lyricsDat ?? "",
                                               textAlign: TextAlign.center,

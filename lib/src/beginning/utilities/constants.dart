@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/widgets/custom/ripple.dart';
 
 /// The default black Color
-Color kMaterialBlack = Color(0xFF000000);
+Color kMaterialBlack = const Color(0xFF000000);
 
 /// Green/Correct Color
-Color kCorrect = Color(0xFF1DB954);
+Color kCorrect = const Color(0xFF1DB954);
 
 /// Roundedness of widgets
 double kRounded = 12;
 
 /// Phoenix color
-Color kPhoenixColor = Color(0xFF028ac4);
+Color kPhoenixColor = const Color(0xFF028ac4);
 
 /// Crossfade duration.
 int crossfadeDuration = 300;
@@ -25,7 +25,7 @@ double artworkBlurConst = 14;
 double glassShadowBlur = 13;
 
 /// Shadow ffset of every glassmorphic widgets
-Offset kShadowOffset = Offset(0, 3);
+Offset kShadowOffset = const Offset(0, 3);
 
 /// Shadow for nowart
 BoxShadow nowArtShadow =
@@ -63,7 +63,7 @@ ThemeData themeOfApp = ThemeData(
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     isAlwaysShown: false,
-    radius: Radius.circular(50),
+    radius: const Radius.circular(50),
     thickness: MaterialStateProperty.all(4),
     crossAxisMargin: 2,
     thumbColor: MaterialStateProperty.all(Colors.white30),
@@ -72,13 +72,13 @@ ThemeData themeOfApp = ThemeData(
 );
 
 /// BoxContraints for artwork shape in listtile
-BoxConstraints kSqrConstraint = BoxConstraints(
+BoxConstraints kSqrConstraint = const BoxConstraints(
   minWidth: 48,
   minHeight: 48,
   maxWidth: 48,
   maxHeight: 48,
 );
-BoxConstraints kRectConstraint = BoxConstraints(
+BoxConstraints kRectConstraint = const BoxConstraints(
   minWidth: 44,
   minHeight: 44,
   maxWidth: 64,

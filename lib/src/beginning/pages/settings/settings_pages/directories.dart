@@ -5,6 +5,8 @@ import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../../../utilities/page_backend/file_exporer.dart';
 
 class Directories extends StatefulWidget {
+  const Directories({Key? key}) : super(key: key);
+
   @override
   _DirectoriesState createState() => _DirectoriesState();
 }
@@ -43,7 +45,7 @@ class _DirectoriesState extends State<Directories> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
           splashColor: Colors.transparent,
-          icon: Icon(Icons.check_rounded, color: Colors.black),
+          icon: const Icon(Icons.check_rounded, color: Colors.black),
           label: Text(
             "DONE",
             style: TextStyle(
@@ -52,7 +54,7 @@ class _DirectoriesState extends State<Directories> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          backgroundColor: Color(0xFF1DB954),
+          backgroundColor: const Color(0xFF1DB954),
           elevation: 8.0,
           onPressed: () async {
             saveLocations();
@@ -60,7 +62,7 @@ class _DirectoriesState extends State<Directories> {
           }),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white70,
         ),
         titleSpacing: 0,
@@ -76,7 +78,7 @@ class _DirectoriesState extends State<Directories> {
           ),
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Material(
             color: Colors.transparent,
             child: SizedBox(
@@ -88,9 +90,9 @@ class _DirectoriesState extends State<Directories> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                          icon: Icon(Icons.arrow_upward_rounded),
+                          icon: const Icon(Icons.arrow_upward_rounded),
                           color: Colors.white60,
-                          splashColor: Color(0xFF05464f),
+                          splashColor: const Color(0xFF05464f),
                           onPressed: () async {
                             HapticFeedback.lightImpact();
                             if (currentTopDir != topLevelDir &&
@@ -141,7 +143,7 @@ class _DirectoriesState extends State<Directories> {
                                                 "External/")
                                             : currentTopDir,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white70,
                             ),
@@ -149,9 +151,9 @@ class _DirectoriesState extends State<Directories> {
                         ),
                       ),
                       IconButton(
-                          icon: Icon(Icons.more_vert_rounded),
+                          icon: const Icon(Icons.more_vert_rounded),
                           color: Colors.white60,
-                          splashColor: Color(0xFF05464f),
+                          splashColor: const Color(0xFF05464f),
                           onPressed: () {}),
                     ]),
               ),
@@ -165,7 +167,7 @@ class _DirectoriesState extends State<Directories> {
           onWillPop: _onWillPop,
           child: Container(
             color: kMaterialBlack,
-            padding: EdgeInsets.only(top: kToolbarHeight + kToolbarHeight + 50),
+            padding: const EdgeInsets.only(top: kToolbarHeight + kToolbarHeight + 50),
             height: deviceHeight,
             child: MediaQuery.removePadding(
               context: context,
@@ -175,11 +177,11 @@ class _DirectoriesState extends State<Directories> {
                 child: ListView.builder(
                   controller: _scrollBarController,
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(top: 5, bottom: 8),
+                  padding: const EdgeInsets.only(top: 5, bottom: 8),
                   addAutomaticKeepAlives: true,
                   physics: musicBox.get("fluidAnimation") ?? true
-                      ? BouncingScrollPhysics()
-                      : ClampingScrollPhysics(),
+                      ? const BouncingScrollPhysics()
+                      : const ClampingScrollPhysics(),
                   itemCount: fileExplorer.length,
                   itemBuilder: (context, index) {
                     return Material(
@@ -204,14 +206,14 @@ class _DirectoriesState extends State<Directories> {
                                       .toList()[index]
                                       .toString()
                                       .replaceAll(currentTopDir, ""),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                           ),
                         ),
                         secondary: Material(
                           color: Colors.transparent,
                           child: IconButton(
-                              icon: Icon(Icons.arrow_forward_ios_rounded),
+                              icon: const Icon(Icons.arrow_forward_ios_rounded),
                               color:
                                   Colors.white,
                               onPressed: () async {
@@ -230,7 +232,7 @@ class _DirectoriesState extends State<Directories> {
                           } else {
                             unTick(fileExplorer.keys.toList()[index]);
                           }
-                          print(selectedFolders);
+                          debugPrint(selectedFolders.toString());
                           setState(() {});
                         },
                         controlAffinity: ListTileControlAffinity.leading,

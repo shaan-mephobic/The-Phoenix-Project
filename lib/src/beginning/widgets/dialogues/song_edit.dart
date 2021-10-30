@@ -65,7 +65,7 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Expanded(
@@ -96,14 +96,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Material(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 5, bottom: 5),
                                 child: TextField(
-                                  cursorColor: Color(0xFF3cb9cd),
+                                  cursorColor: const Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
                                     ..text = title!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   onChanged: (text) {
@@ -111,21 +111,21 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                     title = text;
                                   },
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: const BorderRadius.all(
+                                      border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide:const  BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       filled: true,
@@ -150,14 +150,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Material(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 5, bottom: 5),
                                 child: TextField(
-                                  cursorColor: Color(0xFF3cb9cd),
+                                  cursorColor: const Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
                                     ..text = album!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   onChanged: (text) {
@@ -165,21 +165,21 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                     album = text;
                                   },
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: const BorderRadius.all(
+                                      border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       filled: true,
@@ -204,14 +204,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Material(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 5, bottom: 5),
                                 child: TextField(
-                                  cursorColor: Color(0xFF3cb9cd),
+                                  cursorColor: const Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
                                     ..text = artist!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   onChanged: (text) {
@@ -219,21 +219,21 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                     artist = text;
                                   },
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: const BorderRadius.all(
+                                      border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       filled: true,
@@ -258,14 +258,14 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Material(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 20, right: 20, top: 5, bottom: 5),
                                 child: TextField(
-                                  cursorColor: Color(0xFF3cb9cd),
+                                  cursorColor: const Color(0xFF3cb9cd),
                                   autofocus: false,
                                   controller: TextEditingController()
                                     ..text = genre!,
-                                  style: TextStyle(
+                                  style:const  TextStyle(
                                     color: Colors.white,
                                   ),
                                   onChanged: (text) {
@@ -273,21 +273,21 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                     genre = text;
                                   },
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: const BorderRadius.all(
+                                      border: const OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       filled: true,
@@ -343,7 +343,7 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                         spreadRadius: deviceWidth! / 220,
                                       ),
                                     ],
-                                    color: Color(0xFF1DB954),
+                                    color: const Color(0xFF1DB954),
                                     borderRadius:
                                         BorderRadius.circular(kRounded),
                                   ),

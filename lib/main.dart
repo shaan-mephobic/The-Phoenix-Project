@@ -33,14 +33,14 @@ void main() async {
   await fetchSongs();
   audioHandler = await AudioService.init(
     builder: () => AudioPlayerTask(),
-    config: AudioServiceConfig(
+    config: const AudioServiceConfig(
       androidNotificationChannelName: "Phoenix Music",
       androidNotificationIcon: "drawable/phoenix_awaken",
       androidNotificationChannelDescription: "Phoenix Music Notification",
     ),
   );
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
+    const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
     ),
@@ -48,7 +48,6 @@ void main() async {
   runApp(
     MaterialApp(
       theme: themeOfApp,
-      debugShowCheckedModeBanner: false,
       home: MultiProvider(
         providers: [
           ChangeNotifierProvider<Leprovider>(create: (_) => Leprovider()),
@@ -57,7 +56,7 @@ void main() async {
           ),
           ChangeNotifierProvider<Seek>(create: (_) => Seek()),
         ],
-        child: permissionGiven ? Begin() : Privacy(),
+        child: permissionGiven ? const Begin() : const Privacy(),
       ),
     ),
   );

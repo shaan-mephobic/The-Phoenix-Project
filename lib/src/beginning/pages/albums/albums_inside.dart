@@ -15,6 +15,7 @@ Color? dominantAlbum;
 Color? contrastAlbum;
 
 class AlbumsInside extends StatelessWidget {
+  const AlbumsInside({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +28,8 @@ class AlbumsInside extends StatelessWidget {
               : kMaterialBlack,
           child: CustomScrollView(
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 iconTheme: IconThemeData(
@@ -42,19 +43,20 @@ class AlbumsInside extends StatelessWidget {
                     : kMaterialBlack,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.parallax,
-                  titlePadding: EdgeInsets.all(0),
+                  titlePadding: const EdgeInsets.all(0),
                   background: Column(
                     children: [
-                      Padding(padding: EdgeInsets.only(top: 80)),
+                      const Padding(padding: EdgeInsets.only(top: 80)),
                       Container(
                         height: 220,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
-                                color: Colors.black54,
-                                blurRadius: 6.0,
-                                offset: Offset(0, 2)),
+                              color: Colors.black54,
+                              blurRadius: 6.0,
+                              offset: Offset(0, 2),
+                            ),
                           ],
                         ),
                         child: AspectRatio(
@@ -69,14 +71,14 @@ class AlbumsInside extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 20)),
+                      const Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
                         inAlbumSongs[0].album!,
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          shadows: [
+                          shadows:const  [
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 2.2,
@@ -89,7 +91,7 @@ class AlbumsInside extends StatelessWidget {
                               : Colors.white,
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 2)),
+                      const Padding(padding: EdgeInsets.only(top: 2)),
                       Opacity(
                         opacity: 0.5,
                         child: Text(
@@ -97,7 +99,7 @@ class AlbumsInside extends StatelessWidget {
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
-                            shadows: [
+                            shadows:const  [
                               Shadow(
                                 offset: Offset(0, 1.8),
                                 blurRadius: 2.2,
@@ -127,7 +129,7 @@ class AlbumsInside extends StatelessWidget {
                         onTap: () async {
                           // insideInAlbumSongs = [];
                           if (albumMediaItems[index - 1].duration ==
-                              Duration(milliseconds: 0)) {
+                              const Duration(milliseconds: 0)) {
                             corruptedFile(context);
                           } else {
                             insideInAlbumSongs = inAlbumSongs;
@@ -151,7 +153,7 @@ class AlbumsInside extends StatelessWidget {
                                   widthOfDevice: deviceWidth,
                                   songOf: "album"),
                             ),
-                          );                         
+                          );
                         },
                         dense: false,
                         title: Text(
@@ -161,7 +163,7 @@ class AlbumsInside extends StatelessWidget {
                             color: musicBox.get("dynamicArtDB") ?? true
                                 ? contrastAlbum
                                 : Colors.white,
-                            shadows: [
+                            shadows: const [
                               Shadow(
                                 offset: Offset(0, 1.0),
                                 blurRadius: 2.0,
@@ -180,7 +182,7 @@ class AlbumsInside extends StatelessWidget {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,
-                              shadows: [
+                              shadows: const [
                                 Shadow(
                                   offset: Offset(0, 1.0),
                                   blurRadius: 1.0,
@@ -208,9 +210,7 @@ class AlbumsInside extends StatelessWidget {
 Future albumColor(image) async {
   PaletteGenerator paletteGenerator;
   paletteGenerator = await PaletteGenerator.fromImageProvider(image);
-
   dominantAlbum = (paletteGenerator.dominantColor!.color);
-  // print(dominant_album);
   if (dominantAlbum!.computeLuminance() <= 0.5) {
     try {
       var pal = paletteGenerator.lightMutedColor!.color;
@@ -220,7 +220,6 @@ Future albumColor(image) async {
     }
 
     if (dominantAlbum == contrastAlbum) {
-      // print("damn! thats rare");
       contrastAlbum = paletteGenerator.darkMutedColor!.color;
     }
   } else {
@@ -231,7 +230,6 @@ Future albumColor(image) async {
       contrastAlbum = Colors.black;
     }
     if (dominantAlbum == contrastAlbum) {
-      // print("damn! thats rare");
       contrastAlbum = paletteGenerator.lightMutedColor!.color;
     }
   }
@@ -244,6 +242,4 @@ Future albumColor(image) async {
       contrastAlbum = Colors.black;
     }
   }
-
-  // print(contrast_album);
 }

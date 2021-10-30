@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/scheduler.dart';
@@ -34,6 +36,7 @@ import 'package:flutter_remixicon/flutter_remixicon.dart';
 class Begin extends StatefulWidget {
   static final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
+  const Begin({Key? key}) : super(key: key);
   @override
   _BeginState createState() => _BeginState();
 }
@@ -89,9 +92,7 @@ class _BeginState extends State<Begin>
 
   @override
   Widget build(BuildContext context) {
-    if (musicBox.get("timeBasedDark") == null
-        ? false
-        : musicBox.get("timeBasedDark")) {
+    if (musicBox.get("timeBasedDark") ?? false) {
       if (DateTime.now().hour < 19 && DateTime.now().hour > 6) {
         musicBox.put("timeBasedDark", false);
         musicBox.put("dynamicArtDB", true);
@@ -194,7 +195,8 @@ class _BeginState extends State<Begin>
                                           TypewriterAnimatedText(
                                             "  PHOENIX",
                                             cursor: " ",
-                                            speed: Duration(milliseconds: 70),
+                                            speed: const Duration(
+                                                milliseconds: 70),
                                             textStyle: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: orientedCar
@@ -236,7 +238,7 @@ class _BeginState extends State<Begin>
                             indicatorWeight: 0.000001,
                             isScrollable: true,
                             enableFeedback: false,
-                            physics: ScrollPhysics(),
+                            physics: const ScrollPhysics(),
                             controller: tabController,
                             tabs: tabsData(deviceWidth!, deviceHeight),
                             indicatorColor: Colors.transparent,
@@ -249,7 +251,7 @@ class _BeginState extends State<Begin>
                         padding:
                             EdgeInsets.only(bottom: isPlayerShown ? 60 : 0),
                         child: TabBarView(
-                          physics: CustomPageViewScrollPhysics(),
+                          physics: const CustomPageViewScrollPhysics(),
                           controller: tabController,
                           children: [
                             Mansion(),
@@ -361,9 +363,8 @@ class _BeginState extends State<Begin>
                                       : deviceHeight! / 36,
                                 ),
                                 onTap: () async {
-                                  if (!(musicBox.get("timeBasedDark") == null
-                                      ? false
-                                      : musicBox.get("timeBasedDark"))) {
+                                  if (!(musicBox.get("timeBasedDark") ??
+                                      false)) {
                                     await musicBox.put("timeBasedDark", true);
                                     await musicBox.put("dynamicArtDB", false);
 
@@ -418,7 +419,8 @@ class _BeginState extends State<Begin>
                                             create: (_) => Leprovider(),
                                           ),
                                         ],
-                                        builder: (context, child) => Searchin(),
+                                        builder: (context, child) =>
+                                            const Searchin(),
                                       ),
                                     ),
                                   );
@@ -467,7 +469,8 @@ class _BeginState extends State<Begin>
                                             create: (_) => MrMan(),
                                           ),
                                         ],
-                                        builder: (context, child) => Settings(),
+                                        builder: (context, child) =>
+                                            const Settings(),
                                       ),
                                     ),
                                   );
@@ -506,7 +509,7 @@ class _BeginState extends State<Begin>
   Future<bool> fivesecsbacker() async {
     bool confirmExit = false;
     bool isAutoDismiss = false;
-    Future.delayed(Duration(seconds: 5)).then((value) {
+    Future.delayed(const Duration(seconds: 5)).then((value) {
       isAutoDismiss = true;
     });
     await Flushbar(
@@ -523,9 +526,9 @@ class _BeginState extends State<Begin>
             break;
         }
       },
-      messageText: Text("Go back once more to exit",
+      messageText: const Text("Go back once more to exit",
           style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-      icon: Icon(
+      icon: const Icon(
         Icons.exit_to_app_rounded,
         size: 28.0,
         color: Color(0xFFCB0447),
@@ -538,9 +541,8 @@ class _BeginState extends State<Begin>
       backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
-      barBlur:
-          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+      barBlur: musicBox.get("glassBlur") ?? 18,
+      margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
     ).show(context);
     if (confirmExit && !isAutoDismiss) {

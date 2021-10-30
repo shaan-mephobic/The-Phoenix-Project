@@ -22,7 +22,7 @@ import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
 import '../../utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:phoenix/src/beginning/utilities/screenshot_UI.dart';
+import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../utilities/constants.dart';
 
@@ -75,7 +75,7 @@ class _OnHoldState extends State<OnHold> {
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -105,14 +105,14 @@ class _OnHoldState extends State<OnHold> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ListView(
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 children: [
                                   for (int i = 0; i < songMoreInfo.length; i++)
                                     Material(
                                       color: Colors.transparent,
                                       child: Center(
-                                        child: Container(
+                                        child: SizedBox(
                                           // color: Colors.black38,
                                           width: widget.car
                                               ? widget.heightOfDevice
@@ -194,14 +194,14 @@ class _OnHoldState extends State<OnHold> {
                                                       .toList()
                                                       .isEmpty) {
                                                     Flushbar(
-                                                      messageText: Text(
+                                                      messageText: const Text(
                                                           "Create A Playlist First.",
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "Futura",
                                                               color: Colors
                                                                   .white)),
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         Icons
                                                             .error_outline_rounded,
                                                         size: 28.0,
@@ -212,8 +212,8 @@ class _OnHoldState extends State<OnHold> {
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          Duration(seconds: 5),
+                                                      duration: const Duration(
+                                                          seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -224,15 +224,13 @@ class _OnHoldState extends State<OnHold> {
                                                               .FLOATING,
                                                       isDismissible: true,
                                                       barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
-                                                      margin: EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                              "glassBlur") ??
+                                                          18,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -360,7 +358,7 @@ class _OnHoldState extends State<OnHold> {
                                                     Flushbar(
                                                       message:
                                                           "The File Might be Unsupported/Corrupted.",
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         Icons.info_outline,
                                                         size: 28.0,
                                                         color:
@@ -376,18 +374,14 @@ class _OnHoldState extends State<OnHold> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
+                                                      barBlur: musicBox
+                                                              .get("glassBlur") ?? 18,
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
-                                                      margin: EdgeInsets.only(
+                                                          const Duration(seconds: 5),
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
@@ -418,7 +412,7 @@ class _OnHoldState extends State<OnHold> {
                                               child: Center(
                                                 child: Padding(
                                                   padding:
-                                                      EdgeInsets.only(left: 12),
+                                                      const EdgeInsets.only(left: 12),
                                                   child: Text(
                                                     songMoreInfo[i],
                                                     maxLines: 2,
@@ -438,8 +432,8 @@ class _OnHoldState extends State<OnHold> {
                                                           offset: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true
-                                                              ? Offset(0, 1.0)
-                                                              : Offset(0, 1.0),
+                                                              ? const Offset(0, 1.0)
+                                                              : const Offset(0, 1.0),
                                                           blurRadius: 3.0,
                                                           color: Colors.black54,
                                                         ),
@@ -522,7 +516,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -552,7 +546,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ListView(
-                                physics: BouncingScrollPhysics(),
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 children: [
                                   for (int i = 0;
@@ -593,14 +587,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
 
                                                     Navigator.pop(context);
                                                     Flushbar(
-                                                      messageText: Text(
+                                                      messageText: const Text(
                                                           "Removed From Liked Songs",
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "Futura",
                                                               color: Colors
                                                                   .white)),
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         Icons.block_rounded,
                                                         size: 28.0,
                                                         color:
@@ -611,7 +605,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
+                                                          const Duration(seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -621,13 +615,9 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
-                                                      margin: EdgeInsets.only(
+                                                      barBlur: musicBox
+                                                              .get("glassBlur") ?? 18,
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
@@ -640,14 +630,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                         nowMediaItem.id);
                                                     Navigator.pop(context);
                                                     Flushbar(
-                                                      messageText: Text(
+                                                      messageText: const Text(
                                                           "Added To Liked Songs",
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "Futura",
                                                               color: Colors
                                                                   .white)),
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         MdiIcons.heart,
                                                         size: 28.0,
                                                         color:
@@ -658,7 +648,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
+                                                          const Duration(seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -668,20 +658,16 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
-                                                      margin: EdgeInsets.only(
+                                                      barBlur: musicBox
+                                                              .get("glassBlur") ?? 18,
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
-                                                    )..show(context);
+                                                    ).show(context);
                                                   }
                                                 } else if (i == 2) {
                                                   // add to playlist
@@ -692,14 +678,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       .toList()
                                                       .isEmpty) {
                                                     Flushbar(
-                                                      messageText: Text(
+                                                      messageText: const Text(
                                                           "Create A Playlist First.",
                                                           style: TextStyle(
                                                               fontFamily:
                                                                   "Futura",
                                                               color: Colors
                                                                   .white)),
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         Icons
                                                             .error_outline_rounded,
                                                         size: 28.0,
@@ -711,7 +697,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
+                                                          const Duration(seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -721,13 +707,9 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
-                                                      margin: EdgeInsets.only(
+                                                      barBlur: musicBox
+                                                              .get("glassBlur") ?? 18,
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
@@ -814,7 +796,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                     Flushbar(
                                                       message:
                                                           "The File Might be Unsupported/Corrupted.",
-                                                      icon: Icon(
+                                                      icon: const Icon(
                                                         Icons.info_outline,
                                                         size: 28.0,
                                                         color:
@@ -830,25 +812,21 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox.get(
-                                                                  "glassBlur") ==
-                                                              null
-                                                          ? 18
-                                                          : musicBox
-                                                              .get("glassBlur"),
+                                                      barBlur: musicBox
+                                                              .get("glassBlur") ?? 18,
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
-                                                      margin: EdgeInsets.only(
+                                                          const Duration(seconds: 5),
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
-                                                    )..show(context);
+                                                    ).show(context);
                                                   }
                                                   // }
                                                 } else if (i == 5) {
@@ -887,7 +865,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                     Navigator.pop(context);
 
                                                     Flushbar(
-                                                      messageText: Text(
+                                                      messageText: const Text(
                                                           "Saved In Downloads Directory",
                                                           style: TextStyle(
                                                               fontFamily:
@@ -904,7 +882,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
                                                       duration:
-                                                          Duration(seconds: 5),
+                                                         const  Duration(seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -916,7 +894,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                               .FLOATING,
                                                       isDismissible: true,
                                                       barBlur: 20,
-                                                      margin: EdgeInsets.only(
+                                                      margin: const EdgeInsets.only(
                                                           bottom: 20,
                                                           left: 8,
                                                           right: 8),
@@ -925,9 +903,9 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                               15),
                                                       // leftBarIndicatorColor:
                                                       //     Color(0xFFCB0047),
-                                                    )..show(context);
+                                                    ).show(context);
                                                     await Future.delayed(
-                                                        Duration(seconds: 1));
+                                                        const Duration(seconds: 1));
                                                     await screenShotUI(true);
                                                   }
                                                 } else if (i == 7) {
@@ -956,7 +934,7 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                               child: Center(
                                                 child: Padding(
                                                   padding:
-                                                      EdgeInsets.only(left: 12),
+                                                      const EdgeInsets.only(left: 12),
                                                   child: Text(
                                                     i == 1
                                                         ? !isSongLiked(
@@ -981,8 +959,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           offset: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true
-                                                              ? Offset(0, 1.0)
-                                                              : Offset(0, 1.0),
+                                                              ? const Offset(0, 1.0)
+                                                              : const Offset(0, 1.0),
                                                           blurRadius: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true

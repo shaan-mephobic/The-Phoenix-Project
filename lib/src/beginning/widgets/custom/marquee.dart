@@ -60,7 +60,7 @@ class MarqueeContainer extends StatefulWidget {
   final TextDirection? textDirection;
   final MarqueeDirection? marqueeDirection;
 
-  MarqueeContainer({
+  const MarqueeContainer({
     Key? key,
     this.text,
     this.textStyle,
@@ -148,14 +148,13 @@ class MarqueeContainerState extends State<MarqueeContainer>
       marqueeController.forward();
     }
 
-    final textWidget = Container(
-        child: Text(
+    final textWidget = Text(
       widget.text!,
       style: widget.textStyle,
       overflow: TextOverflow.visible,
       softWrap: false,
       textDirection: widget.textDirection,
-    ));
+    );
     return _showMarquee
         ? AnimatedBuilder(
             builder: (context, myWidget) => Container(

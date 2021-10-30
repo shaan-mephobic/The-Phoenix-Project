@@ -17,8 +17,8 @@ Uint8List? art2 = art;
 Uint8List? defaultArt;
 Uint8List? defaultNone;
 Uint8List? artwork;
-Color nowColor = Color(0xFF091e25);
-Color nowContrast = Color(0xFF8296a4);
+Color nowColor = const Color(0xFF091e25);
+Color nowContrast = const Color(0xFF8296a4);
 AudioModel? advanceAudioData;
 Random random = Random();
 bool refresh = false;
@@ -33,7 +33,7 @@ bool first = false;
 List<SongModel> songList = [];
 List specificAlbums = [];
 List<MediaItem> songListMediaItems = [];
-MediaItem nowMediaItem = MediaItem(
+MediaItem nowMediaItem = const MediaItem(
     title: "",
     id: "",
     album: "",
@@ -58,7 +58,7 @@ bool isPlayerShown = false;
 late ImageFilter glassBlur;
 Color? glassOpacity;
 double? glassShadowOpacity;
-final Duration dialogueAnimationDuration = const Duration(milliseconds: 200);
+Duration dialogueAnimationDuration = const Duration(milliseconds: 200);
 bool? isArtworkDark = true;
 bool onLyrics = false;
 bool isFlashin = false;

@@ -43,16 +43,14 @@ dataInit() async {
   isAndroid11 = info.version.sdkInt > 29 ? true : false;
   glassBlur = ImageFilter.blur(
       sigmaX:
-          musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur"),
+          musicBox.get("glassBlur") ?? 10,
       sigmaY:
-          musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur"));
+          musicBox.get("glassBlur") ?? 10);
   glassOpacity = Colors.white.withOpacity(
-      (musicBox.get("glassOverlayColor") == null
-              ? 2
-              : musicBox.get("glassOverlayColor")) /
+      (musicBox.get("glassOverlayColor") ?? 2) /
           100);
   glassShadowOpacity =
-      musicBox.get("glassShadow") == null ? 6 : musicBox.get("glassShadow");
+      musicBox.get("glassShadow") ?? 6;
 }
 
 fetchSongs() async {
@@ -105,7 +103,7 @@ fetchAll() async {
   await gettinGenres();
   await smartArtistsArts();
   ascend = true;
-  print("ASCENDED");
+  debugPrint("ASCENDED");
   rootState.provideman();
   if (musicBox.get("isolation") == null
       ? true

@@ -19,7 +19,7 @@ List<MediaItem> playlistMediaItems = [];
 
 class PlaylistInside extends StatefulWidget {
   final String? playlistName;
-  PlaylistInside({required this.playlistName});
+  const PlaylistInside({Key? key, required this.playlistName}) : super(key: key);
   @override
   _PlaylistInsideState createState() => _PlaylistInsideState();
 }
@@ -61,6 +61,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
           data: themeOfApp,
           child: Stack(
             children: [
+              // ignore: prefer_const_constructors
               BackArt(),
               Padding(
                 padding: EdgeInsets.only(top: deviceWidth! / 5),
@@ -71,10 +72,10 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                     controller: _scrollBarController,
                     child: ReorderableListView.builder(
                         scrollController: _scrollBarController,
-                        padding: EdgeInsets.only(top: 0, bottom: 8),
+                        padding: const EdgeInsets.only(top: 0, bottom: 8),
                         physics: musicBox.get("fluidAnimation") ?? true
-                            ? BouncingScrollPhysics()
-                            : ClampingScrollPhysics(),
+                            ? const BouncingScrollPhysics()
+                            : const ClampingScrollPhysics(),
                         header: ListHeader(
                             deviceWidth, playlistSongsInside, "playlist"),
                         itemCount: playlistSongsInside.length,
@@ -87,7 +88,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                             child: ListTile(
                               onTap: () async {
                                 if (playlistMediaItems[index].duration ==
-                                    Duration(milliseconds: 0)) {
+                                   const  Duration(milliseconds: 0)) {
                                   corruptedFile(context);
                                 } else {
                                   insideplaylistSongsInside =
@@ -99,7 +100,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                               title: Text(
                                 playlistSongsInside[index].title,
                                 maxLines: 2,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white70,
                                   shadows: [
                                     Shadow(
@@ -116,7 +117,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                 child: Text(
                                   playlistSongsInside[index].artist!,
                                   maxLines: 1,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white70,
                                     shadows: [
                                       Shadow(

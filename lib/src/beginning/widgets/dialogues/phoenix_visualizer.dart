@@ -31,7 +31,7 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
           ),
           Center(
             child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
                   Expanded(
@@ -121,7 +121,7 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                                       height: deviceWidth! / 12,
                                       width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF1DB954),
+                                        color: const Color(0xFF1DB954),
                                         borderRadius:
                                             BorderRadius.circular(kRounded),
                                       ),
@@ -195,7 +195,7 @@ class _PhoenixVisualizerCustomizeState
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 Expanded(
@@ -277,7 +277,7 @@ class _PhoenixVisualizerCustomizeState
                                       height: deviceWidth! / 12,
                                       width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF1DB954),
+                                        color: const Color(0xFF1DB954),
                                         borderRadius:
                                             BorderRadius.circular(kRounded),
                                       ),
@@ -334,7 +334,7 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
         ),
         Center(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Material(
               color: Colors.transparent,
               child: Column(
@@ -421,7 +421,7 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                                       height: deviceWidth! / 12,
                                       width: deviceWidth! / 4,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF1DB954),
+                                        color: const Color(0xFF1DB954),
                                         borderRadius:
                                             BorderRadius.circular(kRounded),
                                       ),

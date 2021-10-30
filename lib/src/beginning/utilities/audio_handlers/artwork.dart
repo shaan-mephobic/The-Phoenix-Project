@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:on_audio_edit/on_audio_edit.dart' as onAudioEdit;
+import 'package:on_audio_edit/on_audio_edit.dart' as on_audio_edit;
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -13,7 +13,7 @@ playerontap() async {
       defaultNone;
   try {
     advanceAudioData =
-        await onAudioEdit.OnAudioEdit().readAudio(nowMediaItem.id);
+        await on_audio_edit.OnAudioEdit().readAudio(nowMediaItem.id);
   } catch (e) {
     advanceAudioData = null;
   }

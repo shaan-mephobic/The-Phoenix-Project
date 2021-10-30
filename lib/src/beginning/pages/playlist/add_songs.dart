@@ -18,7 +18,7 @@ List playListSongsId = [];
 class AddSongs extends StatefulWidget {
   final bool modify;
   final String? playlistName;
-  AddSongs({required this.modify, required this.playlistName});
+  const AddSongs({required this.modify, required this.playlistName,Key? key}) : super(key: key);
   @override
   _AddSongsState createState() => _AddSongsState();
 }
@@ -52,41 +52,39 @@ class _AddSongsState extends State<AddSongs> {
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton.extended(
             splashColor: Colors.transparent,
-            icon: Icon(Icons.check_rounded, color: Colors.black),
+            icon: const Icon(Icons.check_rounded, color: Colors.black),
             label: Text(widget.modify ? "MODIFY" : "CREATE",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: deviceWidth! / 25,
                     fontWeight: FontWeight.w600)),
-            backgroundColor: Color(0xFF1DB954),
+            backgroundColor: const Color(0xFF1DB954),
             elevation: 8.0,
             onPressed: () {
               if (!((widget.playlistName == "Enter Playlist Name" &&
                       nameOfPlaylist != null) ||
                   (widget.playlistName != "Enter Playlist Name"))) {
                 Flushbar(
-                  messageText: Text("Enter a Playlist Name! ¯\\_(ツ)_/¯",
+                  messageText: const Text("Enter a Playlist Name! ¯\\_(ツ)_/¯",
                       style:
                           TextStyle(fontFamily: "Futura", color: Colors.white)),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.error_outline,
                     size: 28.0,
                     color: Color(0xFFCB0447),
                   ),
                   shouldIconPulse: true,
                   dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-                  duration: Duration(seconds: 5),
+                  duration: const Duration(seconds: 5),
                   borderColor: Colors.white.withOpacity(0.04),
                   borderWidth: 1,
                   backgroundColor: glassOpacity!,
                   flushbarStyle: FlushbarStyle.FLOATING,
                   isDismissible: true,
-                  barBlur: musicBox.get("glassBlur") == null
-                      ? 18
-                      : musicBox.get("glassBlur"),
-                  margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+                  barBlur: musicBox.get("glassBlur") ?? 18,
+                  margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
                   borderRadius: BorderRadius.circular(15),
-                )..show(context);
+                ).show(context);
               } else {
                 if (musicBox.get("playlists") != null &&
                     musicBox
@@ -100,9 +98,7 @@ class _AddSongsState extends State<AddSongs> {
                   removePlaylists(widget.playlistName);
                 }
                 newPlaylist(
-                    nameOfPlaylist == null
-                        ? widget.playlistName
-                        : nameOfPlaylist,
+                    nameOfPlaylist ?? widget.playlistName,
                     playListSongsId);
                 Navigator.pop(context);
               }
@@ -111,14 +107,15 @@ class _AddSongsState extends State<AddSongs> {
           body: Theme(
             data: themeOfApp,
             child: Stack(children: [
+              // ignore: prefer_const_constructors
               BackArt(),
               Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(top: 50),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     height: 120,
                     width: double.infinity,
                     color: Colors.transparent,
@@ -151,20 +148,20 @@ class _AddSongsState extends State<AddSongs> {
                               ),
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.center,
-                                cursorColor: Color(0xFF3cb9cd),
+                                cursorColor: const Color(0xFF3cb9cd),
                                 autofocus: false,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                                 onChanged: (thetext) {
                                   nameOfPlaylist = thetext;
                                   if (widget.modify) isNameChanged = true;
                                 },
                                 decoration: InputDecoration(
                                   isCollapsed: true,
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
                                   ),
@@ -172,13 +169,13 @@ class _AddSongsState extends State<AddSongs> {
                                     color: Colors.grey[350],
                                   ),
                                   hintText: widget.playlistName,
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                       MdiIcons.playlistMusicOutline,
                                       color: Colors.white),
                                   suffixIcon: Visibility(
                                     visible: widget.modify,
                                     child: IconButton(
-                                      icon: Icon(Ionicons.trash_outline,
+                                      icon: const Icon(Ionicons.trash_outline,
                                           color: Color(0xFFCB0047)),
                                       onPressed: () {
                                         removePlaylists(widget.playlistName);
@@ -203,11 +200,11 @@ class _AddSongsState extends State<AddSongs> {
                         child: ListView.builder(
                           controller: _scrollBarController,
                           shrinkWrap: true,
-                          padding: EdgeInsets.only(top: 0, bottom: 8),
+                          padding:const  EdgeInsets.only(top: 0, bottom: 8),
                           addAutomaticKeepAlives: true,
                           physics: musicBox.get("fluidAnimation") ?? true
-                              ? BouncingScrollPhysics()
-                              : ClampingScrollPhysics(),
+                              ? const BouncingScrollPhysics()
+                              : const ClampingScrollPhysics(),
                           itemCount: songList.length,
                           itemBuilder: (context, index) {
                             return Material(
@@ -240,7 +237,7 @@ class _AddSongsState extends State<AddSongs> {
                                 title: Text(
                                   songList[index].title,
                                   maxLines: 2,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white70,
                                     shadows: [
                                       Shadow(
@@ -255,7 +252,7 @@ class _AddSongsState extends State<AddSongs> {
                                 subtitle: Text(
                                   songList[index].artist!,
                                   maxLines: 1,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white38,
                                     shadows: [
                                       Shadow(
@@ -267,7 +264,7 @@ class _AddSongsState extends State<AddSongs> {
                                   ),
                                 ),
                                 trailing: Checkbox(
-                                  activeColor: Color(0xFF1DB954),
+                                  activeColor: const Color(0xFF1DB954),
                                   value: playListCheck[index],
                                   onChanged: (_) {
                                     if (playListCheck[index]) {

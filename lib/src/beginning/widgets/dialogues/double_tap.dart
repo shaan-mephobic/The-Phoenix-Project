@@ -10,49 +10,49 @@ onDoubleTap(BuildContext context) async {
   if (!isSongLiked(nowMediaItem.id)) {
     rmLikedSong(nowMediaItem.id);
     Flushbar(
-      messageText: Text("Removed From Liked Songs",
+      messageText: const Text("Removed From Liked Songs",
           style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-      icon: Icon(
+      icon: const Icon(
         Icons.block_rounded,
         size: 28.0,
         color: Color(0xFFCB0447),
       ),
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
       backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:
-          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+          musicBox.get("glassBlur") ?? 18,
+      margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    )..show(context);
+    ).show(context);
   } else {
     addToLikedSong(nowMediaItem.id);
 
     Flushbar(
-      messageText: Text("Added To Liked Songs",
+      messageText: const Text("Added To Liked Songs",
           style: TextStyle(fontFamily: "Futura", color: Colors.white)),
-      icon: Icon(
+      icon: const Icon(
         MdiIcons.heart,
         size: 28.0,
         color: Color(0xFFCB0447),
       ),
       shouldIconPulse: true,
       dismissDirection: FlushbarDismissDirection.HORIZONTAL,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       borderColor: Colors.white.withOpacity(0.04),
       borderWidth: 1,
       backgroundColor: glassOpacity!,
       flushbarStyle: FlushbarStyle.FLOATING,
       isDismissible: true,
       barBlur:
-          musicBox.get("glassBlur") == null ? 18 : musicBox.get("glassBlur"),
-      margin: EdgeInsets.only(bottom: 20, left: 8, right: 8),
+          musicBox.get("glassBlur") ?? 18,
+      margin: const EdgeInsets.only(bottom: 20, left: 8, right: 8),
       borderRadius: BorderRadius.circular(15),
-    )..show(context);
+    ).show(context);
   }
 }

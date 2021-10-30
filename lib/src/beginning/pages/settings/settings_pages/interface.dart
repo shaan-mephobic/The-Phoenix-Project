@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Interface extends StatefulWidget {
+  const Interface({Key? key}) : super(key: key);
+
   @override
   _InterfaceState createState() => _InterfaceState();
 }
@@ -42,7 +44,7 @@ class _InterfaceState extends State<Interface> {
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white,
             ),
             shadowColor: Colors.transparent,
@@ -61,29 +63,30 @@ class _InterfaceState extends State<Interface> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Container(
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: ListView(
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     children: [
                       Material(
                         color: Colors.transparent,
                         child: ListTile(
-                          title: Text(
+                          title: const Text(
                             "Glass Effect",
                             style: TextStyle(
                               color: Colors.white,
                             ),
                           ),
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Adjust blur and color of glass theme.",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          trailing: Icon(
+                          trailing: const Icon(
                             Icons.arrow_forward_ios_rounded,
                             color: Colors.white,
                           ),
@@ -95,7 +98,7 @@ class _InterfaceState extends State<Interface> {
                                 builder: (context) =>
                                     ChangeNotifierProvider<Leprovider>(
                                         create: (_) => Leprovider(),
-                                        child: GlassEffect()),
+                                        child: const GlassEffect()),
                               ),
                             );
                           },
@@ -104,13 +107,13 @@ class _InterfaceState extends State<Interface> {
                       Material(
                         color: Colors.transparent,
                         child: ListTile(
-                          title: Text(
+                          title: const Text(
                             "Default Artwork",
                             style: TextStyle(
                               color: Colors.white,
                             ),
                           ),
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Set custom image as default artwork.",
                             style: TextStyle(
                               color: Colors.white38,
@@ -135,7 +138,7 @@ class _InterfaceState extends State<Interface> {
                               ),
                             ),
                           ),
-                          trailing: Icon(
+                          trailing: const Icon(
                             Icons.image_rounded,
                             color: Colors.white,
                           ),
@@ -150,12 +153,12 @@ class _InterfaceState extends State<Interface> {
                                 .writeAsBytes(defaultNone!,
                                     mode: FileMode.write);
                             Flushbar(
-                              messageText: Text(
+                              messageText: const Text(
                                   "Default artwork has been reset",
                                   style: TextStyle(
                                       fontFamily: "Futura",
                                       color: Colors.white)),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.restore_rounded,
                                 size: 28.0,
                                 color: Colors.white,
@@ -163,19 +166,17 @@ class _InterfaceState extends State<Interface> {
                               shouldIconPulse: true,
                               dismissDirection:
                                   FlushbarDismissDirection.HORIZONTAL,
-                              duration: Duration(seconds: 3),
+                              duration: const Duration(seconds: 3),
                               borderColor: Colors.white.withOpacity(0.04),
                               borderWidth: 1,
                               backgroundColor: glassOpacity!,
                               flushbarStyle: FlushbarStyle.FLOATING,
                               isDismissible: true,
-                              barBlur: musicBox.get("glassBlur") == null
-                                  ? 18
-                                  : musicBox.get("glassBlur"),
-                              margin: EdgeInsets.only(
+                              barBlur: musicBox.get("glassBlur") ?? 18,
+                              margin: const EdgeInsets.only(
                                   bottom: 20, left: 8, right: 8),
                               borderRadius: BorderRadius.circular(15),
-                            )..show(context);
+                            ).show(context);
                             musicBox.put("dominantDefault", null);
                           },
                           onTap: () async {
@@ -198,13 +199,13 @@ class _InterfaceState extends State<Interface> {
                         child: CheckboxListTile(
                           activeColor: kCorrect,
                           checkColor: kMaterialBlack,
-                          subtitle: Text(
+                          subtitle: const Text(
                             "A fluid bouncing animation on scrolling",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          title: Text(
+                          title: const Text(
                             "Fluid",
                             style: TextStyle(
                               color: Colors.white,
@@ -224,13 +225,13 @@ class _InterfaceState extends State<Interface> {
                         child: CheckboxListTile(
                           activeColor: kCorrect,
                           checkColor: kMaterialBlack,
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Use albumart as background",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          title: Text(
+                          title: const Text(
                             "Dynamic Background",
                             style: TextStyle(
                               color: Colors.white,
@@ -250,13 +251,13 @@ class _InterfaceState extends State<Interface> {
                         child: CheckboxListTile(
                           activeColor: kCorrect,
                           checkColor: kMaterialBlack,
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Square shaped artwork in lists",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          title: Text(
+                          title: const Text(
                             "Square Art",
                             style: TextStyle(
                               color: Colors.white,
@@ -276,13 +277,13 @@ class _InterfaceState extends State<Interface> {
                         child: CheckboxListTile(
                           activeColor: kCorrect,
                           checkColor: kMaterialBlack,
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Position icons for driver's ease",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          title: Text(
+                          title: const Text(
                             "Left Steering",
                             style: TextStyle(
                               color: Colors.white,
@@ -302,13 +303,13 @@ class _InterfaceState extends State<Interface> {
                         child: CheckboxListTile(
                           activeColor: kCorrect,
                           checkColor: kMaterialBlack,
-                          subtitle: Text(
+                          subtitle: const Text(
                             "Show additional song data in now playing.",
                             style: TextStyle(
                               color: Colors.white38,
                             ),
                           ),
-                          title: Text(
+                          title: const Text(
                             "Audiophile Data",
                             style: TextStyle(
                               color: Colors.white,
@@ -354,13 +355,13 @@ class _InterfaceState extends State<Interface> {
                       Material(
                         color: Colors.transparent,
                         child: ListTile(
-                            subtitle: Text(
+                            subtitle: const Text(
                               "Show progress in mini-player.",
                               style: TextStyle(
                                 color: Colors.white38,
                               ),
                             ),
-                            title: Text(
+                            title: const Text(
                               "Mini-Player Progress",
                               style: TextStyle(
                                 color: Colors.white,
@@ -369,7 +370,7 @@ class _InterfaceState extends State<Interface> {
                             trailing: DropdownButton<String>(
                               value:
                                   musicBox.get("miniPlayerProgress") ?? "Top",
-                              icon: Icon(Icons.arrow_drop_down_rounded,
+                              icon: const Icon(Icons.arrow_drop_down_rounded,
                                   color: Colors.white70),
                               elevation: 25,
                               enableFeedback: true,
@@ -379,7 +380,7 @@ class _InterfaceState extends State<Interface> {
                                 height: 2,
                                 color: kCorrect,
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                               onChanged: (String? newValue) async {
                                 await musicBox.put(
                                     "miniPlayerProgress", newValue);
@@ -399,8 +400,8 @@ class _InterfaceState extends State<Interface> {
                       ),
                     ],
                     physics: musicBox.get("fluidAnimation") ?? true
-                        ? BouncingScrollPhysics()
-                        : ClampingScrollPhysics(),
+                        ? const BouncingScrollPhysics()
+                        : const ClampingScrollPhysics(),
                     shrinkWrap: true,
                   ),
                 ),

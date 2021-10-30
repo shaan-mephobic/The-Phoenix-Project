@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'artists_inside.dart';
 
 class Artists extends StatefulWidget {
+  const Artists({Key? key}) : super(key: key);
+
   @override
   _ArtistsState createState() => _ArtistsState();
 }
@@ -41,9 +43,9 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
             controller: _scrollBarController,
             addAutomaticKeepAlives: true,
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
-            padding: EdgeInsets.only(bottom: 0, top: 0),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: 0, top: 0),
             itemCount: allArtists.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: orientedCar
@@ -95,13 +97,13 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ArtistsInside(),
+                        builder: (context) => const ArtistsInside(),
                       ),
                     );
                   },
                   child: Column(
                     children: [
-                      Padding(padding: EdgeInsets.only(top: 5)),
+                      const Padding(padding: EdgeInsets.only(top: 5)),
                       PhysicalModel(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.circular(kRounded),
@@ -129,7 +131,7 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                                 : deviceWidth! / 70),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 9, right: 9),
+                        padding: const EdgeInsets.only(left: 9, right: 9),
                         child: Text(
                           allArtists[index].contains(",")
                               ? allArtists[index]
@@ -177,8 +179,8 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                             shadows: [
                               Shadow(
                                 offset: musicBox.get("dynamicArtDB") ?? true
-                                    ? Offset(1.0, 1.0)
-                                    : Offset(0, 1.0)
+                                    ? const Offset(1.0, 1.0)
+                                    : const Offset(0, 1.0)
                                         ,
                                 blurRadius: 2.0,
                                 color: Colors.black45,
@@ -197,8 +199,8 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
       );
     } else {
       return orientedCar
-          ? SingleChildScrollView(child: Awakening())
-          : Awakening();
+          ? const SingleChildScrollView(child: Awakening())
+          : const Awakening();
     }
   }
 

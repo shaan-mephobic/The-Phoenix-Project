@@ -9,11 +9,14 @@ import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:provider/provider.dart';
 
 class Privacy extends StatefulWidget {
+  const Privacy({Key? key}) : super(key: key);
+
   @override
   _PrivacyState createState() => _PrivacyState();
 }
 
 class _PrivacyState extends State<Privacy> {
+  @override
   void initState() {
     crossfadeStateChange = true;
     super.initState();
@@ -40,11 +43,12 @@ class _PrivacyState extends State<Privacy> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 SingleChildScrollView(
                   physics: musicBox.get("fluidAnimation") ?? true
-                      ? BouncingScrollPhysics()
-                      : ClampingScrollPhysics(),
+                      ? const BouncingScrollPhysics()
+                      : const ClampingScrollPhysics(),
                   child: Column(
                     children: [
                       Padding(
@@ -84,13 +88,15 @@ class _PrivacyState extends State<Privacy> {
                                   ? deviceWidth! / 4
                                   : deviceWidth! / 2)),
                       Container(
-                        height:
-                            orientedCar ? deviceHeight! / 3 : deviceWidth! / 1.6,
+                        height: orientedCar
+                            ? deviceHeight! / 3
+                            : deviceWidth! / 1.6,
                         width: orientedCar
                             ? deviceHeight! / 1.5
                             : deviceWidth! / 1.1,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(deviceWidth! / 27),
+                          borderRadius:
+                              BorderRadius.circular(deviceWidth! / 27),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black
@@ -101,7 +107,8 @@ class _PrivacyState extends State<Privacy> {
                           ],
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(deviceWidth! / 27),
+                          borderRadius:
+                              BorderRadius.circular(deviceWidth! / 27),
                           child: BackdropFilter(
                             filter: glassBlur,
                             child: Container(
@@ -117,7 +124,7 @@ class _PrivacyState extends State<Privacy> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                       left: 30,
                                       right: 30,
                                     ),
@@ -132,7 +139,8 @@ class _PrivacyState extends State<Privacy> {
                                       ),
                                     ),
                                   ),
-                                  Padding(padding: EdgeInsets.only(top: 30)),
+                                  const Padding(
+                                      padding: EdgeInsets.only(top: 30)),
                                   SwitcherButton(
                                     offColor: kMaterialBlack,
                                     onColor: kCorrect,
@@ -160,18 +168,20 @@ class _PrivacyState extends State<Privacy> {
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          fontSize:
-                              orientedCar ? deviceWidth! / 25 : deviceWidth! / 22,
+                          fontSize: orientedCar
+                              ? deviceWidth! / 25
+                              : deviceWidth! / 22,
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(top: 13)),
+                      const Padding(padding: EdgeInsets.only(top: 13)),
                     ],
                   ),
                 ),
                 SizedBox(
                   height: orientedCar
                       ? deviceWidth! / 4.2
-                      : deviceHeight! / 5.5 + MediaQuery.of(context).padding.top,
+                      : deviceHeight! / 5.5 +
+                          MediaQuery.of(context).padding.top,
                   child: AppBar(
                     iconTheme: IconThemeData(
                       color: kMaterialBlack,
@@ -216,7 +226,7 @@ class _PrivacyState extends State<Privacy> {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            offset: Offset(0, 1),
+                            offset: const Offset(0, 1),
                             color: Colors.black12,
                             blurRadius: 1.0,
                             spreadRadius: deviceWidth! / 230,
@@ -227,7 +237,7 @@ class _PrivacyState extends State<Privacy> {
                       ),
                       child: Icon(
                         MIcon.riLock2Line,
-                        color: Color(0xFF02c9d3),
+                        color: const Color(0xFF02c9d3),
                         size: deviceWidth! / 13,
                       ),
                     ),

@@ -16,12 +16,10 @@ class GlassEffect extends StatefulWidget {
 
 class _GlassEffectState extends State<GlassEffect> {
   double? blur =
-      musicBox.get("glassBlur") == null ? 10 : musicBox.get("glassBlur");
-  double? whiteOpacity = musicBox.get("glassOverlayColor") == null
-      ? 2
-      : musicBox.get("glassOverlayColor");
+      musicBox.get("glassBlur") ?? 10;
+  double? whiteOpacity = musicBox.get("glassOverlayColor") ?? 2;
   double? shadow =
-      musicBox.get("glassShadow") == null ? 6 : musicBox.get("glassShadow");
+      musicBox.get("glassShadow") ?? 6;
   @override
   void initState() {
     crossfadeStateChange = true;
@@ -58,7 +56,7 @@ class _GlassEffectState extends State<GlassEffect> {
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            iconTheme: IconThemeData(
+            iconTheme: const IconThemeData(
               color: Colors.white,
             ),
             shadowColor: Colors.transparent,
@@ -77,14 +75,15 @@ class _GlassEffectState extends State<GlassEffect> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Container(
                   padding: EdgeInsets.only(
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: CustomScrollView(
                     physics: musicBox.get("fluidAnimation") ?? true
-                        ? BouncingScrollPhysics()
-                        : ClampingScrollPhysics(),
+                        ? const BouncingScrollPhysics()
+                        : const ClampingScrollPhysics(),
                     slivers: [
                       SliverFillRemaining(
                         hasScrollBody: false,
@@ -158,7 +157,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${blur!.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -174,7 +173,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
-                                          thumbShape: RoundSliderThumbShape(
+                                          thumbShape: const RoundSliderThumbShape(
                                               enabledThumbRadius: 5),
                                           inactiveTrackColor:
                                               musicBox.get("dynamicArtDB") ??
@@ -203,7 +202,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "40",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -227,7 +226,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${whiteOpacity!.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows:const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -242,7 +241,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                           : deviceWidth! / 1.5,
                                       child: SliderTheme(
                                         data: SliderThemeData(
-                                          thumbShape: RoundSliderThumbShape(
+                                          thumbShape: const RoundSliderThumbShape(
                                               enabledThumbRadius: 5),
                                           trackHeight: 3,
                                           inactiveTrackColor:
@@ -272,7 +271,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "20",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -298,7 +297,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${shadow!.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -314,7 +313,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
-                                          thumbShape: RoundSliderThumbShape(
+                                          thumbShape: const RoundSliderThumbShape(
                                               enabledThumbRadius: 5),
                                           inactiveTrackColor:
                                               musicBox.get("dynamicArtDB") ??
@@ -343,7 +342,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "20",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,

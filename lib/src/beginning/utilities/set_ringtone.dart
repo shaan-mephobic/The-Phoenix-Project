@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/file_handlers.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'native/go_native.dart';
@@ -26,7 +27,7 @@ Future<void> ringtoneTrim(
   await File(pathOfFile).copy("${applicationFileDirectory.path}/raw$ext");
   await _flutterFFmpeg
       .execute("-ss $start -i $inputFile -t $length -c copy $outputFile")
-      .then((rc) => print("FFmpeg process 1 exited with rc $rc"));
+      .then((rc) => debugPrint("FFmpeg process 1 exited with rc $rc"));
   if (fade != 0) {
     // afade(fade in) works only in flac files in ffmpeg by default. Doing it for other formats
     // will need additional packages. So inorder to keep the app size small I am converting
@@ -36,7 +37,7 @@ Future<void> ringtoneTrim(
         await _flutterFFmpeg
             .execute(
                 '-i $outputFile -af "afade=t=in:st=0:d=$fade" $outputFileFade')
-            .then((rc) => print("FFmpeg process 2 exited with rc $rc"));
+            .then((rc) => debugPrint("FFmpeg process 2 exited with rc $rc"));
         await File(outputFileFade).copy(finalFile);
         await broadcastFileChange(finalFile);
         await setRingtone(finalFile);
@@ -52,11 +53,11 @@ Future<void> ringtoneTrim(
             "/storage/emulated/0/Music/$title.flac".replaceAll(" ", "-"));
         await _flutterFFmpeg
             .execute('-i $outputFile -f flac $convertFile')
-            .then((rc) => print("FFmpeg process 3 exited with rc $rc"));
+            .then((rc) => debugPrint("FFmpeg process 3 exited with rc $rc"));
         await _flutterFFmpeg
             .execute(
                 '-i $convertFile -af "afade=t=in:st=0:d=$fade" $convertFileFade')
-            .then((rc) => print("FFmpeg process 2 exited with rc $rc"));
+            .then((rc) => debugPrint("FFmpeg process 2 exited with rc $rc"));
         await File(convertFileFade).copy(finalConvertFile);
         await broadcastFileChange(finalConvertFile);
         await setRingtone(finalConvertFile);

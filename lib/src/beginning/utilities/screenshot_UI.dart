@@ -86,6 +86,8 @@ screenShotUI(save) async {
 }
 
 class WallpaperArt extends StatelessWidget {
+  const WallpaperArt({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

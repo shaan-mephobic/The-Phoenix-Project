@@ -17,6 +17,8 @@ import 'genres.dart';
 List? insidegenreSongs = [];
 
 class GenresInside extends StatefulWidget {
+  const GenresInside({Key? key}) : super(key: key);
+
   @override
   _GenresInsideState createState() => _GenresInsideState();
 }
@@ -62,6 +64,7 @@ class _GenresInsideState extends State<GenresInside> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 Container(
                   padding: EdgeInsets.only(top: deviceWidth! / 4.3),
@@ -72,10 +75,10 @@ class _GenresInsideState extends State<GenresInside> {
                       controller: _scrollBarController,
                       child: ListView.builder(
                         controller: _scrollBarController,
-                        padding: EdgeInsets.only(top: 5, bottom: 8),
+                        padding:const  EdgeInsets.only(top: 5, bottom: 8),
                         physics: musicBox.get("fluidAnimation") ?? true
-                            ? BouncingScrollPhysics()
-                            : ClampingScrollPhysics(),
+                            ? const BouncingScrollPhysics()
+                            :const  ClampingScrollPhysics(),
                         itemCount: genreSongs!.length + 1,
                         itemBuilder: (context, index) {
                           if (index == 0) {
@@ -86,7 +89,7 @@ class _GenresInsideState extends State<GenresInside> {
                             child: ListTile(
                               onTap: () async {
                                 if (genreMediaItems[index - 1].duration ==
-                                    Duration(milliseconds: 0)) {
+                                    const Duration(milliseconds: 0)) {
                                   corruptedFile(context);
                                 } else {
                                   insidegenreSongs = [];
@@ -117,7 +120,7 @@ class _GenresInsideState extends State<GenresInside> {
                               title: Text(
                                 genreSongs![index - 1].title,
                                 maxLines: 2,
-                                style: TextStyle(
+                                style:const  TextStyle(
                                   color: Colors.white70,
                                   shadows: [
                                     Shadow(
@@ -134,7 +137,7 @@ class _GenresInsideState extends State<GenresInside> {
                                 child: Text(
                                   genreSongs![index - 1].artist!,
                                   maxLines: 1,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white70,
                                     shadows: [
                                       Shadow(

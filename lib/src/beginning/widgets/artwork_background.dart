@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 late var globaltaste;
 
 class BackArt extends StatelessWidget {
+  const BackArt({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     if (musicBox.get("dynamicArtDB") ?? true) {

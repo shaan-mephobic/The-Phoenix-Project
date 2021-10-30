@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Phoenix extends StatefulWidget {
+  const Phoenix({Key? key}) : super(key: key);
+
   @override
   _PhoenixState createState() => _PhoenixState();
 }
@@ -50,17 +52,19 @@ class _PhoenixState extends State<Phoenix> {
             data: themeOfApp,
             child: Stack(
               children: [
+                // ignore: prefer_const_constructors
                 BackArt(),
                 SingleChildScrollView(
                   physics: musicBox.get("fluidAnimation") ?? true
-                      ? BouncingScrollPhysics()
-                      : ClampingScrollPhysics(),
+                      ? const BouncingScrollPhysics()
+                      : const ClampingScrollPhysics(),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width:
-                            orientedCar ? deviceWidth! / 1.8 : deviceWidth! / 1.8,
+                        width: orientedCar
+                            ? deviceWidth! / 1.8
+                            : deviceWidth! / 1.8,
                         height: orientedCar
                             ? deviceWidth! / 2.5 +
                                 deviceWidth! / 5 +
@@ -99,7 +103,7 @@ class _PhoenixState extends State<Phoenix> {
                                   fontFamily: "NightMachine"),
                               textAlign: TextAlign.start,
                             ),
-                            Padding(padding: EdgeInsets.only(top: 2)),
+                            const Padding(padding: EdgeInsets.only(top: 2)),
                             Text(
                               "FORTRESS",
                               style: TextStyle(
@@ -120,10 +124,12 @@ class _PhoenixState extends State<Phoenix> {
                                 : deviceWidth! / 4),
                       ),
                       Container(
-                        height:
-                            orientedCar ? deviceHeight! / 4 : deviceWidth! / 1.6,
-                        width:
-                            orientedCar ? deviceHeight! / 2 : deviceWidth! / 1.1,
+                        height: orientedCar
+                            ? deviceHeight! / 4
+                            : deviceWidth! / 1.6,
+                        width: orientedCar
+                            ? deviceHeight! / 2
+                            : deviceWidth! / 1.1,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -151,8 +157,8 @@ class _PhoenixState extends State<Phoenix> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(right: 16, left: 16),
+                                    padding: const EdgeInsets.only(
+                                        right: 16, left: 16),
                                     child: Text(
                                       "The Phoenix Project will forever be free and open-source.",
                                       textAlign: TextAlign.center,
@@ -201,7 +207,7 @@ class _PhoenixState extends State<Phoenix> {
                                             iconSize: orientedCar
                                                 ? deviceWidth! / 17
                                                 : deviceWidth! / 17,
-                                            icon: Icon(MdiIcons.gmail,
+                                            icon: const Icon(MdiIcons.gmail,
                                                 color: Colors.white),
                                             onPressed: () {
                                               final Uri emailLaunchUri = Uri(
@@ -215,7 +221,7 @@ class _PhoenixState extends State<Phoenix> {
                                             iconSize: orientedCar
                                                 ? deviceWidth! / 17
                                                 : deviceWidth! / 17,
-                                            icon: Icon(MdiIcons.github,
+                                            icon: const Icon(MdiIcons.github,
                                                 color: Colors.white),
                                             onPressed: () async {
                                               const String _url =
@@ -229,11 +235,12 @@ class _PhoenixState extends State<Phoenix> {
                                             iconSize: orientedCar
                                                 ? deviceWidth! / 17
                                                 : deviceWidth! / 17,
-                                            icon: Icon(Ionicons.logo_paypal,
+                                            icon: const Icon(
+                                                Ionicons.logo_paypal,
                                                 color: Colors.white),
                                             onPressed: () async {
                                               Flushbar(
-                                                messageText: Text(
+                                                messageText: const Text(
                                                     "Money doesn't interest me. Have a great day!",
                                                     style: TextStyle(
                                                         fontFamily: "Futura",
@@ -248,7 +255,8 @@ class _PhoenixState extends State<Phoenix> {
                                                 dismissDirection:
                                                     FlushbarDismissDirection
                                                         .HORIZONTAL,
-                                                duration: Duration(seconds: 2),
+                                                duration:
+                                                    const Duration(seconds: 2),
                                                 borderColor: Colors.white
                                                     .withOpacity(0.04),
                                                 borderWidth: 1,
@@ -256,12 +264,10 @@ class _PhoenixState extends State<Phoenix> {
                                                 flushbarStyle:
                                                     FlushbarStyle.FLOATING,
                                                 isDismissible: true,
-                                                barBlur: musicBox
-                                                            .get("glassBlur") ==
-                                                        null
-                                                    ? 18
-                                                    : musicBox.get("glassBlur"),
-                                                margin: EdgeInsets.only(
+                                                barBlur:
+                                                    musicBox.get("glassBlur") ??
+                                                        18,
+                                                margin: const EdgeInsets.only(
                                                     bottom: 20,
                                                     left: 8,
                                                     right: 8),
@@ -269,9 +275,9 @@ class _PhoenixState extends State<Phoenix> {
                                                     BorderRadius.circular(15),
                                                 // leftBarIndicatorColor:
                                                 //     Color(0xFFCB0047),
-                                              )..show(context);
+                                              ).show(context);
                                               await Future.delayed(
-                                                  Duration(seconds: 2));
+                                                  const Duration(seconds: 2));
                                               const String _url =
                                                   "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
                                               await canLaunch(_url)
@@ -302,8 +308,9 @@ class _PhoenixState extends State<Phoenix> {
                       Container(
                         height:
                             orientedCar ? deviceWidth! / 3 : deviceWidth! / 3.0,
-                        width:
-                            orientedCar ? deviceWidth! / 1.5 : deviceWidth! / 1.5,
+                        width: orientedCar
+                            ? deviceWidth! / 1.5
+                            : deviceWidth! / 1.5,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
@@ -365,7 +372,7 @@ class _PhoenixState extends State<Phoenix> {
                                                 ChangeNotifierProvider<
                                                         Leprovider>(
                                                     create: (_) => Leprovider(),
-                                                    child: Privacy()),
+                                                    child:const Privacy()),
                                           ),
                                         );
                                       }),
@@ -385,7 +392,8 @@ class _PhoenixState extends State<Phoenix> {
                         padding: EdgeInsets.only(
                           right:
                               orientedCar ? deviceWidth! / 6 : deviceWidth! / 6,
-                          left: orientedCar ? deviceWidth! / 6 : deviceWidth! / 6,
+                          left:
+                              orientedCar ? deviceWidth! / 6 : deviceWidth! / 6,
                         ),
                         child: Column(
                           children: [
@@ -434,7 +442,7 @@ class _PhoenixState extends State<Phoenix> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LicensesPage()),
+                                builder: (context) => const LicensesPage()),
                           );
                         },
                         style: ButtonStyle(

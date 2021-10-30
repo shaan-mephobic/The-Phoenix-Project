@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:phoenix/src/beginning/widgets/seek_bar.dart';
 
 class Moderna extends StatefulWidget {
+  const Moderna({Key? key}) : super(key: key);
+
   @override
   _ModernaState createState() => _ModernaState();
 }
@@ -97,7 +99,7 @@ class _ModernaState extends State<Moderna> {
                         MarqueeText(
                           text: nowMediaItem.title,
                           speed: 20,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 19,
                             shadows: [
@@ -113,7 +115,7 @@ class _ModernaState extends State<Moderna> {
                           nowMediaItem.artist!,
                           maxLines: 1,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 13,
                             fontWeight: FontWeight.w300,
@@ -140,6 +142,8 @@ class _ModernaState extends State<Moderna> {
 }
 
 class Classix extends StatefulWidget {
+  const Classix({Key? key}) : super(key: key);
+
   @override
   _ClassixState createState() => _ClassixState();
 }
@@ -163,7 +167,7 @@ class _ClassixState extends State<Classix> {
                   : musicBox.get("miniPlayerProgress") == "Top"
                       ? true
                       : false,
-              child: MiniSeekbar()),
+              child: const MiniSeekbar()),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -239,7 +243,8 @@ class _ClassixState extends State<Classix> {
                                   width: orientedCar
                                       ? deviceHeight! / 1.6
                                       : deviceWidth! / 1.6,
-                                  padding: EdgeInsets.only(left: 25, right: 25),
+                                  padding: const EdgeInsets.only(
+                                      left: 25, right: 25),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
@@ -254,7 +259,7 @@ class _ClassixState extends State<Classix> {
                                               ? nowContrast
                                               : Colors.white,
                                           fontSize: 19,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -274,7 +279,7 @@ class _ClassixState extends State<Classix> {
                                               : Colors.white70,
                                           fontSize: 13,
                                           fontWeight: FontWeight.w300,
-                                          shadows: [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 1.0,
@@ -300,7 +305,7 @@ class _ClassixState extends State<Classix> {
           Visibility(
               visible:
                   musicBox.get("miniPlayerProgress") == "Bottom" ? true : false,
-              child: MiniSeekbar())
+              child: const MiniSeekbar())
         ],
       ),
     );

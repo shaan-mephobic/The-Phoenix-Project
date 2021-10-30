@@ -147,7 +147,7 @@ neverPlayed(Map raw) async {
       }
     }
   }
-  if (songList.length > 0) {
+  if (songList.isNotEmpty) {
     if (everPlayed.isNotEmpty) {
       for (int i = 0; i < 11; i++) {
         int randomNumber = random.nextInt(everPlayed.length);

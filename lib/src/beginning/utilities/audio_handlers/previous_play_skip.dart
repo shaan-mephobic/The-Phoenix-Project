@@ -8,7 +8,7 @@ import 'package:phoenix/src/beginning/pages/genres/genres.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/artwork.dart';
-import 'package:phoenix/src/beginning/utilities/screenshot_UI.dart';
+import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
 import '../page_backend/mansion_back.dart';
 import 'package:phoenix/src/beginning/utilities/scraping/lyrics_scrape.dart';
 import '../filters.dart';
@@ -70,13 +70,15 @@ playThis(int indexOfSong, rnAccess) async {
     await goToAudioService(indexOfSong, songList, songListMediaItems);
   } else if (rnAccess == "album") {
     rnAccessing = "album";
-    await goToAudioService(indexOfSong, insideInAlbumSongs as List<SongModel>?, albumMediaItems);
+    await goToAudioService(
+        indexOfSong, insideInAlbumSongs as List<SongModel>?, albumMediaItems);
   } else if (rnAccess == "artist") {
     rnAccessing = "artist";
     await goToAudioService(indexOfSong, insideInArtistsSongs, artistMediaItems);
   } else if (rnAccess == "genre") {
     rnAccessing = "genre";
-    await goToAudioService(indexOfSong, insidegenreSongs as List<SongModel>?, genreMediaItems);
+    await goToAudioService(
+        indexOfSong, insidegenreSongs as List<SongModel>?, genreMediaItems);
   } else if (rnAccess == "recent") {
     rnAccessing = "recent";
     await goToAudioService(indexOfSong, recentPlayed, recentPlayedMediaItems);
@@ -126,10 +128,11 @@ void addToQueue(MediaItem mediaitem) async {
 }
 
 void pauseResume() async {
-  if (isPlaying)
+  if (isPlaying) {
     audioHandler.pause();
-  else
+  } else {
     audioHandler.play();
+  }
 }
 
 Future<void> goToAudioService(int indexOfSong, List<SongModel>? allSong,
@@ -137,7 +140,7 @@ Future<void> goToAudioService(int indexOfSong, List<SongModel>? allSong,
   nowQueue = listOfMediaItems.sublist(indexOfSong) +
       listOfMediaItems.sublist(0, indexOfSong);
   nowMediaItem = nowQueue[0];
-  if (nowQueue[0].duration == Duration(milliseconds: 0)) {
+  if (nowQueue[0].duration == const Duration(milliseconds: 0)) {
     nowQueue.removeAt(0);
   }
   await audioHandler.updateQueue(nowQueue);
@@ -162,17 +165,19 @@ Future<void> updateThings() async {
 }
 
 Future<void> loopMode() async {
-  if (loopSelected)
+  if (loopSelected) {
     await audioHandler.setRepeatMode(AudioServiceRepeatMode.one);
-  else
+  } else {
     await audioHandler.setRepeatMode(AudioServiceRepeatMode.all);
+  }
 }
 
 Future<void> shuffleMode() async {
-  if (shuffleSelected)
+  if (shuffleSelected) {
     await audioHandler.setShuffleMode(AudioServiceShuffleMode.all);
-  else
+  } else {
     await audioHandler.setShuffleMode(AudioServiceShuffleMode.none);
+  }
 }
 
 void holdUpLyrics() async {

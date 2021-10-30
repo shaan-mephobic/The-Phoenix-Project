@@ -10,6 +10,8 @@ int? passedIndexAlbum;
 String? selectedAlbumName;
 
 class Albums extends StatefulWidget {
+  const Albums({Key? key}) : super(key: key);
+
   @override
   _AlbumsState createState() => _AlbumsState();
 }
@@ -41,9 +43,9 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
             controller: _scrollBarController,
             addAutomaticKeepAlives: true,
             physics: musicBox.get("fluidAnimation") ?? true
-                ? BouncingScrollPhysics()
-                : ClampingScrollPhysics(),
-            padding: EdgeInsets.only(bottom: 0, top: 0),
+                ? const BouncingScrollPhysics()
+                : const ClampingScrollPhysics(),
+            padding: const EdgeInsets.only(bottom: 0, top: 0),
             itemCount: allAlbums.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: orientedCar
@@ -86,12 +88,12 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AlbumsInside()),
+                      MaterialPageRoute(builder: (context) => const AlbumsInside()),
                     );
                   },
                   child: Column(
                     children: [
-                      Padding(padding: EdgeInsets.only(top: 5)),
+                     const Padding(padding: EdgeInsets.only(top: 5)),
                       Hero(
                         tag: "sterio-$index",
                         child: PhysicalModel(
@@ -143,8 +145,8 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                             shadows: [
                               Shadow(
                                 offset: musicBox.get("dynamicArtDB") ?? true
-                                    ? Offset(1.0, 1.0)
-                                    : Offset(0, 1.0)
+                                    ? const Offset(1.0, 1.0)
+                                    : const Offset(0, 1.0)
                                         ,
                                 blurRadius: 2.0,
                                 color: Colors.black45,
@@ -163,8 +165,8 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
       );
     } else {
       return orientedCar
-          ? SingleChildScrollView(child: Awakening())
-          : Awakening();
+          ? const SingleChildScrollView(child: Awakening())
+          : const Awakening();
     }
   }
 

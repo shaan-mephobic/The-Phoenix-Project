@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-const Duration _kUnconfirmedSplashDuration = const Duration(milliseconds: 250);
-const Duration _kSplashFadeDuration = const Duration(milliseconds: 180);
+Duration _kUnconfirmedSplashDuration = const Duration(milliseconds: 250);
+Duration _kSplashFadeDuration = const Duration(milliseconds: 180);
 
 const double _kSplashInitialSize = 0.0; // logical pixels
 const double _kSplashConfirmedVelocity = 50.0;
@@ -42,7 +42,7 @@ class CustomRipple extends InteractiveInkFeature {
   /// Used to specify this type of ink splash for an [InkWell], [InkResponse]
   /// or material [Theme].
   static const InteractiveInkFeatureFactory splashFactory =
-      const CustomSplashFactory();
+      CustomSplashFactory();
 
   /// Begin a splash, centered at position relative to [referenceBox].
   ///
@@ -82,18 +82,18 @@ class CustomRipple extends InteractiveInkFeature {
             referenceBox: referenceBox,
             color: color,
             onRemoved: onRemoved) {
-    _radiusController = new AnimationController(
+    _radiusController =  AnimationController(
         duration: _kUnconfirmedSplashDuration, vsync: controller.vsync)
       ..addListener(controller.markNeedsPaint)
       ..forward();
-    _radius = new Tween<double>(begin: _kSplashInitialSize, end: _targetRadius)
+    _radius = Tween<double>(begin: _kSplashInitialSize, end: _targetRadius)
         .animate(_radiusController!);
-    _alphaController = new AnimationController(
+    _alphaController = AnimationController(
         duration: _kSplashFadeDuration, vsync: controller.vsync)
       ..addListener(controller.markNeedsPaint)
       ..addStatusListener(_handleAlphaStatusChanged);
     _alpha =
-        new IntTween(begin: color.alpha, end: 0).animate(_alphaController!);
+        IntTween(begin: color.alpha, end: 0).animate(_alphaController!);
 
     controller.addInkFeature(this);
   }
@@ -137,7 +137,7 @@ class CustomRipple extends InteractiveInkFeature {
   }
 
   RRect _clipRRectFromRect(Rect rect) {
-    return new RRect.fromRectAndCorners(
+    return RRect.fromRectAndCorners(
       rect,
       topLeft: _borderRadius.topLeft,
       topRight: _borderRadius.topRight,
@@ -160,11 +160,12 @@ class CustomRipple extends InteractiveInkFeature {
 
   @override
   void paintFeature(Canvas canvas, Matrix4 transform) {
-    final Paint paint = new Paint()..color = color.withAlpha(_alpha.value);
+    final Paint paint = Paint()..color = color.withAlpha(_alpha.value);
     Offset? center = _position;
-    if (_repositionToReferenceBox)
+    if (_repositionToReferenceBox) {
       center = Offset.lerp(center, referenceBox.size.center(Offset.zero),
           _radiusController!.value);
+    }
     final Offset? originOffset = MatrixUtils.getAsTranslation(transform);
     if (originOffset == null) {
       canvas.save();
