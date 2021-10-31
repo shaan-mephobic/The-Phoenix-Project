@@ -14,14 +14,21 @@ Future<bool> editSong(
     TagType.GENRE: genre,
     TagType.ALBUM: album,
   };
-  String? permissionPath = await OnAudioEdit().getUri();
-  debugPrint(permissionPath);
-  debugPrint(await OnAudioEdit().getUri(originalPath: true));
-  if (!songFile.contains(permissionPath ?? "")) {
-    await OnAudioEdit().resetComplexPermission();
-    await OnAudioEdit().requestComplexPermission();
-  }
+  await getComplexPermission(songFile);
   bool song =
       await OnAudioEdit().editAudio(songFile, tags, searchInsideFolders: true);
   return song;
+}
+
+/// get complex permission
+Future<void> getComplexPermission(String song) async {
+  final String? permissionPath = await OnAudioEdit().getUri();
+  debugPrint(permissionPath);
+  debugPrint(await OnAudioEdit().getUri(originalPath: true));
+
+  if (!song.contains(permissionPath ?? "")) {
+    await OnAudioEdit().resetComplexPermission();
+    await OnAudioEdit().requestComplexPermission();
+    await getComplexPermission(song);
+  }
 }

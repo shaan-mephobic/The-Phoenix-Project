@@ -119,7 +119,7 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(10.0),
-                                        borderSide:const  BorderSide(
+                                        borderSide: const BorderSide(
                                             color: Color(0xFF3cb9cd)),
                                       ),
                                       focusedBorder: OutlineInputBorder(
@@ -249,12 +249,13 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                               ),
                             ),
                             Padding(
-                                padding: EdgeInsets.only(
-                                    top: orientedCar
-                                        ? widget.widthOfDevice! / 8
-                                        : widget.heightOfDevice! / 20)),
+                              padding: EdgeInsets.only(
+                                  top: orientedCar
+                                      ? widget.widthOfDevice! / 8
+                                      : widget.heightOfDevice! / 20),
+                            ),
 
-                            ///Genre
+                            //Genre
                             Material(
                               color: Colors.transparent,
                               child: Padding(
@@ -265,7 +266,7 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                   autofocus: false,
                                   controller: TextEditingController()
                                     ..text = genre!,
-                                  style:const  TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                   ),
                                   onChanged: (text) {
@@ -303,16 +304,17 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                               ),
                             ),
                             Padding(
-                                padding: EdgeInsets.only(
-                                    top: orientedCar
-                                        ? widget.widthOfDevice! / 8
-                                        : widget.heightOfDevice! / 20)),
-
+                              padding: EdgeInsets.only(
+                                  top: orientedCar
+                                      ? widget.widthOfDevice! / 8
+                                      : widget.heightOfDevice! / 20),
+                            ),
                             Padding(
-                                padding: EdgeInsets.only(
-                                    top: orientedCar
-                                        ? widget.widthOfDevice! / 8
-                                        : widget.heightOfDevice! / 20)),
+                              padding: EdgeInsets.only(
+                                  top: orientedCar
+                                      ? widget.widthOfDevice! / 8
+                                      : widget.heightOfDevice! / 20),
+                            ),
                             Material(
                               borderRadius: BorderRadius.circular(kRounded),
                               color: Colors.transparent,
@@ -328,6 +330,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                         album: album,
                                         artist: artist,
                                         genre: genre);
+                                    await Future.delayed(
+                                        const Duration(seconds: 1));
                                     refresh = true;
                                     rootState.provideman();
                                   }

@@ -44,7 +44,6 @@ class Begin extends StatefulWidget {
 class _BeginState extends State<Begin>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   bool isonexit = false;
-  bool isEditing = false;
   bool stackedPhoenix = false;
   TabController? tabController;
 

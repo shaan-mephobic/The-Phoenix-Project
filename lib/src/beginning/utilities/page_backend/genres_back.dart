@@ -10,11 +10,11 @@ Map<String, List<SongModel>> insideAllGenreData = {};
 
 gettinGenres() async {
   allgenres = [];
-  var generica = await OnAudioQuery().queryGenres();
-  for (int i = 0; i < generica.length; i++) {
-    if (musicBox.get('customScan') ?? false) {
+  List<GenreModel> genres = await OnAudioQuery().queryGenres();
+  if (musicBox.get('customScan') ?? false) {
+    for (int i = 0; i < genres.length; i++) {
       List tempGenreSongs = await OnAudioQuery()
-          .queryAudiosFrom(AudiosFromType.GENRE, generica[i].genre);
+          .queryAudiosFrom(AudiosFromType.GENRE, genres[i].genre);
       // print(tempGenreSongs);
       for (int o = 0; o < tempGenreSongs.length; o++) {
         if (musicBox.get('customLocations') != null) {
@@ -23,19 +23,19 @@ gettinGenres() async {
                 .data
                 .toString()
                 .contains(musicBox.get('customLocations')[a])) {
-              if (insideAllGenreData[generica[i].genre] == null) {
-                insideAllGenreData[generica[i].genre] = [tempGenreSongs[o]];
+              if (insideAllGenreData[genres[i].genre] == null) {
+                insideAllGenreData[genres[i].genre] = [tempGenreSongs[o]];
               } else {
-                insideAllGenreData[generica[i].genre]!.add(tempGenreSongs[o]);
+                insideAllGenreData[genres[i].genre]!.add(tempGenreSongs[o]);
               }
-              allgenres.add(generica[i]);
+              allgenres.add(genres[i]);
             }
           }
         }
       }
-    } else {
-      allgenres.add(generica[i]);
     }
+  } else {
+    allgenres = genres;
   }
 }
 

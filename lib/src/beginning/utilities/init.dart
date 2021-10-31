@@ -42,15 +42,11 @@ dataInit() async {
   var info = await DeviceInfoPlugin().androidInfo;
   isAndroid11 = info.version.sdkInt > 29 ? true : false;
   glassBlur = ImageFilter.blur(
-      sigmaX:
-          musicBox.get("glassBlur") ?? 10,
-      sigmaY:
-          musicBox.get("glassBlur") ?? 10);
-  glassOpacity = Colors.white.withOpacity(
-      (musicBox.get("glassOverlayColor") ?? 2) /
-          100);
-  glassShadowOpacity =
-      musicBox.get("glassShadow") ?? 6;
+      sigmaX: musicBox.get("glassBlur") ?? 10,
+      sigmaY: musicBox.get("glassBlur") ?? 10);
+  glassOpacity =
+      Colors.white.withOpacity((musicBox.get("glassOverlayColor") ?? 2) / 100);
+  glassShadowOpacity = musicBox.get("glassShadow") ?? 6;
 }
 
 fetchSongs() async {
@@ -60,7 +56,6 @@ fetchSongs() async {
       List<SongModel> updateList = [];
       specificAlbums = [];
       for (int i = 0; i < songList.length; i++) {
-        foundAlready:
         if (musicBox.get('customLocations') != null) {
           for (int o = 0; o < musicBox.get('customLocations').length; o++) {
             if (songList[i]
@@ -68,7 +63,7 @@ fetchSongs() async {
                 .contains(musicBox.get('customLocations')[o].toString())) {
               updateList.add(songList[i]);
               specificAlbums.add(songList[i].album!.toUpperCase());
-              break foundAlready;
+              break;
             }
           }
         }
