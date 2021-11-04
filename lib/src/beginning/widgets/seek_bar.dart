@@ -197,10 +197,11 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
     AudioService.position.listen(
       (Duration position) {
         currentPosition = position;
-        if (globalTiming != null) {
-          if (usingSeek == false) {
-            globalTiming.incrementTime(currentPosition.inSeconds * 1.0);
-          }
+        if (globalTiming != null &&
+            usingSeek == false &&
+            currentPosition.inMilliseconds <=
+                nowMediaItem.duration!.inMilliseconds) {
+          globalTiming.incrementTime(currentPosition.inMilliseconds / 1000);
         }
       },
     );
@@ -520,7 +521,10 @@ class _MiniSeekbarState extends State<MiniSeekbar> {
   streamPosition() {
     AudioService.position.listen(
       (Duration position) {
-        currentPosition = position;
+        currentPosition =
+            position.inMilliseconds <= nowMediaItem.duration!.inMilliseconds
+                ? position
+                : currentPosition;
       },
     );
   }
