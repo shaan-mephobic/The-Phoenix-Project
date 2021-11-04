@@ -75,7 +75,7 @@ dependencies:
 
 
   # MISCELLANEOUS
-  # awesome_notifications: ^0.0.6+11
+  awesome_notifications: ^0.0.6+11
   screenshot: ^1.2.3
 
 

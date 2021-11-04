@@ -546,6 +546,7 @@ class _BeginState extends State<Begin>
       borderRadius: BorderRadius.circular(15),
     ).show(context);
     if (confirmExit && !isAutoDismiss) {
+      audioHandler.stop();
       return true;
     } else {
       isonexit = false;
