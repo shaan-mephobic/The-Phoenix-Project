@@ -144,7 +144,8 @@ class _AllofemState extends State<Allofem>
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: MemoryImage(
-                              albumsArts[songList[index - 1].album!] ??
+                              artworksData[(musicBox.get("artworksPointer") ??
+                                      {})[songList[index - 1].id]] ??
                                   defaultNone!),
                         ),
                       ),

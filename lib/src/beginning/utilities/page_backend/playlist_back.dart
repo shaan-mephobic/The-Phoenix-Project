@@ -3,7 +3,6 @@ import 'package:phoenix/src/beginning/pages/playlist/add_songs.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'albums_back.dart';
 
 fetchPlaylistSongs(String? playlistName) {
   playlistMediaItems = [];
@@ -27,13 +26,12 @@ fetchPlaylistSongs(String? playlistName) {
                     album: songList[o].album,
                     artist: songList[o].artist,
                     duration: Duration(milliseconds: getDuration(songList[o])!),
-                    artUri: Uri.file(allAlbumsName.contains(songList[o].album)
-                        ? musicBox.get("AlbumsWithoutArt") == null
-                            ? "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                            : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
-                                ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                                : "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+                    artUri: Uri.file(
+                      (musicBox.get("artworksPointer") ?? {})[songList[o].id] ==
+                              null
+                          ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                          : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[o].id]}.jpeg",
+                    ),
                     title: songList[o].title,
                     extras: {"id": songList[o].id});
                 playlistMediaItems.add(item);
@@ -49,13 +47,11 @@ fetchPlaylistSongs(String? playlistName) {
               album: songList[o].album,
               artist: songList[o].artist,
               duration: Duration(milliseconds: getDuration(songList[o])!),
-              artUri: Uri.file(allAlbumsName.contains(songList[o].album)
-                  ? musicBox.get("AlbumsWithoutArt") == null
-                      ? "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                      : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
-                          ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                          : "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+              artUri: Uri.file(
+                (musicBox.get("artworksPointer") ?? {})[songList[o].id] == null
+                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                    : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[o].id]}.jpeg",
+              ),
               title: songList[o].title,
               extras: {"id": songList[o].id});
           playlistMediaItems.add(item);

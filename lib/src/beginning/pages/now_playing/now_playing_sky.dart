@@ -234,14 +234,14 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 child: MarqueeText(
                                   text: nowMediaItem.title,
                                   style: TextStyle(
-                                      color:
-                                          musicBox.get("dynamicArtDB") ?? true
-                                              ? isArtworkDark!
-                                                  ? Colors.white
-                                                  : Colors.black
-                                              : Colors.white,
-                                      fontSize: deviceHeight! / 35,
-                                      fontWeight: FontWeight.w600),
+                                    color: musicBox.get("dynamicArtDB") ?? true
+                                        ? isArtworkDark!
+                                            ? Colors.white
+                                            : Colors.black
+                                        : Colors.white,
+                                    fontSize: deviceHeight! / 35,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                   speed: 20,
                                 ),
                               ),
@@ -796,8 +796,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                 child: SizedBox(
                                   width: deviceHeight! / 2,
                                   child: const Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 50.0, right: 50),
+                                    padding:
+                                        EdgeInsets.only(left: 50.0, right: 50),
                                     child: CyberSkySeekBar(),
                                   ),
                                 ),

@@ -118,13 +118,11 @@ recentlyPlayed(Map raw) async {
             album: songList[o].album,
             artist: songList[o].artist,
             duration: Duration(milliseconds: getDuration(songList[o])!),
-            artUri: Uri.file(allAlbumsName.contains(songList[o].album)
-                ? musicBox.get("AlbumsWithoutArt") == null
-                    ? "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : musicBox.get("AlbumsWithoutArt").contains(songList[o].album)
-                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/${songList[o].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            artUri: Uri.file(
+              (musicBox.get("artworksPointer") ?? {})[songList[o].id] == null
+                  ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                  : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[o].id]}.jpeg",
+            ),
             title: songList[o].title,
             extras: {"id": songList[o].id});
         recentPlayedMediaItems.add(item);
@@ -156,14 +154,15 @@ neverPlayed(Map raw) async {
             id: everPlayedLimited[i].data,
             album: everPlayedLimited[i].album,
             artist: everPlayedLimited[i].artist,
-            duration: Duration(milliseconds: getDuration(everPlayedLimited[i])!),
-            artUri: Uri.file(allAlbumsName.contains(everPlayedLimited[i].album)
-                ? musicBox.get("AlbumsWithoutArt") == null
-                    ? "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : musicBox.get("AlbumsWithoutArt").contains(everPlayedLimited[i].album)
-                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/${everPlayedLimited[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            duration:
+                Duration(milliseconds: getDuration(everPlayedLimited[i])!),
+            artUri: Uri.file(
+              (musicBox.get("artworksPointer") ??
+                          {})[everPlayedLimited[i].id] ==
+                      null
+                  ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                  : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[everPlayedLimited[i].id]}.jpeg",
+            ),
             title: everPlayedLimited[i].title,
             extras: {"id": everPlayedLimited[i].id});
         everPlayedLimitedMediaItems.add(item);
@@ -184,13 +183,11 @@ topPlayed(Map raw) async {
             album: songList[q].album,
             artist: songList[q].artist,
             duration: Duration(milliseconds: getDuration(songList[q])!),
-            artUri: Uri.file(allAlbumsName.contains(songList[q].album)
-                ? musicBox.get("AlbumsWithoutArt") == null
-                    ? "${applicationFileDirectory.path}/artworks/${songList[q].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                    : musicBox.get("AlbumsWithoutArt").contains(songList[q].album)
-                        ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                        : "${applicationFileDirectory.path}/artworks/${songList[q].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+            artUri: Uri.file(
+              (musicBox.get("artworksPointer") ?? {})[songList[q].id] == null
+                  ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                  : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[q].id]}.jpeg",
+            ),
             title: songList[q].title,
             extras: {"id": songList[q].id});
         alwaysPlayedMediaItems.add(item);
@@ -207,13 +204,11 @@ updateRecentlyPlayed(song) async {
         album: song.album,
         artist: song.artist,
         duration: Duration(milliseconds: getDuration(song)!),
-        artUri: Uri.file(allAlbumsName.contains(song.album)
-            ? musicBox.get("AlbumsWithoutArt") == null
-                ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : musicBox.get("AlbumsWithoutArt").contains(song.album)
-                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-            : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+        artUri: Uri.file(
+          (musicBox.get("artworksPointer") ?? {})[song.id] == null
+              ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+              : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[song.id]}.jpeg",
+        ),
         title: song.title,
         extras: {"id": song.id});
     recentPlayedMediaItems.add(item);
@@ -225,13 +220,11 @@ updateRecentlyPlayed(song) async {
           album: song.album,
           artist: song.artist,
           duration: Duration(milliseconds: getDuration(song)!),
-          artUri: Uri.file(allAlbumsName.contains(song.album)
-              ? musicBox.get("AlbumsWithoutArt") == null
-                  ? "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : musicBox.get("AlbumsWithoutArt").contains(song.album)
-                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                      : "${applicationFileDirectory.path}/artworks/${song.album.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+          artUri: Uri.file(
+            (musicBox.get("artworksPointer") ?? {})[song.id] == null
+                ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[song.id]}.jpeg",
+          ),
           title: song.title,
           extras: {"id": song.id});
       recentPlayedMediaItems.add(item);

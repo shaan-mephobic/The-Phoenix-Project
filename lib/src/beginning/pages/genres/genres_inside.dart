@@ -75,10 +75,10 @@ class _GenresInsideState extends State<GenresInside> {
                       controller: _scrollBarController,
                       child: ListView.builder(
                         controller: _scrollBarController,
-                        padding:const  EdgeInsets.only(top: 5, bottom: 8),
+                        padding: const EdgeInsets.only(top: 5, bottom: 8),
                         physics: musicBox.get("fluidAnimation") ?? true
                             ? const BouncingScrollPhysics()
-                            :const  ClampingScrollPhysics(),
+                            : const ClampingScrollPhysics(),
                         itemCount: genreSongs!.length + 1,
                         itemBuilder: (context, index) {
                           if (index == 0) {
@@ -120,7 +120,7 @@ class _GenresInsideState extends State<GenresInside> {
                               title: Text(
                                 genreSongs![index - 1].title,
                                 maxLines: 2,
-                                style:const  TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white70,
                                   shadows: [
                                     Shadow(
@@ -162,9 +162,14 @@ class _GenresInsideState extends State<GenresInside> {
                                       borderRadius: BorderRadius.circular(3),
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: MemoryImage(albumsArts[
-                                                genreSongs![index - 1].album!] ??
-                                            defaultNone!),
+                                        image: MemoryImage(
+                                            
+                                            artworksData[(musicBox.get(
+                                                        "artworksPointer") ??
+                                                    {})[genreSongs![
+                                                        index - 1]
+                                                    .id]] ??
+                                                defaultNone!),
                                       ),
                                     ),
                                   ),

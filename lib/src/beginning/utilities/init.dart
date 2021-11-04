@@ -97,6 +97,7 @@ fetchAll() async {
   await gettinArtistsAlbums();
   await gettinGenres();
   await smartArtistsArts();
+  await gettinSongArts();
   ascend = true;
   debugPrint("ASCENDED");
   rootState.provideman();
@@ -116,13 +117,11 @@ songListToMediaItem() async {
         album: songList[i].album,
         artist: songList[i].artist,
         duration: Duration(milliseconds: getDuration(songList[i])!),
-        artUri: Uri.file(allAlbumsName.contains(songList[i].album)
-            ? musicBox.get("AlbumsWithoutArt") == null
-                ? "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
-                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-            : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+        artUri: Uri.file(
+          (musicBox.get("artworksPointer") ?? {})[songList[i].id] == null
+              ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+              : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[i].id]}.jpeg",
+        ),
         title: songList[i].title,
         extras: {"id": songList[i].id});
     songListMediaItems.add(item);

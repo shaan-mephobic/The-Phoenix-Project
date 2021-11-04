@@ -3,7 +3,6 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'albums_back.dart';
 
 List<GenreModel> allgenres = [];
 Map<String, List<SongModel>> insideAllGenreData = {};
@@ -15,7 +14,6 @@ gettinGenres() async {
     for (int i = 0; i < genres.length; i++) {
       List tempGenreSongs = await OnAudioQuery()
           .queryAudiosFrom(AudiosFromType.GENRE, genres[i].genre);
-      // print(tempGenreSongs);
       for (int o = 0; o < tempGenreSongs.length; o++) {
         if (musicBox.get('customLocations') != null) {
           for (int a = 0; a < musicBox.get('customLocations').length; a++) {
@@ -46,13 +44,11 @@ putinGenreInMediaItem() {
         album: genreSongs![i].album,
         artist: genreSongs![i].artist,
         duration: Duration(milliseconds: getDuration(genreSongs![i])!),
-        artUri: Uri.file(allAlbumsName.contains(genreSongs![i].album)
-            ? musicBox.get("AlbumsWithoutArt") == null
-                ? "${applicationFileDirectory.path}/artworks/${genreSongs![i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                : musicBox.get("AlbumsWithoutArt").contains(genreSongs![i].album)
-                    ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                    : "${applicationFileDirectory.path}/artworks/${genreSongs![i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-            : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+        artUri: Uri.file(
+          (musicBox.get("artworksPointer") ?? {})[genreSongs![i].id] == null
+              ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+              : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[genreSongs![i].id]}.jpeg",
+        ),
         title: genreSongs![i].title,
         extras: {"id": genreSongs![i].id});
     genreMediaItems.add(item);

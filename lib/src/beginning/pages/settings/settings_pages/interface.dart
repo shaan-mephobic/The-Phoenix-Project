@@ -178,6 +178,7 @@ class _InterfaceState extends State<Interface> {
                               borderRadius: BorderRadius.circular(15),
                             ).show(context);
                             musicBox.put("dominantDefault", null);
+                            refresh = true;
                           },
                           onTap: () async {
                             final ImagePicker _picker = ImagePicker();
@@ -191,6 +192,7 @@ class _InterfaceState extends State<Interface> {
                                     "${applicationFileDirectory.path}/artworks/null.jpeg")
                                 .writeAsBytes(bytes, mode: FileMode.write);
                             musicBox.put("dominantDefault", null);
+                            refresh = true;
                           },
                         ),
                       ),

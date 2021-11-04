@@ -1,23 +1,24 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_edit/on_audio_edit.dart' as on_audio_edit;
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import '../../widgets/artwork_background.dart';
 
 playerontap() async {
   if (!playerVisible) playerVisible = true;
-  artwork = await OnAudioQuery().queryArtwork(
-          nowMediaItem.extras!["id"], ArtworkType.AUDIO,
-          format: ArtworkFormat.JPEG, size: 200) ??
-      defaultNone;
+  artwork = artworksData[(musicBox.get("artworksPointer") ??
+          {})[nowMediaItem.extras!["id"]]] ??
+      defaultNone!;
   try {
     advanceAudioData =
         await on_audio_edit.OnAudioEdit().readAudio(nowMediaItem.id);
   } catch (e) {
     advanceAudioData = null;
   }
-  if (initialart && art == art2) {
+
+  if (initialart && listEquals(art, art2)) {
     first = true;
     art = artwork;
     initialart = false;
@@ -28,23 +29,27 @@ playerontap() async {
       }
     }
   } else if (!initialart && fadeBool) {
-    first = false;
     art2 = artwork;
-    fadeBool = false;
-    if (backArtStateChange) {
-      rootCrossfadeState.provideman();
-      if (crossfadeStateChange) {
-        globaltaste.provideman();
+    if (!listEquals(art, art2)) {
+      first = false;
+      fadeBool = false;
+      if (backArtStateChange) {
+        rootCrossfadeState.provideman();
+        if (crossfadeStateChange) {
+          globaltaste.provideman();
+        }
       }
     }
   } else if (!initialart && !fadeBool) {
-    first = true;
     art = artwork;
-    fadeBool = true;
-    if (backArtStateChange) {
-      rootCrossfadeState.provideman();
-      if (crossfadeStateChange) {
-        globaltaste.provideman();
+    if (!listEquals(art, art2)) {
+      first = true;
+      fadeBool = true;
+      if (backArtStateChange) {
+        rootCrossfadeState.provideman();
+        if (crossfadeStateChange) {
+          globaltaste.provideman();
+        }
       }
     }
   }

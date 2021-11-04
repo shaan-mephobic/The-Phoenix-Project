@@ -51,8 +51,9 @@ class _BeginState extends State<Begin>
   void initState() {
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
-      Begin.refreshIndicatorKey.currentState?.show();
+    SchedulerBinding.instance!.addPostFrameCallback((_) async {
+      await Begin.refreshIndicatorKey.currentState?.show();
+      setState(() {});
     });
     visualizerNotificationInit();
     WidgetsBinding.instance!.addObserver(this);

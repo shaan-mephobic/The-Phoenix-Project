@@ -64,7 +64,6 @@ updateStuffs() async {
 
 playThis(int indexOfSong, rnAccess) async {
   lyricsDat = "";
-
   if (rnAccess == "all") {
     rnAccessing = "all";
     await goToAudioService(indexOfSong, songList, songListMediaItems);

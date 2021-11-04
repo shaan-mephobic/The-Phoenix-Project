@@ -1,7 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'package:phoenix/src/beginning/utilities/init.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 
@@ -59,13 +58,11 @@ artistsAllSongs(String who) async {
           album: songList[i].album,
           artist: songList[i].artist,
           duration: Duration(milliseconds: getDuration(songList[i])!),
-          artUri: Uri.file(allAlbumsName.contains(songList[i].album)
-              ? musicBox.get("AlbumsWithoutArt") == null
-                  ? "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-                  : musicBox.get("AlbumsWithoutArt").contains(songList[i].album)
-                      ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                      : "${applicationFileDirectory.path}/artworks/${songList[i].album!.replaceAll(RegExp(r'[^\w\s]+'), '')}.jpeg"
-              : "${applicationFileDirectory.path}/artworks/null.jpeg"),
+          artUri: Uri.file(
+            (musicBox.get("artworksPointer") ?? {})[songList[i].id] == null
+                ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+                : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[i].id]}.jpeg",
+          ),
           title: songList[i].title,
           extras: {"id": songList[i].id});
       artistMediaItems.add(item);
@@ -84,9 +81,5 @@ smartArtistsArts() {
         artistsAlbums[allArtists[i]] = add;
       }
     }
-  }
-  if (shouldRefresh) {
-    fetchAll();
-    shouldRefresh = false;
   }
 }

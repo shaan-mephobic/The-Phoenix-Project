@@ -18,7 +18,8 @@ List playListSongsId = [];
 class AddSongs extends StatefulWidget {
   final bool modify;
   final String? playlistName;
-  const AddSongs({required this.modify, required this.playlistName,Key? key}) : super(key: key);
+  const AddSongs({required this.modify, required this.playlistName, Key? key})
+      : super(key: key);
   @override
   _AddSongsState createState() => _AddSongsState();
 }
@@ -98,8 +99,7 @@ class _AddSongsState extends State<AddSongs> {
                   removePlaylists(widget.playlistName);
                 }
                 newPlaylist(
-                    nameOfPlaylist ?? widget.playlistName,
-                    playListSongsId);
+                    nameOfPlaylist ?? widget.playlistName, playListSongsId);
                 Navigator.pop(context);
               }
             },
@@ -200,7 +200,7 @@ class _AddSongsState extends State<AddSongs> {
                         child: ListView.builder(
                           controller: _scrollBarController,
                           shrinkWrap: true,
-                          padding:const  EdgeInsets.only(top: 0, bottom: 8),
+                          padding: const EdgeInsets.only(top: 0, bottom: 8),
                           addAutomaticKeepAlives: true,
                           physics: musicBox.get("fluidAnimation") ?? true
                               ? const BouncingScrollPhysics()
@@ -305,9 +305,14 @@ class _AddSongsState extends State<AddSongs> {
                                         borderRadius: BorderRadius.circular(3),
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: MemoryImage(albumsArts[
-                                                  songList[index].album!] ??
-                                              defaultNone!),
+                                          image: MemoryImage(
+                                            
+                                              artworksData[(musicBox.get(
+                                                          "artworksPointer") ??
+                                                      {})[songList[
+                                                          index]
+                                                      .id]] ??
+                                                  defaultNone!),
                                         ),
                                       ),
                                     ),

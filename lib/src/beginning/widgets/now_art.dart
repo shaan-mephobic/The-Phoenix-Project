@@ -1,9 +1,10 @@
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:provider/provider.dart';
+
 
 class NowArt extends StatelessWidget {
   final bool car;
@@ -20,27 +21,21 @@ class NowArt extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1 / 1,
             child: isPlayerShown
-                ? QueryArtworkWidget(
-                    id: nowMediaItem.extras!["id"],
-                    type: ArtworkType.AUDIO,
-                    format: ArtworkFormat.JPEG,
-                    size: 600,
-                    artworkQuality: FilterQuality.high,
-                    keepOldArtwork: true,
-                    nullArtworkWidget: AspectRatio(
-                      aspectRatio: 1 / 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(kRounded),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: MemoryImage(defaultNone!),
-                          ),
+                ? AspectRatio(
+                    aspectRatio: 1 / 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(kRounded),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: MemoryImage(artworksData[
+                                  (musicBox.get("artworksPointer") ??
+                                      {})[nowMediaItem.extras!["id"]]] ??
+                              defaultNone!),
                         ),
                       ),
                     ),
-                    artworkBorder: BorderRadius.circular(kRounded),
-                    artworkFit: BoxFit.cover)
+                  )
                 : AspectRatio(
                     aspectRatio: 1 / 1,
                     child: Container(
@@ -71,24 +66,18 @@ class NowArtLandScape extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1 / 1,
             child: isPlayerShown
-                ? QueryArtworkWidget(
-                    id: nowMediaItem.extras!["id"],
-                    type: ArtworkType.AUDIO,
-                    format: ArtworkFormat.JPEG,
-                    size: 600,
-                    artworkQuality: FilterQuality.high,
-                    keepOldArtwork: true,
-                    nullArtworkWidget: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(kRounded),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: MemoryImage(defaultNone!),
-                        ),
+                ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kRounded),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: MemoryImage(artworksData[
+                                (musicBox.get("artworksPointer") ??
+                                    {})[nowMediaItem.extras!["id"]]] ??
+                            defaultNone!),
                       ),
                     ),
-                    artworkBorder: BorderRadius.circular(kRounded),
-                    artworkFit: BoxFit.cover)
+                  )
                 : Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(kRounded),

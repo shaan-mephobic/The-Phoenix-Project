@@ -160,10 +160,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                         kRounded),
                                                 image: DecorationImage(
                                                   fit: BoxFit.cover,
-                                                  image: MemoryImage(albumsArts[
-                                                          recentPlayed[index]
-                                                              .album!] ??
-                                                      defaultNone!),
+                                                  image: MemoryImage(
+                                                      artworksData[(musicBox.get(
+                                                                  "artworksPointer") ??
+                                                              {})[recentPlayed[
+                                                                  index]
+                                                              .id]] ??
+                                                          defaultNone!),
                                                 ),
                                               ),
                                             ),
@@ -293,13 +296,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 BorderRadius.circular(kRounded),
                                             image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: MemoryImage(albumsArts[
-                                                          alwaysPlayed[index]
-                                                              .album!] ??
-                                                      defaultNone!
-                                                  // alwaysPlayedArt[index] ??
-                                                  //     defaultNone
-                                                  ),
+                                              image: MemoryImage(artworksData[
+                                                      (musicBox.get(
+                                                              "artworksPointer") ??
+                                                          {})[alwaysPlayed[
+                                                              index]
+                                                          .id]] ??
+                                                  defaultNone!),
                                             ),
                                           ),
                                         ),
@@ -433,9 +436,12 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                       kRounded),
                                               image: DecorationImage(
                                                 fit: BoxFit.cover,
-                                                image: MemoryImage(albumsArts[
-                                                        everPlayedLimited[index]
-                                                            .album!] ??
+                                                image: MemoryImage(artworksData[
+                                                        (musicBox.get(
+                                                                "artworksPointer") ??
+                                                            {})[everPlayedLimited[
+                                                                index]
+                                                            .id]] ??
                                                     defaultNone!),
                                               ),
                                             ),
@@ -562,7 +568,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const ArtistsInside()),
+                                        builder: (context) =>
+                                            const ArtistsInside()),
                                   );
                                 },
                                 child: SizedBox(
@@ -608,7 +615,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                               offset: musicBox.get(
                                                           "dynamicArtDB") ??
                                                       true
-                                                  ?const  Offset(1.0, 1.0)
+                                                  ? const Offset(1.0, 1.0)
                                                   : const Offset(0, 1.0),
                                               blurRadius: 2.0,
                                               color: Colors.black45,
@@ -702,7 +709,8 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const AlbumsInside()),
+                                        builder: (context) =>
+                                            const AlbumsInside()),
                                   );
                                 },
                                 child: SizedBox(
@@ -780,7 +788,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
       });
     } else {
       return orientedCar
-          ?const SingleChildScrollView(child: Awakening())
+          ? const SingleChildScrollView(child: Awakening())
           : const Awakening();
     }
   }
@@ -794,10 +802,8 @@ int recentPlayingLengthFoo() {
     return 0;
   } else {
     if (recentPlayed.length >= 6) {
-      // print(recentPlayed.length);
       return 6;
     } else {
-      // print(recentPlayed.length);
       return recentPlayed.length;
     }
   }

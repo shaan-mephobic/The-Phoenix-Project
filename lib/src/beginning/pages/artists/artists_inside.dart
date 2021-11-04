@@ -54,19 +54,18 @@ class ArtistsInside extends StatelessWidget {
                     : kMaterialBlack,
                 flexibleSpace: FlexibleSpaceBar(
                   collapseMode: CollapseMode.parallax,
-                  titlePadding:const  EdgeInsets.all(0),
+                  titlePadding: const EdgeInsets.all(0),
                   background: Column(
                     children: [
-                     const  Padding(padding: EdgeInsets.only(top: 80)),
+                      const Padding(padding: EdgeInsets.only(top: 80)),
                       Container(
                         height: 220,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(kRounded),
-                          boxShadow:const  [
+                          boxShadow: const [
                             BoxShadow(
                                 color: Colors.black54,
                                 blurRadius: 6.0,
-                                // spreadRadius: 1,
                                 offset: Offset(0, 2)),
                           ],
                         ),
@@ -89,7 +88,7 @@ class ArtistsInside extends StatelessWidget {
                           ),
                         ),
                       ),
-                     const  Padding(padding: EdgeInsets.only(top: 20)),
+                      const Padding(padding: EdgeInsets.only(top: 20)),
                       Text(
                         allArtists[artistPassed!].contains(",")
                             ? allArtists[artistPassed!]
@@ -110,7 +109,8 @@ class ArtistsInside extends StatelessWidget {
                                             .replaceRange(
                                                 allArtists[artistPassed!]
                                                     .indexOf(","),
-                                                allArtists[artistPassed!].length,
+                                                allArtists[artistPassed!]
+                                                    .length,
                                                 "")
                                             .length,
                                         "")
@@ -128,7 +128,7 @@ class ArtistsInside extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          shadows:const  [
+                          shadows: const [
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 2.2,
@@ -156,7 +156,7 @@ class ArtistsInside extends StatelessWidget {
                       child: ListTile(
                         onTap: () async {
                           if (artistMediaItems[index - 1].duration ==
-                             const  Duration(milliseconds: 0)) {
+                              const Duration(milliseconds: 0)) {
                             corruptedFile(context);
                           } else {
                             insideInArtistsSongs = inArtistsSongs;
@@ -212,7 +212,7 @@ class ArtistsInside extends StatelessWidget {
                               color: musicBox.get("dynamicArtDB") ?? true
                                   ? contrastAlbum
                                   : Colors.white,
-                              shadows:const  [
+                              shadows: const [
                                 Shadow(
                                   offset: Offset(0, 1.0),
                                   blurRadius: 1.0,
@@ -235,8 +235,9 @@ class ArtistsInside extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(3),
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: MemoryImage(albumsArts[
-                                          inArtistsSongs[index - 1].album!] ??
+                                  image: MemoryImage(artworksData[(musicBox
+                                              .get("artworksPointer") ??
+                                          {})[inArtistsSongs[index - 1].id]] ??
                                       defaultNone!),
                                 ),
                               ),

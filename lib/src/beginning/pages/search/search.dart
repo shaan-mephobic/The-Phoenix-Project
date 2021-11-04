@@ -762,9 +762,12 @@ class _SearchinState extends State<Searchin> {
                                                 BorderRadius.circular(3),
                                             image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: MemoryImage(albumsArts[
-                                                      searchedTracks[index - 3]
-                                                          .album] ??
+                                              image: MemoryImage(artworksData[
+                                                      (musicBox.get(
+                                                              "artworksPointer") ??
+                                                          {})[searchedTracks[
+                                                              index - 3]
+                                                          .id]] ??
                                                   defaultNone!),
                                             ),
                                           ),

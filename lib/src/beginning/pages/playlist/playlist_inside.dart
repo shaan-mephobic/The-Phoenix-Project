@@ -19,7 +19,8 @@ List<MediaItem> playlistMediaItems = [];
 
 class PlaylistInside extends StatefulWidget {
   final String? playlistName;
-  const PlaylistInside({Key? key, required this.playlistName}) : super(key: key);
+  const PlaylistInside({Key? key, required this.playlistName})
+      : super(key: key);
   @override
   _PlaylistInsideState createState() => _PlaylistInsideState();
 }
@@ -88,7 +89,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                             child: ListTile(
                               onTap: () async {
                                 if (playlistMediaItems[index].duration ==
-                                   const  Duration(milliseconds: 0)) {
+                                    const Duration(milliseconds: 0)) {
                                   corruptedFile(context);
                                 } else {
                                   insideplaylistSongsInside =
@@ -149,10 +150,17 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                       borderRadius: BorderRadius.circular(3),
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: MemoryImage(albumsArts[
-                                                playlistSongsInside[index]
-                                                    .album!] ??
-                                            defaultNone!),
+                                        image: MemoryImage(
+                                            // albumsArts[
+                                            //       playlistSongsInside[index]
+                                            //           .album!] ??
+                                            //   defaultNone!
+                                            artworksData[(musicBox.get(
+                                                        "artworksPointer") ??
+                                                    {})[playlistSongsInside[
+                                                        index]
+                                                    .id]] ??
+                                                defaultNone!),
                                       ),
                                     ),
                                   ),
