@@ -33,10 +33,10 @@ isolatedArtistScrapeInit() async {
         File file = File(
             "${applicationFileDirectory.path}/artists/${allArtists[i]}.jpg");
         await file.writeAsBytes(response.bodyBytes);
-        rootState.provideman();
       }
     }
   }
+  rootState.provideman();
   if (neverDone.isNotEmpty) {
     debugPrint("isolate##");
     try {

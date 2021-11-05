@@ -116,16 +116,17 @@ gettinSongArts() async {
   allSongIds.sort();
   cachedIds.sort();
   bool hasNewInCustom(List small, List big) {
-    List extras = small;
-    big.removeWhere((item) => big.contains(item));
-    if (extras.isEmpty) return false;
-    return true;
+    for (int i = 0; i < small.length; i++) {
+      if (!big.contains(small[i])) return true;
+    }
+    return false;
   }
 
+  List nowList = allSongIds;
   if (listEquals(allSongIds, cachedIds) ||
       (((musicBox.get("customScan") ?? false) ||
               (musicBox.get("clutterFree") ?? false)) &&
-          !hasNewInCustom(allSongIds, cachedIds))) {
+          !hasNewInCustom(nowList, cachedIds))) {
     List allArtworksName = [];
     if ((musicBox.get("customScan") ?? false) ||
         (musicBox.get("clutterFree") ?? false)) {
@@ -144,8 +145,7 @@ gettinSongArts() async {
               "${applicationFileDirectory.path}/artworks/songarts/${allArtworksName[i]}.jpeg")
           .readAsBytes();
     }
-  }
-  else {
+  } else {
     bool isDuplicate(Uint8List? artwork, int id) {
       List artworkKeys = artworksData.values.toList();
       for (int a = 0; a < artworkKeys.length; a++) {
@@ -197,12 +197,14 @@ gettinSongArts() async {
       }
       musicBox.put("artworksPointer", artworksPointer);
       musicBox.put("artworksName", allImageNames);
+      refresh = true;
     } else {
       debugPrint("dirty-cache");
       artworksPointer = musicBox.get("artworksPointer");
       List newIds =
           allSongIds.where((element) => !cachedIds.contains(element)).toList();
       for (int i = 0; i < newIds.length; i++) {
+        refresh = true;
         Uint8List? artwork = await OnAudioQuery()
             .queryArtwork(newIds[i], ArtworkType.AUDIO, size: 350);
         if (artwork == null) {
@@ -244,7 +246,6 @@ gettinSongArts() async {
             .readAsBytes();
       }
     }
-    refresh = true;
   }
   allSongIds = musicBox.get("artworksName");
 }
