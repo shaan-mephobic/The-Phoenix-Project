@@ -96,8 +96,13 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                             Material(
                               color: Colors.transparent,
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 5, bottom: 5),
+                                padding: EdgeInsets.only(
+                                    left: 20,
+                                    right: 20,
+                                    top: orientedCar
+                                        ? widget.widthOfDevice! / 8
+                                        : widget.heightOfDevice! / 20,
+                                    bottom: 5),
                                 child: TextField(
                                   cursorColor: const Color(0xFF3cb9cd),
                                   autofocus: false,
@@ -334,6 +339,8 @@ class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {
                                         const Duration(seconds: 1));
                                     refresh = true;
                                     rootState.provideman();
+                                  } else {
+                                    Navigator.pop(context);
                                   }
                                 },
                                 child: Container(
