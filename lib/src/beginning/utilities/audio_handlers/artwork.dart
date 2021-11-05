@@ -53,9 +53,8 @@ playerontap() async {
   }
   if (musicBox.get("colorsDB") == null
       ? true
-      : musicBox.get("colorsDB")[artworksData[
-              (musicBox.get("artworksPointer") ??
-                  {})[nowMediaItem.extras!['id']]]] ==
+      : musicBox.get("colorsDB")[(musicBox.get("artworksPointer") ??
+              {})[nowMediaItem.extras!['id']]] ==
           null) {
     if (artwork == defaultNone) {
       if (musicBox.get("dominantDefault") != null) {
@@ -71,8 +70,8 @@ playerontap() async {
     } else {
       await getImagePalette(MemoryImage(artwork!));
       Map colorDB = musicBox.get("colorsDB") ?? {};
-      colorDB[artworksData[(musicBox.get("artworksPointer") ??
-          {})[nowMediaItem.extras!['id']]]] = [
+      colorDB[(musicBox.get("artworksPointer") ??
+          {})[nowMediaItem.extras!['id']]] = [
         nowColor.value,
         nowContrast.value,
         isArtworkDark
@@ -80,15 +79,14 @@ playerontap() async {
       musicBox.put("colorsDB", colorDB);
     }
   } else {
-    nowColor = Color(musicBox.get("colorsDB")[artworksData[
-        (musicBox.get("artworksPointer") ??
-            {})[nowMediaItem.extras!['id']]]][0]);
-    nowContrast = Color(musicBox.get("colorsDB")[artworksData[
-        (musicBox.get("artworksPointer") ??
-            {})[nowMediaItem.extras!['id']]]][1]);
-    isArtworkDark = musicBox.get("colorsDB")[artworksData[
-        (musicBox.get("artworksPointer") ??
-            {})[nowMediaItem.extras!['id']]]][2];
+    nowColor = Color(musicBox.get("colorsDB")[
+            (musicBox.get("artworksPointer") ?? {})[nowMediaItem.extras!['id']]]
+        [0]);
+    nowContrast = Color(musicBox.get("colorsDB")[
+            (musicBox.get("artworksPointer") ?? {})[nowMediaItem.extras!['id']]]
+        [1]);
+    isArtworkDark = musicBox.get("colorsDB")[
+        (musicBox.get("artworksPointer") ?? {})[nowMediaItem.extras!['id']]][2];
   }
 
   if (!isPlayerShown) {
