@@ -26,7 +26,6 @@ bool permissionGiven = false;
 late var musicBox;
 bool crossfadeStateChange = false;
 bool phoenixVisualizerShown = true;
-bool fadeBool = true;
 bool playerVisible = false;
 bool initialart = true;
 bool first = false;

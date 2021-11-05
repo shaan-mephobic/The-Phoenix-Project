@@ -28,34 +28,35 @@ playerontap() async {
         globaltaste.provideman();
       }
     }
-  } else if (!initialart && fadeBool) {
+  } else if (!initialart && first) {
     art2 = artwork;
     if (!listEquals(art, art2)) {
       first = false;
-      fadeBool = false;
-      if (backArtStateChange) {
-        rootCrossfadeState.provideman();
-        if (crossfadeStateChange) {
-          globaltaste.provideman();
-        }
+    }
+    if (backArtStateChange) {
+      rootCrossfadeState.provideman();
+      if (crossfadeStateChange) {
+        globaltaste.provideman();
       }
     }
-  } else if (!initialart && !fadeBool) {
+  } else if (!initialart && !first) {
     art = artwork;
     if (!listEquals(art, art2)) {
       first = true;
-      fadeBool = true;
-      if (backArtStateChange) {
-        rootCrossfadeState.provideman();
-        if (crossfadeStateChange) {
-          globaltaste.provideman();
-        }
+    }
+    if (backArtStateChange) {
+      rootCrossfadeState.provideman();
+      if (crossfadeStateChange) {
+        globaltaste.provideman();
       }
     }
   }
   if (musicBox.get("colorsDB") == null
       ? true
-      : musicBox.get("colorsDB")[nowMediaItem.id] == null) {
+      : musicBox.get("colorsDB")[artworksData[
+              (musicBox.get("artworksPointer") ??
+                  {})[nowMediaItem.extras!['id']]]] ==
+          null) {
     if (artwork == defaultNone) {
       if (musicBox.get("dominantDefault") != null) {
         nowColor = Color(musicBox.get("dominantDefault"));
@@ -70,7 +71,8 @@ playerontap() async {
     } else {
       await getImagePalette(MemoryImage(artwork!));
       Map colorDB = musicBox.get("colorsDB") ?? {};
-      colorDB[nowMediaItem.id] = [
+      colorDB[artworksData[(musicBox.get("artworksPointer") ??
+          {})[nowMediaItem.extras!['id']]]] = [
         nowColor.value,
         nowContrast.value,
         isArtworkDark
@@ -78,9 +80,15 @@ playerontap() async {
       musicBox.put("colorsDB", colorDB);
     }
   } else {
-    nowColor = Color(musicBox.get("colorsDB")[nowMediaItem.id][0]);
-    nowContrast = Color(musicBox.get("colorsDB")[nowMediaItem.id][1]);
-    isArtworkDark = musicBox.get("colorsDB")[nowMediaItem.id][2];
+    nowColor = Color(musicBox.get("colorsDB")[artworksData[
+        (musicBox.get("artworksPointer") ??
+            {})[nowMediaItem.extras!['id']]]][0]);
+    nowContrast = Color(musicBox.get("colorsDB")[artworksData[
+        (musicBox.get("artworksPointer") ??
+            {})[nowMediaItem.extras!['id']]]][1]);
+    isArtworkDark = musicBox.get("colorsDB")[artworksData[
+        (musicBox.get("artworksPointer") ??
+            {})[nowMediaItem.extras!['id']]]][2];
   }
 
   if (!isPlayerShown) {
