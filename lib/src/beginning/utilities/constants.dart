@@ -47,11 +47,11 @@ Map quotes = {
 
 /// Changelogs
 Map<String, String> changelogs = {
-  "HERTZ - 2.0.0": "• Initial 2.0.0 release.\n• Rebuilt entire app.",
+  "HERTZ - 2.0.0": "• Initial Awaken release.\n• Rebuilt entire app.",
   "FALL - 2.1.0":
       "• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh.",
   "FORTRESS - 2.2.0":
-      "• Biggest update ever. No, literally the app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar."
+      "• Biggest update ever — literally, app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar."
 };
 
 /// Theme data of entire app
