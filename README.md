@@ -9,6 +9,7 @@ A Non-Commercial Music Player Made With Flutter.
 ## Why Phoenix?
 * Beautiful glassmorphism design
 * Lyrics
+* No data collected
 * Cut, fade and set ringtone
 * A flashlight-visualizer
 * Share now-playing
