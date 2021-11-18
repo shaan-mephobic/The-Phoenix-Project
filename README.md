@@ -23,6 +23,7 @@ And a bunch more. Why not check it yourself?
 
 ## TODO
 * Android 11 support for deleting files
+* Edit artwork
 * Improve performance and stability
 
 ## LICENSE
