@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -167,7 +166,7 @@ class _OnHoldState extends State<OnHold> {
                                                       "recent") {
                                                     addToQueue(
                                                         recentPlayedMediaItems[
-                                                            widget.index]);
+                                                            widget.index - 1]);
                                                   } else if (widget.songOf ==
                                                       "mostly") {
                                                     addToQueue(
@@ -374,17 +373,19 @@ class _OnHoldState extends State<OnHold> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox
-                                                              .get("glassBlur") ?? 18,
+                                                      barBlur: musicBox.get(
+                                                              "glassBlur") ??
+                                                          18,
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          const Duration(seconds: 5),
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      duration: const Duration(
+                                                          seconds: 5),
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -412,7 +413,8 @@ class _OnHoldState extends State<OnHold> {
                                               child: Center(
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.only(left: 12),
+                                                      const EdgeInsets.only(
+                                                          left: 12),
                                                   child: Text(
                                                     songMoreInfo[i],
                                                     maxLines: 2,
@@ -432,8 +434,10 @@ class _OnHoldState extends State<OnHold> {
                                                           offset: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true
-                                                              ? const Offset(0, 1.0)
-                                                              : const Offset(0, 1.0),
+                                                              ? const Offset(
+                                                                  0, 1.0)
+                                                              : const Offset(
+                                                                  0, 1.0),
                                                           blurRadius: 3.0,
                                                           color: Colors.black54,
                                                         ),
@@ -604,8 +608,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          const Duration(seconds: 5),
+                                                      duration: const Duration(
+                                                          seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -615,12 +619,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox
-                                                              .get("glassBlur") ?? 18,
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      barBlur: musicBox.get(
+                                                              "glassBlur") ??
+                                                          18,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -647,8 +653,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          const Duration(seconds: 5),
+                                                      duration: const Duration(
+                                                          seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -658,12 +664,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox
-                                                              .get("glassBlur") ?? 18,
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      barBlur: musicBox.get(
+                                                              "glassBlur") ??
+                                                          18,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -696,8 +704,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          const Duration(seconds: 5),
+                                                      duration: const Duration(
+                                                          seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -707,12 +715,14 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox
-                                                              .get("glassBlur") ?? 18,
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      barBlur: musicBox.get(
+                                                              "glassBlur") ??
+                                                          18,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -812,17 +822,19 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           FlushbarStyle
                                                               .FLOATING,
                                                       isDismissible: true,
-                                                      barBlur: musicBox
-                                                              .get("glassBlur") ?? 18,
+                                                      barBlur: musicBox.get(
+                                                              "glassBlur") ??
+                                                          18,
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                          const Duration(seconds: 5),
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      duration: const Duration(
+                                                          seconds: 5),
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -881,8 +893,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       dismissDirection:
                                                           FlushbarDismissDirection
                                                               .HORIZONTAL,
-                                                      duration:
-                                                         const  Duration(seconds: 5),
+                                                      duration: const Duration(
+                                                          seconds: 5),
                                                       borderColor: Colors.white
                                                           .withOpacity(0.04),
                                                       borderWidth: 1,
@@ -894,10 +906,11 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                               .FLOATING,
                                                       isDismissible: true,
                                                       barBlur: 20,
-                                                      margin: const EdgeInsets.only(
-                                                          bottom: 20,
-                                                          left: 8,
-                                                          right: 8),
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              bottom: 20,
+                                                              left: 8,
+                                                              right: 8),
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
@@ -905,7 +918,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                       //     Color(0xFFCB0047),
                                                     ).show(context);
                                                     await Future.delayed(
-                                                        const Duration(seconds: 1));
+                                                        const Duration(
+                                                            seconds: 1));
                                                     await screenShotUI(true);
                                                   }
                                                 } else if (i == 7) {
@@ -934,7 +948,8 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                               child: Center(
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.only(left: 12),
+                                                      const EdgeInsets.only(
+                                                          left: 12),
                                                   child: Text(
                                                     i == 1
                                                         ? !isSongLiked(
@@ -959,8 +974,10 @@ class _OnHoldExtendedState extends State<OnHoldExtended> {
                                                           offset: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true
-                                                              ? const Offset(0, 1.0)
-                                                              : const Offset(0, 1.0),
+                                                              ? const Offset(
+                                                                  0, 1.0)
+                                                              : const Offset(
+                                                                  0, 1.0),
                                                           blurRadius: musicBox.get(
                                                                       "dynamicArtDB") ??
                                                                   true

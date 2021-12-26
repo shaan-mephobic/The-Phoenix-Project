@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/widgets/custom/graviticons.dart';
@@ -86,7 +85,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                       : radiusFullscreen),
               child: NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification overscroll) {
-                  overscroll.disallowGlow();
+                  overscroll.disallowIndicator();
                   return;
                 } as bool Function(OverscrollIndicatorNotification)?,
                 child: SingleChildScrollView(
@@ -614,7 +613,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                         : radiusFullscreen),
                 child: NotificationListener<OverscrollIndicatorNotification>(
                   onNotification: (OverscrollIndicatorNotification overscroll) {
-                    overscroll.disallowGlow();
+                    overscroll.disallowIndicator();
                     return;
                   } as bool Function(OverscrollIndicatorNotification)?,
                   child: SingleChildScrollView(

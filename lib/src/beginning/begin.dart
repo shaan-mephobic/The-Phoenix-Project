@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:page_transition/page_transition.dart';

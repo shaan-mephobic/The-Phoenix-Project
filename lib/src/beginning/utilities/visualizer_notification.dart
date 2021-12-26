@@ -34,7 +34,6 @@ startVisualizerNotification() async {
       channelKey: 'phoenix_visualize',
       locked: true,
       title: 'Phoenix Visualizing Music',
-      displayedLifeCycle: NotificationLifeCycle.AppKilled,
       body: 'Running in background',
       backgroundColor: Colors.black,
     ),

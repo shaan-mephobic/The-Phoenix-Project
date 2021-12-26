@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';

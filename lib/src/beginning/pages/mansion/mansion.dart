@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -137,7 +136,7 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                                 car: orientedCar,
                                                 heightOfDevice: deviceHeight,
                                                 widthOfDevice: deviceWidth,
-                                                songOf: "all"),
+                                                songOf: "recent"),
                                           ),
                                         );
                                       },

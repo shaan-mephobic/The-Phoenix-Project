@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:audio_service/audio_service.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';

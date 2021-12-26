@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:phoenix/src/beginning/pages/settings/settings_pages/privacy.dart';

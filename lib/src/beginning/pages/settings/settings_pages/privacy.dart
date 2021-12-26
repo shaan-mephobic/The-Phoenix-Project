@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter_remixicon/flutter_remixicon.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../../../widgets/switcher_button.dart';
