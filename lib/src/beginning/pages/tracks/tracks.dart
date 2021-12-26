@@ -71,31 +71,35 @@ class _AllofemState extends State<Allofem>
               color: Colors.transparent,
               child: ListTile(
                 onTap: () async {
-                  if (songListMediaItems[index - 1].duration ==
-                      const Duration(milliseconds: 0)) {
-                    corruptedFile(context);
-                  } else {
-                    await playThis(index - 1, "all");
+                  if (!Begin.isLoading) {
+                    if (songListMediaItems[index - 1].duration ==
+                        const Duration(milliseconds: 0)) {
+                      corruptedFile(context);
+                    } else {
+                      await playThis(index - 1, "all");
+                    }
                   }
                 },
                 onLongPress: () async {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.size,
-                      alignment: Alignment.center,
-                      duration: dialogueAnimationDuration,
-                      reverseDuration: dialogueAnimationDuration,
-                      child: OnHold(
-                          classContext: context,
-                          listOfSong: songList,
-                          index: index - 1,
-                          car: orientedCar,
-                          heightOfDevice: deviceHeight,
-                          widthOfDevice: deviceWidth,
-                          songOf: "all"),
-                    ),
-                  );
+                  if (!Begin.isLoading) {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.size,
+                        alignment: Alignment.center,
+                        duration: dialogueAnimationDuration,
+                        reverseDuration: dialogueAnimationDuration,
+                        child: OnHold(
+                            classContext: context,
+                            listOfSong: songList,
+                            index: index - 1,
+                            car: orientedCar,
+                            heightOfDevice: deviceHeight,
+                            widthOfDevice: deviceWidth,
+                            songOf: "all"),
+                      ),
+                    );
+                  }
                 },
                 title: Text(
                   songList[index - 1].title,
@@ -142,10 +146,10 @@ class _AllofemState extends State<Allofem>
                         borderRadius: BorderRadius.circular(3),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: MemoryImage(
-                              artworksData[(musicBox.get("artworksPointer") ??
+                          image: MemoryImage(artworksData[
+                                  (musicBox.get("artworksPointer") ??
                                       {})[songList[index - 1].id]] ??
-                                  defaultNone!),
+                              defaultNone!),
                         ),
                       ),
                     ),

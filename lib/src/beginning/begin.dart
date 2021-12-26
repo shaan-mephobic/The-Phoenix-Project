@@ -35,6 +35,7 @@ import 'package:flutter_remixicon/flutter_remixicon.dart';
 class Begin extends StatefulWidget {
   static final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
+  static bool isLoading = true;
   const Begin({Key? key}) : super(key: key);
   @override
   _BeginState createState() => _BeginState();
@@ -50,12 +51,12 @@ class _BeginState extends State<Begin>
   void initState() {
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
+    visualizerNotificationInit();
+    WidgetsBinding.instance!.addObserver(this);
     SchedulerBinding.instance!.addPostFrameCallback((_) async {
       await Begin.refreshIndicatorKey.currentState?.show();
       setState(() {});
     });
-    visualizerNotificationInit();
-    WidgetsBinding.instance!.addObserver(this);
     super.initState();
   }
 

@@ -8,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:phoenix/src/beginning/begin.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
@@ -105,6 +106,7 @@ fetchAll() async {
     /// TODO do scraping only when phone's awake so you don't get HandshakeException: Connection terminated during handshake
     isolatedArtistScrapeInit();
   }
+  Begin.isLoading = false;
 }
 
 songListToMediaItem() async {
