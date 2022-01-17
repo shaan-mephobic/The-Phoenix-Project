@@ -83,7 +83,8 @@ gettinAlbumsArts() async {
 
 albumSongs() async {
   inAlbumSongs = await OnAudioQuery().queryAudiosFrom(
-      AudiosFromType.ALBUM, allAlbums[passedIndexAlbum!].album);
+      AudiosFromType.ALBUM, allAlbums[passedIndexAlbum!].album,
+      sortType: SongSortType.DATE_ADDED);
   for (int i = 0; i < inAlbumSongs.length; i++) {
     MediaItem mi = MediaItem(
         id: inAlbumSongs[i].data,
