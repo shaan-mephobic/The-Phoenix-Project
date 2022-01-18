@@ -49,7 +49,8 @@ Map<String, String> changelogs = {
   "FALL - 2.1.0":
       "• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh.",
   "FORTRESS - 2.2.0":
-      "• Biggest update ever — literally, app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar."
+      "• Biggest update ever — literally, app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar.",
+  "PERSEUS - 2.3.0": "• Upstream everything.\n• Fix crashes during loading.\n• Sort music in albums with date."
 };
 
 /// Theme data of entire app

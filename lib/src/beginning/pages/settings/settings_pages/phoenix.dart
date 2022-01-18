@@ -104,7 +104,17 @@ class _PhoenixState extends State<Phoenix> {
                             ),
                             const Padding(padding: EdgeInsets.only(top: 2)),
                             Text(
-                              "FORTRESS",
+                              changelogs.keys
+                                  .toList()[changelogs.length - 1]
+                                  .replaceRange(
+                                      changelogs.keys
+                                              .toList()[changelogs.length - 1]
+                                              .length -
+                                          8,
+                                      changelogs.keys
+                                          .toList()[changelogs.length - 1]
+                                          .length,
+                                      ""),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600,
@@ -371,7 +381,7 @@ class _PhoenixState extends State<Phoenix> {
                                                 ChangeNotifierProvider<
                                                         Leprovider>(
                                                     create: (_) => Leprovider(),
-                                                    child:const Privacy()),
+                                                    child: const Privacy()),
                                           ),
                                         );
                                       }),

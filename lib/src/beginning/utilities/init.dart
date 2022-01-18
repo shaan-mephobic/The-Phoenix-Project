@@ -21,7 +21,7 @@ import 'has_network.dart';
 
 cacheImages() async {
   applicationFileDirectory = await getApplicationDocumentsDirectory();
-  ByteData bytes = await rootBundle.load('assets/res/background2.jpg');
+  ByteData bytes = await rootBundle.load('assets/res/background3.jpg');
   art = bytes.buffer.asUint8List();
   defaultArt = art;
   if (!await File("${applicationFileDirectory.path}/artworks/null.jpeg")
