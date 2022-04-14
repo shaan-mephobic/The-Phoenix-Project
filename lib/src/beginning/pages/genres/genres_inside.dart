@@ -40,6 +40,7 @@ class _GenresInsideState extends State<GenresInside> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<SortProvider>(context);
     return Consumer<Leprovider>(
       builder: (context, taste, _) {
         globaltaste = taste;
@@ -81,7 +82,12 @@ class _GenresInsideState extends State<GenresInside> {
                         itemCount: genreSongs!.length + 1,
                         itemBuilder: (context, index) {
                           if (index == 0) {
-                            return ListHeader(deviceWidth, genreSongs, "genre");
+                            return ListHeader(
+                              deviceWidth,
+                              genreSongs,
+                              "genre",
+                              stateNotifier: provider,
+                            );
                           }
                           return Material(
                             color: Colors.transparent,
@@ -161,14 +167,13 @@ class _GenresInsideState extends State<GenresInside> {
                                       borderRadius: BorderRadius.circular(3),
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: MemoryImage(
-                                            
-                                            artworksData[(musicBox.get(
+                                        image: MemoryImage(artworksData[
+                                                (musicBox.get(
                                                         "artworksPointer") ??
                                                     {})[genreSongs![
                                                         index - 1]
                                                     .id]] ??
-                                                defaultNone!),
+                                            defaultNone!),
                                       ),
                                     ),
                                   ),

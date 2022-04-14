@@ -53,22 +53,55 @@ artistsAllSongs(String who) async {
   for (int i = 0; i < songList.length; i++) {
     if (songList[i].artist!.toLowerCase() == who.toLowerCase()) {
       inArtistsSongs.add(songList[i]);
-      MediaItem item = MediaItem(
-          id: songList[i].data,
-          album: songList[i].album,
-          artist: songList[i].artist,
-          duration: Duration(milliseconds: getDuration(songList[i])!),
-          artUri: Uri.file(
-            (musicBox.get("artworksPointer") ?? {})[songList[i].id] == null
-                ? "${applicationFileDirectory.path}/artworks/null.jpeg"
-                : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[songList[i].id]}.jpeg",
-          ),
-          title: songList[i].title,
-          extras: {"id": songList[i].id});
-      artistMediaItems.add(item);
     }
   }
 
+  int sort = (musicBox.get('artistSort') ?? [0, 3])[0];
+  int order = (musicBox.get('artistSort') ?? [0, 3])[1];
+  if (sort == 0) {
+    //TITLE
+    inArtistsSongs.sort((a, b) => a.title.compareTo(b.title));
+  } else if (sort == 1) {
+    //DATE
+    inArtistsSongs
+        .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
+  } else {
+    //ALBUM
+    inArtistsSongs.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+  }
+  if (order == 3) {
+    //ASCENDING
+    if (sort == 0) {
+      //TITLE
+      inArtistsSongs.sort((a, b) => a.title.compareTo(b.title));
+    } else if (sort == 1) {
+      //DATE
+      inArtistsSongs
+          .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
+    } else {
+      //ALBUM
+      inArtistsSongs.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+    }
+  } else {
+    //DESCENDING
+    inArtistsSongs = inArtistsSongs.reversed.toList();
+  }
+
+  for (int i = 0; i < inArtistsSongs.length; i++) {
+    MediaItem item = MediaItem(
+        id: inArtistsSongs[i].data,
+        album: inArtistsSongs[i].album,
+        artist: inArtistsSongs[i].artist,
+        duration: Duration(milliseconds: getDuration(inArtistsSongs[i])!),
+        artUri: Uri.file(
+          (musicBox.get("artworksPointer") ?? {})[inArtistsSongs[i].id] == null
+              ? "${applicationFileDirectory.path}/artworks/null.jpeg"
+              : "${applicationFileDirectory.path}/artworks/songarts/${(musicBox.get("artworksPointer") ?? {})[inArtistsSongs[i].id]}.jpeg",
+        ),
+        title: inArtistsSongs[i].title,
+        extras: {"id": inArtistsSongs[i].id});
+    artistMediaItems.add(item);
+  }
   numberOfSongsOfArtist = inArtistsSongs.length;
 }
 

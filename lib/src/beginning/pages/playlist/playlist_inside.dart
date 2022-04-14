@@ -150,10 +150,6 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: MemoryImage(
-                                            // albumsArts[
-                                            //       playlistSongsInside[index]
-                                            //           .album!] ??
-                                            //   defaultNone!
                                             artworksData[(musicBox.get(
                                                         "artworksPointer") ??
                                                     {})[playlistSongsInside[
@@ -177,7 +173,7 @@ class _PlaylistInsideState extends State<PlaylistInside> {
                                 playlistSongsInside.removeAt(oldIndex);
                             playlistSongsInside.insert(newIndex, element);
                           });
-                          updateQueuePlayList(
+                          await updateQueuePlayList(
                               widget.playlistName, playlistSongsInside);
                           playlistMediaItems = [];
                           playlistSongsInside = [];

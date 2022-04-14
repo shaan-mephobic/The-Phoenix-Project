@@ -60,7 +60,7 @@ class _AddSongsState extends State<AddSongs> {
                     fontWeight: FontWeight.w600)),
             backgroundColor: const Color(0xFF1DB954),
             elevation: 8.0,
-            onPressed: () {
+            onPressed: () async {
               if (!((widget.playlistName == "Enter Playlist Name" &&
                       nameOfPlaylist != null) ||
                   (widget.playlistName != "Enter Playlist Name"))) {
@@ -95,9 +95,9 @@ class _AddSongsState extends State<AddSongs> {
                   fetchPlaylistSongs(widget.playlistName);
                 }
                 if (isNameChanged) {
-                  removePlaylists(widget.playlistName);
+                  await removePlaylists(widget.playlistName);
                 }
-                newPlaylist(
+                await newPlaylist(
                     nameOfPlaylist ?? widget.playlistName, playListSongsId);
                 Navigator.pop(context);
               }
@@ -176,8 +176,9 @@ class _AddSongsState extends State<AddSongs> {
                                     child: IconButton(
                                       icon: const Icon(Ionicons.trash_outline,
                                           color: Color(0xFFCB0047)),
-                                      onPressed: () {
-                                        removePlaylists(widget.playlistName);
+                                      onPressed: () async {
+                                        await removePlaylists(
+                                            widget.playlistName);
                                         Navigator.pop(context);
                                       },
                                     ),
@@ -304,14 +305,13 @@ class _AddSongsState extends State<AddSongs> {
                                         borderRadius: BorderRadius.circular(3),
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image: MemoryImage(
-                                            
-                                              artworksData[(musicBox.get(
+                                          image: MemoryImage(artworksData[
+                                                  (musicBox.get(
                                                           "artworksPointer") ??
                                                       {})[songList[
                                                           index]
                                                       .id]] ??
-                                                  defaultNone!),
+                                              defaultNone!),
                                         ),
                                       ),
                                     ),

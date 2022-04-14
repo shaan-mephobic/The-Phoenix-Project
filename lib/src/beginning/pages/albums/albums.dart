@@ -1,8 +1,10 @@
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/awakening.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../utilities/page_backend/albums_back.dart';
 import 'albums_inside.dart';
 
@@ -51,7 +53,8 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                 childAspectRatio: orientedCar
                     ? (deviceHeight! / 4) /
                         (deviceHeight! / 4 + deviceHeight! / 16)
-                    : (deviceWidth! / 3) / (deviceWidth! / 3 + deviceWidth! / 12),
+                    : (deviceWidth! / 3) /
+                        (deviceWidth! / 3 + deviceWidth! / 12),
                 crossAxisCount: orientedCar ? 4 : 3),
             itemBuilder: (BuildContext context, int index) {
               return Material(
@@ -85,15 +88,20 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                     albumMediaItems = [];
                     inAlbumSongsArtIndex = [];
                     await albumSongs();
-
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const AlbumsInside()),
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ChangeNotifierProvider<SortProvider>(
+                          create: (_) => SortProvider(),
+                          builder: (context, child) => const AlbumsInside(),
+                        ),
+                      ),
                     );
                   },
                   child: Column(
                     children: [
-                     const Padding(padding: EdgeInsets.only(top: 5)),
+                      const Padding(padding: EdgeInsets.only(top: 5)),
                       Hero(
                         tag: "sterio-$index",
                         child: PhysicalModel(
@@ -139,15 +147,12 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                                 ? deviceHeight! / 58
                                 : deviceWidth! / 32,
                             fontWeight: FontWeight.w600,
-                            color: 
-                                  Colors.white
-                                   ,
+                            color: Colors.white,
                             shadows: [
                               Shadow(
                                 offset: musicBox.get("dynamicArtDB") ?? true
                                     ? const Offset(1.0, 1.0)
-                                    : const Offset(0, 1.0)
-                                        ,
+                                    : const Offset(0, 1.0),
                                 blurRadius: 2.0,
                                 color: Colors.black45,
                               ),

@@ -61,9 +61,9 @@ class _PlaylistState extends State<Playlist>
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(kRounded),
-                    onTap: () {
+                    onTap: () async {
                       playlistSongsSelected(fresh: true);
-                      Navigator.push(
+                      await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
@@ -75,7 +75,9 @@ class _PlaylistState extends State<Playlist>
                             ),
                           ),
                         ),
-                      );
+                      ).then((value) {
+                        setState(() {});
+                      });
                     },
                     child: Center(
                       child: Text(
@@ -105,10 +107,10 @@ class _PlaylistState extends State<Playlist>
           child: const Icon(Icons.add_rounded, color: Colors.black),
           backgroundColor: const Color(0xFF1DB954),
           elevation: 8.0,
-          onPressed: () {
+          onPressed: () async {
             playListSongsId = [];
             playlistSongsSelected(fresh: true);
-            Navigator.push(
+            await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ChangeNotifierProvider<Leprovider>(
@@ -119,7 +121,9 @@ class _PlaylistState extends State<Playlist>
                   ),
                 ),
               ),
-            );
+            ).then((value) {
+              setState(() {});
+            });
           },
         ),
         body: Scrollbar(

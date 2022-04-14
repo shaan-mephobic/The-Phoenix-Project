@@ -1,12 +1,14 @@
 import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/beginning/widgets/list_header.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/on_hold.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:provider/provider.dart';
 import 'albums.dart';
 import '../../utilities/page_backend/albums_back.dart';
 
@@ -17,6 +19,7 @@ class AlbumsInside extends StatelessWidget {
   const AlbumsInside({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<SortProvider>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Theme(
@@ -77,7 +80,7 @@ class AlbumsInside extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          shadows:const  [
+                          shadows: const [
                             Shadow(
                               offset: Offset(0, 2),
                               blurRadius: 2.2,
@@ -98,7 +101,7 @@ class AlbumsInside extends StatelessWidget {
                           textAlign: TextAlign.center,
                           maxLines: 1,
                           style: TextStyle(
-                            shadows:const  [
+                            shadows: const [
                               Shadow(
                                 offset: Offset(0, 1.8),
                                 blurRadius: 2.2,
@@ -120,7 +123,8 @@ class AlbumsInside extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return ListHeader(deviceWidth, inAlbumSongs, "album");
+                      return ListHeader(deviceWidth, inAlbumSongs, "album",
+                          stateNotifier: provider);
                     }
                     return Material(
                       color: Colors.transparent,

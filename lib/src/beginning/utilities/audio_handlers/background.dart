@@ -142,7 +142,7 @@ class AudioPlayerTask extends BaseAudioHandler {
 
   @override
   Future<void> pause() async {
-    await _audioPlayer.pause();
+    _audioPlayer.pause();
   }
 
   @override

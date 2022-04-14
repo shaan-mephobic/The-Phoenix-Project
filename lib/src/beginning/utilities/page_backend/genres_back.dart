@@ -8,6 +8,7 @@ List<GenreModel> allgenres = [];
 Map<String, List<SongModel>> insideAllGenreData = {};
 
 gettinGenres() async {
+  insideAllGenreData = {};
   allgenres = [];
   List<GenreModel> genres = await OnAudioQuery().queryGenres();
   if (musicBox.get('customScan') ?? false) {
@@ -53,4 +54,55 @@ putinGenreInMediaItem() {
         extras: {"id": genreSongs![i].id});
     genreMediaItems.add(item);
   }
+}
+
+fetchGenreSongs(int index) async {
+  genreSongs = [];
+  genreMediaItems = [];
+  if (musicBox.get('customScan') ?? false) {
+    int sort = (musicBox.get('genreSort') ?? [0, 4])[0];
+    int order = (musicBox.get('genreSort') ?? [0, 4])[1];
+    genreSongs = insideAllGenreData.values.toList()[index];
+    if (sort == 0) {
+      genreSongs!.sort((a, b) => a.title.compareTo(b.title));
+    } else if (sort == 1) {
+      genreSongs!
+          .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
+    } else if (sort == 2) {
+      genreSongs!.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+    } else {
+      genreSongs!.sort((a, b) => (a.artist ?? "").compareTo((b.artist ?? "")));
+    }
+    if (order == 0) {
+      if (sort == 0) {
+        genreSongs!.sort((a, b) => a.title.compareTo(b.title));
+      } else if (sort == 1) {
+        genreSongs!
+            .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
+      } else if (sort == 2) {
+        genreSongs!.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+      } else {
+        genreSongs!
+            .sort((a, b) => (a.artist ?? "").compareTo((b.artist ?? "")));
+      }
+    } else {
+      genreSongs = genreSongs!.reversed.toList();
+    }
+  } else {
+    int sort = (musicBox.get('genreSort') ?? [0, 4])[0];
+    genreSongs = await OnAudioQuery().queryAudiosFrom(
+        AudiosFromType.GENRE, allgenres[index].genre,
+        sortType: sort == 0
+            ? SongSortType.TITLE
+            : sort == 1
+                ? SongSortType.DATE_ADDED
+                : sort == 2
+                    ? SongSortType.ALBUM
+                    : SongSortType.ARTIST,
+        ignoreCase: true,
+        orderType: (musicBox.get('genreSort') ?? [0, 4])[1] == 4
+            ? OrderType.ASC_OR_SMALLER
+            : OrderType.DESC_OR_GREATER);
+  }
+  putinGenreInMediaItem();
 }

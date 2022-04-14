@@ -455,8 +455,8 @@ class _BeginState extends State<Begin>
                                       ? deviceWidth! / 17
                                       : deviceHeight! / 36,
                                 ),
-                                onTap: () {
-                                  Navigator.push(
+                                onTap: () async {
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       maintainState: true,
@@ -473,7 +473,9 @@ class _BeginState extends State<Begin>
                                             const Settings(),
                                       ),
                                     ),
-                                  );
+                                  ).then((value) {
+                                    setState(() {});
+                                  });
                                 },
                               ),
                             ),

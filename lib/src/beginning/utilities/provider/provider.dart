@@ -4,6 +4,8 @@ import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 bool usingSeek = false;
 
+//TODO use proper class names for heaven's sake
+
 class Leprovider with ChangeNotifier {
   provideman() {
     notifyListeners();
@@ -58,6 +60,12 @@ class Astronautintheocean with ChangeNotifier {
   }
 
   rawNotify() {
+    notifyListeners();
+  }
+}
+
+class SortProvider with ChangeNotifier {
+  notify() {
     notifyListeners();
   }
 }

@@ -65,10 +65,12 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                       padding: EdgeInsets.only(top: deviceWidth! / 25),
                     ),
                     Container(
-                      width:
-                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! / 1.05,
-                      height:
-                          orientedCar ? deviceHeight! / 3.3 : deviceWidth! / 2.2,
+                      width: orientedCar
+                          ? deviceHeight! / 1.4
+                          : deviceWidth! / 1.05,
+                      height: orientedCar
+                          ? deviceHeight! / 3.3
+                          : deviceWidth! / 2.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                         boxShadow: [
@@ -98,27 +100,35 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                               child: InkWell(
                                 onTap: () async {
                                   genreSelected = index;
-                                  genreMediaItems = [];
-                                  if (musicBox.get('customScan') ?? false) {
-                                    genreSongs = insideAllGenreData.values
-                                        .toList()[index];
-                                  } else {
-                                    genreSongs = await OnAudioQuery()
-                                        .queryAudiosFrom(AudiosFromType.GENRE,
-                                            allgenres[index].genre);
-                                  }
-                                  putinGenreInMediaItem();
+                                  await fetchGenreSongs(index);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
+                                      builder: (context) => MultiProvider(
+                                        providers: [
+                                          ChangeNotifierProvider<SortProvider>(
+                                            create: (_) => SortProvider(),
+                                          ),
                                           ChangeNotifierProvider<Leprovider>(
-                                        create: (_) => Leprovider(),
+                                            create: (_) => Leprovider(),
+                                          ),
+                                        ],
                                         builder: (context, child) =>
                                             const GenresInside(),
                                       ),
                                     ),
                                   );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         ChangeNotifierProvider<Leprovider>(
+                                  //       create: (_) => Leprovider(),
+                                  //       builder: (context, child) =>
+                                  //           const GenresInside(),
+                                  //     ),
+                                  //   ),
+                                  // );
                                 },
                                 child: Center(
                                   child: Text(

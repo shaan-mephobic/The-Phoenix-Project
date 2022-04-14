@@ -319,8 +319,16 @@ class _SearchinState extends State<Searchin> {
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const AlbumsInside()),
+                                                          builder: (context) =>
+                                                              ChangeNotifierProvider<
+                                                                  SortProvider>(
+                                                            create: (_) =>
+                                                                SortProvider(),
+                                                            builder: (context,
+                                                                    child) =>
+                                                                const AlbumsInside(),
+                                                          ),
+                                                        ),
                                                       );
                                                     },
                                                     child: SizedBox(
@@ -543,8 +551,16 @@ class _SearchinState extends State<Searchin> {
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const ArtistsInside()),
+                                                          builder: (context) =>
+                                                              ChangeNotifierProvider<
+                                                                  SortProvider>(
+                                                            create: (_) =>
+                                                                SortProvider(),
+                                                            builder: (context,
+                                                                    child) =>
+                                                                const ArtistsInside(),
+                                                          ),
+                                                        ),
                                                       );
                                                     },
                                                     child: SizedBox(

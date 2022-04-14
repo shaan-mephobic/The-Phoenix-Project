@@ -19,6 +19,7 @@ List<MediaItem> albumMediaItems = [];
 Map<int, Uint8List?> artworksData = {};
 List<int> allSongIds = [];
 
+//TODO albumModel's album on_audio_query returns null while it is not nullable. See error in the page end which was reported from one device.
 gettinAlbums() async {
   allAlbums = [];
   albumsArts = {};
@@ -26,8 +27,17 @@ gettinAlbums() async {
   inAlbumSongsArtIndex = [];
   insideInAlbumSongs = [];
   allAlbumsName = [];
-  List<AlbumModel> albumsIn = await OnAudioQuery().queryAlbums();
-
+  List<AlbumModel> albumsIn =
+      await OnAudioQuery().queryAlbums(ignoreCase: true);
+  List<AlbumModel> albumsInFiltered = [];
+  albumsInFiltered.addAll(albumsIn);
+  for (int i = 0; i < albumsIn.length; i++) {
+    // ignore: unnecessary_null_comparison
+    if (albumsIn[i].album == null) {
+      albumsInFiltered.remove(albumsIn[i]);
+    }
+  }
+  albumsIn = albumsInFiltered;
   List rmDup = [];
   for (int i = 0; i < albumsIn.length; i++) {
     if (!rmDup.contains(albumsIn[i].album.toUpperCase())) {
@@ -82,9 +92,16 @@ gettinAlbumsArts() async {
 }
 
 albumSongs() async {
+  bool sortByDate =
+      (musicBox.get('albumSort') ?? [0, 2])[0] == 0 ? true : false;
+  bool sortAscending =
+      (musicBox.get('albumSort') ?? [0, 2])[1] == 2 ? true : false;
   inAlbumSongs = await OnAudioQuery().queryAudiosFrom(
       AudiosFromType.ALBUM, allAlbums[passedIndexAlbum!].album,
-      sortType: SongSortType.DATE_ADDED);
+      sortType: sortByDate ? SongSortType.DATE_ADDED : SongSortType.TITLE,
+      ignoreCase: true,
+      orderType:
+          sortAscending ? OrderType.ASC_OR_SMALLER : OrderType.DESC_OR_GREATER);
   for (int i = 0; i < inAlbumSongs.length; i++) {
     MediaItem mi = MediaItem(
         id: inAlbumSongs[i].data,
@@ -250,3 +267,22 @@ gettinSongArts() async {
   }
   allSongIds = musicBox.get("artworksName");
 }
+
+/* 
+
+See previous commit to find the exact line number where the error occured.
+
+An Observatory debugger and profiler on M2101K7AI is available at: http://127.0.0.1:60062/n6oTMscqX6w=/
+The Flutter DevTools debugger and profiler on M2101K7AI is available at:
+http://127.0.0.1:9100?uri=http://127.0.0.1:60062/n6oTMscqX6w=/
+I/Phoenix.projec(20988): ProcessProfilingInfo new_methods=2070 is saved saved_to_disk=1 resolve_classes_delay=8000
+E/flutter (20988): [ERROR:flutter/lib/ui/ui_dart_state.cc(209)] Unhandled Exception: type 'Null' is not a subtype of type 'String'
+E/flutter (20988): #0      AlbumModel.album (package:on_audio_query_platform_interface/details/models/album_model.dart:14:28)
+E/flutter (20988): #1      gettinAlbums (package:phoenix/src/beginning/utilities/page_backend/albums_back.dart:33:37)
+E/flutter (20988): <asynchronous suspension>
+E/flutter (20988): #2      fetchAll (package:phoenix/src/beginning/utilities/init.dart:101:3)
+E/flutter (20988): <asynchronous suspension>
+E/flutter (20988): #3      _AllofemState.build.<anonymous closure> (package:phoenix/src/beginning/pages/tracks/tracks.dart:56:11)
+E/flutter (20988): <asynchronous suspension>
+E/flutter (20988):
+*/

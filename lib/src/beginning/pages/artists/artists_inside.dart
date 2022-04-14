@@ -3,7 +3,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:phoenix/src/beginning/widgets/artist_collage.dart';
+import 'package:provider/provider.dart';
 import '../../utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
@@ -16,9 +18,9 @@ int? artistPassed;
 
 class ArtistsInside extends StatelessWidget {
   const ArtistsInside({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<SortProvider>(context);
     if (MediaQuery.of(context).orientation != Orientation.portrait) {
       orientedCar = true;
       deviceHeight = MediaQuery.of(context).size.width;
@@ -148,7 +150,8 @@ class ArtistsInside extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     if (index == 0) {
-                      return ListHeader(deviceWidth, inArtistsSongs, "artist");
+                      return ListHeader(deviceWidth, inArtistsSongs, "artist",
+                          stateNotifier: provider);
                     }
                     return Material(
                       color: Colors.transparent,

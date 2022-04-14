@@ -50,7 +50,8 @@ Map<String, String> changelogs = {
       "• Add option to change default artwork.\n• Add option to change glass look.\n• Add pull to refresh.",
   "FORTRESS - 2.2.0":
       "• Biggest update ever — literally, app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar.",
-  "PERSEUS - 2.3.0": "• Upstream everything.\n• Fix crashes during loading.\n• Sort music in albums with date."
+  "PERSEUS - 2.3.0":
+      "• Upstream everything.\n• Fix crashes during loading.\n• Sort music in albums with date."
 };
 
 /// Theme data of entire app
@@ -59,6 +60,9 @@ ThemeData themeOfApp = ThemeData(
   unselectedWidgetColor: Colors.grey[900],
   scaffoldBackgroundColor: kMaterialBlack,
   fontFamily: "Urban",
+  dividerTheme: const DividerThemeData(
+    color: Colors.white54,
+  ),
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     isAlwaysShown: false,

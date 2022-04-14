@@ -61,26 +61,26 @@ fetchPlaylistSongs(String? playlistName) {
   }
 }
 
-void newPlaylist(String? playListName, List queue) {
+Future<void> newPlaylist(String? playListName, List queue) async {
   Map check = musicBox.get('playlists') ?? {};
   check[playListName] = queue;
-  musicBox.put('playlists', check);
+  await musicBox.put('playlists', check);
 }
 
-void removePlaylists(name) {
+Future<void> removePlaylists(name) async {
   Map check = musicBox.get('playlists');
   check.remove(name);
-  musicBox.put('playlists', check);
+  await musicBox.put('playlists', check);
 }
 
-void updateQueuePlayList(name, updatedQueue) {
+Future<void> updateQueuePlayList(name, updatedQueue) async {
   List dats = [];
   for (int i = 0; i < updatedQueue.length; i++) {
     dats.add(updatedQueue[i].data);
   }
   Map check = musicBox.get('playlists');
   check[name] = dats;
-  musicBox.put('playlists', check);
+  await musicBox.put('playlists', check);
 }
 
 playlistSongsSelected({required bool fresh, playlistName}) {

@@ -567,8 +567,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ArtistsInside()),
+                                      builder: (context) =>
+                                          ChangeNotifierProvider<SortProvider>(
+                                        create: (_) => SortProvider(),
+                                        builder: (context, child) =>
+                                            const ArtistsInside(),
+                                      ),
+                                    ),
                                   );
                                 },
                                 child: SizedBox(
@@ -708,8 +713,13 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AlbumsInside()),
+                                      builder: (context) =>
+                                          ChangeNotifierProvider<SortProvider>(
+                                        create: (_) => SortProvider(),
+                                        builder: (context, child) =>
+                                            const AlbumsInside(),
+                                      ),
+                                    ),
                                   );
                                 },
                                 child: SizedBox(
