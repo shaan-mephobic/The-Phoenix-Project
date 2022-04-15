@@ -60,29 +60,18 @@ artistsAllSongs(String who) async {
   int order = (musicBox.get('artistSort') ?? [0, 3])[1];
   if (sort == 0) {
     //TITLE
-    inArtistsSongs.sort((a, b) => a.title.compareTo(b.title));
+    inArtistsSongs
+        .sort((a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
   } else if (sort == 1) {
     //DATE
     inArtistsSongs
         .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
   } else {
     //ALBUM
-    inArtistsSongs.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+    inArtistsSongs.sort((a, b) =>
+        (a.album ?? "").toLowerCase().compareTo((b.album ?? "").toLowerCase()));
   }
-  if (order == 3) {
-    //ASCENDING
-    if (sort == 0) {
-      //TITLE
-      inArtistsSongs.sort((a, b) => a.title.compareTo(b.title));
-    } else if (sort == 1) {
-      //DATE
-      inArtistsSongs
-          .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
-    } else {
-      //ALBUM
-      inArtistsSongs.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
-    }
-  } else {
+  if (order == 4) {
     //DESCENDING
     inArtistsSongs = inArtistsSongs.reversed.toList();
   }

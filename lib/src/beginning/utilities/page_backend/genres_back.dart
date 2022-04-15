@@ -64,28 +64,21 @@ fetchGenreSongs(int index) async {
     int order = (musicBox.get('genreSort') ?? [0, 4])[1];
     genreSongs = insideAllGenreData.values.toList()[index];
     if (sort == 0) {
-      genreSongs!.sort((a, b) => a.title.compareTo(b.title));
+      genreSongs!.sort(
+          (a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
     } else if (sort == 1) {
       genreSongs!
           .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
     } else if (sort == 2) {
-      genreSongs!.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
+      genreSongs!.sort((a, b) => (a.album ?? "")
+          .toLowerCase()
+          .compareTo((b.album ?? "").toLowerCase()));
     } else {
-      genreSongs!.sort((a, b) => (a.artist ?? "").compareTo((b.artist ?? "")));
+      genreSongs!.sort((a, b) => (a.artist ?? "")
+          .toLowerCase()
+          .compareTo((b.artist ?? "").toLowerCase()));
     }
-    if (order == 0) {
-      if (sort == 0) {
-        genreSongs!.sort((a, b) => a.title.compareTo(b.title));
-      } else if (sort == 1) {
-        genreSongs!
-            .sort((a, b) => (a.dateAdded ?? 0).compareTo((b.dateAdded ?? 0)));
-      } else if (sort == 2) {
-        genreSongs!.sort((a, b) => (a.album ?? "").compareTo((b.album ?? "")));
-      } else {
-        genreSongs!
-            .sort((a, b) => (a.artist ?? "").compareTo((b.artist ?? "")));
-      }
-    } else {
+    if (order == 5) {
       genreSongs = genreSongs!.reversed.toList();
     }
   } else {
