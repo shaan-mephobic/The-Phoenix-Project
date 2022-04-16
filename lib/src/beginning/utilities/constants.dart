@@ -51,7 +51,9 @@ Map<String, String> changelogs = {
   "FORTRESS - 2.2.0":
       "• Biggest update ever — literally, app is almost thrice the size it used to be.\n• Add ringtone/crossfade/trim.\n• New search UI.\n• New now playing design.\n• Wider lyrics support.\n• Progress bar in mini-playing.\n• Performance improvements.\n• Minor UI changes.\n• Accurate artworks for songs.\n• Support editing songs for all android versions.\n• Smoother seekbar.",
   "PERSEUS - 2.3.0":
-      "• Upstream everything.\n• Fix crashes during loading.\n• Sort music in albums with date."
+      "• Upstream everything.\n• Fix crashes during loading.\n• Sort music in albums with date.",
+  "EPHEMERAL - 2.4.0":
+      "• Add sorting option.\n• Fix add-to-queue bug in mansion.\n• Upstream everything."
 };
 
 /// Theme data of entire app
