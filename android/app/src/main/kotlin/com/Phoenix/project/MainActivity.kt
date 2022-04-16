@@ -1,8 +1,10 @@
 package com.Phoenix.project
 
+import android.Manifest
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.hardware.camera2.CameraManager
 import android.media.*
@@ -12,6 +14,7 @@ import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.core.app.ActivityCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -133,6 +136,20 @@ class MainActivity : FlutterActivity() {
 
     private fun visualize() {
         mAudioBufferSize = AudioRecord.getMinBufferSize(samplingRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_8BIT)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.RECORD_AUDIO
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
         mAudioRecord = AudioRecord(MediaRecorder.AudioSource.MIC, samplingRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_8BIT, mAudioBufferSize)
 
         if (mAudioRecord!!.state != AudioRecord.STATE_INITIALIZED) println("AudioRecord init failed")
