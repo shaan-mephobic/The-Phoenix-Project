@@ -166,7 +166,10 @@ class _OnHoldState extends State<OnHold> {
                                                       "recent") {
                                                     addToQueue(
                                                         recentPlayedMediaItems[
-                                                            widget.index - 1]);
+                                                            recentPlayedMediaItems
+                                                                    .length -
+                                                                widget.index -
+                                                                1]);
                                                   } else if (widget.songOf ==
                                                       "mostly") {
                                                     addToQueue(
