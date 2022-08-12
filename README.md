@@ -1,5 +1,6 @@
 # The Phoenix Project
 A Non-Commercial Music Player Made With Flutter.
+(I made Phoenix by myself, for myself, maybe it could be yours too.)
 
 ## Download
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
