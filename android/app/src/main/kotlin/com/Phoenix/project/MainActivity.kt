@@ -59,7 +59,7 @@ class MainActivity : FlutterActivity() {
                 }
                 "sensitivityKot" -> {
                     val arguments = call.arguments<Map<Any, Double?>>()
-                    sensitivity = arguments["valueFromFlutter"]!!
+                    if(arguments!=null) sensitivity = arguments["valueFromFlutter"]!!
                     result.success("nice")
                 }
                 "ResetKot" -> {
@@ -69,8 +69,10 @@ class MainActivity : FlutterActivity() {
                 }
                 "deleteFile" -> {
                     val arguments = call.arguments<Map<Any, String?>>()
-                    val pathToDelete: String = arguments["fileToDelete"]!!
-                    deleteThis(pathToDelete)
+                    if(arguments!=null) {
+                        val pathToDelete: String = arguments["fileToDelete"]!!
+                        deleteThis(pathToDelete)
+                    }
                     result.success("nice")
                 }
                 "homescreen" -> {
@@ -79,8 +81,10 @@ class MainActivity : FlutterActivity() {
                 }
                 "broadcastFileChange" -> {
                     val arguments = call.arguments<Map<Any, String?>>()
-                    val pathToUpdate: String = arguments["filePath"]!!
-                    broadcastFileUpdate(pathToUpdate)
+                    if(arguments!=null) {
+                        val pathToUpdate: String = arguments["filePath"]!!
+                        broadcastFileUpdate(pathToUpdate)
+                    }
                     result.success("nice")
                 }
                 "returnToOld" -> {
@@ -95,8 +99,8 @@ class MainActivity : FlutterActivity() {
                     result.success("nice")
                 }
                 "setRingtone" -> {
-                    val arguments = call.arguments<Map<Any, String?>>()
-                    setRingtone(ringtonePath = arguments["path"]!!)
+                    val arguments = call.arguments<Map<Any, String>>()
+                    if(arguments!=null) setRingtone(ringtonePath = arguments["path"]!!)
                     result.success("nice")
                 }
                 "checkSettingPermission" -> {
