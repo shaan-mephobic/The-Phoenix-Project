@@ -1,18 +1,23 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+
+// Package imports:
 import 'package:ionicons/ionicons.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/begin.dart';
 import 'package:phoenix/src/beginning/pages/artists/artists_inside.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres.dart';
+import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
+import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/genres_back.dart';
 import '../utilities/page_backend/artists_back.dart';
-import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
-import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 
 class ListHeader extends StatelessWidget {
   final double? widthOfDevice;

@@ -1,7 +1,13 @@
+// Dart imports:
 import 'dart:developer';
 
+// Flutter imports:
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:permission_handler/permission_handler.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/visualizer_notification.dart';
 
 bool activeSession = false;

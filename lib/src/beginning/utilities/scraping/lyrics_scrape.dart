@@ -1,11 +1,14 @@
+// Dart imports:
 import 'dart:convert';
-
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'dart:core';
-import 'package:http/http.dart' as http;
-import 'package:html_unescape/html_unescape.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
+// Package imports:
+import 'package:html_unescape/html_unescape.dart';
+import 'package:http/http.dart' as http;
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../has_network.dart';
 
 class Lyrics {

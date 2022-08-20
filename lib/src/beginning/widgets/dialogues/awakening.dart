@@ -1,6 +1,11 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flare_loading/flare_loading.dart';
-import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 

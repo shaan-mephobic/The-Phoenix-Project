@@ -1,3 +1,4 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 /// Credits to appiranian - https://github.com/appiranian/switcher_button

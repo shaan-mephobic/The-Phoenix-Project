@@ -1,4 +1,7 @@
+// Dart imports:
 import 'dart:io';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 bool isHome = true;

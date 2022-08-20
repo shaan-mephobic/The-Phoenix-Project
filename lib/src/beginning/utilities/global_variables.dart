@@ -1,13 +1,20 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
-import 'package:audio_service/audio_service.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_edit/on_audio_edit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/background.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/audio_handlers/background.dart';
 
 double? deviceWidth;
 double? deviceHeight;

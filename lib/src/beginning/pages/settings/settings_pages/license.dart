@@ -1,8 +1,12 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
+// Dart imports:
 import "dart:collection";
 
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 class LicensesPage extends StatefulWidget {

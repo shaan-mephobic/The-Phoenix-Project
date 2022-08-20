@@ -1,11 +1,16 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/playlist_back.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
-import 'package:provider/provider.dart';
 import 'add_songs.dart';
 
 List? modifyPlayList = [];

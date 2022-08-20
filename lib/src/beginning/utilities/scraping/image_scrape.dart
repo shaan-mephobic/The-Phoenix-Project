@@ -1,12 +1,18 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-
-import '../page_backend/artists_back.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'dart:isolate';
-import 'package:http/http.dart' as http;
+// Dart imports:
 import 'dart:async';
+import 'dart:io';
+import 'dart:isolate';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:http/http.dart' as http;
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/constants.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import '../page_backend/artists_back.dart';
 
 List neverDone = [];
 bool isIsolated = false;

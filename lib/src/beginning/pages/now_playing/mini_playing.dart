@@ -1,10 +1,15 @@
+// Dart imports:
 import 'dart:ui';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'package:phoenix/src/beginning/widgets/custom/marquee.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/widgets/custom/marquee.dart';
 import 'package:phoenix/src/beginning/widgets/seek_bar.dart';
 
 class Moderna extends StatefulWidget {

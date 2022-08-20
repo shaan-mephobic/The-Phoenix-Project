@@ -1,9 +1,14 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class PhoenixVisualizer extends StatefulWidget {
   const PhoenixVisualizer({Key? key}) : super(key: key);

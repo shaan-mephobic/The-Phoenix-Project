@@ -1,5 +1,8 @@
-import 'package:phoenix/src/beginning/pages/settings/settings.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/pages/settings/settings.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 bool usingSeek = false;

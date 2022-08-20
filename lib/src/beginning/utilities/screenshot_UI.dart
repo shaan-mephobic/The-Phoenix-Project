@@ -1,12 +1,19 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/file_handlers.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
-import 'package:screenshot/screenshot.dart';
 import 'filters.dart';
 
 screenShotUI(save) async {

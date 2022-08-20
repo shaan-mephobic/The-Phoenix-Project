@@ -1,12 +1,19 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:audio_service/audio_service.dart';
+
+// Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../../pages/albums/albums.dart';
-import 'package:flutter/foundation.dart';
 
 List<AlbumModel> allAlbums = [];
 List<String?> allAlbumsName = [];

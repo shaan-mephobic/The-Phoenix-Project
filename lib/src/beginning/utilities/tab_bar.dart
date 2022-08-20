@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 List<Tab> tabsData(double width, double? height) {

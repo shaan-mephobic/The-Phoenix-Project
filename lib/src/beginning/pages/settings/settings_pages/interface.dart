@@ -1,16 +1,22 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter/services.dart';
-import 'package:phoenix/src/beginning/pages/settings/settings_pages/glass_effect.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:another_flushbar/flushbar.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/pages/settings/settings_pages/glass_effect.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
+import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
 
 class Interface extends StatefulWidget {
   const Interface({Key? key}) : super(key: key);

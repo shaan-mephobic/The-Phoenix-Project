@@ -1,9 +1,16 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/file_handlers.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'native/go_native.dart';
-import 'package:flutter_ffmpeg/flutter_ffmpeg.dart';
 
 Future<void> ringtoneTrim(
     {required pathOfFile,

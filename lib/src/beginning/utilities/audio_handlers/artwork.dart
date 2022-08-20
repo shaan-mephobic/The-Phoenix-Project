@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:on_audio_edit/on_audio_edit.dart' as on_audio_edit;
 import 'package:palette_generator/palette_generator.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import '../../widgets/artwork_background.dart';

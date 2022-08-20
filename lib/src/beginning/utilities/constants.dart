@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/widgets/custom/ripple.dart';
 
 /// The default black Color

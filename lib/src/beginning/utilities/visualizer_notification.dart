@@ -1,5 +1,8 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 visualizerNotificationInit() async {
   await AwesomeNotifications().initialize(

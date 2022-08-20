@@ -1,12 +1,17 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
-import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
-import 'package:provider/provider.dart';
-import 'directories.dart';
+import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
 import '../../../utilities/page_backend/file_exporer.dart';
+import 'directories.dart';
 
 Map folderData = {};
 

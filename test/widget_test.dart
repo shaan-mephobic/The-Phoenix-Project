@@ -6,7 +6,11 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 // import 'package:phoenix/src/app.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

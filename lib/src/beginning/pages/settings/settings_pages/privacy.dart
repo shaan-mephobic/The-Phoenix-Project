@@ -1,11 +1,16 @@
-import 'package:flutter_remixicon/flutter_remixicon.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import '../../../widgets/switcher_button.dart';
-import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
+
+// Package imports:
+import 'package:flutter_remixicon/flutter_remixicon.dart';
 import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/constants.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
+import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
+import '../../../widgets/switcher_button.dart';
 
 class Privacy extends StatefulWidget {
   const Privacy({Key? key}) : super(key: key);

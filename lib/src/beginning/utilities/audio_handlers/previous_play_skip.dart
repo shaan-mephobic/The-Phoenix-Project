@@ -1,17 +1,20 @@
+// Package imports:
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
-import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
-import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
-import '../page_backend/artists_back.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/pages/genres/genres.dart';
 import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
 import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/artwork.dart';
-import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
-import '../page_backend/mansion_back.dart';
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
+import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/utilities/scraping/lyrics_scrape.dart';
+import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
 import '../filters.dart';
+import '../page_backend/artists_back.dart';
+import '../page_backend/mansion_back.dart';
 
 int? indexofcurrent;
 String? lyricsDat = " ";

@@ -1,15 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:another_flushbar/flushbar.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/pages/playlist/playlist.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
-import '../../utilities/page_backend/playlist_back.dart';
-import 'package:phoenix/src/beginning/pages/playlist/playlist.dart';
-import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
-import 'package:provider/provider.dart';
+import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
+import '../../utilities/page_backend/playlist_back.dart';
 
 List<bool> playListCheck = [];
 List playListSongsId = [];

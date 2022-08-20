@@ -1,5 +1,10 @@
-import 'package:another_flushbar/flushbar.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:another_flushbar/flushbar.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 
 corruptedFile(BuildContext context) async {

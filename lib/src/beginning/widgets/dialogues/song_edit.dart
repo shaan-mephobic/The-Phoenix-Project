@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:typed_data';
 
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/edit_song.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';

@@ -1,13 +1,20 @@
+// Dart imports:
 import 'dart:io';
 import 'dart:ui';
-import 'package:audio_service/audio_service.dart';
-import 'package:device_info/device_info.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:audio_service/audio_service.dart';
+import 'package:device_info/device_info.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/begin.dart';
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -16,7 +23,6 @@ import 'package:phoenix/src/beginning/utilities/page_backend/artists_back.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/genres_back.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/mansion_back.dart';
 import 'package:phoenix/src/beginning/utilities/scraping/image_scrape.dart';
-
 import 'has_network.dart';
 
 cacheImages() async {

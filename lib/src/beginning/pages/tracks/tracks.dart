@@ -1,13 +1,18 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:page_transition/page_transition.dart';
+
+// Project imports:
 import 'package:phoenix/src/beginning/begin.dart';
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/init.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/beginning/widgets/list_header.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:flutter/material.dart';
 import '../../widgets/dialogues/on_hold.dart';
 
 class Allofem extends StatefulWidget {

@@ -1,29 +1,36 @@
+// Dart imports:
 import 'dart:io';
-import 'package:another_flushbar/flushbar.dart';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:another_flushbar/flushbar.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:on_audio_edit/on_audio_edit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/pages/genres/genres.dart';
+import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
+import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
+import 'package:phoenix/src/beginning/pages/ringtone/ringtone.dart';
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/heart.dart';
 import 'package:phoenix/src/beginning/utilities/native/go_native.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
-import 'package:phoenix/src/beginning/pages/ringtone/ringtone.dart';
+import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/add_to_playlist.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/r_support.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/song_edit.dart';
-import '../../utilities/page_backend/artists_back.dart';
-import 'package:phoenix/src/beginning/pages/genres/genres.dart';
-import 'package:phoenix/src/beginning/pages/genres/genres_inside.dart';
-import '../../utilities/page_backend/mansion_back.dart';
-import 'package:phoenix/src/beginning/pages/playlist/playlist_inside.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:phoenix/src/beginning/utilities/screenshot_ui.dart';
-import 'package:share_plus/share_plus.dart';
 import '../../utilities/constants.dart';
+import '../../utilities/page_backend/artists_back.dart';
+import '../../utilities/page_backend/mansion_back.dart';
 
 class OnHold extends StatefulWidget {
   final BuildContext classContext;

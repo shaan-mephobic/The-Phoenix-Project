@@ -1,18 +1,25 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/pages/albums/albums_inside.dart';
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
-import 'package:phoenix/src/beginning/pages/albums/albums_inside.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:phoenix/src/beginning/widgets/artist_collage.dart';
-import 'package:provider/provider.dart';
-import '../../utilities/page_backend/artists_back.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
-import 'package:phoenix/src/beginning/widgets/list_header.dart';
 import 'package:phoenix/src/beginning/widgets/dialogues/on_hold.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:flutter/material.dart';
+import 'package:phoenix/src/beginning/widgets/list_header.dart';
+import '../../utilities/page_backend/artists_back.dart';
 
 int? artistPassed;
 

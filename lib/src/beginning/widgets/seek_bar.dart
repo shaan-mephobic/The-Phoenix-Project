@@ -1,9 +1,14 @@
-import 'package:audio_service/audio_service.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:phoenix/src/beginning/utilities/global_variables.dart';
+
+// Package imports:
+import 'package:audio_service/audio_service.dart';
 import 'package:provider/provider.dart';
-import '../utilities/provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import '../pages/ringtone/ringtone.dart';
+import '../utilities/provider/provider.dart';
 
 class SeekBar extends StatefulWidget {
   const SeekBar({Key? key}) : super(key: key);

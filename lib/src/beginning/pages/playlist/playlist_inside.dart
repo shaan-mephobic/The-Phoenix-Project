@@ -1,15 +1,20 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:audio_service/audio_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:provider/provider.dart';
+
+// Project imports:
+import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
+import 'package:phoenix/src/beginning/utilities/constants.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 import 'package:phoenix/src/beginning/utilities/page_backend/albums_back.dart';
-import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
-import 'package:phoenix/src/beginning/utilities/constants.dart';
-import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
+import 'package:phoenix/src/beginning/widgets/artwork_background.dart';
+import 'package:phoenix/src/beginning/widgets/dialogues/corrupted_file_dialog.dart';
 import 'package:phoenix/src/beginning/widgets/list_header.dart';
-import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../utilities/page_backend/playlist_back.dart';
 
 List<SongModel> playlistSongsInside = [];
