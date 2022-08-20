@@ -52,8 +52,8 @@ class _BeginState extends State<Begin>
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     visualizerNotificationInit();
-    WidgetsBinding.instance!.addObserver(this);
-    SchedulerBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addObserver(this);
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Begin.refreshIndicatorKey.currentState?.show();
       setState(() {});
     });
@@ -63,7 +63,7 @@ class _BeginState extends State<Begin>
   @override
   void dispose() {
     animatedPlayPause.dispose();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -102,7 +102,7 @@ class _BeginState extends State<Begin>
     if (refresh) {
       debugPrint("Refreshing...");
       refresh = false;
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         Begin.refreshIndicatorKey.currentState?.show();
       });
     }
