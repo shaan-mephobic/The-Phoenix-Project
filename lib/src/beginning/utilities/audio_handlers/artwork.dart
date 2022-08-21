@@ -100,16 +100,20 @@ getImagePalette(ImageProvider imageProvider) async {
       await PaletteGenerator.fromImageProvider(imageProvider);
   nowColor = (paletteGenerator.dominantColor!.color);
   double luminance = nowColor.computeLuminance();
-  isArtworkDark = luminance <= 0.6 ? true : false;
-  if (luminance <= 0.5) {
+  isArtworkDark = luminance < 0.5 ? true : false;
+  if (luminance < 0.5) {
     try {
-      var pal = paletteGenerator.lightMutedColor!.color;
+      Color pal = paletteGenerator.lightMutedColor!.color;
       nowContrast = pal;
     } catch (e) {
       nowContrast = Colors.white;
     }
     if (nowColor == nowContrast) {
-      nowContrast = paletteGenerator.darkMutedColor!.color;
+      try {
+        nowContrast = paletteGenerator.darkMutedColor!.color;
+      } catch (e) {
+        nowContrast = Colors.white;
+      }
     }
   } else {
     try {
@@ -120,10 +124,14 @@ getImagePalette(ImageProvider imageProvider) async {
     }
 
     if (nowColor == nowContrast) {
-      nowContrast = paletteGenerator.lightMutedColor!.color;
+      try {
+        nowContrast = paletteGenerator.lightMutedColor!.color;
+      } catch (e) {
+        nowContrast = Colors.black;
+      }
     }
   }
-  if ((luminance - nowContrast.computeLuminance()).abs() < 0.2) {
+  if ((luminance - nowContrast.computeLuminance()).abs() < 0.3) {
     if (luminance < 0.5) {
       nowContrast = Colors.white;
     } else {
