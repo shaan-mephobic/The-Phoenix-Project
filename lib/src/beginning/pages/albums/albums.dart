@@ -15,7 +15,7 @@ class Albums extends StatefulWidget {
   const Albums({Key? key}) : super(key: key);
 
   @override
-  _AlbumsState createState() => _AlbumsState();
+  State<Albums> createState() => _AlbumsState();
 }
 
 class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
@@ -88,16 +88,33 @@ class _AlbumsState extends State<Albums> with AutomaticKeepAliveClientMixin {
                     albumMediaItems = [];
                     inAlbumSongsArtIndex = [];
                     await albumSongs();
-                    Navigator.push(
+                    var rootCrossfadeStateDup = rootCrossfadeState;
+                    var rootStateDup = rootState;
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
+                        builder: (context) => MultiProvider(
+                          providers: [
+                            ChangeNotifierProvider<Leprovider>(
+                                create: (_) => Leprovider()),
+                            ChangeNotifierProvider<MrMan>(
+                              create: (_) => MrMan(),
+                            ),
+                            ChangeNotifierProvider<Seek>(create: (_) => Seek()),
                             ChangeNotifierProvider<SortProvider>(
-                          create: (_) => SortProvider(),
-                          builder: (context, child) => const AlbumsInside(),
+                              create: (_) => SortProvider(),
+                              builder: (context, child) => const AlbumsInside(),
+                            ),
+                          ],
                         ),
                       ),
-                    );
+                    ).then((value) {
+                      rootCrossfadeState = rootCrossfadeStateDup;
+                      rootState = rootStateDup;
+                      if (isPlayerShown) {
+                        rootState.provideman();
+                      }
+                    });
                   },
                   child: Column(
                     children: [

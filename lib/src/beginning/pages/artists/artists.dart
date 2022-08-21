@@ -15,7 +15,7 @@ class Artists extends StatefulWidget {
   const Artists({Key? key}) : super(key: key);
 
   @override
-  _ArtistsState createState() => _ArtistsState();
+  State<Artists> createState() => _ArtistsState();
 }
 
 class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
@@ -96,16 +96,34 @@ class _ArtistsState extends State<Artists> with AutomaticKeepAliveClientMixin {
                       contrastAlbum = Colors.white;
                       dominantAlbum = kMaterialBlack;
                     }
-                    Navigator.push(
+                    var rootCrossfadeStateDup = rootCrossfadeState;
+                    var rootStateDup = rootState;
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
+                        builder: (context) => MultiProvider(
+                          providers: [
+                            ChangeNotifierProvider<Leprovider>(
+                                create: (_) => Leprovider()),
+                            ChangeNotifierProvider<MrMan>(
+                              create: (_) => MrMan(),
+                            ),
+                            ChangeNotifierProvider<Seek>(create: (_) => Seek()),
                             ChangeNotifierProvider<SortProvider>(
-                          create: (_) => SortProvider(),
-                          builder: (context, child) => const ArtistsInside(),
+                              create: (_) => SortProvider(),
+                              builder: (context, child) =>
+                                  const ArtistsInside(),
+                            ),
+                          ],
                         ),
                       ),
-                    );
+                    ).then((value) {
+                      rootCrossfadeState = rootCrossfadeStateDup;
+                      rootState = rootStateDup;
+                      if (isPlayerShown) {
+                        rootState.provideman();
+                      }
+                    });
                   },
                   child: Column(
                     children: [

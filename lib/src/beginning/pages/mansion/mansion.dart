@@ -24,7 +24,7 @@ class Mansion extends StatefulWidget {
   const Mansion({Key? key}) : super(key: key);
 
   @override
-  _MansionState createState() => _MansionState();
+  State<Mansion> createState() => _MansionState();
 }
 
 class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
@@ -564,17 +564,36 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                     contrastAlbum = Colors.white;
                                     dominantAlbum = kMaterialBlack;
                                   }
-                                  Navigator.push(
+                                  var rootCrossfadeStateDup =
+                                      rootCrossfadeState;
+                                  var rootStateDup = rootState;
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
+                                      builder: (context) => MultiProvider(
+                                        providers: [
+                                          ChangeNotifierProvider<Leprovider>(
+                                              create: (_) => Leprovider()),
+                                          ChangeNotifierProvider<MrMan>(
+                                            create: (_) => MrMan(),
+                                          ),
+                                          ChangeNotifierProvider<Seek>(
+                                              create: (_) => Seek()),
                                           ChangeNotifierProvider<SortProvider>(
-                                        create: (_) => SortProvider(),
-                                        builder: (context, child) =>
-                                            const ArtistsInside(),
+                                            create: (_) => SortProvider(),
+                                            builder: (context, child) =>
+                                                const ArtistsInside(),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  );
+                                  ).then((value) {
+                                    rootCrossfadeState = rootCrossfadeStateDup;
+                                    rootState = rootStateDup;
+                                    if (isPlayerShown) {
+                                      rootState.provideman();
+                                    }
+                                  });
                                 },
                                 child: SizedBox(
                                   height: deviceWidth! / 2,
@@ -710,17 +729,36 @@ class _MansionState extends State<Mansion> with AutomaticKeepAliveClientMixin {
                                   inAlbumSongsArtIndex = [];
                                   albumMediaItems = [];
                                   await albumSongs();
-                                  Navigator.push(
+                                  var rootCrossfadeStateDup =
+                                      rootCrossfadeState;
+                                  var rootStateDup = rootState;
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
+                                      builder: (context) => MultiProvider(
+                                        providers: [
+                                          ChangeNotifierProvider<Leprovider>(
+                                              create: (_) => Leprovider()),
+                                          ChangeNotifierProvider<MrMan>(
+                                            create: (_) => MrMan(),
+                                          ),
+                                          ChangeNotifierProvider<Seek>(
+                                              create: (_) => Seek()),
                                           ChangeNotifierProvider<SortProvider>(
-                                        create: (_) => SortProvider(),
-                                        builder: (context, child) =>
-                                            const AlbumsInside(),
+                                            create: (_) => SortProvider(),
+                                            builder: (context, child) =>
+                                                const AlbumsInside(),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  );
+                                  ).then((value) {
+                                    rootCrossfadeState = rootCrossfadeStateDup;
+                                    rootState = rootStateDup;
+                                    if (isPlayerShown) {
+                                      rootState.provideman();
+                                    }
+                                  });
                                 },
                                 child: SizedBox(
                                   height: deviceWidth! / 2,

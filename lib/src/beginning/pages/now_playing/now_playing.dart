@@ -20,7 +20,7 @@ class NowPlaying extends StatefulWidget {
   const NowPlaying({Key? key}) : super(key: key);
 
   @override
-  _NowPlayingState createState() => _NowPlayingState();
+  State<NowPlaying> createState() => _NowPlayingState();
 }
 
 class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
@@ -275,7 +275,7 @@ class _NowPlayingState extends State<NowPlaying> with TickerProviderStateMixin {
                             Center(
                                 child: SizedBox(
                                     width: deviceWidth! / 1.1,
-                                    child:const SeekBar())),
+                                    child: const SeekBar())),
                             Padding(
                               padding:
                                   EdgeInsets.only(top: deviceHeight! / 100),

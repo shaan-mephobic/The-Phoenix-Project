@@ -28,7 +28,7 @@ class SongEdit extends StatefulWidget {
       required this.artwork})
       : super(key: key);
   @override
-  _SongEditState createState() => _SongEditState();
+  State<SongEdit> createState() => _SongEditState();
 }
 
 class _SongEditState extends State<SongEdit> with TickerProviderStateMixin {

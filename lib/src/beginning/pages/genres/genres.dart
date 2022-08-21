@@ -18,7 +18,7 @@ class Genres extends StatefulWidget {
   const Genres({Key? key}) : super(key: key);
 
   @override
-  _GenresState createState() => _GenresState();
+  State<Genres> createState() => _GenresState();
 }
 
 class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
@@ -101,34 +101,36 @@ class _GenresState extends State<Genres> with AutomaticKeepAliveClientMixin {
                                 onTap: () async {
                                   genreSelected = index;
                                   await fetchGenreSongs(index);
-                                  Navigator.push(
+                                  var rootCrossfadeStateDup =
+                                      rootCrossfadeState;
+                                  var rootStateDup = rootState;
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => MultiProvider(
                                         providers: [
+                                          ChangeNotifierProvider<Leprovider>(
+                                              create: (_) => Leprovider()),
+                                          ChangeNotifierProvider<MrMan>(
+                                            create: (_) => MrMan(),
+                                          ),
+                                          ChangeNotifierProvider<Seek>(
+                                              create: (_) => Seek()),
                                           ChangeNotifierProvider<SortProvider>(
                                             create: (_) => SortProvider(),
-                                          ),
-                                          ChangeNotifierProvider<Leprovider>(
-                                            create: (_) => Leprovider(),
+                                            builder: (context, child) =>
+                                                const GenresInside(),
                                           ),
                                         ],
-                                        builder: (context, child) =>
-                                            const GenresInside(),
                                       ),
                                     ),
-                                  );
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) =>
-                                  //         ChangeNotifierProvider<Leprovider>(
-                                  //       create: (_) => Leprovider(),
-                                  //       builder: (context, child) =>
-                                  //           const GenresInside(),
-                                  //     ),
-                                  //   ),
-                                  // );
+                                  ).then((value) {
+                                    rootCrossfadeState = rootCrossfadeStateDup;
+                                    rootState = rootStateDup;
+                                    if (isPlayerShown) {
+                                      rootState.provideman();
+                                    }
+                                  });
                                 },
                                 child: Center(
                                   child: Text(

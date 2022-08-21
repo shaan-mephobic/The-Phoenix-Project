@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:phoenix/src/beginning/utilities/global_variables.dart';
@@ -5,11 +7,13 @@ import 'package:provider/provider.dart';
 import '../utilities/provider/provider.dart';
 import '../pages/ringtone/ringtone.dart';
 
+bool seekInitiated = false;
+
 class SeekBar extends StatefulWidget {
   const SeekBar({Key? key}) : super(key: key);
 
   @override
-  _SeekBarState createState() => _SeekBarState();
+  State<SeekBar> createState() => _SeekBarState();
 }
 
 class _SeekBarState extends State<SeekBar> {
@@ -19,7 +23,10 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   void initState() {
-    streamOfPosition();
+    if (!seekInitiated) {
+      seekInitiated = true;
+      streamOfPosition();
+    }
     super.initState();
   }
 
@@ -179,13 +186,14 @@ class CyberSkySeekBar extends StatefulWidget {
   const CyberSkySeekBar({Key? key}) : super(key: key);
 
   @override
-  _CyberSkySeekBarState createState() => _CyberSkySeekBarState();
+  State<CyberSkySeekBar> createState() => _CyberSkySeekBarState();
 }
 
 class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
   Duration currentPosition = Duration.zero;
   int seekValue = 0;
   var globalTiming;
+  late StreamSubscription<Duration> posStream;
 
   @override
   void initState() {
@@ -193,8 +201,14 @@ class _CyberSkySeekBarState extends State<CyberSkySeekBar> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    posStream.cancel();
+    super.dispose();
+  }
+
   streamOfPosition() {
-    AudioService.position.listen(
+    posStream = AudioService.position.listen(
       (Duration position) {
         currentPosition = position;
         if (globalTiming != null &&
@@ -349,7 +363,7 @@ class RingtoneSeekBar extends StatefulWidget {
   const RingtoneSeekBar({Key? key, required this.duration}) : super(key: key);
 
   @override
-  _RingtoneSeekBarState createState() => _RingtoneSeekBarState();
+  State<RingtoneSeekBar> createState() => _RingtoneSeekBarState();
 }
 
 class _RingtoneSeekBarState extends State<RingtoneSeekBar> {
@@ -507,7 +521,7 @@ class MiniSeekbar extends StatefulWidget {
   const MiniSeekbar({Key? key}) : super(key: key);
 
   @override
-  _MiniSeekbarState createState() => _MiniSeekbarState();
+  State<MiniSeekbar> createState() => _MiniSeekbarState();
 }
 
 class _MiniSeekbarState extends State<MiniSeekbar> {

@@ -20,7 +20,7 @@ class AddSongs extends StatefulWidget {
   const AddSongs({required this.modify, required this.playlistName, Key? key})
       : super(key: key);
   @override
-  _AddSongsState createState() => _AddSongsState();
+  State<AddSongs> createState() => _AddSongsState();
 }
 
 class _AddSongsState extends State<AddSongs> {

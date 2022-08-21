@@ -14,7 +14,7 @@ class Playlist extends StatefulWidget {
   const Playlist({Key? key}) : super(key: key);
 
   @override
-  _PlaylistState createState() => _PlaylistState();
+  State<Playlist> createState() => _PlaylistState();
 }
 
 class _PlaylistState extends State<Playlist>
@@ -63,20 +63,36 @@ class _PlaylistState extends State<Playlist>
                     borderRadius: BorderRadius.circular(kRounded),
                     onTap: () async {
                       playlistSongsSelected(fresh: true);
+                      var rootCrossfadeStateDup = rootCrossfadeState;
+                      var rootStateDup = rootState;
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
+                          builder: (context) => MultiProvider(
+                            providers: [
                               ChangeNotifierProvider<Leprovider>(
-                            create: (_) => Leprovider(),
-                            builder: (context, child) => const AddSongs(
-                              modify: false,
-                              playlistName: "Enter Playlist Name",
-                            ),
+                                  create: (_) => Leprovider()),
+                              ChangeNotifierProvider<MrMan>(
+                                create: (_) => MrMan(),
+                              ),
+                              ChangeNotifierProvider<Seek>(
+                                  create: (_) => Seek()),
+                              ChangeNotifierProvider<SortProvider>(
+                                create: (_) => SortProvider(),
+                                builder: (context, child) => const AddSongs(
+                                  modify: false,
+                                  playlistName: "Enter Playlist Name",
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ).then((value) {
-                        setState(() {});
+                        rootCrossfadeState = rootCrossfadeStateDup;
+                        rootState = rootStateDup;
+                        if (isPlayerShown) {
+                          rootState.provideman();
+                        }
                       });
                     },
                     child: Center(
@@ -104,27 +120,43 @@ class _PlaylistState extends State<Playlist>
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton(
           splashColor: Colors.transparent,
-          child: const Icon(Icons.add_rounded, color: Colors.black),
           backgroundColor: const Color(0xFF1DB954),
           elevation: 8.0,
           onPressed: () async {
             playListSongsId = [];
             playlistSongsSelected(fresh: true);
+            var rootCrossfadeStateDup = rootCrossfadeState;
+            var rootStateDup = rootState;
             await Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ChangeNotifierProvider<Leprovider>(
-                  create: (_) => Leprovider(),
-                  builder: (context, child) => const AddSongs(
-                    modify: false,
-                    playlistName: "Enter Playlist Name",
-                  ),
+                builder: (context) => MultiProvider(
+                  providers: [
+                    ChangeNotifierProvider<Leprovider>(
+                        create: (_) => Leprovider()),
+                    ChangeNotifierProvider<MrMan>(
+                      create: (_) => MrMan(),
+                    ),
+                    ChangeNotifierProvider<Seek>(create: (_) => Seek()),
+                    ChangeNotifierProvider<SortProvider>(
+                      create: (_) => SortProvider(),
+                      builder: (context, child) => const AddSongs(
+                        modify: false,
+                        playlistName: "Enter Playlist Name",
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ).then((value) {
-              setState(() {});
+              rootCrossfadeState = rootCrossfadeStateDup;
+              rootState = rootStateDup;
+              if (isPlayerShown) {
+                rootState.provideman();
+              }
             });
           },
+          child: const Icon(Icons.add_rounded, color: Colors.black),
         ),
         body: Scrollbar(
           controller: _scrollBarController,
@@ -139,7 +171,7 @@ class _PlaylistState extends State<Playlist>
             },
             child: ListView.builder(
               controller: _scrollBarController,
-              padding: const EdgeInsets.only(top: 5, bottom: 8),
+              padding: EdgeInsets.only(top: 5, bottom: isPlayerShown ? 60 : 0),
               addAutomaticKeepAlives: true,
               itemExtent: orientedCar ? deviceWidth! / 1.4 : deviceWidth! / 2,
               physics: musicBox.get("fluidAnimation") ?? true
@@ -194,19 +226,40 @@ class _PlaylistState extends State<Playlist>
                                         .keys
                                         .toList()[index];
                                     await fetchPlaylistSongs(playListName);
-                                    Navigator.push(
+                                    var rootCrossfadeStateDup =
+                                        rootCrossfadeState;
+                                    var rootStateDup = rootState;
+                                    await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
+                                        builder: (context) => MultiProvider(
+                                          providers: [
                                             ChangeNotifierProvider<Leprovider>(
-                                          create: (_) => Leprovider(),
-                                          builder: (context, child) =>
-                                              PlaylistInside(
-                                            playlistName: playListName,
-                                          ),
+                                                create: (_) => Leprovider()),
+                                            ChangeNotifierProvider<MrMan>(
+                                              create: (_) => MrMan(),
+                                            ),
+                                            ChangeNotifierProvider<Seek>(
+                                                create: (_) => Seek()),
+                                            ChangeNotifierProvider<
+                                                SortProvider>(
+                                              create: (_) => SortProvider(),
+                                              builder: (context, child) =>
+                                                  PlaylistInside(
+                                                playlistName: playListName,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    );
+                                    ).then((value) {
+                                      rootCrossfadeState =
+                                          rootCrossfadeStateDup;
+                                      rootState = rootStateDup;
+                                      if (isPlayerShown) {
+                                        rootState.provideman();
+                                      }
+                                    });
                                   },
                                   onLongPress: () {
                                     String? playListName = musicBox
