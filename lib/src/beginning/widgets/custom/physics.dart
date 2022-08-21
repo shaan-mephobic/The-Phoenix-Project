@@ -12,8 +12,8 @@ class CustomPageViewScrollPhysics extends ScrollPhysics {
 
   @override
   SpringDescription get spring => const SpringDescription(
-        mass: 150,
-        stiffness: 100,
+        mass: 250,
+        stiffness: 150,
         damping: 1,
       );
 }

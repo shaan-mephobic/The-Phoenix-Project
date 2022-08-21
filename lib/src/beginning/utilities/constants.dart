@@ -14,7 +14,7 @@ double kRounded = 12;
 Color kPhoenixColor = const Color(0xFF028ac4);
 
 /// Crossfade duration.
-int crossfadeDuration = 300;
+int crossfadeDuration = 180;
 
 /// Blur constant for artwork background
 double artworkBlurConst = 14;
@@ -67,7 +67,7 @@ ThemeData themeOfApp = ThemeData(
   ),
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
-    isAlwaysShown: false,
+    thumbVisibility: MaterialStateProperty.all(false),
     radius: const Radius.circular(50),
     thickness: MaterialStateProperty.all(4),
     crossAxisMargin: 2,
