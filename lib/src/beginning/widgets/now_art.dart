@@ -5,7 +5,6 @@ import 'package:phoenix/src/beginning/utilities/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
 class NowArt extends StatelessWidget {
   final bool car;
   const NowArt(this.car, {Key? key}) : super(key: key);
@@ -63,6 +62,9 @@ class NowArtLandScape extends StatelessWidget {
     return Consumer<Leprovider>(
       builder: (context, timing, child) {
         return Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(kRounded),
+              boxShadow: [nowArtShadow]),
           child: AspectRatio(
             aspectRatio: 1 / 1,
             child: isPlayerShown
@@ -88,9 +90,6 @@ class NowArtLandScape extends StatelessWidget {
                     ),
                   ),
           ),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kRounded),
-              boxShadow: [nowArtShadow]),
         );
       },
     );

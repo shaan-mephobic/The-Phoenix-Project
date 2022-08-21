@@ -49,7 +49,7 @@ late Directory applicationFileDirectory;
 late var rootCrossfadeState;
 late var rootState;
 late var globalBigNow;
-late var animatedPlayPause;
+late AnimationController animatedPlayPause;
 bool swapController = false;
 bool bgPhoenixVisualizer = false;
 bool ascend = false;

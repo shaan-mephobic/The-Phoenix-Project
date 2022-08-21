@@ -9,7 +9,7 @@ class LicensesPage extends StatefulWidget {
   const LicensesPage({Key? key}) : super(key: key);
 
   @override
-  _LicensesPageState createState() => _LicensesPageState();
+  State<LicensesPage> createState() => _LicensesPageState();
 }
 
 class _LicensesPageState extends State<LicensesPage> {
@@ -37,7 +37,8 @@ class _LicensesPageState extends State<LicensesPage> {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text("Licenses", style: TextStyle(fontFamily: "Futura")),
+              title: const Text("Licenses",
+                  style: TextStyle(fontFamily: "Futura")),
               backgroundColor: kMaterialBlack,
             ),
             body: Theme(
@@ -66,12 +67,15 @@ class _LicensesPageState extends State<LicensesPage> {
                         ),
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => InsideLicense(
-                                      snapshot.data.keys.toList()[index],
-                                      snapshot.data[snapshot.data.keys
-                                          .toList()[index]],),),);
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InsideLicense(
+                                snapshot.data.keys.toList()[index],
+                                snapshot
+                                    .data[snapshot.data.keys.toList()[index]],
+                              ),
+                            ),
+                          );
                         },
                       ),
                     );
@@ -100,7 +104,8 @@ class _LicensesPageState extends State<LicensesPage> {
 class InsideLicense extends StatelessWidget {
   final List<String>? licenseValue;
   final String? licenseKey;
-  const InsideLicense(this.licenseKey, this.licenseValue, {Key? key}) : super(key: key);
+  const InsideLicense(this.licenseKey, this.licenseValue, {Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,7 +149,7 @@ class InsideLicense extends StatelessWidget {
                       )
                     ],
                   ),
-               const Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 32),
                 )
               ],

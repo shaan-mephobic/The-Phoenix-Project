@@ -11,15 +11,13 @@ class GlassEffect extends StatefulWidget {
   const GlassEffect({Key? key}) : super(key: key);
 
   @override
-  _GlassEffectState createState() => _GlassEffectState();
+  State<GlassEffect> createState() => _GlassEffectState();
 }
 
 class _GlassEffectState extends State<GlassEffect> {
-  double? blur =
-      musicBox.get("glassBlur") ?? 10;
+  double? blur = musicBox.get("glassBlur") ?? 10;
   double? whiteOpacity = musicBox.get("glassOverlayColor") ?? 2;
-  double? shadow =
-      musicBox.get("glassShadow") ?? 6;
+  double? shadow = musicBox.get("glassShadow") ?? 6;
   @override
   void initState() {
     crossfadeStateChange = true;
@@ -173,8 +171,9 @@ class _GlassEffectState extends State<GlassEffect> {
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
-                                          thumbShape: const RoundSliderThumbShape(
-                                              enabledThumbRadius: 5),
+                                          thumbShape:
+                                              const RoundSliderThumbShape(
+                                                  enabledThumbRadius: 5),
                                           inactiveTrackColor:
                                               musicBox.get("dynamicArtDB") ??
                                                       true
@@ -226,7 +225,7 @@ class _GlassEffectState extends State<GlassEffect> {
                                       "${whiteOpacity!.toInt()}",
                                       style: TextStyle(
                                           fontSize: deviceWidth! / 35,
-                                          shadows:const [
+                                          shadows: const [
                                             Shadow(
                                               offset: Offset(0.5, 0.5),
                                               blurRadius: 2.0,
@@ -241,8 +240,9 @@ class _GlassEffectState extends State<GlassEffect> {
                                           : deviceWidth! / 1.5,
                                       child: SliderTheme(
                                         data: SliderThemeData(
-                                          thumbShape: const RoundSliderThumbShape(
-                                              enabledThumbRadius: 5),
+                                          thumbShape:
+                                              const RoundSliderThumbShape(
+                                                  enabledThumbRadius: 5),
                                           trackHeight: 3,
                                           inactiveTrackColor:
                                               musicBox.get("dynamicArtDB") ??
@@ -313,8 +313,9 @@ class _GlassEffectState extends State<GlassEffect> {
                                       child: SliderTheme(
                                         data: SliderThemeData(
                                           trackHeight: 3,
-                                          thumbShape: const RoundSliderThumbShape(
-                                              enabledThumbRadius: 5),
+                                          thumbShape:
+                                              const RoundSliderThumbShape(
+                                                  enabledThumbRadius: 5),
                                           inactiveTrackColor:
                                               musicBox.get("dynamicArtDB") ??
                                                       true

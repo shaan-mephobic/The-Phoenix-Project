@@ -185,7 +185,7 @@ class ListHeader extends StatelessWidget {
   }
 
   refreshSongs() {
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       Begin.refreshIndicatorKey.currentState?.show();
     });
   }

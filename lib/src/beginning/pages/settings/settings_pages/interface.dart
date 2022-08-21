@@ -16,7 +16,7 @@ class Interface extends StatefulWidget {
   const Interface({Key? key}) : super(key: key);
 
   @override
-  _InterfaceState createState() => _InterfaceState();
+  State<Interface> createState() => _InterfaceState();
 }
 
 class _InterfaceState extends State<Interface> {
@@ -70,6 +70,10 @@ class _InterfaceState extends State<Interface> {
                       top: kToolbarHeight + MediaQuery.of(context).padding.top),
                   child: ListView(
                     padding: const EdgeInsets.all(0),
+                    physics: musicBox.get("fluidAnimation") ?? true
+                        ? const BouncingScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                    shrinkWrap: true,
                     children: [
                       Material(
                         color: Colors.transparent,
@@ -181,8 +185,8 @@ class _InterfaceState extends State<Interface> {
                             refresh = true;
                           },
                           onTap: () async {
-                            final ImagePicker _picker = ImagePicker();
-                            final XFile image = (await _picker.pickImage(
+                            final ImagePicker picker = ImagePicker();
+                            final XFile image = (await picker.pickImage(
                                 source: ImageSource.gallery))!;
                             Uint8List bytes = await image.readAsBytes();
                             setState(() {
@@ -401,10 +405,6 @@ class _InterfaceState extends State<Interface> {
                             )),
                       ),
                     ],
-                    physics: musicBox.get("fluidAnimation") ?? true
-                        ? const BouncingScrollPhysics()
-                        : const ClampingScrollPhysics(),
-                    shrinkWrap: true,
                   ),
                 ),
               ],

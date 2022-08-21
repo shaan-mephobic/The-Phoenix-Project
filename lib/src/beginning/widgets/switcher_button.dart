@@ -37,7 +37,7 @@ class SwitcherButton extends StatefulWidget {
   }
 
   @override
-  _SwitcherButtonState createState() => _SwitcherButtonState();
+  State<SwitcherButton> createState() => _SwitcherButtonState();
 }
 
 class _SwitcherButtonState extends State<SwitcherButton>

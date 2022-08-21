@@ -15,7 +15,7 @@ class Phoenix extends StatefulWidget {
   const Phoenix({Key? key}) : super(key: key);
 
   @override
-  _PhoenixState createState() => _PhoenixState();
+  State<Phoenix> createState() => _PhoenixState();
 }
 
 class _PhoenixState extends State<Phoenix> {
@@ -222,9 +222,9 @@ class _PhoenixState extends State<Phoenix> {
                                               final Uri emailLaunchUri = Uri(
                                                 scheme: 'mailto',
                                                 path:
-                                                    'shaanfaydhphoenix@gmail.com',
+                                                    'sincerelyshaan@protonmail.com',
                                               );
-                                              launch(emailLaunchUri.toString());
+                                              launchUrl(emailLaunchUri);
                                             }),
                                         IconButton(
                                             iconSize: orientedCar
@@ -233,12 +233,12 @@ class _PhoenixState extends State<Phoenix> {
                                             icon: const Icon(MdiIcons.github,
                                                 color: Colors.white),
                                             onPressed: () async {
-                                              const String _url =
-                                                  "https://github.com/shaan-mephobic/The-Phoenix-Project";
-                                              await canLaunch(_url)
-                                                  ? await launch(_url)
+                                              Uri url = Uri.parse(
+                                                  "https://github.com/shaan-mephobic/The-Phoenix-Project");
+                                              await canLaunchUrl(url)
+                                                  ? await launchUrl(url)
                                                   : throw Exception(
-                                                      'Could not launch $_url');
+                                                      'Could not launch $url');
                                             }),
                                         IconButton(
                                             iconSize: orientedCar
@@ -287,12 +287,12 @@ class _PhoenixState extends State<Phoenix> {
                                               ).show(context);
                                               await Future.delayed(
                                                   const Duration(seconds: 2));
-                                              const String _url =
-                                                  "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-                                              await canLaunch(_url)
-                                                  ? await launch(_url)
+                                              Uri url = Uri.parse(
+                                                  "https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                                              await canLaunchUrl(url)
+                                                  ? await launchUrl(url)
                                                   : throw Exception(
-                                                      'Could not launch $_url');
+                                                      'Could not launch $url');
                                             }),
                                         Padding(
                                             padding: EdgeInsets.only(

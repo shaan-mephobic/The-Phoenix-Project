@@ -14,7 +14,7 @@ class Miscellaneous extends StatefulWidget {
   const Miscellaneous({Key? key}) : super(key: key);
 
   @override
-  _MiscellaneousState createState() => _MiscellaneousState();
+  State<Miscellaneous> createState() => _MiscellaneousState();
 }
 
 class _MiscellaneousState extends State<Miscellaneous> {

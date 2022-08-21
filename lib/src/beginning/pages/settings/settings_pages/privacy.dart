@@ -11,7 +11,7 @@ class Privacy extends StatefulWidget {
   const Privacy({Key? key}) : super(key: key);
 
   @override
-  _PrivacyState createState() => _PrivacyState();
+  State<Privacy> createState() => _PrivacyState();
 }
 
 class _PrivacyState extends State<Privacy> {

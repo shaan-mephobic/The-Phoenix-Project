@@ -38,7 +38,7 @@ class Begin extends StatefulWidget {
   static bool isLoading = true;
   const Begin({Key? key}) : super(key: key);
   @override
-  _BeginState createState() => _BeginState();
+  State<Begin> createState() => _BeginState();
 }
 
 class _BeginState extends State<Begin>
@@ -52,8 +52,8 @@ class _BeginState extends State<Begin>
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     visualizerNotificationInit();
-    WidgetsBinding.instance!.addObserver(this);
-    SchedulerBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addObserver(this);
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Begin.refreshIndicatorKey.currentState?.show();
       setState(() {});
     });
@@ -63,7 +63,7 @@ class _BeginState extends State<Begin>
   @override
   void dispose() {
     animatedPlayPause.dispose();
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -102,7 +102,7 @@ class _BeginState extends State<Begin>
     if (refresh) {
       debugPrint("Refreshing...");
       refresh = false;
-      SchedulerBinding.instance!.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         Begin.refreshIndicatorKey.currentState?.show();
       });
     }
@@ -404,8 +404,11 @@ class _BeginState extends State<Begin>
                                       ? deviceWidth! / 17
                                       : deviceHeight! / 36,
                                 ),
-                                onTap: () {
-                                  Navigator.push(
+                                onTap: () async {
+                                  var rootCrossfadeStateDup =
+                                      rootCrossfadeState;
+                                  var rootStateDup = rootState;
+                                  await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => MultiProvider(
@@ -418,11 +421,28 @@ class _BeginState extends State<Begin>
                                           ChangeNotifierProvider<Leprovider>(
                                             create: (_) => Leprovider(),
                                           ),
+                                          ChangeNotifierProvider<MrMan>(
+                                            create: (_) => MrMan(),
+                                          ),
+                                          ChangeNotifierProvider<Seek>(
+                                              create: (_) => Seek()),
+                                          ChangeNotifierProvider<SortProvider>(
+                                            create: (_) => SortProvider(),
+                                          ),
                                         ],
                                         builder: (context, child) =>
                                             const Searchin(),
                                       ),
                                     ),
+                                  ).then(
+                                    (value) {
+                                      rootCrossfadeState =
+                                          rootCrossfadeStateDup;
+                                      rootState = rootStateDup;
+                                      if (isPlayerShown) {
+                                        rootState.provideman();
+                                      }
+                                    },
                                   );
                                 },
                               ),

@@ -28,7 +28,7 @@ class Ringtone extends StatefulWidget {
       required this.songDuration})
       : super(key: key);
   @override
-  _RingtoneState createState() => _RingtoneState();
+  State<Ringtone> createState() => _RingtoneState();
 }
 
 class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
@@ -428,7 +428,7 @@ class _RingtoneState extends State<Ringtone> with TickerProviderStateMixin {
                                               child: FlutterSlider(
                                                 tooltip: FlutterSliderTooltip(
                                                   format: (String value) {
-                                                    return value + "s";
+                                                    return "${value}s";
                                                   },
                                                   textStyle: const TextStyle(
                                                       color: Colors.white),

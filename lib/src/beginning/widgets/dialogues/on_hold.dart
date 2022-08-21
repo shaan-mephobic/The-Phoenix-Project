@@ -45,7 +45,7 @@ class OnHold extends StatefulWidget {
       : super(key: key);
 
   @override
-  _OnHoldState createState() => _OnHoldState();
+  State<OnHold> createState() => _OnHoldState();
 }
 
 class _OnHoldState extends State<OnHold> {
@@ -492,7 +492,7 @@ class OnHoldExtended extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _OnHoldExtendedState createState() => _OnHoldExtendedState();
+  State<OnHoldExtended> createState() => _OnHoldExtendedState();
 }
 
 class _OnHoldExtendedState extends State<OnHoldExtended> {

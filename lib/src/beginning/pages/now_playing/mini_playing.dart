@@ -11,7 +11,7 @@ class Moderna extends StatefulWidget {
   const Moderna({Key? key}) : super(key: key);
 
   @override
-  _ModernaState createState() => _ModernaState();
+  State<Moderna> createState() => _ModernaState();
 }
 
 class _ModernaState extends State<Moderna> {
@@ -145,7 +145,7 @@ class Classix extends StatefulWidget {
   const Classix({Key? key}) : super(key: key);
 
   @override
-  _ClassixState createState() => _ClassixState();
+  State<Classix> createState() => _ClassixState();
 }
 
 class _ClassixState extends State<Classix> {

@@ -9,7 +9,7 @@ class PhoenixVisualizer extends StatefulWidget {
   const PhoenixVisualizer({Key? key}) : super(key: key);
 
   @override
-  _PhoenixVisualizerState createState() => _PhoenixVisualizerState();
+  State<PhoenixVisualizer> createState() => _PhoenixVisualizerState();
 }
 
 class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
@@ -37,10 +37,12 @@ class _PhoenixVisualizerState extends State<PhoenixVisualizer> {
                   Expanded(
                     flex: 0,
                     child: Container(
-                      height:
-                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
-                      width:
-                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
+                      height: orientedCar
+                          ? deviceHeight! / 1.4
+                          : deviceWidth! * 1.3,
+                      width: orientedCar
+                          ? deviceHeight! / 1.5
+                          : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),
@@ -173,7 +175,7 @@ class PhoenixVisualizerCustomize extends StatefulWidget {
   const PhoenixVisualizerCustomize({Key? key}) : super(key: key);
 
   @override
-  _PhoenixVisualizerCustomizeState createState() =>
+  State<PhoenixVisualizerCustomize> createState() =>
       _PhoenixVisualizerCustomizeState();
 }
 
@@ -203,10 +205,12 @@ class _PhoenixVisualizerCustomizeState
                   child: Material(
                     color: Colors.transparent,
                     child: Container(
-                      height:
-                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
-                      width:
-                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
+                      height: orientedCar
+                          ? deviceHeight! / 1.4
+                          : deviceWidth! * 1.3,
+                      width: orientedCar
+                          ? deviceHeight! / 1.5
+                          : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),
@@ -313,7 +317,7 @@ class PhoenixVisualizerGlobal extends StatefulWidget {
   const PhoenixVisualizerGlobal({Key? key}) : super(key: key);
 
   @override
-  _PhoenixVisualizerGlobalState createState() =>
+  State<PhoenixVisualizerGlobal> createState() =>
       _PhoenixVisualizerGlobalState();
 }
 
@@ -342,10 +346,12 @@ class _PhoenixVisualizerGlobalState extends State<PhoenixVisualizerGlobal> {
                   Expanded(
                     flex: 0,
                     child: Container(
-                      height:
-                          orientedCar ? deviceHeight! / 1.4 : deviceWidth! * 1.3,
-                      width:
-                          orientedCar ? deviceHeight! / 1.5 : deviceWidth! / 1.2,
+                      height: orientedCar
+                          ? deviceHeight! / 1.4
+                          : deviceWidth! * 1.3,
+                      width: orientedCar
+                          ? deviceHeight! / 1.5
+                          : deviceWidth! / 1.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(kRounded),
                       ),

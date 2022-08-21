@@ -14,7 +14,7 @@ class Allofem extends StatefulWidget {
   const Allofem({Key? key}) : super(key: key);
 
   @override
-  _AllofemState createState() => _AllofemState();
+  State<Allofem> createState() => _AllofemState();
 }
 
 class _AllofemState extends State<Allofem>

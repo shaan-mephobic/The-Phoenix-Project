@@ -8,7 +8,7 @@ class Directories extends StatefulWidget {
   const Directories({Key? key}) : super(key: key);
 
   @override
-  _DirectoriesState createState() => _DirectoriesState();
+  State<Directories> createState() => _DirectoriesState();
 }
 
 class _DirectoriesState extends State<Directories> {
@@ -167,7 +167,8 @@ class _DirectoriesState extends State<Directories> {
           onWillPop: _onWillPop,
           child: Container(
             color: kMaterialBlack,
-            padding: const EdgeInsets.only(top: kToolbarHeight + kToolbarHeight + 50),
+            padding: const EdgeInsets.only(
+                top: kToolbarHeight + kToolbarHeight + 50),
             height: deviceHeight,
             child: MediaQuery.removePadding(
               context: context,
@@ -214,8 +215,7 @@ class _DirectoriesState extends State<Directories> {
                           color: Colors.transparent,
                           child: IconButton(
                               icon: const Icon(Icons.arrow_forward_ios_rounded),
-                              color:
-                                  Colors.white,
+                              color: Colors.white,
                               onPressed: () async {
                                 HapticFeedback.lightImpact();
                                 await iterationManager(

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class Changelogs extends StatefulWidget {
   const Changelogs({Key? key}) : super(key: key);
   @override
-  _ChangelogsState createState() => _ChangelogsState();
+  State<Changelogs> createState() => _ChangelogsState();
 }
 
 class _ChangelogsState extends State<Changelogs> {

@@ -19,7 +19,7 @@ class AddToPlaylist extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AddToPlaylistState createState() => _AddToPlaylistState();
+  State<AddToPlaylist> createState() => _AddToPlaylistState();
 }
 
 class _AddToPlaylistState extends State<AddToPlaylist> {

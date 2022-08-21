@@ -21,11 +21,11 @@ Future<void> ringtoneTrim(
   final String length = (Duration(milliseconds: ranges[1] ~/ 1) -
           Duration(milliseconds: ranges[0] ~/ 1))
       .toString();
-  final FlutterFFmpeg _flutterFFmpeg = FlutterFFmpeg();
+  final FlutterFFmpeg flutterFFmpeg = FlutterFFmpeg();
   final String finalFile = await duplicateFile(
       "/storage/emulated/0/Music/$title$ext".replaceAll(" ", "-"));
   await File(pathOfFile).copy("${applicationFileDirectory.path}/raw$ext");
-  await _flutterFFmpeg
+  await flutterFFmpeg
       .execute("-ss $start -i $inputFile -t $length -c copy $outputFile")
       .then((rc) => debugPrint("FFmpeg process 1 exited with rc $rc"));
   if (fade != 0) {
@@ -34,7 +34,7 @@ Future<void> ringtoneTrim(
     // non-flac files to flac to apply crossfade.
     try {
       if (ext.contains(".flac")) {
-        await _flutterFFmpeg
+        await flutterFFmpeg
             .execute(
                 '-i $outputFile -af "afade=t=in:st=0:d=$fade" $outputFileFade')
             .then((rc) => debugPrint("FFmpeg process 2 exited with rc $rc"));
@@ -51,10 +51,10 @@ Future<void> ringtoneTrim(
                 .replaceAll(" ", "-");
         final String finalConvertFile = await duplicateFile(
             "/storage/emulated/0/Music/$title.flac".replaceAll(" ", "-"));
-        await _flutterFFmpeg
+        await flutterFFmpeg
             .execute('-i $outputFile -f flac $convertFile')
             .then((rc) => debugPrint("FFmpeg process 3 exited with rc $rc"));
-        await _flutterFFmpeg
+        await flutterFFmpeg
             .execute(
                 '-i $convertFile -af "afade=t=in:st=0:d=$fade" $convertFileFade')
             .then((rc) => debugPrint("FFmpeg process 2 exited with rc $rc"));
