@@ -22,7 +22,7 @@ class NowPlayingSky extends StatefulWidget {
   const NowPlayingSky({Key? key}) : super(key: key);
 
   @override
-  _NowPlayingSkyState createState() => _NowPlayingSkyState();
+  State<NowPlayingSky> createState() => _NowPlayingSkyState();
 }
 
 class _NowPlayingSkyState extends State<NowPlayingSky>
@@ -34,8 +34,12 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
 
   @override
   void initState() {
-    animatedPlayPause = AnimationController(
-        vsync: this, duration: Duration(milliseconds: crossfadeDuration));
+    try {
+      animatedPlayPause.isAnimating;
+    } catch (e) {
+      animatedPlayPause = AnimationController(
+          vsync: this, duration: Duration(milliseconds: crossfadeDuration));
+    }
     super.initState();
   }
 
@@ -180,12 +184,16 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                           ],
                                               colors: [
                                             Colors.transparent,
-                                            isArtworkDark!
-                                                ? Colors.white
-                                                : Colors.black,
-                                            isArtworkDark!
-                                                ? Colors.white
-                                                : Colors.black,
+                                            musicBox.get("dynamicArtDB") ?? true
+                                                ? isArtworkDark!
+                                                    ? Colors.white
+                                                    : Colors.black
+                                                : Colors.white,
+                                            musicBox.get("dynamicArtDB") ?? true
+                                                ? isArtworkDark!
+                                                    ? Colors.white
+                                                    : Colors.black
+                                                : Colors.white,
                                             Colors.transparent
                                           ]).createShader(Rect.fromLTRB(0, 0,
                                               bounds.width, bounds.height)),
@@ -208,7 +216,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
-                                                    : kMaterialBlack,
+                                                    : Colors.white,
                                           ),
                                         ),
                                       ),
@@ -228,8 +236,8 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                             SizedBox(
                               width: orientedCar ? deviceHeight : deviceWidth,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 50, right: 50),
+                                padding: const EdgeInsets.only(
+                                    left: 50, right: 50, bottom: 7),
                                 child: MarqueeText(
                                   text: nowMediaItem.title,
                                   style: TextStyle(
@@ -238,7 +246,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                             ? Colors.white
                                             : Colors.black
                                         : Colors.white,
-                                    fontSize: deviceHeight! / 35,
+                                    fontSize: deviceHeight! / 32,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   speed: 20,
@@ -641,12 +649,18 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               ],
                                                   colors: [
                                                 Colors.transparent,
-                                                isArtworkDark!
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                                isArtworkDark!
-                                                    ? Colors.white
-                                                    : Colors.black,
+                                                musicBox.get("dynamicArtDB") ??
+                                                        true
+                                                    ? isArtworkDark!
+                                                        ? Colors.white
+                                                        : Colors.black
+                                                    : Colors.white,
+                                                musicBox.get("dynamicArtDB") ??
+                                                        true
+                                                    ? isArtworkDark!
+                                                        ? Colors.white
+                                                        : Colors.black
+                                                    : Colors.white,
                                                 Colors.transparent
                                               ]).createShader(Rect.fromLTRB(
                                                   0,
@@ -673,7 +687,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
-                                                    : kMaterialBlack,
+                                                    : Colors.white,
                                               ),
                                             ),
                                           ),
@@ -1149,12 +1163,18 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                               ],
                                                   colors: [
                                                 Colors.transparent,
-                                                isArtworkDark!
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                                isArtworkDark!
-                                                    ? Colors.white
-                                                    : Colors.black,
+                                                musicBox.get("dynamicArtDB") ??
+                                                        true
+                                                    ? isArtworkDark!
+                                                        ? Colors.white
+                                                        : Colors.black
+                                                    : Colors.white,
+                                                musicBox.get("dynamicArtDB") ??
+                                                        true
+                                                    ? isArtworkDark!
+                                                        ? Colors.white
+                                                        : Colors.black
+                                                    : Colors.white,
                                                 Colors.transparent
                                               ]).createShader(Rect.fromLTRB(
                                                   0,
@@ -1181,7 +1201,7 @@ class _NowPlayingSkyState extends State<NowPlayingSky>
                                                     ? isArtworkDark!
                                                         ? Colors.white
                                                         : Colors.black
-                                                    : kMaterialBlack,
+                                                    : Colors.white,
                                               ),
                                             ),
                                           ),
