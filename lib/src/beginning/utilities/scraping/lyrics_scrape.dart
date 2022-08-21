@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:phoenix/src/beginning/utilities/audio_handlers/previous_play_skip.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
@@ -10,7 +8,7 @@ import '../has_network.dart';
 
 class Lyrics {
   final String _url = "https://www.google.com/search?q=";
-  final String _url2 = "https://api.lyrics.ovh/v1";
+  // final String _url2 = "https://api.lyrics.ovh/v1";
   String _delimiter1 =
       '</div></div></div></div><div class="hwc"><div class="BNeawe tAd8D AP7Wnd"><div><div class="BNeawe tAd8D AP7Wnd">';
   String _delimiter2 =
@@ -36,6 +34,7 @@ class Lyrics {
     }
 
     // Scraping lyrics from https://api.lyrics.ovh
+    /* disabled because API is extremely slow nowadays.
     if (artist != " ") {
       String? firstLyric;
       try {
@@ -65,6 +64,7 @@ class Lyrics {
         return [firstLyric, path];
       }
     }
+    */
 
     /// Credits to Sjoerd Bolten - https://github.com/Netlob/dart-lyrics
     /// Scraping lyrics from Google.
