@@ -47,7 +47,7 @@ android {
     defaultConfig {
         applicationId "com.Phoenix.project"
         minSdkVersion 24
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

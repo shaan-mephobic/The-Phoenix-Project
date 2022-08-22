@@ -14,7 +14,7 @@ double kRounded = 12;
 Color kPhoenixColor = const Color(0xFF028ac4);
 
 /// Crossfade duration.
-int crossfadeDuration = 180;
+int crossfadeDuration = 250;
 
 /// Blur constant for artwork background
 double artworkBlurConst = 14;
@@ -65,6 +65,8 @@ ThemeData themeOfApp = ThemeData(
   dividerTheme: const DividerThemeData(
     color: Colors.white54,
   ),
+  pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {TargetPlatform.android: OpenUpwardsPageTransitionsBuilder()}),
   scrollbarTheme: ScrollbarThemeData(
     interactive: true,
     thumbVisibility: MaterialStateProperty.all(false),
