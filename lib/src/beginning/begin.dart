@@ -2,6 +2,7 @@
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:phoenix/src/beginning/pages/albums/albums.dart';
 import 'package:phoenix/src/beginning/pages/now_playing/now_playing_sky.dart';
@@ -49,6 +50,7 @@ class _BeginState extends State<Begin>
 
   @override
   void initState() {
+    setScreenFrames();
     audioServiceStream();
     tabController = TabController(vsync: this, length: 6, initialIndex: 1);
     visualizerNotificationInit();
@@ -526,6 +528,10 @@ class _BeginState extends State<Begin>
       return result;
     }
     return false;
+  }
+
+  Future<void> setScreenFrames() async {
+    await FlutterDisplayMode.setHighRefreshRate();
   }
 
   Future<bool> fivesecsbacker() async {
