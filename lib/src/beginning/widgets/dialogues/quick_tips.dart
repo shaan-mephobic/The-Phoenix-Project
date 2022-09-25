@@ -6,7 +6,7 @@ import 'package:phoenix/src/beginning/utilities/global_variables.dart';
 quickTip(BuildContext context) {
   Flushbar(
     messageText: const Text(
-        "Quick-Tip: Tap the music artwork image to find additional options.",
+        "Quick-Tip: Hold the music artwork image to find additional options.",
         style: TextStyle(fontFamily: "Futura", color: Colors.white)),
     icon: Icon(Icons.info_outline_rounded, size: 28.0, color: kCorrect),
     shouldIconPulse: true,
